@@ -46,11 +46,12 @@ Once all phases are complete:
     - Run all test suites.
     - Verify build integrity.
 2.  **Fix:** Resolve any regressions or issues discovered during the scan.
+3.  If need manually verification from user, ask them and wait with the list questions: `Verified`, or type something to continue loop.
 
 ### Step 4: Completion
 
 1.  **Documentation:** Update project documentation via the `docs` skill if architecture/features changed.
-2.  **Final Report:** Create `docs/plans/YYYY-MM-DD-<plan-name>/execution-report.md`.
+2.  **Final Report:** Create `docs/plans/YYYY-MM-DD-<plan-name>/EXECUTION-REPORT.md`.
     - Summarize work completed.
     - Note deviations or outstanding issues.
 3.  **Announce:** "Execution complete. Report created at `<path>`."
