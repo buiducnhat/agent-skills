@@ -3,7 +3,7 @@ name: docs
 description: Initialize or update project documentation. Use this skill when you need to set up documentation for the first time (--init) or update existing documentation (--update). It scouts the project structure, business requirements, tech stack, codebase, and architecture, then creates/updates comprehensive documentation files.
 ---
 
-# Docs Skill
+# Docs
 
 This skill helps you create and maintain comprehensive project documentation.
 
