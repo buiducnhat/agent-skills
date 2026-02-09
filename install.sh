@@ -31,10 +31,11 @@ if [[ -d ".claude" ]]; then
     echo -e "${YELLOW}Running update instead of fresh install...${NC}"
 
     # Copy update script and run it
-    cp "$TEMP_DIR/update-skills.sh" ./update-skills.sh
-    chmod +x ./update-skills.sh
-    ./update-skills.sh --init-manifest
-    ./update-skills.sh
+    mkdir -p .claude/scripts
+    cp "$TEMP_DIR/.claude/scripts/update-skills.sh" ./.claude/scripts/update-skills.sh
+    chmod +x ./.claude/scripts/update-skills.sh
+    ./.claude/scripts/update-skills.sh --init-manifest
+    ./.claude/scripts/update-skills.sh
 else
     # Fresh install
     echo -e "${BLUE}Installing .claude/ directory...${NC}"
@@ -43,21 +44,20 @@ else
     echo -e "${BLUE}Installing CLAUDE.md...${NC}"
     cp "$TEMP_DIR/CLAUDE.md" .
 
-    echo -e "${BLUE}Installing update-skills.sh...${NC}"
-    cp "$TEMP_DIR/update-skills.sh" .
-    chmod +x update-skills.sh
+    # Make scripts executable
+    chmod +x .claude/scripts/*.sh 2>/dev/null || true
 
     # Initialize manifest
-    ./update-skills.sh --init-manifest
+    ./.claude/scripts/update-skills.sh --init-manifest
 fi
 
 echo ""
 echo -e "${GREEN}✓ Agent Skills installed successfully!${NC}"
 echo ""
 echo "Available commands:"
-echo "  ./update-skills.sh          # Update skills from remote"
-echo "  ./update-skills.sh --status # Check skill status"
-echo "  ./update-skills.sh --help   # Show all options"
+echo "  ./.claude/scripts/update-skills.sh          # Update skills from remote"
+echo "  ./.claude/scripts/update-skills.sh --status # Check skill status"
+echo "  ./.claude/scripts/update-skills.sh --help   # Show all options"
 echo ""
 echo "Start using skills in Claude Code:"
 echo "  /brainstorm <topic>"

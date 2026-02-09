@@ -32,16 +32,16 @@ Once installed, you can update to the latest skills while preserving your custom
 
 ```bash
 # Preview changes
-./update-skills.sh --dry-run
+./.claude/scripts/update-skills.sh --dry-run
 
 # Update skills
-./update-skills.sh
+./.claude/scripts/update-skills.sh
 
 # Check status (upstream vs local skills)
-./update-skills.sh --status
+./.claude/scripts/update-skills.sh --status
 
 # Force update (overwrite local modifications)
-./update-skills.sh --force
+./.claude/scripts/update-skills.sh --force
 ```
 
 ### How Updates Work

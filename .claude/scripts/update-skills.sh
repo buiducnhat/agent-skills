@@ -3,6 +3,7 @@
 # update-skills.sh - Update agent skills from remote repository
 # Repository: https://github.com/buiducnhat/agent-skills.git
 #
+# Location: .claude/scripts/update-skills.sh
 # Compatible with bash 3.2+ (macOS default) and bash 4+
 #
 
@@ -14,8 +15,9 @@ REPO_BRANCH="main"
 MANIFEST_FILE=".claude/.upstream-manifest"
 BACKUP_DIR=".claude-backup"
 
-# Script state
+# Script state - resolve to project root (two levels up from .claude/scripts/)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 TEMP_DIR=""
 MANIFEST_TEMP=""
 DRY_RUN=false
@@ -23,6 +25,9 @@ FORCE=false
 VERBOSE=false
 NO_BACKUP=false
 CUSTOM_BACKUP_DIR=""
+
+# Change to project root for all operations
+cd "$PROJECT_ROOT"
 
 # Colors for output
 RED='\033[0;31m'
@@ -436,19 +441,19 @@ do_update() {
         done
     fi
 
+    # Sync .claude/scripts/
+    if [[ -d "$TEMP_DIR/.claude/scripts" ]]; then
+        log_info "Updating .claude/scripts/..."
+        sync_directory "$TEMP_DIR/.claude/scripts" ".claude/scripts" ".claude/scripts" "$version"
+        if [[ "$DRY_RUN" != true ]]; then
+            chmod +x .claude/scripts/*.sh 2>/dev/null || true
+        fi
+    fi
+
     # Sync CLAUDE.md
     if [[ -f "$TEMP_DIR/CLAUDE.md" ]]; then
         log_info "Updating CLAUDE.md..."
         sync_file "$TEMP_DIR/CLAUDE.md" "CLAUDE.md" "CLAUDE.md" "$version"
-    fi
-
-    # Sync update-skills.sh itself
-    if [[ -f "$TEMP_DIR/update-skills.sh" ]]; then
-        log_info "Updating update-skills.sh..."
-        sync_file "$TEMP_DIR/update-skills.sh" "update-skills.sh" "update-skills.sh" "$version"
-        if [[ "$DRY_RUN" != true ]]; then
-            chmod +x update-skills.sh
-        fi
     fi
 
     # Write updated manifest
