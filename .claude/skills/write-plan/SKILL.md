@@ -102,6 +102,12 @@ The plan must be structured for machine or human execution.
     - _Iterate:_ Adjust based on user input.
     - _Approval:_ Proceed only when confirmed.
 
+Once finished, display the guide to the next step:
+
+```
+Plan `<relative_path_to_plan>` is ready, use `/clear` and then `/execute-plan <relative_path_to_plan>` to execute it.
+```
+
 ## Rules
 
 - **Self-Contained:** The plan must possess all context needed for execution.
