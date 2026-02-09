@@ -42,3 +42,4 @@ Directly implement small-scope changes or fixes.
 - **Stop on Blocker:** If a dependency is missing, a test fails unexpectedly, or instructions are unclear, **STOP** and ask.
 - **No Guessing:** Clarify intentions rather than assuming.
 - **Idempotency:** Ensure steps are safe to run multiple times.
+- **Follow documentations:** Always follow the documentations of the current project, usually in `docs/` directory. Especially follow the `code-standard.md` for coding standards, convensions,....

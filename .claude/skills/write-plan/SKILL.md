@@ -14,7 +14,7 @@ Create comprehensive, self-contained implementation plans without coding, just d
 ### Step 1: Initialize Plan Artifacts
 
 1.  **Contextualize:**
-    - Scout the codebase to understand existing patterns and dependencies.
+    - Scout the documentations of the codebase to understand existing patterns and dependencies.
     - Review `docs/` for project guidelines.
 2.  **Initialize Plan:**
     - Create directory: `docs/plans/YYMMDD-HHmm-<plan-slug>/`.
@@ -116,6 +116,7 @@ The plan must be structured for machine or human execution.
 - **Exactness:** Use absolute or correct relative paths. No placeholders like `path/to/file`.
 - **Verification First:** Always plan for testing/verification before marking a task complete.
 - **Best Practices:** Always follow the best practices and coding standards of the project. If the techstack/issues can be found in the skill list, use them to ensure the best practices and coding standards are followed.
+- **Follow documentations:** Always follow the documentations of the current project, usually in `docs/` directory. Especially follow the `code-standard.md` for coding standards, convensions,....
 
 ## Integration
 

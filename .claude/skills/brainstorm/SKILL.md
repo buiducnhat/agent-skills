@@ -53,6 +53,7 @@ Start by understanding the current project context, then ask questions one at a 
 - **Incremental validation** - Present design in sections, validate each
 - **Be flexible** - Go back and clarify when something doesn't make sense
 - **Only brainstorming** - Must not write any code or commit any changes, just provide documentations or plans if needed.
+- **Follow documentations:** Always follow the documentations of the current project, usually in `docs/` directory. Especially follow the `code-standard.md` for coding standards, convensions,....
 
 ## Integration
 
