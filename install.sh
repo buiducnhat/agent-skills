@@ -162,9 +162,11 @@ print_box_line() {
     local content="$1"
     local width=50
     local border_color="${PRIMARY}"
-    local visible_len=$(echo -e "$content" | sed 's/\x1b\[[0-9;]*m//g' | wc -c)
-    visible_len=$((visible_len - 1))
-    local padding=$((width - visible_len))
+    # Use parameter expansion to strip ANSI codes, then measure length
+    local stripped="${content//\\033\[[0-9;]*m/}"
+    local visible_len=${#stripped}
+    # Available space: width - "│ " (left) - "│" (right) = 47
+    local padding=$((width - 2 - visible_len))
 
     echo -e "${border_color}│${RESET} ${content}$(printf '%*s' $padding '')${border_color}│${RESET}"
 }

@@ -114,7 +114,8 @@ is_upstream_skill() {
     if [[ ! -f "$MANIFEST_FILE" ]]; then
         return 1
     fi
-    grep -q "^\.claude/skills/${skill_name}/" "$MANIFEST_FILE" 2>/dev/null
+    # Check if manifest contains entries for this skill (format: .claude/skills/skillname/...)
+    grep -qE "^\.claude/skills/${skill_name}/" "$MANIFEST_FILE" 2>/dev/null
 }
 
 # Get all tracked file paths from manifest
