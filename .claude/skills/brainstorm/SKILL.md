@@ -1,9 +1,9 @@
 ---
 name: brainstorm
-description: "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation."
+description: Help turn ideas into fully formed designs and specs through natural collaborative dialogue.
 ---
 
-# Brainstorming Ideas Into Designs
+# Brainstorm
 
 ## Overview
 
@@ -40,7 +40,7 @@ Start by understanding the current project context, then ask questions one at a 
 
 ### Step 4: Documentation (The Output)
 
-- Write the results for user to review to `docs/brainstorms/YYYY-MM-DD-<topic>/**.md` (The result can be separated into multiple files if needed) and the main file is `docs/brainstorms/YYYY-MM-DD-<topic>/SUMMARY.md`
+- Write the results for user to review to `docs/brainstorms/YYMMDD-HHmm-<topic>/**.md` (The result can be separated into multiple files if needed) and the main file is `docs/brainstorms/YYMMDD-HHmm-<topic>/SUMMARY.md`
 - Ask the user to review the results and provide feedback, if there are no feedback, ask the user if they want to write the plan immediately
 - If the user want to write the plan immediately, execute the skill `write-plan` to start writing the plan based on the inputs and the brainstorming results
 
@@ -53,3 +53,7 @@ Start by understanding the current project context, then ask questions one at a 
 - **Incremental validation** - Present design in sections, validate each
 - **Be flexible** - Go back and clarify when something doesn't make sense
 - **Only brainstorming** - Must not write any code or commit any changes, just provide documentations or plans if needed.
+
+## Integration
+
+- To get the current time in YYMMDD-HHmm and YYYY-MM-DD HH:mm:ss format, use the script `.claude/scripts/get-time.sh`.

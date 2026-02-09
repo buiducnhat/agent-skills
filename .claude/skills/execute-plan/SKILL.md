@@ -7,22 +7,25 @@ description: Strict execution of a written implementation plan with review check
 
 ## Overview
 
-Execute a pre-approved implementation plan with precision. Follow the plan strictly and do not deviate from it unless explicitly authorized. Always follow the best practices and coding standards of the project. The `execute-plan` skill usually need the path to the plan file as an argument. For example `execute-plan docs/plans/2026-02-09-my-plan/SUMMARY.md` or `execute-plan docs/plans/2026-02-09-my-plan` for shorthand.
+Execute a pre-approved implementation plan with precision. Follow the plan strictly and do not deviate from it unless explicitly authorized. Always follow the best practices and coding standards of the project. The `execute-plan` skill usually need the path to the plan file as an argument. For example `execute-plan docs/plans/260209-1705-my-plan/SUMMARY.md` or `execute-plan docs/plans/260209-1705-my-plan` for shorthand.
 
 ## Workflow
 
 ### Step 1: Initialize
 
-1.  **Locate Plan:** Confirm the plan file path (typically `docs/plans/YYYY-MM-DD-<plan-name>`).
-2.  **Identify the first `[ ]`** phase.
+1.  **Locate Plan:** Confirm the plan file path (typically `docs/plans/YYMMDD-HHmm-<plan-name>`).
+2.  **Identify the first pending phase**:
+    - Look for the first `[ ]` phase.
+    - If none found, check for `[-]` phases.
+    - If still none, consider the plan complete or ask the user for further instructions.
 3.  **Review Strategy:**
     - Assess phase complexity.
     - Confirm **Execution Mode** with the user if very necessary (for complex plans/phases or large code, the default mode should be `batch`):
       - **Interactive:** Pause for confirmation after each phase.
       - **Batch:** Execute all phases continuously; stop only on error.
 4.  **Critical Review:** Identify missing details or ambiguities.
-    - _Issues found:_ Stop and clarify immediately.
-    - _Plan is solid:_ Proceed to Step 2.
+    - Issues found: Stop and clarify immediately.
+    - Plan is solid: Proceed to Step 2.
 
 ### Step 2: Execution Loop (Per Phase)
 
@@ -51,7 +54,7 @@ Once all phases are complete:
 ### Step 4: Completion
 
 1.  **Documentation:** Update project documentation via the `docs` skill if architecture/features changed.
-2.  **Final Report:** Create `docs/plans/YYYY-MM-DD-<plan-name>/EXECUTION-REPORT.md`.
+2.  **Final Report:** Create `docs/plans/YYMMDD-HHmm-<plan-name>/EXECUTION-REPORT.md`.
     - Summarize work completed.
     - Note deviations or outstanding issues.
 3.  **Announce:** "Execution complete. Report created at `<path>`."

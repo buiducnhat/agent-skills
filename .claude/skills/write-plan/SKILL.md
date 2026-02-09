@@ -34,6 +34,7 @@ The plan must be structured for machine or human execution.
   # Implementation Plan: <Title>
 
   > Created Date: YYYY-MM-DD HH:mm:ss
+
   > Status: In Progress
 
   ## Objective
@@ -99,14 +100,15 @@ The plan must be structured for machine or human execution.
 
 1.  **Self-Correction:** Ensure file paths are exact and commands are correct.
 2.  **User Review:** Present the plan for feedback.
-    - _Iterate:_ Adjust based on user input.
-    - _Approval:_ Proceed only when confirmed.
-
-Once finished, display the guide to the next step:
-
-```
-Plan `<relative_path_to_plan>` is ready, use `/clear` and then `/execute-plan <relative_path_to_plan>` to execute it.
-```
+    - Iterate: Adjust based on user input.
+    - Approval: Proceed only when confirmed.
+    - For the complex plans or there are more than one approach, ask user for the validation with 2 options:
+      - Validate: Ask more questions to clarify the plan, then loop until the plan is clear, updated
+      - Confirm: The plan is clear and ready to execute
+3.  **Announce:** Once finished, display the guide to the next step:
+    ```
+    Plan `<relative_path_to_plan>` is ready, use `/clear` and then `/execute-plan <relative_path_to_plan>` to execute it.
+    ```
 
 ## Rules
 
@@ -114,8 +116,9 @@ Plan `<relative_path_to_plan>` is ready, use `/clear` and then `/execute-plan <r
 - **Exactness:** Use absolute or correct relative paths. No placeholders like `path/to/file`.
 - **Verification First:** Always plan for testing/verification before marking a task complete.
 - **Best Practices:** Always follow the best practices and coding standards of the project. If the techstack/issues can be found in the skill list, use them to ensure the best practices and coding standards are followed.
-- **Time:** Use `scripts/get-time.sh` to get the current time with format `YYYY-MM-DD HH:mm:ss` and `YYMMDD-HHmm`.
 
 ## Integration
 
 - **execute-plan**: The skill used to execute these plans.
+- **brainstorm**: The skill used to brainstorm ideas before writing the plan.
+- Use script `.claude/scripts/get-time.sh` to get the current time with format `YYYY-MM-DD HH:mm:ss` and `YYMMDD-HHmm`.
