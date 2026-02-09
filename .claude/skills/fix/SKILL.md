@@ -42,3 +42,4 @@ Diagnose and resolve bugs or issues.
   - Do not guess. Read the error log/stack trace carefully.
   - Locate the file and line number.
   - Trace the variable values mentally.
+- **Follow documentations:** Always follow the documentations of the current project, usually in `docs/` directory. Especially follow the `code-standard.md` for coding standards, convensions,....

@@ -39,3 +39,4 @@ Review uncommitted changes in the current git workspace.
 
 - **Be Specific:** pointing to specific lines of code.
 - **Context Matters:** Do not judge a diff in isolation; read the file.
+- **Follow documentations:** Always follow the documentations of the current project, usually in `docs/` directory. Especially follow the `code-standard.md` for coding standards, convensions,....
