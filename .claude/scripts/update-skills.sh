@@ -298,6 +298,8 @@ create_backup() {
 
 fetch_upstream() {
     TEMP_DIR=$(mktemp -d)
+    # Resolve to canonical path (fixes macOS /var -> /private/var symlink issue)
+    TEMP_DIR=$(cd "$TEMP_DIR" && pwd -P)
     log_info "Fetching latest from $REPO_URL..."
 
     if ! git clone --depth 1 --branch "$REPO_BRANCH" "$REPO_URL" "$TEMP_DIR" 2>/dev/null; then
