@@ -17,8 +17,8 @@ Create comprehensive, self-contained implementation plans without coding, just d
     - Scout the codebase to understand existing patterns and dependencies.
     - Review `docs/` for project guidelines.
 2.  **Initialize Plan:**
-    - Create directory: `docs/plans/YYYY-MM-DD-<plan-slug>/`.
-    - Create main file: `docs/plans/YYYY-MM-DD-<plan-slug>/SUMMARY.md`.
+    - Create directory: `docs/plans/YYMMDD-HHmm-<plan-slug>/`.
+    - Create main file: `docs/plans/YYMMDD-HHmm-<plan-slug>/SUMMARY.md`.
 
 ### Step 2: Define Phased Strategy (The Master Plan)
 
@@ -114,6 +114,7 @@ Plan `<relative_path_to_plan>` is ready, use `/clear` and then `/execute-plan <r
 - **Exactness:** Use absolute or correct relative paths. No placeholders like `path/to/file`.
 - **Verification First:** Always plan for testing/verification before marking a task complete.
 - **Best Practices:** Always follow the best practices and coding standards of the project. If the techstack/issues can be found in the skill list, use them to ensure the best practices and coding standards are followed.
+- **Time:** Use `scripts/get-time.sh` to get the current time with format `YYYY-MM-DD HH:mm:ss` and `YYMMDD-HHmm`.
 
 ## Integration
 
