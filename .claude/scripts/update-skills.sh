@@ -25,6 +25,7 @@ FORCE=false
 VERBOSE=false
 NO_BACKUP=false
 CUSTOM_BACKUP_DIR=""
+MAX_BACKUPS=3
 
 # Change to project root for all operations
 cd "$PROJECT_ROOT"
@@ -94,7 +95,8 @@ get_manifest_entry() {
     if [[ ! -f "$MANIFEST_FILE" ]]; then
         return 1
     fi
-    grep "^${search_path}:" "$MANIFEST_FILE" 2>/dev/null | cut -d':' -f2-3 || true
+    # Use -F for literal string matching to avoid regex issues with special chars
+    grep -F "${search_path}:" "$MANIFEST_FILE" 2>/dev/null | head -1 | cut -d':' -f2-3 || true
 }
 
 # Check if path exists in manifest
@@ -103,7 +105,7 @@ is_in_manifest() {
     if [[ ! -f "$MANIFEST_FILE" ]]; then
         return 1
     fi
-    grep -q "^${search_path}:" "$MANIFEST_FILE" 2>/dev/null
+    grep -qF "${search_path}:" "$MANIFEST_FILE" 2>/dev/null
 }
 
 # Check if skill is tracked in manifest (any file under skill dir)
@@ -182,6 +184,7 @@ OPTIONS:
     --status            Show current status (upstream vs local skills)
     --init-manifest     Initialize manifest for existing installation
     --backup-dir PATH   Custom backup directory (default: .claude-backup)
+    --max-backups N     Keep only N most recent backups (default: 3)
     --no-backup         Skip backup before update (not recommended)
     -v, --verbose       Enable verbose output
     -h, --help          Show this help message
@@ -220,6 +223,10 @@ parse_args() {
                 ;;
             --backup-dir)
                 CUSTOM_BACKUP_DIR="$2"
+                shift 2
+                ;;
+            --max-backups)
+                MAX_BACKUPS="$2"
                 shift 2
                 ;;
             --no-backup)
@@ -264,8 +271,42 @@ check_prerequisites() {
 }
 
 # ============================================
-# Phase 3: Update Logic
+# Backup Management
 # ============================================
+
+# Clean up old backups, keeping only the most recent N
+cleanup_old_backups() {
+    local backup_prefix="${CUSTOM_BACKUP_DIR:-$BACKUP_DIR}"
+    local max_to_keep="$MAX_BACKUPS"
+
+    # Find all backup directories matching the pattern
+    local backups=()
+    while IFS= read -r dir; do
+        if [[ -d "$dir" ]]; then
+            backups+=("$dir")
+        fi
+    done < <(ls -dt "${backup_prefix}"_* 2>/dev/null || true)
+
+    local count=${#backups[@]}
+    if [[ $count -le $max_to_keep ]]; then
+        log_verbose "Found $count backups, keeping all (max: $max_to_keep)"
+        return
+    fi
+
+    local to_delete=$((count - max_to_keep))
+    log_info "Cleaning up $to_delete old backup(s) (keeping $max_to_keep most recent)"
+
+    # Delete oldest backups (they are at the end of the sorted list)
+    for ((i = max_to_keep; i < count; i++)); do
+        local old_backup="${backups[$i]}"
+        if [[ "$DRY_RUN" == true ]]; then
+            log_info "[DRY RUN] Would remove old backup: $old_backup"
+        else
+            log_verbose "Removing old backup: $old_backup"
+            rm -rf "$old_backup"
+        fi
+    done
+}
 
 create_backup() {
     if [[ "$NO_BACKUP" == true ]]; then
@@ -293,6 +334,9 @@ create_backup() {
         fi
 
         log_success "Backup created at $backup_name/"
+
+        # Clean up old backups
+        cleanup_old_backups
     fi
 }
 
@@ -335,6 +379,8 @@ sync_file() {
         if [[ -f "$dst" ]]; then
             if ! diff -q "$src" "$dst" > /dev/null 2>&1; then
                 log_info "[DRY RUN] Would update: $rel_path"
+            else
+                log_verbose "[DRY RUN] No changes: $rel_path"
             fi
         else
             log_info "[DRY RUN] Would create: $rel_path"
@@ -344,6 +390,17 @@ sync_file() {
 
     # Create parent directory if needed
     mkdir -p "$(dirname "$dst")"
+
+    # Log what we're doing
+    if [[ -f "$dst" ]]; then
+        if ! diff -q "$src" "$dst" > /dev/null 2>&1; then
+            log_verbose "Updating: $rel_path"
+        else
+            log_verbose "Unchanged: $rel_path"
+        fi
+    else
+        log_verbose "Creating: $rel_path"
+    fi
 
     # Copy file
     cp "$src" "$dst"
@@ -423,7 +480,7 @@ do_update() {
                 local skill_file=".claude/skills/$skill_name/SKILL.md"
                 if [[ -f "$skill_file" && "$FORCE" != true ]]; then
                     local stored
-                    stored=$(get_manifest_entry "$skill_file")
+                    stored=$(get_manifest_entry "$skill_file") || true
                     if [[ -n "$stored" ]]; then
                         local stored_hash
                         stored_hash=$(echo "$stored" | cut -d':' -f1)
@@ -432,8 +489,12 @@ do_update() {
 
                         if [[ "$stored_hash" != "$current_hash" ]]; then
                             log_warn "Skipping modified skill: $skill_name (use --force to overwrite)"
+                            log_verbose "  Stored hash: $stored_hash"
+                            log_verbose "  Current hash: $current_hash"
                             continue
                         fi
+                    else
+                        log_verbose "No manifest entry for $skill_file, will update"
                     fi
                 fi
 
