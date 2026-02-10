@@ -414,9 +414,9 @@ sync_file() {
 
 # Sync a directory from upstream (preserving local additions)
 sync_directory() {
-    local src_dir="$1"
-    local dst_dir="$2"
-    local base_rel="$3"
+    local src_dir="${1%/}"
+    local dst_dir="${2%/}"
+    local base_rel="${3%/}"
     local version="$4"
 
     # Find all files in source
