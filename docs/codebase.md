@@ -5,6 +5,7 @@
 ```
 agent-skills/
 ├── .claude/                    # Claude Code configuration
+│   ├── settings.json           # Claude Code project settings (status line config)
 │   ├── lib/                    # Shared utilities
 │   │   └── skills-core.js      # Skill discovery and management
 │   ├── scripts/                # Utility scripts
@@ -78,6 +79,12 @@ Root configuration file that defines:
 - Documentation rules and structure
 - Workflow sequences (Complex → Standard → Rapid)
 - Critical rules for Claude Code behavior
+
+### .claude/settings.json
+
+Project-level Claude Code settings:
+
+- **`statusLine`**: Configures a custom status bar command (runs `context-bar.sh` to show model, git branch, sync status, and context usage)
 
 ### .claude/lib/skills-core.js
 

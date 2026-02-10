@@ -532,6 +532,12 @@ do_update() {
         sync_file "$TEMP_DIR/CLAUDE.md" "CLAUDE.md" "CLAUDE.md" "$version"
     fi
 
+    # Sync .claude/settings.json
+    if [[ -f "$TEMP_DIR/.claude/settings.json" ]]; then
+        log_info "Updating .claude/settings.json..."
+        sync_file "$TEMP_DIR/.claude/settings.json" ".claude/settings.json" ".claude/settings.json" "$version"
+    fi
+
     # Write updated manifest
     if [[ "$DRY_RUN" != true ]]; then
         mv "$MANIFEST_TEMP" "$MANIFEST_FILE"
