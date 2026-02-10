@@ -2,8 +2,8 @@
 
 ## Tech Stack
 
-- **Language:** JavaScript (ES Modules)
-- **Runtime:** Node.js
+- **Language:** JavaScript (ES Modules), Bash
+- **Runtime:** Node.js, bash 3.2+ (macOS compatible)
 - **Documentation:** Markdown with YAML frontmatter
 
 ## Skill File Structure
@@ -86,3 +86,22 @@ For `.claude/lib/` JavaScript files:
 - Use JSDoc comments for functions
 - Handle errors gracefully with try/catch
 - Return meaningful default values on failure
+
+## Code Style (Bash)
+
+For `.claude/scripts/` bash files:
+
+- Use `set -euo pipefail` at the top
+- Compatible with bash 3.2+ (no associative arrays, no `mapfile`)
+- Use `local` for function-scoped variables
+- Use colored log functions (`log_info`, `log_warn`, `log_error`, `log_success`, `log_verbose`)
+- Clean up temp files with `trap cleanup EXIT`
+- Use `diff -q` for file comparison before copying
+
+## Testing
+
+- Tests live in `tests/` directory
+- Bash tests use simple assert helpers (`assert_eq`, `assert_true`, `assert_false`, `assert_file_exists`)
+- Test scripts source production functions without running `main`
+- Each test uses `setup`/`teardown` with temp directories for isolation
+- Run tests with `bash tests/<test-file>.sh`

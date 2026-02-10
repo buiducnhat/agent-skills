@@ -27,6 +27,12 @@ NO_BACKUP=false
 CUSTOM_BACKUP_DIR=""
 MAX_BACKUPS=3
 
+# Counters
+FILES_CREATED=0
+FILES_UPDATED=0
+FILES_UNCHANGED=0
+FILES_SKIPPED=0
+
 # Change to project root for all operations
 cd "$PROJECT_ROOT"
 
@@ -380,11 +386,14 @@ sync_file() {
         if [[ -f "$dst" ]]; then
             if ! diff -q "$src" "$dst" > /dev/null 2>&1; then
                 log_info "[DRY RUN] Would update: $rel_path"
+                FILES_UPDATED=$((FILES_UPDATED + 1))
             else
                 log_verbose "[DRY RUN] No changes: $rel_path"
+                FILES_UNCHANGED=$((FILES_UNCHANGED + 1))
             fi
         else
             log_info "[DRY RUN] Would create: $rel_path"
+            FILES_CREATED=$((FILES_CREATED + 1))
         fi
         return
     fi
@@ -392,19 +401,20 @@ sync_file() {
     # Create parent directory if needed
     mkdir -p "$(dirname "$dst")"
 
-    # Log what we're doing
     if [[ -f "$dst" ]]; then
         if ! diff -q "$src" "$dst" > /dev/null 2>&1; then
-            log_verbose "Updating: $rel_path"
+            cp "$src" "$dst"
+            log_info "Updated: $rel_path"
+            FILES_UPDATED=$((FILES_UPDATED + 1))
         else
             log_verbose "Unchanged: $rel_path"
+            FILES_UNCHANGED=$((FILES_UNCHANGED + 1))
         fi
     else
-        log_verbose "Creating: $rel_path"
+        cp "$src" "$dst"
+        log_info "Created: $rel_path"
+        FILES_CREATED=$((FILES_CREATED + 1))
     fi
-
-    # Copy file
-    cp "$src" "$dst"
 
     # Add to manifest temp file
     local hash
@@ -474,6 +484,7 @@ do_update() {
                 # Check if this is a local skill we should preserve
                 if echo "$local_skills" | grep -qw "$skill_name"; then
                     log_warn "Skipping local skill: $skill_name (would conflict)"
+                    FILES_SKIPPED=$((FILES_SKIPPED + 1))
                     continue
                 fi
 
@@ -490,6 +501,7 @@ do_update() {
 
                         if [[ "$stored_hash" != "$current_hash" ]]; then
                             log_warn "Skipping modified skill: $skill_name (use --force to overwrite)"
+                            FILES_SKIPPED=$((FILES_SKIPPED + 1))
                             log_verbose "  Stored hash: $stored_hash"
                             log_verbose "  Current hash: $current_hash"
                             continue
@@ -529,6 +541,8 @@ do_update() {
 
     echo ""
     log_success "Update complete!"
+    echo ""
+    log_info "Summary: $FILES_CREATED created, $FILES_UPDATED updated, $FILES_UNCHANGED unchanged, $FILES_SKIPPED skipped"
 
     if [[ -n "$local_skills" ]]; then
         log_info "Your custom skills were preserved: $local_skills"

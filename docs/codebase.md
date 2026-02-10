@@ -7,6 +7,10 @@ agent-skills/
 ├── .claude/                    # Claude Code configuration
 │   ├── lib/                    # Shared utilities
 │   │   └── skills-core.js      # Skill discovery and management
+│   ├── scripts/                # Utility scripts
+│   │   ├── context-bar.sh      # Visual status bar for Claude Code
+│   │   ├── get-time.sh         # Time utility
+│   │   └── update-skills.sh    # Manifest-based skill updater
 │   └── skills/                 # Skill definitions (42 skills)
 │       ├── ai-sdk/
 │       ├── algorithmic-art/
@@ -50,6 +54,8 @@ agent-skills/
 │       ├── write-plan/
 │       ├── write-skill/
 │       └── xlsx/
+├── tests/                      # Unit tests
+│   └── test-update-skills.sh   # Tests for update-skills.sh
 ├── docs/                       # Project documentation
 │   ├── brainstorms/            # Brainstorm artifacts
 │   ├── plans/                  # Implementation plans
@@ -98,3 +104,26 @@ JavaScript module providing skill management utilities:
 | **Auth**         | better-auth-best-practices                                                                                |
 | **AI**           | ai-sdk                                                                                                    |
 | **Meta**         | skill-creator, find-skills, template-skill, write-skill                                                   |
+
+### .claude/scripts/
+
+Utility scripts for project management:
+
+| Script             | Purpose                                                                                                                                  |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `update-skills.sh` | Manifest-based updater — fetches upstream, syncs files while preserving local skills, tracks file hashes in `.claude/.upstream-manifest` |
+| `context-bar.sh`   | Visual status bar showing model, git branch, sync status, and context window usage                                                       |
+| `get-time.sh`      | Time utility                                                                                                                             |
+
+#### update-skills.sh Key Features
+
+- **Manifest tracking:** File format `path:hash:version` in `.claude/.upstream-manifest`
+- **Change counters:** Tracks `FILES_CREATED`, `FILES_UPDATED`, `FILES_UNCHANGED`, `FILES_SKIPPED` with summary reporting
+- **Backup rotation:** Keeps last N backups in `.claude-backup_TIMESTAMP/` directories
+- **Modes:** `--dry-run`, `--force`, `--status`, `--init-manifest`
+
+### tests/
+
+| File                    | Purpose                                                                                                            |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `test-update-skills.sh` | 36 unit tests for update-skills.sh core functions (hashing, manifest, sync, dry-run, backup rotation, arg parsing) |

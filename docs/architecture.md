@@ -141,21 +141,32 @@ resolveSkillPath("my-skill")
 2. **Copy `CLAUDE.md`** - Gets workflow configuration
 3. **Optionally add custom skills** - Add to `.claude/skills/`
 
-### Update Strategy (Planned)
+### Update Strategy
+
+The `update-skills.sh` script manages syncing upstream changes to target projects:
 
 ```
 User's Project                    Agent Skills Repo
      │                                   │
      │    ┌───────────────────────┐      │
-     └───►│   Update Script       │◄─────┘
+     └───►│   update-skills.sh    │◄─────┘
           │                       │
-          │ 1. Pull latest repo   │
-          │ 2. Compare skills     │
-          │ 3. Merge (preserve    │
-          │    user skills)       │
-          │ 4. Update lib/        │
+          │ 1. Backup .claude/    │
+          │ 2. Clone latest repo  │
+          │ 3. Diff files (only   │
+          │    copy if changed)   │
+          │ 4. Preserve local     │
+          │    skills             │
+          │ 5. Update manifest    │
+          │ 6. Report summary     │
           └───────────────────────┘
 ```
+
+**Manifest file** (`.claude/.upstream-manifest`):
+
+- Tracks every upstream file with `path:hash:version` entries
+- Used to detect local modifications (compares stored hash vs current hash)
+- Files modified locally are skipped unless `--force` is used
 
 ## Design Decisions
 
