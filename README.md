@@ -1,6 +1,6 @@
 # Agent Skills
 
-A curated collection of reusable skills for Claude Code (claude.ai/code). Copy the `.claude/` directory and `CLAUDE.md` to your project to enhance Claude Code with structured workflows and specialized capabilities.
+A curated collection of reusable skills for Claude Code (claude.ai/code). Copy the `.claude/` directory and `CLAUDE.md` to your project to enhance Claude Code with structured workflows and specialized capabilities. hêh
 
 ## Installation
 
@@ -131,29 +131,10 @@ quick-implement
 - `vercel-react-native-skills` - React Native and Expo best practices
 - `vercel-composition-patterns` - React composition patterns
 
-### Documents
-
-- `pdf` - PDF manipulation, extraction, merging
-- `docx` - Word document creation and editing
-- `pptx` - PowerPoint presentation creation
-- `xlsx` - Spreadsheet creation and analysis
-
-### Design
-
-- `ui-ux-pro-max` - UI/UX design intelligence
-- `frontend-design` - Production-grade frontend interfaces
-- `canvas-design` - Visual art in PNG/PDF using canvas
-- `algorithmic-art` - Generative art with p5.js
-- `theme-factory` - Styling artifacts with themes
-- `brand-guidelines` - Anthropic brand colors and typography
-
 ### Development Tools
 
 - `ai-sdk` - AI SDK for building AI-powered features
-- `mcp-builder` - MCP server creation guide
-- `webapp-testing` - Playwright-based web app testing
 - `seo-audit` - SEO diagnostics and auditing
-- `slack-gif-creator` - Animated GIFs for Slack
 - `better-auth-best-practices` - Better Auth TypeScript framework
 
 ### Meta Skills

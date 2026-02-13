@@ -14,47 +14,28 @@ agent-skills/
 │   │   └── update-skills.sh    # Manifest-based skill updater
 │   └── skills/                 # Skill definitions (42 skills)
 │       ├── ai-sdk/
-│       ├── algorithmic-art/
 │       ├── better-auth-best-practices/
 │       ├── brainstorm/
-│       ├── brand-guidelines/
-│       ├── canvas-design/
-│       ├── doc-coauthoring/
 │       ├── docs/
-│       ├── docx/
 │       ├── execute-plan/
 │       ├── find-skills/
 │       ├── fix/
-│       ├── frontend-design/
-│       ├── internal-comms/
-│       ├── mcp-builder/
 │       ├── next-best-practices/
 │       ├── nuqs/
-│       ├── pdf/
-│       ├── pptx/
 │       ├── quick-implement/
 │       ├── review/
 │       ├── seo-audit/
 │       ├── shadcn-ui/
 │       ├── skill-creator/
-│       ├── slack-gif-creator/
 │       ├── tanstack-query/
 │       ├── tanstack-start-best-practices/
 │       ├── tanstack-table/
-│       ├── template-skill/
-│       ├── theme-factory/
 │       ├── turborepo/
-│       ├── ui-ux-pro-max/
 │       ├── vercel-composition-patterns/
 │       ├── vercel-react-best-practices/
 │       ├── vercel-react-native-skills/
 │       ├── vite/
-│       ├── web-artifacts-builder/
-│       ├── web-design-guidelines/
-│       ├── webapp-testing/
 │       ├── write-plan/
-│       ├── write-skill/
-│       └── xlsx/
 ├── tests/                      # Unit tests
 │   └── test-update-skills.sh   # Tests for update-skills.sh
 ├── docs/                       # Project documentation
@@ -105,12 +86,9 @@ JavaScript module providing skill management utilities:
 | **Workflow**     | brainstorm, write-plan, execute-plan, quick-implement, fix, review, docs                                  |
 | **Frameworks**   | next-best-practices, tanstack-query, tanstack-table, tanstack-start-best-practices, vite, nuqs, turborepo |
 | **React/Vercel** | vercel-react-best-practices, vercel-react-native-skills, vercel-composition-patterns                      |
-| **Documents**    | pdf, docx, pptx, xlsx                                                                                     |
-| **Design**       | ui-ux-pro-max, frontend-design, canvas-design, algorithmic-art, theme-factory, brand-guidelines           |
-| **Tools**        | mcp-builder, webapp-testing, seo-audit, slack-gif-creator                                                 |
 | **Auth**         | better-auth-best-practices                                                                                |
 | **AI**           | ai-sdk                                                                                                    |
-| **Meta**         | skill-creator, find-skills, template-skill, write-skill                                                   |
+| **Meta**         | skill-creator, find-skills                                                                                |
 
 ### .claude/scripts/
 

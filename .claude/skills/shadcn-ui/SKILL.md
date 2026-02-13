@@ -1,6 +1,6 @@
 ---
 name: shadcn-ui
-description: LLM documentations for shadcn/ui components, including components, hooks, pages, themes, and more.
+description: Use when need to research for shadcn/ui components, including components, hooks, pages, themes, and more.
 ---
 
 # Shadcn UI
