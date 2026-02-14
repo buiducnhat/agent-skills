@@ -32,7 +32,7 @@ Diagnose and resolve bugs or issues.
 ### Step 3: Completion
 
 1.  **Report:** specific what was fixed and why.
-2.  **Documentation:** Update `docs/` if necessary.
+2.  **Documentation:** Update project documentation via the `docs` skill if pdr or codebase or architecture changed, normally update `docs/project-pdr.md`, `docs/codebase.md`, `docs/architecture.md`.
 
 ## Rules
 
@@ -43,3 +43,4 @@ Diagnose and resolve bugs or issues.
   - Locate the file and line number.
   - Trace the variable values mentally.
 - **Follow documentations:** Always follow the documentations of the current project, usually in `docs/` directory. Especially follow the `code-standard.md` for coding standards, convensions,....
+- **Don't miss any step:** Every steps are important to follow, don't miss any, even the step 3 (completion).

@@ -53,7 +53,7 @@ Once all phases are complete:
 
 ### Step 4: Completion
 
-1.  **Documentation:** Update project documentation via the `docs` skill if architecture/features changed.
+1.  **Documentation:** Update project documentation via the `docs` skill if pdr or codebase or architecture changed, normally update `docs/project-pdr.md`, `docs/codebase.md`, `docs/architecture.md`.
 2.  **Final Report:** Create `docs/plans/YYMMDD-HHmm-<plan-name>/EXECUTION-REPORT.md`.
     - Summarize work completed.
     - Note deviations or outstanding issues.
@@ -65,6 +65,7 @@ Once all phases are complete:
 - **No Guessing:** Clarify intentions rather than assuming.
 - **Idempotency:** Ensure steps are safe to run multiple times.
 - **Follow documentations:** Always follow the documentations of the current project, usually in `docs/` directory. Especially follow the `code-standard.md` for coding standards, convensions,....
+- **Don't miss any step:** Every steps are important to follow, don't miss any, even the step 4 (completion).
 
 ## Integration
 

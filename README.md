@@ -160,6 +160,12 @@ docs/
 ## Usage Examples
 
 ```bash
+# Initialize documentation
+/docs --init
+
+# Update documentation after changes
+/docs --update
+
 # Start a new feature with brainstorming
 /brainstorm Add user authentication
 
@@ -174,12 +180,6 @@ docs/
 
 # Review changes before committing
 /review
-
-# Initialize documentation
-/docs --init
-
-# Update documentation after changes
-/docs --update
 ```
 
 ## Documentation

@@ -16,8 +16,8 @@ Directly implement small-scope changes or fixes.
 1.  **Grasp Requirements:** Fully understand the user's request.
 2.  **Scout:**
     - Review relevant codebase sections.
-    - Check `docs/*.md` for project-specific guidelines.
-3.  **Clarify:** If requirements are ambiguous, ask _before_ coding.
+    - Check `docs/codebase.md`, `docs/architecture.md`, `docs/project-pdr.md`, `docs/code-standard.md` for project-specific guidelines.
+3.  **Clarify:** If requirements are ambiguous, ask _before_ coding (important).
 
 ### Step 2: Implement
 
@@ -34,7 +34,7 @@ Directly implement small-scope changes or fixes.
 
 ### Step 4: Completion
 
-1.  **Documentation:** Update `docs/` if features or logic changed using the `docs` skill.
+1.  **Documentation:** Update project documentation via the `docs` skill if pdr or codebase or architecture changed, normally update `docs/project-pdr.md`, `docs/codebase.md`, `docs/architecture.md`.
 2.  **Report:** Summarize changes and modified files for the user.
 
 ## Rules
@@ -43,3 +43,4 @@ Directly implement small-scope changes or fixes.
 - **No Guessing:** Clarify intentions rather than assuming.
 - **Idempotency:** Ensure steps are safe to run multiple times.
 - **Follow documentations:** Always follow the documentations of the current project, usually in `docs/` directory. Especially follow the `code-standard.md` for coding standards, convensions,....
+- **Don't miss any step:** Every steps are important to follow, don't miss any, even the step 4 (completion).
