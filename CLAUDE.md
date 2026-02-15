@@ -6,34 +6,15 @@ This file provides general guidance to Claude Code (claude.ai/code) for working 
 
 These skills form the essential development workflow:
 
-### brainstorm
-
-**Description**: Brainstorm complex tasks before making plans or coding. Use this when you need to explore ideas, identify approaches, and break down complex problems.
-
-### write-plan
-
-**Description**: Create detailed plans for implementing features. Use this after brainstorming to structure your approach, define tasks, and estimate effort.
-
-### execute-plan
-
-**Description**: Execute the written plan. Use this to follow through with implementation based on plans created by `write-plan`.
-
-### quick-implement
-
-**Description**: Rapidly implement code for simple tasks or bug fixes without creating a formal plan file. Do not use for complex changes.
-
-### fix
-
-**Description**: Diagnose and resolve bugs or issues. Suggests `write-plan` for complex problems.
-
-### review
-
-**Description**: Review uncommitted changes in the current git workspace with codebase context.
-
-### docs
-
-**Description**: Initialize or update project documentation. Use with `--init` for first-time setup or `--update` to refresh existing documentation.
-**Parameters**: `--init` | `--update`
+| Skill             | Description                                                                                                                                            | Parameters           |
+| :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------- |
+| `docs`            | Initialize or update project documentation. Use with `--init` for first-time setup or `--update` to refresh existing documentation.                    | `--init`, `--update` |
+| `brainstorm`      | Brainstorm complex tasks before making plans or coding. Use this when you need to explore ideas, identify approaches, and break down complex problems. |                      |
+| `write-plan`      | Create detailed plans for implementing features. Use this after brainstorming to structure your approach, define tasks, and estimate effort.           |                      |
+| `execute-plan`    | Execute the written plan. Use this to follow through with implementation based on plans created by `write-plan`.                                       |                      |
+| `quick-implement` | Rapidly implement code for simple tasks or bug fixes without creating a formal plan file. Do not use for complex changes.                              |                      |
+| `fix`             | Diagnose and resolve bugs or issues. Suggests `write-plan` for complex problems.                                                                       |                      |
+| `review`          | Review uncommitted changes in the current git workspace with codebase context.                                                                         |                      |
 
 ## Documentation Rules
 
@@ -82,6 +63,16 @@ Select the appropriate workflow based on task complexity:
 
 ## Important Reminders
 
+**Interaction Preferences:**
+
+When asking questions during task execution:
+
+- PREFER using interactive prompts with selectable options
+- Use interactive selection menus for choices between 2-5 options
+- Only pause and wait for full message response when:
+  - Question requires detailed explanation
+  - User needs external context
+
 **CRITICAL RULES:**
 
 - Always read project documentation before planning or implementing anything
@@ -90,5 +81,4 @@ Select the appropriate workflow based on task complexity:
 - Never skip documentation updates: run `docs --update` after any implementation
 - Ask clarifying questions when documentation is unclear or incomplete
 - Follow documentation patterns consistently
-
-**MUST COMPLY** with all instructions in this CLAUDE.md. This is MANDATORY.
+- Every steps inside the workflow's skills are important
