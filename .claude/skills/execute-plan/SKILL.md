@@ -1,72 +1,188 @@
 ---
 name: execute-plan
-description: Strict execution of a written implementation plan with review checkpoints.
+description: Execute an approved implementation plan exactly and safely. Use when a plan already exists (for example in docs/plans/...) and work must be carried out phase-by-phase with verification checkpoints, status tracking, and final execution reporting.
 ---
 
 # Execute Plan
 
 ## Overview
 
-Execute a pre-approved implementation plan with precision. Follow the plan strictly and do not deviate from it unless explicitly authorized. Always follow the best practices and coding standards of the project. The `execute-plan` skill usually need the path to the plan file as an argument. For example `execute-plan docs/plans/260209-1705-my-plan/SUMMARY.md` or `execute-plan docs/plans/260209-1705-my-plan` for shorthand.
+Execute a pre-approved plan with strict adherence to scope, sequence, and verification.
+
+The input is typically:
+
+- `execute-plan docs/plans/YYMMDD-HHmm-<plan-slug>/SUMMARY.md`
+- or shorthand: `execute-plan docs/plans/YYMMDD-HHmm-<plan-slug>`
+
+Do not redesign the plan during execution. If ambiguity or blockers appear, stop and ask.
 
 ## Workflow
 
 ### Step 1: Initialize
 
-1.  **Locate Plan:** Confirm the plan file path (typically `docs/plans/YYMMDD-HHmm-<plan-name>`).
-2.  **Identify the first pending phase**:
-    - Look for the first `[ ]` phase.
-    - If none found, check for `[-]` phases.
-    - If still none, consider the plan complete or ask the user for further instructions.
-3.  **Review Strategy:**
-    - Assess phase complexity.
-    - Confirm **Execution Mode** with the user if very necessary (for complex plans/phases or large code, the default mode should be `batch`):
-      - **Interactive:** Pause for confirmation after each phase.
-      - **Batch:** Execute all phases continuously; stop only on error.
-4.  **Critical Review:** Identify missing details or ambiguities.
-    - Issues found: Stop and clarify immediately.
-    - Plan is solid: Proceed to Step 2.
+1. **Locate Plan**
+   - Confirm the plan path exists and is readable.
+   - If a directory is provided, locate `SUMMARY.md` inside it.
 
-### Step 2: Execution Loop (Per Phase)
+2. **Load Execution Context**
+   - Read:
+     - `docs/project-pdr.md`
+     - `docs/architecture.md`
+     - `docs/codebase.md`
+     - `docs/code-standard.md`
+   - Review the plan’s phase files and dependencies.
 
-Iterate through each phase of the plan:
+3. **Select Execution Mode (Explicit Rule)**
+   - Default mode: **Batch**
+   - Use **Interactive** when any of the following is true:
+     - High-risk changes (auth, payments, migrations, security-critical logic)
+     - Irreversible operations (data migrations, destructive scripts)
+     - Unclear acceptance criteria
+     - User explicitly requests checkpoints
+   - If mode is unclear, ask once and proceed with user choice.
 
-1.  **Check Status:** Verify if the phase is already completed (`[x]`). Skip if done.
-2.  **Mark In-Progress:** Update the phase status to `[-]` in the plan file.
-3.  **Execute:** Implement the tasks defined in the phase exactly.
-4.  **Verify:** Run relevant tests, linting, or type-checks for the specific changes.
-5.  **Complete:**
-    - Update phase status to `[x]` in the plan file.
-    - **Interactive Mode:** Report progress (implemented features, verification results) and wait for user confirmation.
-    - **Batch Mode:** Report progress briefly and immediately proceed to the next phase.
+4. **Find Next Pending Phase**
+   - First `[ ]` phase
+   - If none, first `[-]` phase
+   - If no pending/in-progress phases remain, go to final verification.
+
+5. **Critical Plan Sanity Check**
+   - Ensure each phase has:
+     - clear objective
+     - file targets
+     - verification commands
+   - If essential details are missing or contradictory, stop and request clarification.
+
+### Step 2: Execute Per-Phase Loop
+
+For each phase in order:
+
+1. **Skip Completed**
+   - If status is `[x]`, continue to next phase.
+
+2. **Mark In Progress**
+   - Update phase status to `[-]` before making changes.
+
+3. **Execute Exactly**
+   - Implement only the tasks defined in that phase.
+   - Do not expand scope without approval.
+
+4. **Verify Phase**
+   - Run the phase-specific verification commands from the plan.
+   - At minimum, run relevant tests/checks tied to touched files.
+
+5. **Handle Failures**
+   - If verification fails:
+     - Attempt focused fixes within phase scope.
+     - Re-run verification.
+   - If still failing or root cause is outside scope, stop and report blocker.
+
+6. **Mark Complete**
+   - Update phase status to `[x]` only after verification passes.
+
+7. **Progress Report**
+   - **Interactive mode:** report and wait for confirmation before next phase.
+   - **Batch mode:** report briefly and continue immediately.
 
 ### Step 3: Final Verification
 
-Once all phases are complete:
+After all phases are complete:
 
-1.  **Project-Wide Scan:**
-    - Run full linting and type-checking.
-    - Run all test suites.
-    - Verify build integrity.
-2.  **Fix:** Resolve any regressions or issues discovered during the scan.
-3.  If need manually verification from user, ask them and wait with the list questions: `Verified`, or type something to continue loop.
+1. **Project-Wide Validation**
+   - Run full lint/type-check suite
+   - Run all relevant tests (or full test suite if required by the plan)
+   - Run build verification if applicable
 
-### Step 4: Completion
+2. **Stabilize**
+   - Fix regressions introduced during execution.
+   - Re-run failed checks until green or blocked.
 
-1.  **Documentation:** Update project documentation via the `docs` skill if pdr or codebase or architecture changed, normally update `docs/project-pdr.md`, `docs/codebase.md`, `docs/architecture.md`.
-2.  **Final Report:** Create `docs/plans/YYMMDD-HHmm-<plan-name>/EXECUTION-REPORT.md`.
-    - Summarize work completed.
-    - Note deviations or outstanding issues.
-3.  **Announce:** "Execution complete. Report created at `<path>`."
+3. **Manual Validation Checkpoint**
+   - If user/manual QA is required, ask explicitly and pause:
+     - `Verified` to accept
+     - or provide feedback for follow-up iteration
+
+### Step 4: Completion Artifacts
+
+1. **Documentation Sync**
+   - If behavior/architecture/codebase expectations changed, update:
+     - `docs/project-pdr.md`
+     - `docs/codebase.md`
+     - `docs/architecture.md`
+
+2. **Create Execution Report**
+   - File: `docs/plans/YYMMDD-HHmm-<plan-slug>/EXECUTION-REPORT.md`
+   - Include all required sections below.
+
+3. **Announce Completion**
+   - Output: `Execution complete. Report created at <path>.`
+
+## Execution Report Standard
+
+`EXECUTION-REPORT.md` must use this structure:
+
+# Execution Report: <Plan Title>
+
+> Date: YYYY-MM-DD HH:mm:ss  
+> Mode: Batch | Interactive  
+> Plan Path: <relative-path>
+
+## Summary
+
+- Overall result (Completed | Completed with follow-ups | Blocked)
+- High-level outcome in 2-4 bullets
+
+## Phase Results
+
+- Phase 1: <name> — ✅/⚠️
+  - Implemented:
+  - Verification:
+  - Notes:
+- Phase 2: ...
+
+## Verification Matrix
+
+- Lint: pass/fail (command)
+- Type-check: pass/fail (command)
+- Tests: pass/fail (command)
+- Build: pass/fail (command)
+- Manual QA: pass/fail/pending
+
+## Deviations
+
+- List any approved deviations from the original plan.
+- If none: `None.`
+
+## Blockers and Resolutions
+
+- Blocker:
+- Impact:
+- Resolution:
+- Status:
+
+## Follow-ups
+
+- Remaining tasks, if any
+- Recommended owner/next action
+
+## Changed Files
+
+- Relative path list (grouped by area if large)
 
 ## Rules
 
-- **Stop on Blocker:** If a dependency is missing, a test fails unexpectedly, or instructions are unclear, **STOP** and ask.
-- **No Guessing:** Clarify intentions rather than assuming.
-- **Idempotency:** Ensure steps are safe to run multiple times.
-- **Follow documentations:** Always follow the documentations of the current project, usually in `docs/` directory. Especially follow the `code-standard.md` for coding standards, convensions,....
-- **Don't miss any step:** Every steps are important to follow, don't miss any, even the step 4 (completion).
+- **Follow the plan strictly**: no silent scope changes.
+- **Stop on blocker**: missing dependency, contradictory instructions, or unexplained failures.
+- **No guessing**: ask for clarification when uncertain.
+- **Verify before complete**: never mark phase done without passing checks.
+- **Idempotency**: prefer safe/re-runnable operations.
+- **Respect project standards**: follow `docs/code-standard.md` and related project docs.
+- **Do not skip workflow steps**: initialization, per-phase verification, final verification, and reporting are all mandatory.
 
 ## Integration
 
-- **write-plan**: Used to generate the plan this skill executes.
+- Upstream planning skill: `write-plan`
+- Optional pre-planning skill for ambiguous work: `brainstorm`
+- Use `.claude/scripts/get-time.sh` for:
+  - `YYMMDD-HHmm` folder naming
+  - `YYYY-MM-DD HH:mm:ss` report timestamps

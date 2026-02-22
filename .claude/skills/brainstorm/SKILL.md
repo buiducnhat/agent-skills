@@ -1,58 +1,138 @@
 ---
 name: brainstorm
-description: Help turn ideas into fully formed designs and specs through natural collaborative dialogue.
+description: Collaborative discovery and design framing for ambiguous or high-risk work. Use when requirements are unclear, multiple approaches are possible, or you need to turn an idea into a validated design brief before planning or coding.
 ---
 
 # Brainstorm
 
 ## Overview
 
-Start by understanding the current project context, then ask questions one at a time to refine the idea. Once you understand what you're building, present the design in small sections (200-300 words), checking after each section whether it looks right so far. The output should be stored in file markdown (long-memory).
+Use this skill to convert rough ideas into clear, reviewable design outputs through structured dialogue.
+
+The goal is to:
+
+1. Clarify requirements and constraints
+2. Explore alternatives with trade-offs
+3. Produce a concrete, validated design brief in `docs/brainstorms/...`
+4. Hand off cleanly to `write-plan` when the user is ready
+
+This skill is for exploration and specification only. Do not implement code changes.
 
 ## Workflow
 
-### Step 1: Requirement Clarification (The Interrogation)
+### Step 1: Gather Project Context
 
-- Check out the current project state first (files, docs, recent commits, README.md, etc),
-- **Important**: The documentations generated from the AI Agents usually stored inside `docs/` directory, and there may have multiple documentation `.md` files.
-- Scout the project codebase or even whole project files to understand the project context
-- Always try to detect if the same necessary libraries or packages or dependencies are already installed or not to preventing redundant installations or over installing packages.
-- Ask questions one at a time to refine the idea
-- Prefer multiple choice questions when possible, but open-ended is fine too
-- Only one question per message - if a topic needs more exploration, break it into multiple questions
-- Focus on understanding: purpose, constraints, success criteria
+Before asking design questions, inspect enough project context to avoid proposing incompatible solutions.
 
-### Step 2: Exploring approaches
+- Review `docs/` first, especially:
+  - `docs/project-pdr.md`
+  - `docs/architecture.md`
+  - `docs/codebase.md`
+  - `docs/code-standard.md`
+- Check key implementation files relevant to the idea
+- Note constraints from existing architecture, dependencies, and conventions
 
-- Propose 2-3 different approaches with trade-offs
-- Present options conversationally with your recommendation and reasoning
-- Lead with your recommended option and explain why
+Keep this pass focused. Only gather what is needed for the current idea.
 
-### Step 3: Presenting the design
+### Step 2: Clarify Requirements (One Question at a Time)
 
-- Once you believe you understand what you're building, present the design
-- Break it into sections of 200-300 words
-- Ask after each section whether it looks right so far
-- Cover: architecture, components, data flow, error handling, testing
-- Be ready to go back and clarify if something doesn't make sense
+Ask targeted questions sequentially to remove ambiguity.
 
-### Step 4: Documentation (The Output)
+- Ask exactly one question per message
+- Prefer multiple-choice options when practical
+- Use open-ended questions only when necessary
+- Focus on:
+  - Objective and user value
+  - Scope boundaries
+  - Constraints (technical, UX, performance, timeline)
+  - Success criteria
+  - Non-goals
 
-- Write the results for user to review to `docs/brainstorms/YYMMDD-HHmm-<topic>/**.md` (The result can be separated into multiple files if needed) and the main file is `docs/brainstorms/YYMMDD-HHmm-<topic>/SUMMARY.md`
-- Ask the user to review the results and provide feedback, if there are no feedback, ask the user if they want to write the plan immediately
-- If the user want to write the plan immediately, execute the skill `write-plan` to start writing the plan based on the inputs and the brainstorming results
+Do not jump to implementation details too early.
 
-## Key Principles
+### Step 3: Explore Approaches
 
-- **One question at a time** - Don't overwhelm with multiple questions
-- **Multiple choice preferred** - Easier to answer than open-ended when possible
-- **YAGNI ruthlessly** - Remove unnecessary features from all designs
-- **Explore alternatives** - Always propose 2-3 approaches before settling
-- **Incremental validation** - Present design in sections, validate each
-- **Be flexible** - Go back and clarify when something doesn't make sense
-- **Only brainstorming** - Must not write any code or commit any changes, just provide documentations or plans if needed.
-- **Follow documentations:** Always follow the documentations of the current project, usually in `docs/` directory. Especially follow the `code-standard.md` for coding standards, convensions,....
+Propose 2-3 viable approaches.
+
+For each approach, include:
+
+- Short summary
+- Pros
+- Cons / risks
+- Complexity estimate
+- Recommended use conditions
+
+Lead with your recommended option and explain why it best fits the project context and constraints.
+
+### Step 4: Present the Design Incrementally
+
+Once requirements are clear, present the design in small sections (about 200-300 words each), validating after each section.
+
+Suggested section order:
+
+1. Problem framing and goals
+2. Proposed architecture / flow
+3. Data model and interfaces
+4. Error handling and edge cases
+5. Testing and verification strategy
+6. Rollout considerations (if applicable)
+
+After each section, ask whether to proceed or adjust.
+
+### Step 5: Write Brainstorm Artifacts
+
+Persist results to the standardized location:
+
+- Directory: `docs/brainstorms/YYMMDD-HHmm-<topic-slug>/`
+- Main file (required): `docs/brainstorms/YYMMDD-HHmm-<topic-slug>/SUMMARY.md`
+- Optional supporting files:
+  - `docs/brainstorms/YYMMDD-HHmm-<topic-slug>/section-01-<slug>.md`
+  - `docs/brainstorms/YYMMDD-HHmm-<topic-slug>/section-02-<slug>.md`
+  - etc.
+
+`SUMMARY.md` should contain:
+
+- Title
+- Created timestamp
+- Context
+- Goals / non-goals
+- Chosen approach and rationale
+- Alternatives considered
+- Risks and mitigations
+- Open questions
+- Next step recommendation
+
+### Step 6: Close the Loop
+
+After writing artifacts:
+
+1. Ask the user to review and provide feedback
+2. If feedback exists, revise artifacts
+3. If no feedback, ask whether to proceed to planning
+4. If approved, hand off to `write-plan` using the brainstorm output as source context
+
+## Rules
+
+- Do not write production code or make implementation changes in this skill
+- Keep interaction lightweight and iterative
+- Prefer clarity over completeness when uncertain; ask a follow-up question
+- Apply YAGNI: remove unnecessary features from proposals
+- Align all recommendations with project documentation and standards
+- Keep assumptions explicit; do not guess silently
+
+## Output Quality Checklist
+
+Before finalizing `SUMMARY.md`, confirm:
+
+- Requirements are explicit and testable
+- Scope and non-goals are clear
+- Recommended approach is justified with trade-offs
+- Risks and unknowns are documented
+- Handoff to planning is actionable
 
 ## Integration
 
-- To get the current time in YYMMDD-HHmm and YYYY-MM-DD HH:mm:ss format, use the script `.claude/scripts/get-time.sh`.
+- Use `.claude/scripts/get-time.sh` to generate:
+  - `YYMMDD-HHmm` for folder naming
+  - `YYYY-MM-DD HH:mm:ss` for document timestamps
+- Next workflow step: `write-plan`

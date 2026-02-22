@@ -1,183 +1,139 @@
 ---
 name: docs
-description: Initialize or update project documentation. Use this skill when you need to set up documentation for the first time (--init) or update existing documentation (--update). It scouts the project structure, business requirements, tech stack, codebase, and architecture, then creates/updates comprehensive documentation files.
+description: Initialize or update project documentation. Use when setting up docs for a new project (`--init`) or syncing docs to current codebase and architecture changes (`--update`).
 ---
 
 # Docs
 
-This skill helps you create and maintain comprehensive project documentation.
+Create and maintain project documentation in `docs/` with a consistent, lightweight workflow.
 
 ## Parameters
 
-- `--init`: First-time setup - creates new documentation files from scratch
-- `--update`: Update existing documentation files without recreating them
+- `--init`: Create documentation for the first time.
+- `--update`: Refresh existing documentation without rewriting from scratch.
 
-## Documentation Files
+## Outputs
 
-The skill creates/updates the following files in the `docs/` directory:
+Always maintain these files:
 
-1. **project-pdr.md** - Project requirements and business logic
-2. **code-standard.md** - Code conventions, tech stack, and development rules
-3. **codebase.md** - File/code tree with explanations
-4. **architecture.md** - Architecture components and their interactions
+1. `docs/project-pdr.md` — product goals, users, requirements
+2. `docs/code-standard.md` — stack, conventions, development rules
+3. `docs/codebase.md` — codebase map and key files
+4. `docs/architecture.md` — components, interactions, data flow
 
-Additionally, it updates `README.md` with project overview and links to documentation.
+Also keep `README.md` aligned with current docs links and project summary.
 
-## Execution Workflow
+## Workflow
 
-### 1. Initial Assessment
+### Step 1: Context Scan (Docs First)
 
-First, explore the project structure to understand:
+Review documentation first, then inspect code/config only as needed.
 
-- Root directory contents and organization
-- Package managers (package.json, pnpm-lock.yaml, yarn.lock, etc.)
-- Configuration files (tsconfig, next.config, vite.config, etc.)
-- README files for existing documentation
-- Source code structure (apps/, packages/, src/, etc.)
-- Build tools and frameworks
-- Database schemas or migrations
-- API routes or backend structure
-- Cloud/deployment configurations
-- CI/CD pipelines
+Priority order:
 
-### 2. Parameter-Based Action
+1. `docs/project-pdr.md`
+2. `docs/code-standard.md`
+3. `docs/codebase.md`
+4. `docs/architecture.md`
+5. `README.md`
+6. Key source/config files
 
-#### With `--init` (First-time setup)
+Focus on facts that changed: features, architecture, stack, structure, and workflows.
 
-- Scout the entire project structure comprehensively
-- Ask clarifying questions about business requirements, tech stack decisions, and architectural choices
-- Create the `docs/` directory if it doesn't exist
-- Create all 4 documentation files with complete content
-- Update `README.md` with project overview and documentation links
+### Step 2: Choose Mode
 
-#### With `--update` (Update existing)
+- If docs do not exist or are incomplete: run `--init` behavior.
+- If docs exist: run `--update` behavior.
+- If mode is unspecified, infer from repository state and state your assumption.
 
-- Review existing documentation files
-- Scout project changes since last update
-- Update existing files with new information
-- Preserve user modifications unless they conflict with new information
-- Update `README.md` if necessary
+### Step 3: Produce Documentation
 
-### 3. Content Generation
+#### `--init`
 
-For each documentation file, gather information:
+- Create `docs/` if missing.
+- Create all required documentation files.
+- Populate each file with concrete, project-specific content.
+- Avoid placeholders and generic templates.
 
-#### project-pdr.md
+#### `--update`
 
-- Project purpose and goals
-- Target users and use cases
-- Business requirements
-- Features and functionality
-- Problem being solved
-- Success metrics
+- Preserve useful existing content and section structure.
+- Update stale or inaccurate sections.
+- Add newly discovered features/components/conventions.
+- Remove clearly obsolete statements.
 
-**Ask user if unclear:**
+### Step 4: Sync README
 
-- What is the main business goal of this project?
-- Who are the primary users?
-- What key problems does it solve?
+Ensure `README.md` includes:
 
-#### code-standard.md
+- Short project overview
+- Quick start (if present in project)
+- Documentation links section pointing to all 4 docs files
 
-- Tech stack details (frameworks, libraries, tools)
-- Code conventions (naming, file structure, patterns)
-- Development rules (linting, formatting, testing)
-- Branching strategy
-- Commit message conventions
-- PR review guidelines
+### Step 5: Validate Quality
 
-**Ask user if unclear:**
+Before finishing, verify:
 
-- What coding conventions are enforced?
-- What are the development rules?
-- Any specific patterns to follow?
+- Terminology is consistent across files
+- No contradictions between docs and code
+- Paths and component names are accurate
+- Content is concise, specific, and actionable
 
-#### codebase.md
+## Content Requirements by File
 
-- Complete file tree structure
-- Key directories and their purposes
-- Important files and their roles
-- Entry points
-- Shared utilities
-- Configuration files
+### `project-pdr.md`
 
-**Ask user if unclear:**
+Include:
 
-- What are the most important parts of the codebase?
-- Any special patterns or organization to highlight?
+- Problem statement
+- Product purpose
+- Target users
+- Core use cases
+- Feature scope and constraints
+- Success criteria
 
-#### architecture.md
+### `code-standard.md`
 
-- System components (frontend, backend, database, services)
-- Monorepo structure if applicable
+Include:
+
+- Languages/frameworks/tools in use
+- Naming and structure conventions
+- Testing/linting/formatting expectations
+- PR/commit expectations if discoverable
+
+### `codebase.md`
+
+Include:
+
+- High-level tree
+- Directory responsibilities
+- Key entry points and modules
+- Important scripts/config files
+
+### `architecture.md`
+
+Include:
+
+- Main components/subsystems
 - Data flow between components
-- API endpoints and contracts
-- Database schemas
-- External integrations
-- Deployment architecture
-- Cloud infrastructure
+- Integration boundaries (internal/external)
+- Deployment/runtime assumptions (if known)
 
-**Ask user if unclear:**
+## Clarification Rules
 
-- What are the main architectural components?
-- How do they interact?
-- Any specific architectural patterns used?
+Ask targeted questions only when information cannot be reliably inferred, especially for:
 
-### 4. README Update
+- Business goals and domain intent
+- Ambiguous ownership/responsibility of modules
+- Conflicting conventions
+- Unclear architecture decisions
 
-Add or update:
+Prefer 1 focused question at a time.
 
-- Project overview (what the project does)
-- Key features
-- Tech stack summary
-- Quick start instructions
-- Documentation links section:
+## Rules
 
-  ```markdown
-  ## Documentation
-
-  - [Project Requirements](./docs/project-pdr.md)
-  - [Code Standards](./docs/code-standard.md)
-  - [Codebase Overview](./docs/codebase.md)
-  - [Architecture](./docs/architecture.md)
-  ```
-
-## Best Practices
-
-- **Be thorough but concise**: Include all relevant information without verbosity
-- **Use code blocks**: For file paths, code snippets, and configuration examples
-- **Include tree structures**: Use ASCII art or markdown lists for directory structures
-- **Link references**: Cross-reference between documentation files where appropriate
-- **Maintain consistency**: Use consistent formatting and terminology across all files
-- **Ask smart questions**: When information is missing or ambiguous, ask targeted questions to the user
-
-## When to Ask Questions
-
-Ask the user for clarification when:
-
-- Business requirements or goals are not clear from code/configuration
-- Multiple tech stack options exist and usage is ambiguous
-- Architectural decisions need context
-- Code conventions are not enforced through tools
-- The purpose of certain components is unclear
-- Business logic or domain-specific knowledge is needed
-
-## File Structure Example
-
-```
-cc-dev/
-├── README.md                    # Updated with docs links
-└── docs/
-    ├── project-pdr.md           # Business requirements
-    ├── code-standard.md        # Coding conventions
-    ├── codebase.md             # File tree and explanations
-    └── architecture.md         # Architecture overview
-```
-
-## Notes
-
-- Always verify the project root path (use the provided root directories)
-- Use `grep` to search for specific patterns in the codebase
-- Use `find_path` to locate files when the path is unknown
-- For monorepos, clearly distinguish between different apps/packages
-- When updating, preserve user comments and custom sections unless they conflict with accurate information
+- Keep documentation factual; do not invent requirements.
+- Prefer concise updates over verbose prose.
+- Keep docs aligned with current implementation.
+- Follow project conventions from `docs/code-standard.md`.
+- When uncertain, mark assumptions explicitly and request confirmation.

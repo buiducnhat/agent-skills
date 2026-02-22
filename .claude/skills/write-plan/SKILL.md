@@ -1,125 +1,213 @@
 ---
 name: write-plan
-description: Create detailed, step-by-step implementation plans for complex features, no coding needed.
+description: Create detailed, execution-ready implementation plans for complex or high-risk changes without coding. Use when scope is large, requirements are mostly known, and work should be broken into validated phases before execution.
 ---
 
 # Write Plan
 
 ## Overview
 
-Create comprehensive, self-contained implementation plans without coding, just documentations. The progress should thinking about the approaches, architecture, components, data flow, error handling, testing, etc. For the complex features that need to research, use web search tool to find the best approaches and solutions.
+Produce a complete, self-contained implementation plan that can be executed by `execute-plan` with minimal ambiguity.
+
+This skill is for planning only:
+
+- Do not implement code
+- Do not modify production files (except plan artifacts)
+
+## Artifact Conventions
+
+Use one consistent artifact structure for every plan:
+
+- Plan directory: `docs/plans/YYMMDD-HHmm-<plan-slug>/`
+- Main summary: `docs/plans/YYMMDD-HHmm-<plan-slug>/SUMMARY.md`
+- Phase files: `docs/plans/YYMMDD-HHmm-<plan-slug>/phase-01-<name>.md`, `phase-02-<name>.md`, etc.
+- Optional research notes: `docs/plans/YYMMDD-HHmm-<plan-slug>/research/<topic>.md`
+
+Use `.claude/scripts/get-time.sh` for:
+
+- Folder timestamp: `YYMMDD-HHmm`
+- Human-readable timestamp: `YYYY-MM-DD HH:mm:ss`
 
 ## Workflow
 
-### Step 1: Initialize Plan Artifacts
+### Step 1: Contextualize
 
-1.  **Contextualize:**
-    - Scout the documentations of the codebase to understand existing patterns and dependencies.
-    - Review `docs/` for project guidelines.
-2.  **Initialize Plan:**
-    - Create directory: `docs/plans/YYMMDD-HHmm-<plan-slug>/`.
-    - Create main file: `docs/plans/YYMMDD-HHmm-<plan-slug>/SUMMARY.md`.
+Read project documentation first:
 
-### Step 2: Define Phased Strategy (The Master Plan)
+- `docs/project-pdr.md`
+- `docs/architecture.md`
+- `docs/codebase.md`
+- `docs/code-standard.md`
 
-The plan must be structured for machine or human execution.
+Then inspect only the code areas relevant to the requested change.
 
-**File Structure:**
+Capture:
 
-- `SUMMARY.md`: High-level overview, architecture, and phase list.
-- `phase-N-<name>.md`: Detailed, bite-sized tasks for each phase.
-- **Format for `SUMMARY.md`:**
+- Existing patterns to follow
+- Constraints and dependencies
+- Risks, assumptions, and unknowns
 
-  ```markdown
-  # Implementation Plan: <Title>
+### Step 2: Initialize Plan Artifacts
 
-  > Created Date: YYYY-MM-DD HH:mm:ss
+1. Create: `docs/plans/YYMMDD-HHmm-<plan-slug>/`
+2. Create:
+   - `SUMMARY.md`
+   - one phase file per implementation phase
+3. Add `research/` only if needed.
 
-  > Status: In Progress
+### Step 3: Define Strategy and Phases
 
-  ## Objective
+Design a phased strategy that is safe and verifiable.
 
-  - What are we building?
+Each phase should have:
 
-  ## Architecture
+- A clear objective
+- Ordered tasks
+- Verification commands
+- Exit criteria
 
-  - Approach and design decisions.
+Granularity rule:
 
-  ## Phases
+- Tasks should be small, concrete, and typically 2-10 minutes each.
 
-  - [ ] **Phase 1: Database & Backend Setup**
-    - Goal: Create migrations, update schema, define Zod schemas.
-  - [ ] **Phase 2: API Implementation**
-    - Goal: Build Controller, Service, and Route.
-  - [ ] **Phase 3: Frontend Integration**
-    - Goal: Build UI Components and hook up TanStack Query.
+### Step 4: Research (Only if Needed)
 
-  ## Key Changes
+Research is optional and should be proportional to uncertainty.
 
-  - What are the key changes we need to make to the codebase?
+Preferred order:
 
-  ## Reference Files
+1. Existing project docs and code
+2. Existing skills and local references
+3. External references (only if available in the current environment)
 
-  - What are the reference files we need to refer to?
+If external research capability is unavailable, proceed with local evidence and explicitly list assumptions and open questions.
 
-  ## Dependencies
+Document findings in:
 
-  - What are the dependencies we need to install?
-  ```
+- `docs/plans/YYMMDD-HHmm-<plan-slug>/research/<topic>.md`
 
-**Granularity:**
+### Step 5: Write Plan Content
 
-- Break tasks down to 2-5 minute actions (e.g., "Create file", "Write test", "Implement function").
+## `SUMMARY.md` format
 
-### Step 3: Detailed Specifications (The Blueprints)
+```markdown
+# Implementation Plan: <Title>
 
-#### Research (if needed)
+> Created: YYYY-MM-DD HH:mm:ss
+> Status: Draft
 
-- Only necessary when the plan is complex or need to research new approaches and solutions
-- Use web search tool to find the best approaches and solutions, the output files will be stored in `docs/plans/YYYY-MM-DD-<plan-slug>/research/<title>.md`, after that the plan can be written with the additional research results context.
+## Objective
 
-#### Main Summary (`SUMMARY.md`)
+- What is being built/changed and why.
 
-- **Objective:** What are we building?
-- **Architecture:** Approach and design decisions.
-- **Phases:** List of phases with links to phase files.
-- **Key Changes:** What are the key changes we need to make to the codebase?
-- **Reference Files:** What are the reference files we need to refer to?
-- **Dependencies:** What are the dependencies we need to install?
+## Scope
 
-#### Phase Files (`phase-N-<name>.md`)
+- In scope
+- Out of scope
 
-- **Objective:** Specific objective of this phase.
-- **Tasks:** Sequential steps:
-  1.  **Context:** Files to create/modify.
-  2.  **Test:** Code for the failing test.
-  3.  **Implement:** Minimal code to pass.
-  4.  **Verify:** Command to run tests.
+## Architecture & Approach
 
-### Step 4: Review & Refine
+- Design decisions and rationale.
+- Constraints and compatibility notes.
 
-1.  **Self-Correction:** Ensure file paths are exact and commands are correct.
-2.  **User Review:** Present the plan for feedback.
-    - Iterate: Adjust based on user input.
-    - Approval: Proceed only when confirmed.
-    - For the complex plans or there are more than one approach, ask user for the validation with 2 options:
-      - Validate: Ask more questions to clarify the plan, then loop until the plan is clear, updated
-      - Confirm: The plan is clear and ready to execute
-3.  **Announce:** Once finished, display the guide to the next step:
-    ```
-    Plan `<relative_path_to_plan>` is ready, use `/clear` and then `/execute-plan <relative_path_to_plan>` to execute it.
-    ```
+## Phases
+
+- [ ] **Phase 1: <name>** — Goal: <goal>
+- [ ] **Phase 2: <name>** — Goal: <goal>
+
+## Key Changes
+
+- Files/modules likely to change
+- Data/API/schema impacts
+
+## Verification Strategy
+
+- Lint/typecheck/tests/build commands
+- Manual checks if needed
+
+## Dependencies
+
+- New packages/tools (if any) with reason
+
+## Risks & Mitigations
+
+- Risk → mitigation
+
+## Open Questions
+
+- Items requiring user confirmation
+```
+
+## `phase-XX-<name>.md` format
+
+```markdown
+# Phase XX: <Name>
+
+## Objective
+
+- Specific result for this phase.
+
+## Preconditions
+
+- What must already be true.
+
+## Tasks
+
+1. Context: files/components to inspect or modify
+2. Implement: exact change steps
+3. Verify: commands/checks to run
+4. Confirm: expected outcome
+
+## Verification
+
+- Commands:
+  - <command 1>
+  - <command 2>
+- Expected results:
+  - <result>
+
+## Exit Criteria
+
+- Clear checklist that determines completion.
+```
+
+### Step 6: Review and Refine
+
+Before presenting the plan, verify:
+
+- Paths are exact and consistent
+- Phase order is logical
+- Tasks are actionable (no vague steps)
+- Verification is defined for each phase
+- Risks/assumptions are explicit
+- Plan is executable without hidden context
+
+Then present for user review.
+
+If multiple viable approaches exist, present options and ask for one of:
+
+- **Validate**: refine via additional clarifying questions
+- **Confirm**: approve current plan for execution
+
+Iterate until confirmed.
+
+### Step 7: Handoff
+
+When approved, end with:
+
+Plan `<relative_path_to_plan>/SUMMARY.md` is ready.  
+Use `/clear` and then `/execute-plan <relative_path_to_plan>/SUMMARY.md` to execute it.
 
 ## Rules
 
-- **Self-Contained:** The plan must possess all context needed for execution.
-- **Exactness:** Use absolute or correct relative paths. No placeholders like `path/to/file`.
-- **Verification First:** Always plan for testing/verification before marking a task complete.
-- **Best Practices:** Always follow the best practices and coding standards of the project. If the techstack/issues can be found in the skill list, use them to ensure the best practices and coding standards are followed.
-- **Follow documentations:** Always follow the documentations of the current project, usually in `docs/` directory. Especially follow the `code-standard.md` for coding standards, convensions,....
+- Planning only; no implementation
+- No placeholders like `path/to/file`
+- Prefer explicit file paths and concrete commands
+- Align with project standards and existing architecture
+- Ask clarifying questions when uncertainty affects execution safety
+- Keep plans self-contained and deterministic
 
 ## Integration
 
-- **execute-plan**: The skill used to execute these plans.
-- **brainstorm**: The skill used to brainstorm ideas before writing the plan.
-- Use script `.claude/scripts/get-time.sh` to get the current time with format `YYYY-MM-DD HH:mm:ss` and `YYMMDD-HHmm`.
+- Upstream discovery: `brainstorm`
+- Downstream execution: `execute-plan`
