@@ -1,6 +1,6 @@
 ---
 name: fix
-description: Skill for fixing bugs or issues. Suggests write-plan for complex problems.
+description: Focusing on fixing bugs or issues.
 ---
 
 # Fix
