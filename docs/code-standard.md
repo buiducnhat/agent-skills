@@ -1,5 +1,38 @@
 # Code Standards
 
+> Last Updated: 2026-02-23
+> Maintainers: Project contributors updating skills, scripts, and workflow docs
+
+## Maintenance Contract
+
+This document is the canonical source for coding and documentation conventions in this repository.
+
+Update this file whenever any of the following changes occur:
+
+1. Tech stack/runtime requirements change (Node/Bash/tooling).
+2. Skill structure or frontmatter requirements change.
+3. JavaScript or Bash style rules change.
+4. Testing conventions or execution commands change.
+5. Repository workflow or documentation conventions materially change.
+
+### Update Rules
+
+- Keep this document concise, actionable, and implementation-focused.
+- Prefer updating existing sections over adding duplicate guidance.
+- If standards change, align related docs in the same update:
+  - `docs/codebase.md`
+  - `docs/architecture.md`
+  - `docs/project-pdr.md` (only if product/process implications exist)
+  - `CLAUDE.md` (if workflow policy changes)
+- Do not leave stale examples that conflict with current repository behavior.
+
+### Validation Checklist (Before Finalizing Changes)
+
+- Standards match current repository structure and scripts.
+- Naming conventions are consistent with current skill folders/files.
+- Example snippets are valid and up to date.
+- Testing commands are executable in this repo.
+
 ## Tech Stack
 
 - **Language:** JavaScript (ES Modules), Bash
@@ -10,7 +43,7 @@
 
 Each skill follows this structure:
 
-```
+```/dev/null/skill-structure.txt#L1-8
 .claude/skills/<skill-name>/
 ├── SKILL.md              # Main skill definition (required)
 ├── references/           # Optional reference documents
@@ -26,7 +59,7 @@ Each skill follows this structure:
 
 Every skill must have a `SKILL.md` file with YAML frontmatter:
 
-```markdown
+```/dev/null/skill-frontmatter-example.md#L1-9
 ---
 name: skill-name
 description: Use when [condition] - [what it does]
@@ -54,7 +87,7 @@ description: Use when [condition] - [what it does]
 
 The root `CLAUDE.md` file configures Claude Code behavior:
 
-```markdown
+```/dev/null/claude-config-example.md#L1-6
 ## Core Workflow Skills
 
 ### skill-name
@@ -69,7 +102,7 @@ The root `CLAUDE.md` file configures Claude Code behavior:
 
 Document workflows using sequences:
 
-```markdown
+```/dev/null/workflow-sequence-example.md#L1-2
 **Sequence**: `skill1` → `skill2` → `skill3`
 **Use Case**: When and why to use this sequence.
 ```

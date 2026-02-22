@@ -1,8 +1,12 @@
 # Architecture
 
+> Last Updated: 2026-02-23 00:03:59 +07:00  
+> Status: Active  
+> Scope: `agent-skills` repository architecture and maintenance expectations
+
 ## System Overview
 
-Agent Skills is a template repository containing Claude Code configurations and skills that can be copied to other projects.
+Agent Skills is a template repository containing Claude Code configurations and reusable skills that can be copied into other projects.
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -28,22 +32,22 @@ Agent Skills is a template repository containing Claude Code configurations and 
 
 ## Component Details
 
-### 1. CLAUDE.md (Workflow Configuration)
+### 1. `CLAUDE.md` (Workflow Configuration)
 
-**Purpose:** Define how Claude Code should behave in the project.
+**Purpose:** Define how Claude Code should behave in projects using this workflow.
 
 **Responsibilities:**
 
 - Document available workflow skills
 - Define workflow sequences
-- Set documentation rules
-- Establish critical behavioral rules
+- Set documentation-first rules
+- Establish critical behavioral guardrails
 
-### 2. Skills Library (.claude/lib/)
+### 2. Skills Library (`.claude/lib/`)
 
 **Purpose:** Provide reusable utilities for skill management.
 
-**Key Module: skills-core.js**
+**Key module: `skills-core.js`**
 
 ```
 ┌─────────────────────────────────────────┐
@@ -66,7 +70,7 @@ Agent Skills is a template repository containing Claude Code configurations and 
 └─────────────────────────────────────────┘
 ```
 
-### 3. Skills Directory (.claude/skills/)
+### 3. Skills Directory (`.claude/skills/`)
 
 **Purpose:** Store individual skill definitions.
 
@@ -75,8 +79,8 @@ Agent Skills is a template repository containing Claude Code configurations and 
 ```
 skill-name/
 ├── SKILL.md          # Required: Skill definition
-├── references/       # Optional: Reference docs
-├── templates/        # Optional: Code templates
+├── references/       # Optional: Reference docs loaded on demand
+├── templates/        # Optional: Output templates
 ├── scripts/          # Optional: Helper scripts
 └── LICENSE.txt       # Optional: License
 ```
@@ -114,7 +118,7 @@ Claude Code Start
 
 ### Skill Resolution (Shadowing)
 
-Personal skills override superpowers skills:
+Personal skills override upstream/default skills:
 
 ```
 resolveSkillPath("my-skill")
@@ -137,13 +141,13 @@ resolveSkillPath("my-skill")
 
 ### For Target Projects
 
-1. **Copy `.claude/` directory** - Gets all skills
-2. **Copy `CLAUDE.md`** - Gets workflow configuration
-3. **Optionally add custom skills** - Add to `.claude/skills/`
+1. Copy `.claude/` directory (skills + utilities)
+2. Copy `CLAUDE.md` (workflow behavior)
+3. Optionally add custom skills in `.claude/skills/`
 
 ### Update Strategy
 
-The `update-skills.sh` script manages syncing upstream changes to target projects:
+The `update-skills.sh` script syncs upstream changes into target projects while preserving local customizations.
 
 ```
 User's Project                    Agent Skills Repo
@@ -164,24 +168,62 @@ User's Project                    Agent Skills Repo
 
 **Manifest file** (`.claude/.upstream-manifest`):
 
-- Tracks every upstream file with `path:hash:version` entries
-- Used to detect local modifications (compares stored hash vs current hash)
-- Files modified locally are skipped unless `--force` is used
+- Stores `path:hash:version` entries
+- Detects local edits by hash comparison
+- Skips locally modified files unless forced
 
 ## Design Decisions
 
 ### 1. YAML Frontmatter for Skill Metadata
 
-**Rationale:** Standard format, easily parseable, keeps metadata with content.
+**Rationale:** Standard, parseable metadata colocated with skill behavior.
 
 ### 2. Flat Skills Directory
 
-**Rationale:** Simple discovery, no nested namespacing complexity.
+**Rationale:** Simpler discovery and lower naming complexity.
 
 ### 3. Optional Supporting Files
 
-**Rationale:** Skills range from simple (single SKILL.md) to complex (with references, templates, scripts).
+**Rationale:** Supports both minimal and advanced skills without forcing boilerplate.
 
-### 4. Personal/Superpowers Shadowing
+### 4. Personal/Upstream Shadowing
 
-**Rationale:** Allows users to override default skills without modifying source.
+**Rationale:** Enables local overrides without upstream forks.
+
+---
+
+## Maintenance Contract
+
+This section defines when this architecture document must be updated and what consistency guarantees are expected.
+
+### Update Triggers (Mandatory)
+
+Update this file when any of the following changes:
+
+1. Core repository layout (`.claude/`, `docs/`, `tests/`) materially changes
+2. Skill discovery/resolution behavior changes (`skills-core.js` contract)
+3. Skill folder contract changes (`SKILL.md`/resources structure)
+4. Update workflow changes (`update-skills.sh` behavior or manifest format)
+5. Workflow control source changes (major `CLAUDE.md` semantics)
+
+### Required Cross-Document Sync
+
+When architecture changes, review and sync:
+
+- `docs/codebase.md` (tree + key file responsibilities)
+- `docs/code-standard.md` (format/pattern standards affected by architecture)
+- `docs/project-pdr.md` (if user/business-facing capabilities change)
+- `README.md` (if onboarding or usage flow changes)
+
+### Accuracy Rules
+
+- Prefer stable descriptions over volatile counts
+- If including counts/versions, mark them with “as of” date
+- Avoid speculative statements; document only implemented behavior
+- Keep diagrams and prose aligned with current repository reality
+
+### Ownership and Review Cadence
+
+- **Primary owner:** Maintainers updating workflow, scripts, or core skill infrastructure
+- **Review cadence:** On every structural PR touching `.claude/`, `CLAUDE.md`, or updater scripts
+- **Definition of done for structural changes:** this file and linked docs updated in the same change set

@@ -1,9 +1,44 @@
 # Project Requirements Document
 
+> Last Updated: 2026-02-23 00:03:59 +07:00  
+> Status: Active
+
+## Documentation Maintenance Contract
+
+This document is a source-of-truth artifact and must be kept in sync with project intent and delivery scope.
+
+### Update Triggers
+
+Update this file whenever any of the following changes:
+
+1. Project purpose, vision, or problem statement
+2. Target users or use cases
+3. Core workflow definitions or expected outcomes
+4. Feature scope (additions, removals, major reprioritization)
+5. Success criteria or constraints
+
+### Required Companion Updates
+
+When this file changes, review and update (if needed):
+
+- `docs/architecture.md` (system impact)
+- `docs/codebase.md` (structure impact)
+- `docs/code-standard.md` (process/convention impact)
+- `CLAUDE.md` (workflow/policy impact)
+
+### Quality Rules
+
+- Keep requirements factual and implementation-agnostic where possible.
+- Avoid stale numeric claims unless they are explicitly date-stamped.
+- Use concise language and explicit scope boundaries.
+- If uncertain, mark assumptions and open questions clearly.
+
+---
+
 ## Project Overview
 
-**Project Name:** Agent Skills
-**Repository:** https://github.com/buiducnhat/agent-skills.git
+**Project Name:** Agent Skills  
+**Repository:** https://github.com/buiducnhat/agent-skills.git  
 **Type:** Claude Code Skills Collection
 
 ## Purpose

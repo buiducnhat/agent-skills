@@ -1,60 +1,63 @@
 # CLAUDE.md
 
-This file provides general guidance to Claude Code (claude.ai/code) for working with projects that follow this workflow.
+This file provides general guidance to Claude Code (claude.ai/code) for projects that follow this workflow.
 
 ## Documentation Rules
 
 Documentation structure:
 
-```
+```text
 docs/
-├── brainstorms/ # Long term memory of the project
-├── plans/ # Long term memory of the project
-├── architecture.md # Important for understanding the project architecture
-├── code-standard.md # Important for understanding the code standard
-├── codebase.md # Important for understanding the codebase
-└── project-pdr.md # Important for understanding the project PDR
+├── brainstorms/      # Long-term memory for exploration outputs
+├── plans/            # Long-term memory for implementation plans
+├── architecture.md   # Project architecture and system design
+├── code-standard.md  # Coding standards and conventions
+├── codebase.md       # Codebase map and key files
+└── project-pdr.md    # Product requirements and business context
 ```
 
 **CRITICAL**: Documentation is essential for project success. Always follow these rules:
 
-1. **Always read project documentation first** - Before planning or implementing any feature, read the project's documentation to understand context, requirements, and existing patterns.
+1. **Always read project documentation first**  
+   Before planning or implementing any feature, read project documentation to understand context, requirements, and existing patterns.
 
-2. **Documentation guides implementation** - Let the documentation guide your decisions. If documentation conflicts with implementation needs, clarify with the user rather than guessing.
+2. **Let documentation guide implementation**  
+   Use documentation as the source of truth. If documentation conflicts with implementation needs, clarify with the user instead of guessing.
 
 ## Workflow Sequences
 
-Select the appropriate workflow based on task complexity:
+Select the workflow based on task complexity:
 
 ### 1. Complex Exploration
 
-**Sequence**: `brainstorm` → `write-plan` → `execute-plan`
-**Use Case**: For ambiguous, complex, or high-risk tasks requiring deep exploration and approach validation before planning.
+**Sequence**: `brainstorm` → `write-plan` → `execute-plan`  
+**Use Case**: Ambiguous, complex, or high-risk tasks that require exploration and approach validation before planning.
 
 ### 2. Standard Development
 
-**Sequence**: `write-plan` → `execute-plan`
-**Use Case**: For well-defined but complex tasks, major features, or large refactors where a structured plan is necessary.
+**Sequence**: `write-plan` → `execute-plan`  
+**Use Case**: Well-defined but complex tasks, major features, or large refactors that need a structured plan.
 
 ### 3. Rapid Implementation
 
-**Sequence**: `quick-implement`
-**Use Case**: For simple tasks, small bug fixes, or minor tweaks where a formal plan would be overhead. Direct implementation without plan files.
+**Sequence**: `quick-implement`  
+**Use Case**: Small, low-risk tasks where formal planning would be unnecessary overhead.
 
 ## Important Reminders
 
-**Interaction Preferences:**
+### Interaction Preferences
 
 When asking questions during task execution:
 
-- PREFER using interactive prompts with selectable options with `AskUserQuestion` tool.
-- Use interactive selection menus for choices between 2-5 options.
-- Only pause and wait for full message response when:
-  - Question requires detailed explanation
-  - User needs external context
+- Prefer interactive prompts with selectable options **when the current interface supports them**.
+- For 2-5 choices, prefer concise option menus.
+- If interactive options are not available, ask short, focused text questions.
+- Pause for a full user response only when:
+  - The question requires detailed explanation, or
+  - The user needs external context to answer.
 
-**CRITICAL RULES:**
+### Critical Rules
 
-- Always read project documentation before planning or implementing anything
-- Ask clarifying questions when documentation is unclear or incomplete
-- Every steps inside the workflow's skills are important
+- Always read project documentation before planning or implementation.
+- Ask clarifying questions when documentation is unclear or incomplete.
+- Follow every step in each workflow skill; do not skip required steps.
