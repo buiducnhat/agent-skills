@@ -2,3 +2,4 @@
 docs/plans/
 var/
 .upstream-manifest
+__pycache__/
