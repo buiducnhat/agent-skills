@@ -30,6 +30,7 @@ agent-skills/
 │   └── skills/                 # Skill definitions (count may change over time)
 │       ├── ai-sdk/
 │       ├── better-auth-best-practices/
+│       ├── bootstrap/
 │       ├── brainstorm/
 │       ├── docs/
 │       ├── execute-plan/
@@ -98,7 +99,7 @@ JavaScript module providing skill management utilities:
 
 | Category         | Skills                                                                                                                  |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| **Workflow**     | `brainstorm`, `write-plan`, `execute-plan`, `quick-implement`, `fix`, `review`, `docs`                                  |
+| **Workflow**     | `bootstrap`, `brainstorm`, `write-plan`, `execute-plan`, `quick-implement`, `fix`, `review`, `docs`                     |
 | **Frameworks**   | `next-best-practices`, `tanstack-query`, `tanstack-table`, `tanstack-start-best-practices`, `vite`, `nuqs`, `turborepo` |
 | **React/Vercel** | `vercel-react-best-practices`, `vercel-react-native-skills`, `vercel-composition-patterns`                              |
 | **Auth**         | `better-auth-best-practices`                                                                                            |

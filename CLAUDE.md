@@ -28,6 +28,11 @@ docs/
 
 Select the workflow based on task complexity:
 
+### 0. Project Bootstrap
+
+**Sequence**: `bootstrap` → `write-plan` → `execute-plan`
+**Use Case**: New projects or minimal scaffolds that need proper structure, documentation, and conventions before development begins.
+
 ### 1. Complex Exploration
 
 **Sequence**: `brainstorm` → `write-plan` → `execute-plan`  
