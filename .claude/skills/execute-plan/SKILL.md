@@ -182,7 +182,6 @@ After all phases are complete:
 ## Integration
 
 - Upstream planning skill: `write-plan`
-- Optional pre-planning skill for ambiguous work: `brainstorm`
-- Use `.claude/scripts/get-time.sh` for:
+- Use `../../claude/scripts/get-time.sh` for:
   - `YYMMDD-HHmm` folder naming
   - `YYYY-MM-DD HH:mm:ss` report timestamps

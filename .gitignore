@@ -1,5 +1,6 @@
 .DS_Store
 docs/plans/
+docs/brainstorms/
 var/
 .upstream-manifest
 __pycache__/
