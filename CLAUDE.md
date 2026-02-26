@@ -1,7 +1,3 @@
-# CLAUDE.md
-
-This file provides general guidance to Claude Code (claude.ai/code) for projects that follow this workflow.
-
 ## Documentation Rules
 
 Documentation structure:
@@ -24,29 +20,19 @@ docs/
 2. **Let documentation guide implementation**  
    Use documentation as the source of truth. If documentation conflicts with implementation needs, clarify with the user instead of guessing.
 
-## Workflow Sequences
+## Core Workflow Skills
 
-Select the workflow based on task complexity:
-
-### 0. Project Bootstrap
-
-**Sequence**: `bootstrap` → `write-plan` → `execute-plan`
-**Use Case**: New projects or minimal scaffolds that need proper structure, documentation, and conventions before development begins.
-
-### 1. Complex Exploration
-
-**Sequence**: `brainstorm` → `write-plan` → `execute-plan`  
-**Use Case**: Ambiguous, complex, or high-risk tasks that require exploration and approach validation before planning.
-
-### 2. Standard Development
-
-**Sequence**: `write-plan` → `execute-plan`  
-**Use Case**: Well-defined but complex tasks, major features, or large refactors that need a structured plan.
-
-### 3. Rapid Implementation
-
-**Sequence**: `quick-implement`  
-**Use Case**: Small, low-risk tasks where formal planning would be unnecessary overhead.
+| Skill             | Description                                                               |
+| ----------------- | ------------------------------------------------------------------------- |
+| `bootstrap`       | Set up project structure, documentation, and conventions for new projects |
+| `ask`             | Ask clarifying questions to gather requirements and context               |
+| `docs`            | Initialize (`--init`) or update (`--update`) project documentation        |
+| `brainstorm`      | Explore ideas and break down complex problems before planning             |
+| `write-plan`      | Create detailed implementation plans with phases and tasks                |
+| `execute-plan`    | Execute written plans systematically with checkpoints                     |
+| `quick-implement` | Rapid implementation for simple tasks or bug fixes                        |
+| `fix`             | Diagnose and resolve bugs (suggests `write-plan` for complex issues)      |
+| `review`          | Review uncommitted changes with codebase context                          |
 
 ## Important Reminders
 
