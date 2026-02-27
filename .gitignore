@@ -6,8 +6,24 @@ CLAUDE.md
 docs/plans/
 docs/brainstorms/
 
-!templates/.claude/
-
 # CLI build artifacts
 cli/node_modules/
 cli/dist/
+
+
+# START Ruler Generated Files
+/.claude/skills
+/.cursor/skills
+/AGENTS.md
+/AGENTS.md.bak
+/CLAUDE.md
+/CLAUDE.md.bak
+# END Ruler Generated Files
+
+# Local ruler
+.ruler/
+!templates/.ruler/
+
+# Local claude
+.claude/
+!templates/.claude/

@@ -17,6 +17,7 @@
 │       ├── utils.ts              # Arg parsing, copy logic, help/summary output
 │       ├── configure.ts          # `ruler.toml` default agent injection/rewrite
 │       ├── apply.ts              # Executes `ruler apply` via npx
+│       ├── manifest.ts           # Library skill manifest read/write/diff utilities
 │       └── constants.ts          # Repository constants + supported agent list
 ├── templates/
 │   ├── .ruler/                   # Agent instructions, scripts, and skills
@@ -33,10 +34,11 @@
 ## Key entry points and modules
 
 - `cli/src/index.ts`: main flow (`parse args → resolve mode → select agents → fetch templates → copy → configure → apply → summary`).
-- `cli/src/utils.ts`: shared utilities for argument parsing, template copy, help text, and install summary.
+- `cli/src/utils.ts`: shared utilities for argument parsing, template copy (including skill preservation), help text, and install summary.
 - `cli/src/fetch.ts`: clones this repository into a temp directory and validates `templates/` exists.
 - `cli/src/configure.ts`: ensures `.ruler/ruler.toml` has `default_agents = [...]`.
 - `cli/src/apply.ts`: executes `npx --yes @intellectronica/ruler apply --agents ...` with timeout and warning fallback.
+- `cli/src/manifest.ts`: manages `.ruler/skills/.library-manifest.json` and computes library vs custom/deprecated skills.
 
 ## Important scripts and config files
 

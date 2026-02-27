@@ -21,6 +21,7 @@ The project is a Node.js CLI that installs standardized agent configuration asse
 4. **Template deployment (`utils.ts`)**
    - Copies `.ruler` and `.claude` templates to project
    - Handles backup behavior for fresh install mode
+   - Preserves custom skills while updating library-provided skills
 5. **Configuration mutator (`configure.ts`)**
    - Updates `default_agents` in `.ruler/ruler.toml`
 6. **Post-process generator (`apply.ts`)**
@@ -32,10 +33,11 @@ The project is a Node.js CLI that installs standardized agent configuration asse
 1. User runs CLI (`npx @buiducnhat/agent-skills [flags]`).
 2. CLI resolves execution mode and selected agents.
 3. CLI clones `https://github.com/buiducnhat/agent-skills.git` (branch `main`) to temp dir.
-4. Template files are copied from temp clone into current working repository.
-5. `.ruler/ruler.toml` is updated with selected `default_agents`.
-6. CLI invokes `ruler apply` to generate agent-specific output files.
-7. CLI prints summary and cleans temporary clone directory.
+4. Template files are copied from temp clone into current working repository, using a manifest to distinguish library vs custom skills.
+5. `.ruler/skills/.library-manifest.json` is written/updated to track library-installed skills.
+6. `.ruler/ruler.toml` is updated with selected `default_agents`.
+7. CLI invokes `ruler apply` to generate agent-specific output files.
+8. CLI prints summary (including library vs custom skill counts) and cleans temporary clone directory.
 
 ## Integration boundaries
 

@@ -1,6 +1,14 @@
 import fs from "node:fs";
 import path from "node:path";
 import { log, spinner } from "@clack/prompts";
+import {
+	computeCustomSkills,
+	computeDeprecatedSkills,
+	getInstalledSkillNames,
+	getTemplateSkillNames,
+	readManifest,
+	writeManifest,
+} from "./manifest.js";
 
 export interface CliArgs {
 	agents?: string;
@@ -58,6 +66,27 @@ export function copyDirectory(src: string, dest: string): void {
 	}
 }
 
+export function copyDirectoryExcluding(
+	src: string,
+	dest: string,
+	excludeNames: Set<string>,
+): void {
+	fs.mkdirSync(dest, { recursive: true });
+	const entries = fs.readdirSync(src, { withFileTypes: true });
+	for (const entry of entries) {
+		if (excludeNames.has(entry.name)) {
+			continue;
+		}
+		const srcPath = path.join(src, entry.name);
+		const destPath = path.join(dest, entry.name);
+		if (entry.isDirectory()) {
+			copyDirectory(srcPath, destPath);
+		} else {
+			fs.copyFileSync(srcPath, destPath);
+		}
+	}
+}
+
 export async function copyTemplates(
 	tempDir: string,
 	projectDir: string,
@@ -72,31 +101,128 @@ export async function copyTemplates(
 	const destRuler = path.join(projectDir, ".ruler");
 	const destClaude = path.join(projectDir, ".claude");
 
+	const templateSkills = getTemplateSkillNames(tempDir);
+	const existingManifest = readManifest(projectDir);
+	const manifestSkills = existingManifest?.skills ?? [];
+	const installedSkills = getInstalledSkillNames(projectDir);
+	const deprecatedSkills = computeDeprecatedSkills(
+		existingManifest,
+		templateSkills,
+	);
+	const customSkills = computeCustomSkills(
+		installedSkills,
+		manifestSkills,
+		templateSkills,
+	);
+
+	// Remove deprecated library skills for update/fresh when .ruler exists
+	if (deprecatedSkills.length > 0) {
+		for (const skill of deprecatedSkills) {
+			const skillPath = path.join(destRuler, "skills", skill);
+			if (fs.existsSync(skillPath)) {
+				fs.rmSync(skillPath, { recursive: true, force: true });
+			}
+		}
+		log.info(
+			`Removing ${deprecatedSkills.length} deprecated library skill(s): ${deprecatedSkills.join(
+				", ",
+			)}`,
+		);
+	}
+
 	if (action === "fresh") {
+		let rulerBackup: string | undefined;
+		let claudeBackup: string | undefined;
+
 		if (fs.existsSync(destRuler)) {
-			const backupPath = `${destRuler}.backup-${Date.now()}`;
-			fs.renameSync(destRuler, backupPath);
-			log.info(`Backed up existing .ruler/ to ${path.basename(backupPath)}`);
+			rulerBackup = `${destRuler}.backup-${Date.now()}`;
+			fs.renameSync(destRuler, rulerBackup);
+			log.info(`Backed up existing .ruler/ to ${path.basename(rulerBackup)}`);
 		}
 		if (fs.existsSync(destClaude)) {
-			const backupPath = `${destClaude}.backup-${Date.now()}`;
-			fs.renameSync(destClaude, backupPath);
-			log.info(`Backed up existing .claude/ to ${path.basename(backupPath)}`);
+			claudeBackup = `${destClaude}.backup-${Date.now()}`;
+			fs.renameSync(destClaude, claudeBackup);
+			log.info(`Backed up existing .claude/ to ${path.basename(claudeBackup)}`);
+		}
+
+		if (fs.existsSync(srcRuler)) {
+			copyDirectory(srcRuler, destRuler);
+		}
+
+		// Restore custom skills from backup if present
+		if (rulerBackup && customSkills.length > 0) {
+			for (const skill of customSkills) {
+				const srcSkill = path.join(rulerBackup, "skills", skill);
+				const destSkill = path.join(destRuler, "skills", skill);
+				if (fs.existsSync(srcSkill)) {
+					copyDirectory(srcSkill, destSkill);
+				}
+			}
+			log.info(
+				`Preserving ${customSkills.length} custom skill(s): ${customSkills.join(
+					", ",
+				)}`,
+			);
+		}
+
+		if (fs.existsSync(srcClaude)) {
+			copyDirectory(srcClaude, destClaude);
+		}
+	} else {
+		// update mode (or first install treated as update when .ruler does not yet exist)
+		if (!fs.existsSync(destRuler)) {
+			// First install: copy everything and write manifest
+			if (fs.existsSync(srcRuler)) {
+				copyDirectory(srcRuler, destRuler);
+			}
+			if (fs.existsSync(srcClaude)) {
+				copyDirectory(srcClaude, destClaude);
+			}
+			if (templateSkills.length > 0) {
+				writeManifest(projectDir, templateSkills);
+			}
+			makeScriptsExecutable(path.join(destRuler, "scripts"));
+			s.stop("Copied templates to project");
+			return;
+		}
+
+		// Existing install: update .ruler except skills, then update skills individually
+		if (fs.existsSync(srcRuler)) {
+			copyDirectoryExcluding(srcRuler, destRuler, new Set<string>(["skills"]));
+
+			const srcSkillsDir = path.join(srcRuler, "skills");
+			const destSkillsDir = path.join(destRuler, "skills");
+			if (fs.existsSync(srcSkillsDir)) {
+				fs.mkdirSync(destSkillsDir, { recursive: true });
+				for (const skill of templateSkills) {
+					const srcSkill = path.join(srcSkillsDir, skill);
+					const destSkill = path.join(destSkillsDir, skill);
+					if (fs.existsSync(srcSkill)) {
+						copyDirectory(srcSkill, destSkill);
+					}
+				}
+			}
+		}
+
+		if (customSkills.length > 0) {
+			log.info(
+				`Preserving ${customSkills.length} custom skill(s): ${customSkills.join(
+					", ",
+				)}`,
+			);
+		}
+
+		if (fs.existsSync(srcClaude)) {
+			copyDirectory(srcClaude, destClaude);
 		}
 	}
 
-	// Copy .ruler/
-	if (fs.existsSync(srcRuler)) {
-		copyDirectory(srcRuler, destRuler);
-
-		// Make scripts executable
-		makeScriptsExecutable(path.join(destRuler, "scripts"));
+	if (templateSkills.length > 0) {
+		writeManifest(projectDir, templateSkills);
 	}
 
-	// Copy .claude/
-	if (fs.existsSync(srcClaude)) {
-		copyDirectory(srcClaude, destClaude);
-	}
+	// Make scripts executable
+	makeScriptsExecutable(path.join(destRuler, "scripts"));
 
 	s.stop("Copied templates to project");
 }
@@ -151,8 +277,6 @@ export function printHelp(): void {
 }
 
 export function printSummary(agents: string[], projectDir: string): void {
-	const skillCount = countSkills(projectDir);
-
 	log.success("Installation complete!");
 	log.message("");
 	log.message("What was set up:");
@@ -161,7 +285,14 @@ export function printSummary(agents: string[], projectDir: string): void {
 	log.message(
 		`  .ruler/ruler.toml     - Ruler config (agents: ${agents.join(", ")})`,
 	);
-	log.message(`  .ruler/skills/        - ${skillCount} workflow skills`);
+	const counts = countSkillsByType(projectDir);
+	if (counts.custom > 0) {
+		log.message(
+			`  .ruler/skills/        - ${counts.library} library + ${counts.custom} custom skill(s)`,
+		);
+	} else {
+		log.message(`  .ruler/skills/        - ${counts.library} workflow skills`);
+	}
 	log.message("");
 	log.message("Agent configurations generated for:");
 	for (const agent of agents) {
@@ -174,10 +305,26 @@ export function printSummary(agents: string[], projectDir: string): void {
 	log.message("  3. Commit the generated files to your repository");
 }
 
-function countSkills(projectDir: string): number {
+function countSkillsByType(projectDir: string): {
+	library: number;
+	custom: number;
+	total: number;
+} {
 	const skillsDir = path.join(projectDir, ".ruler", "skills");
-	if (!fs.existsSync(skillsDir)) return 0;
-	return fs
+	if (!fs.existsSync(skillsDir)) {
+		return { library: 0, custom: 0, total: 0 };
+	}
+
+	const manifest = readManifest(projectDir);
+	const manifestSkills = new Set(manifest?.skills ?? []);
+
+	const allSkills = fs
 		.readdirSync(skillsDir, { withFileTypes: true })
-		.filter((d) => d.isDirectory()).length;
+		.filter((d) => d.isDirectory())
+		.map((d) => d.name);
+
+	const library = allSkills.filter((s) => manifestSkills.has(s)).length;
+	const custom = allSkills.length - library;
+
+	return { library, custom, total: allSkills.length };
 }
