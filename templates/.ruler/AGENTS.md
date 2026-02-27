@@ -24,15 +24,15 @@ docs/
 
 | Skill             | Description                                                               |
 | ----------------- | ------------------------------------------------------------------------- |
-| `bootstrap`       | Set up project structure, documentation, and conventions for new projects |
 | `ask`             | Ask clarifying questions to gather requirements and context               |
-| `docs`            | Initialize (`--init`) or update (`--update`) project documentation        |
+| `bootstrap`       | Set up project structure, documentation, and conventions for new projects |
 | `brainstorm`      | Explore ideas and break down complex problems before planning             |
-| `write-plan`      | Create detailed implementation plans with phases and tasks                |
+| `docs`            | Initialize (`--init`) or update (`--update`) project documentation        |
 | `execute-plan`    | Execute written plans systematically with checkpoints                     |
-| `quick-implement` | Rapid implementation for simple tasks or bug fixes                        |
 | `fix`             | Diagnose and resolve bugs (suggests `write-plan` for complex issues)      |
+| `quick-implement` | Rapid implementation for simple tasks or bug fixes                        |
 | `review`          | Review uncommitted changes with codebase context                          |
+| `write-plan`      | Create detailed implementation plans with phases and tasks                |
 
 ## Important Reminders
 
@@ -52,3 +52,4 @@ When asking questions during task execution:
 - Always read project documentation before planning or implementation.
 - Ask clarifying questions when documentation is unclear or incomplete.
 - Follow every step in each workflow skill; do not skip required steps.
+- Follow rules: YAGNI, KISS, DRY, SOLID, and the principle of least surprise.
