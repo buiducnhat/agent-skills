@@ -6,7 +6,13 @@ import { runRulerApply } from "./apply.js";
 import { configureRulerToml } from "./configure.js";
 import { cleanupTemp, fetchTemplates } from "./fetch.js";
 import { promptAgentSelection, promptExistingAction } from "./prompts.js";
-import { copyTemplates, parseArgs, printHelp, printSummary } from "./utils.js";
+import {
+	copyTemplates,
+	ensureRulerScripts,
+	parseArgs,
+	printHelp,
+	printSummary,
+} from "./utils.js";
 
 async function main(): Promise<void> {
 	const args = parseArgs(process.argv.slice(2));
@@ -69,7 +75,10 @@ async function main(): Promise<void> {
 		// Step 6: Run ruler apply
 		await runRulerApply(cwd, selectedAgents);
 
-		// Step 7: Summary
+		// Step 7: Ensure scripts required by skills exist after generation
+		ensureRulerScripts(tempDir, cwd);
+
+		// Step 8: Summary
 		printSummary(selectedAgents, cwd);
 
 		outro(pc.green("Done! Your AI agent skills are ready."));

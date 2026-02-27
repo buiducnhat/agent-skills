@@ -90,14 +90,7 @@ export async function copyTemplates(
 		copyDirectory(srcRuler, destRuler);
 
 		// Make scripts executable
-		const scriptsDir = path.join(destRuler, "scripts");
-		if (fs.existsSync(scriptsDir)) {
-			for (const script of fs
-				.readdirSync(scriptsDir)
-				.filter((f) => f.endsWith(".sh"))) {
-				fs.chmodSync(path.join(scriptsDir, script), 0o755);
-			}
-		}
+		makeScriptsExecutable(path.join(destRuler, "scripts"));
 	}
 
 	// Copy .claude/
@@ -106,6 +99,30 @@ export async function copyTemplates(
 	}
 
 	s.stop("Copied templates to project");
+}
+
+export function ensureRulerScripts(tempDir: string, projectDir: string): void {
+	const srcScripts = path.join(tempDir, "templates", ".ruler", "scripts");
+	const destScripts = path.join(projectDir, ".ruler", "scripts");
+
+	if (!fs.existsSync(srcScripts)) {
+		return;
+	}
+
+	copyDirectory(srcScripts, destScripts);
+	makeScriptsExecutable(destScripts);
+}
+
+function makeScriptsExecutable(scriptsDir: string): void {
+	if (!fs.existsSync(scriptsDir)) {
+		return;
+	}
+
+	for (const script of fs
+		.readdirSync(scriptsDir)
+		.filter((fileName) => fileName.endsWith(".sh"))) {
+		fs.chmodSync(path.join(scriptsDir, script), 0o755);
+	}
 }
 
 export function printHelp(): void {
