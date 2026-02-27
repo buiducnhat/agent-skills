@@ -132,7 +132,7 @@ Before finalizing `SUMMARY.md`, confirm:
 
 ## Integration
 
-- Use `../../claude/scripts/get-time.sh` to generate:
+- Use `scripts/get-time.sh` to generate:
   - `YYMMDD-HHmm` for folder naming
   - `YYYY-MM-DD HH:mm:ss` for document timestamps
 - Next workflow step: `write-plan`

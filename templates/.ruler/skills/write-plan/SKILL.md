@@ -23,7 +23,7 @@ Use one consistent artifact structure for every plan:
 - Phase files: `docs/plans/YYMMDD-HHmm-<plan-slug>/phase-01-<name>.md`, `phase-02-<name>.md`, etc.
 - Optional research notes: `docs/plans/YYMMDD-HHmm-<plan-slug>/research/<topic>.md`
 
-Use `../../scripts/get-time.sh` for:
+Use `scripts/get-time.sh` for:
 
 - Folder timestamp: `YYMMDD-HHmm`
 - Human-readable timestamp: `YYYY-MM-DD HH:mm:ss`

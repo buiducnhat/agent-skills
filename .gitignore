@@ -6,7 +6,7 @@ CLAUDE.md
 docs/plans/
 docs/brainstorms/
 
-!templates/
+!templates/.claude/
 
 # CLI build artifacts
 cli/node_modules/

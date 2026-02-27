@@ -161,7 +161,6 @@ export function printSummary(agents: string[], projectDir: string): void {
 	log.message(
 		`  .ruler/ruler.toml     - Ruler config (agents: ${agents.join(", ")})`,
 	);
-	log.message(`  .ruler/scripts/       - Helper scripts`);
 	log.message(`  .ruler/skills/        - ${skillCount} workflow skills`);
 	log.message("");
 	log.message("Agent configurations generated for:");
