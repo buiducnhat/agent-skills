@@ -37,3 +37,27 @@ curl -fsSL https://raw.githubusercontent.com/buiducnhat/agent-skills/main/instal
 - [Code Standard](docs/code-standard.md)
 - [Codebase Map](docs/codebase.md)
 - [Architecture](docs/architecture.md)
+
+## Release
+
+Tag pushes matching `v*` trigger GitHub Actions workflow `.github/workflows/release.yml` to publish `@buiducnhat/agent-skills` from `cli/`.
+
+### Prerequisites
+
+- Repository secret `NPM_TOKEN` with publish permission to `@buiducnhat/agent-skills`
+- Version in `cli/package.json` is bumped to an unpublished version
+- Tag format is `vX.Y.Z` and should match the intended release version
+
+### Maintainer runbook
+
+```bash
+# 1) Update CLI package version
+cd cli
+npm version <major|minor|patch>
+
+# 2) Push commit and tag
+git push origin main --follow-tags
+
+# 3) Monitor workflow run
+# GitHub Actions -> "Release CLI to npm"
+```

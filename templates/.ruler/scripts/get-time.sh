@@ -3,7 +3,7 @@
 # get-time.sh - Get current time in YYMMDD-HHmm and YYYY-MM-DD HH:mm:ss format
 # Repository: https://github.com/buiducnhat/agent-skills.git
 #
-# Location: .claude/scripts/get-time.sh
+# Location: scripts/get-time.sh
 
 echo "$(date +%y%m%d-%H%M)"
 echo "$(date +%Y-%m-%d\ %H:%M:%S)"
