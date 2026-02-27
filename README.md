@@ -48,6 +48,50 @@ Tag pushes matching `v*` trigger GitHub Actions workflow `.github/workflows/rele
 - Version in `cli/package.json` is bumped to an unpublished version
 - Tag format is `vX.Y.Z` and should match the intended release version
 
+## Core Workflow Skills
+
+These skills form the essential development workflow:
+
+| Skill             | Description                                                               |
+| ----------------- | ------------------------------------------------------------------------- |
+| `ask`             | Ask clarifying questions to gather requirements and context               |
+| `bootstrap`       | Set up project structure, documentation, and conventions for new projects |
+| `brainstorm`      | Explore ideas and break down complex problems before planning             |
+| `docs`            | Initialize (`--init`) or update (`--update`) project documentation        |
+| `execute-plan`    | Execute written plans systematically with checkpoints                     |
+| `fix`             | Diagnose and resolve bugs (suggests `write-plan` for complex issues)      |
+| `quick-implement` | Rapid implementation for simple tasks or bug fixes                        |
+| `review`          | Review uncommitted changes with codebase context                          |
+| `write-plan`      | Create detailed implementation plans with phases and tasks                |
+
+## Workflow Sequences
+
+Choose the appropriate workflow based on task complexity:
+
+### 1. Complex Exploration
+
+```
+brainstorm → write-plan → execute-plan
+```
+
+**Use Case:** Ambiguous, complex, or high-risk tasks requiring deep exploration and approach validation.
+
+### 2. Standard Development
+
+```
+write-plan → execute-plan
+```
+
+**Use Case:** Well-defined but complex tasks, major features, or large refactors.
+
+### 3. Rapid Implementation
+
+```
+quick-implement
+```
+
+**Use Case:** Simple tasks, small bug fixes, or minor tweaks where a formal plan would be overhead.
+
 ### Maintainer runbook
 
 ```bash
