@@ -4,3 +4,7 @@ docs/brainstorms/
 var/
 .upstream-manifest
 __pycache__/
+
+# CLI build artifacts
+cli/node_modules/
+cli/dist/
