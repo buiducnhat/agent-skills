@@ -21,7 +21,7 @@ The project is a Node.js CLI that installs standardized agent configuration asse
 4. **Template deployment (`utils.ts`)**
    - Copies `.ruler` and `.claude` templates to project
    - Handles backup behavior for fresh install mode
-   - Preserves custom skills while updating library-provided skills
+   - Preserves custom (non-library) skills during template updates and across `ruler apply` in agent output directories (for example `.claude/skills/`)
 5. **Configuration mutator (`configure.ts`)**
    - Updates `default_agents` in `.ruler/ruler.toml`
 6. **Post-process generator (`apply.ts`)**

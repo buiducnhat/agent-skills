@@ -12,12 +12,9 @@ cli/dist/
 
 
 # START Ruler Generated Files
-/.claude/skills
-/.cursor/skills
+/.gemini/skills
 /AGENTS.md
 /AGENTS.md.bak
-/CLAUDE.md
-/CLAUDE.md.bak
 # END Ruler Generated Files
 
 # Local ruler
@@ -27,3 +24,9 @@ cli/dist/
 # Local claude
 .claude/
 !templates/.claude/
+
+# Local .gemini
+.gemini/
+
+# Local .cursor
+.cursor/

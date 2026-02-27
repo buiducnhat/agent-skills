@@ -11,8 +11,10 @@ import {
 	copyTemplates,
 	ensureRulerScripts,
 	parseArgs,
+	preserveCustomSkills,
 	printHelp,
 	printSummary,
+	restoreCustomSkills,
 } from "./utils.js";
 
 const require = createRequire(import.meta.url);
@@ -85,7 +87,9 @@ async function main(): Promise<void> {
 		configureRulerToml(cwd, selectedAgents);
 
 		// Step 6: Run ruler apply
+		const preserved = preserveCustomSkills(tempDir, cwd, selectedAgents);
 		await runRulerApply(cwd, selectedAgents);
+		restoreCustomSkills(preserved, cwd);
 
 		// Step 7: Ensure scripts required by skills exist after generation
 		ensureRulerScripts(tempDir, cwd);

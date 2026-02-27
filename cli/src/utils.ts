@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { log, spinner } from "@clack/prompts";
 import {
@@ -9,6 +10,14 @@ import {
 	readManifest,
 	writeManifest,
 } from "./manifest.js";
+
+export interface PreservedCustomSkills {
+	backupDir: string;
+	entries: Array<{
+		agent: string;
+		skill: string;
+	}>;
+}
 
 export interface CliArgs {
 	agents?: string;
@@ -64,6 +73,107 @@ export function copyDirectory(src: string, dest: string): void {
 			fs.copyFileSync(srcPath, destPath);
 		}
 	}
+}
+
+function getAgentOutputSkillsDir(projectDir: string, agent: string): string {
+	return path.join(projectDir, `.${agent}`, "skills");
+}
+
+export function preserveCustomSkills(
+	tempDir: string,
+	projectDir: string,
+	agents: string[],
+): PreservedCustomSkills | null {
+	const templateSkills = new Set(getTemplateSkillNames(tempDir));
+	const manifestSkills = new Set(readManifest(projectDir)?.skills ?? []);
+
+	const backupDir = fs.mkdtempSync(
+		path.join(os.tmpdir(), "agent-skills-custom-skills-"),
+	);
+
+	const entries: PreservedCustomSkills["entries"] = [];
+
+	for (const agent of agents) {
+		const skillsDir = getAgentOutputSkillsDir(projectDir, agent);
+		if (!fs.existsSync(skillsDir)) {
+			continue;
+		}
+
+		const outputSkills = fs
+			.readdirSync(skillsDir, { withFileTypes: true })
+			.filter((d) => d.isDirectory())
+			.map((d) => d.name);
+
+		const customSkills = outputSkills.filter(
+			(skill) => !templateSkills.has(skill) && !manifestSkills.has(skill),
+		);
+
+		for (const skill of customSkills) {
+			const srcSkillDir = path.join(skillsDir, skill);
+			const destSkillDir = path.join(backupDir, agent, skill);
+
+			try {
+				copyDirectory(srcSkillDir, destSkillDir);
+				entries.push({ agent, skill });
+			} catch (err) {
+				const message = err instanceof Error ? err.message : String(err);
+				log.warn(
+					`Failed to back up custom skill "${skill}" for agent "${agent}": ${message}`,
+				);
+			}
+		}
+	}
+
+	if (entries.length === 0) {
+		fs.rmSync(backupDir, { recursive: true, force: true });
+		return null;
+	}
+
+	log.info(
+		`Backed up ${entries.length} custom skill(s) from agent output directories`,
+	);
+
+	return { backupDir, entries };
+}
+
+export function restoreCustomSkills(
+	preserved: PreservedCustomSkills | null,
+	projectDir: string,
+): void {
+	if (!preserved) {
+		return;
+	}
+
+	let restored = 0;
+	for (const entry of preserved.entries) {
+		const destSkillsDir = getAgentOutputSkillsDir(projectDir, entry.agent);
+		const srcSkillDir = path.join(
+			preserved.backupDir,
+			entry.agent,
+			entry.skill,
+		);
+		const destSkillDir = path.join(destSkillsDir, entry.skill);
+
+		try {
+			if (!fs.existsSync(srcSkillDir)) {
+				continue;
+			}
+			fs.mkdirSync(destSkillsDir, { recursive: true });
+			fs.rmSync(destSkillDir, { recursive: true, force: true });
+			copyDirectory(srcSkillDir, destSkillDir);
+			restored++;
+		} catch (err) {
+			const message = err instanceof Error ? err.message : String(err);
+			log.warn(
+				`Failed to restore custom skill "${entry.skill}" for agent "${entry.agent}": ${message}`,
+			);
+		}
+	}
+
+	fs.rmSync(preserved.backupDir, { recursive: true, force: true });
+	log.info(
+		`Restored ${restored}/${preserved.entries.length} custom skill(s) to agent output directories`,
+	);
 }
 
 export function copyDirectoryExcluding(
