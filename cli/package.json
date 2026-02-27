@@ -1,6 +1,6 @@
 {
 	"name": "@buiducnhat/agent-skills",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Install AI agent skills and ruler configuration for coding assistants",
 	"type": "module",
 	"bin": {

@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { createRequire } from "node:module";
 import path from "node:path";
 import { cancel, intro, log, outro } from "@clack/prompts";
 import pc from "picocolors";
@@ -14,6 +15,17 @@ import {
 	printSummary,
 } from "./utils.js";
 
+const require = createRequire(import.meta.url);
+
+function getCliVersion(): string {
+	try {
+		const packageJson = require("../package.json") as { version?: string };
+		return packageJson.version ?? "unknown";
+	} catch {
+		return "unknown";
+	}
+}
+
 async function main(): Promise<void> {
 	const args = parseArgs(process.argv.slice(2));
 
@@ -23,7 +35,7 @@ async function main(): Promise<void> {
 	}
 
 	if (args.version) {
-		console.log("0.1.0");
+		console.log(getCliVersion());
 		process.exit(0);
 	}
 
