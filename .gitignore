@@ -1,9 +1,12 @@
 .DS_Store
+
+# Agent Skills
+.claude/
+CLAUDE.md
 docs/plans/
 docs/brainstorms/
-var/
-.upstream-manifest
-__pycache__/
+
+!templates/
 
 # CLI build artifacts
 cli/node_modules/

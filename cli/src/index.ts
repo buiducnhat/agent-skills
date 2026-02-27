@@ -6,12 +6,7 @@ import { runRulerApply } from "./apply.js";
 import { configureRulerToml } from "./configure.js";
 import { cleanupTemp, fetchTemplates } from "./fetch.js";
 import { promptAgentSelection, promptExistingAction } from "./prompts.js";
-import {
-	copyTemplates,
-	parseArgs,
-	printHelp,
-	printSummary,
-} from "./utils.js";
+import { copyTemplates, parseArgs, printHelp, printSummary } from "./utils.js";
 
 async function main(): Promise<void> {
 	const args = parseArgs(process.argv.slice(2));

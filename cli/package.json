@@ -12,7 +12,7 @@
 	"scripts": {
 		"dev": "tsx src/index.ts",
 		"build": "tsdown",
-		"prepublishOnly": "npm run build",
+		"prepublishOnly": "bun run build",
 		"check": "biome check --write"
 	},
 	"dependencies": {
