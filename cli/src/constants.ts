@@ -1,51 +1,60 @@
 export const REPO_URL = "https://github.com/buiducnhat/agent-skills.git";
 export const REPO_BRANCH = "main";
 
-export interface AgentOption {
-	value: string;
-	label: string;
-	hint: string;
-}
+// Maps the skills directory prefix (e.g., ".claude") to our agent identifier
+export const AGENT_SKILLS_DIRS: Record<string, string> = {
+	".claude": "claude-code",
+	".cursor": "cursor",
+	".codex": "codex",
+	".pi": "pi",
+	".gemini": "gemini-cli",
+	".agents": "amp",
+	".agent": "antigravity",
+	".roo": "roo-code",
+	".opencode": "opencode",
+	".factory": "factory-droid",
+	".vibe": "mistral-vibe",
+	".cline": "cline",
+	".goose": "goose",
+};
 
-export const RULER_AGENTS: AgentOption[] = [
-	{ value: "claude", label: "Claude Code", hint: "Anthropic" },
-	{ value: "copilot", label: "GitHub Copilot", hint: "GitHub" },
-	{ value: "cursor", label: "Cursor", hint: "Cursor" },
-	{ value: "windsurf", label: "Windsurf", hint: "Codeium" },
-	{ value: "codex", label: "OpenAI Codex CLI", hint: "OpenAI" },
-	{ value: "gemini-cli", label: "Gemini CLI", hint: "Google" },
-	{ value: "amp", label: "Amp", hint: "Sourcegraph" },
-	{ value: "cline", label: "Cline", hint: "VS Code" },
-	{ value: "roo", label: "Roo Code", hint: "VS Code" },
-	{ value: "aider", label: "Aider", hint: "Terminal" },
-	{ value: "antigravity", label: "Antigravity", hint: "" },
-	{ value: "pi", label: "Pi Coding Agent", hint: "" },
-	{ value: "jules", label: "Jules", hint: "Google" },
-	{ value: "kiro", label: "Kiro", hint: "AWS" },
-	{ value: "kilocode", label: "Kilo Code", hint: "VS Code" },
-	{ value: "crush", label: "Crush", hint: "" },
-	{ value: "amazonqcli", label: "Amazon Q CLI", hint: "AWS" },
-	{ value: "firebase", label: "Firebase Studio", hint: "Google" },
-	{ value: "openhands", label: "Open Hands", hint: "" },
-	{ value: "junie", label: "Junie", hint: "JetBrains" },
-	{ value: "jetbrains-ai", label: "JetBrains AI Assistant", hint: "JetBrains" },
-	{ value: "augmentcode", label: "AugmentCode", hint: "" },
-	{ value: "opencode", label: "OpenCode", hint: "" },
-	{ value: "goose", label: "Goose", hint: "Block" },
-	{ value: "qwen", label: "Qwen Code", hint: "Alibaba" },
-	{ value: "zed", label: "Zed", hint: "" },
-	{ value: "trae", label: "Trae AI", hint: "ByteDance" },
-	{ value: "warp", label: "Warp", hint: "" },
-	{ value: "firebender", label: "Firebender", hint: "" },
-	{ value: "factory", label: "Factory Droid", hint: "" },
-	{ value: "mistral", label: "Mistral Vibe", hint: "Mistral" },
-];
+export const AGENT_RULES_MAP: Record<string, string> = {
+	// AGENTS.md group
+	"github-copilot": "AGENTS.md",
+	codex: "AGENTS.md",
+	pi: "AGENTS.md",
+	jules: "AGENTS.md",
+	cursor: "AGENTS.md",
+	amp: "AGENTS.md",
+	"gemini-cli": "AGENTS.md",
+	"kilo-code": "AGENTS.md",
+	opencode: "AGENTS.md",
+	"qwen-code": "AGENTS.md",
+	"roo-code": "AGENTS.md",
+	zed: "AGENTS.md",
+	"factory-droid": "AGENTS.md",
+	"mistral-vibe": "AGENTS.md",
+	aider: "AGENTS.md",
+	windsurf: "AGENTS.md",
 
-export const POPULAR_AGENTS = [
-	"claude",
-	"copilot",
-	"cursor",
-	"windsurf",
-	"codex",
-	"gemini-cli",
-];
+	// Unique rules files
+	"claude-code": "CLAUDE.md",
+	cline: ".clinerules",
+	crush: "CRUSH.md",
+	warp: "WARP.md",
+
+	// Nested paths
+	antigravity: ".agent/rules/ruler.md",
+	"amazon-q": ".amazonq/rules/ruler_q_rules.md",
+	"firebase-studio": ".idx/airules.md",
+	"open-hands": ".openhands/microagents/repo.md",
+	junie: ".junie/guidelines.md",
+	"augment-code": ".augment/rules/ruler_augment_instructions.md",
+	"trae-ai": ".trae/rules/project_rules.md",
+	kiro: ".kiro/steering/ruler_kiro_instructions.md",
+	"jetbrains-ai": ".aiassistant/rules/AGENTS.md",
+	goose: ".goosehints",
+};
+
+export const RULES_MARKER_START = "<!-- BEGIN agent-skills rules -->";
+export const RULES_MARKER_END = "<!-- END agent-skills rules -->";

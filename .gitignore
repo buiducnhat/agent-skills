@@ -11,22 +11,10 @@ cli/node_modules/
 cli/dist/
 
 
-# START Ruler Generated Files
-/.gemini/skills
-/AGENTS.md
-/AGENTS.md.bak
-# END Ruler Generated Files
-
-# Local ruler
-.ruler/
-!templates/.ruler/
-
-# Local claude
+# Local agent skills
+.gemini/skills
+AGENTS.md
 .claude/
 !templates/.claude/
-
-# Local .gemini
 .gemini/
-
-# Local .cursor
 .cursor/

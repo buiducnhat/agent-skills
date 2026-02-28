@@ -22,6 +22,11 @@ export async function fetchTemplates(): Promise<string> {
 			throw new Error("templates/ directory not found in the repository");
 		}
 
+		const agentsMd = path.join(templatesDir, "AGENTS.md");
+		if (!existsSync(agentsMd)) {
+			throw new Error("templates/AGENTS.md not found in the repository");
+		}
+
 		s.stop("Downloaded agent skills");
 		return tempDir;
 	} catch (err) {

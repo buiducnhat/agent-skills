@@ -3,18 +3,18 @@ import { createRequire } from "node:module";
 import path from "node:path";
 import { cancel, intro, log, outro } from "@clack/prompts";
 import pc from "picocolors";
-import { runRulerApply } from "./apply.js";
-import { configureRulerToml } from "./configure.js";
 import { cleanupTemp, fetchTemplates } from "./fetch.js";
-import { promptAgentSelection, promptExistingAction } from "./prompts.js";
+import { injectRules } from "./rules.js";
 import {
-	copyTemplates,
-	ensureRulerScripts,
+	detectAgentsFromFilesystem,
+	detectAgentsFromOutput,
+	runSkillsAdd,
+} from "./skills.js";
+import {
+	copyClaudeTemplate,
 	parseArgs,
-	preserveCustomSkills,
 	printHelp,
 	printSummary,
-	restoreCustomSkills,
 } from "./utils.js";
 
 const require = createRequire(import.meta.url);
@@ -44,58 +44,58 @@ async function main(): Promise<void> {
 	intro(pc.bold(pc.cyan(" Agent Skills Installer ")));
 
 	const cwd = process.cwd();
-	const rulerDir = path.join(cwd, ".ruler");
-	const existingInstall = fs.existsSync(rulerDir);
 
-	// Step 1: Handle existing installation
-	let action: "fresh" | "update" = "fresh";
-	if (existingInstall) {
-		if (args.nonInteractive) {
-			action = "update";
-			log.info("Existing .ruler/ found, updating...");
-		} else {
-			action = await promptExistingAction();
-		}
-	}
+	// Step 1: Run skills CLI to install skills and detect agents
+	log.step("Installing skills via skills CLI...");
+	const skillsResult = await runSkillsAdd(cwd, args.nonInteractive);
 
-	// Step 2: Select agents
-	let selectedAgents: string[];
-	if (args.agents) {
-		selectedAgents = args.agents.split(",").map((a) => a.trim());
-		log.info(`Using agents: ${selectedAgents.join(", ")}`);
-	} else if (args.nonInteractive) {
-		selectedAgents = ["claude"];
-		log.info("Using default agent: claude");
-	} else {
-		selectedAgents = await promptAgentSelection();
-	}
-
-	if (selectedAgents.length === 0) {
-		cancel("No agents selected.");
+	if (!skillsResult.success) {
+		cancel(
+			pc.red(
+				"Skills CLI failed. See errors above.\nYou can try running manually: npx skills add buiducnhat/agent-skills --skill *",
+			),
+		);
 		process.exit(1);
 	}
 
-	// Step 3: Fetch templates from GitHub
+	// Step 2: Detect which agents were selected
+	let agents = detectAgentsFromOutput(skillsResult.rawOutput);
+	if (agents.length === 0) {
+		log.warn(
+			"Could not detect agents from skills CLI output. Scanning filesystem...",
+		);
+		agents = detectAgentsFromFilesystem(cwd);
+	}
+
+	if (agents.length === 0) {
+		log.warn(
+			"No agents detected. Skills may have been installed but rules injection was skipped.",
+		);
+		outro(pc.yellow("Done. No agent rules files were updated."));
+		process.exit(0);
+	}
+
+	log.info(`Detected agents: ${agents.join(", ")}`);
+
+	// Step 3: Fetch templates (for AGENTS.md content and .claude/ template)
 	let tempDir: string | undefined;
 	try {
 		tempDir = await fetchTemplates();
 
-		// Step 4: Copy .ruler/ and .claude/ to user's project
-		await copyTemplates(tempDir, cwd, action);
+		// Step 4: Read AGENTS.md content
+		const agentsContent = fs.readFileSync(
+			path.join(tempDir, "templates", "AGENTS.md"),
+			"utf-8",
+		);
 
-		// Step 5: Configure ruler.toml with selected agents
-		configureRulerToml(cwd, selectedAgents);
+		// Step 5: Inject rules into agent rules files
+		const results = injectRules(cwd, agents, agentsContent);
 
-		// Step 6: Run ruler apply
-		const preserved = preserveCustomSkills(tempDir, cwd, selectedAgents);
-		await runRulerApply(cwd, selectedAgents);
-		restoreCustomSkills(preserved, cwd);
+		// Step 6: Copy .claude/ template
+		copyClaudeTemplate(tempDir, cwd);
 
-		// Step 7: Ensure scripts required by skills exist after generation
-		ensureRulerScripts(tempDir, cwd);
-
-		// Step 8: Summary
-		printSummary(selectedAgents, cwd);
+		// Step 7: Summary
+		printSummary(agents, results);
 
 		outro(pc.green("Done! Your AI agent skills are ready."));
 	} catch (err) {

@@ -12,16 +12,14 @@
 │   ├── tsdown.config.ts          # Build/bundling config
 │   └── src/
 │       ├── index.ts              # CLI entrypoint and install orchestration
-│       ├── prompts.ts            # Interactive prompts and cancellation handling
+│       ├── skills.ts             # Skills CLI execution and agent detection
+│       ├── rules.ts              # Agent rules file mapping and marker-based injection
 │       ├── fetch.ts              # Git clone + temp directory lifecycle
 │       ├── utils.ts              # Arg parsing, copy logic, help/summary output
-│       ├── configure.ts          # `ruler.toml` default agent injection/rewrite
-│       ├── apply.ts              # Executes `ruler apply` via npx
-│       ├── manifest.ts           # Library skill manifest read/write/diff utilities
-│       └── constants.ts          # Repository constants + supported agent list
+│       └── constants.ts          # Repository constants, agent maps, marker strings
 ├── templates/
-│   ├── .ruler/                   # Agent instructions, scripts, and skills
-│   └── .claude/settings.json     # Claude Code status line command
+│   ├── AGENTS.md                 # Shared agent instructions injected into rules files
+│   └── .claude/                  # Claude Code settings and scripts
 └── docs/                         # Project documentation
 ```
 
@@ -33,12 +31,12 @@
 
 ## Key entry points and modules
 
-- `cli/src/index.ts`: main flow (`parse args → resolve mode → select agents → fetch templates → copy → configure → apply → summary`).
-- `cli/src/utils.ts`: shared utilities for argument parsing, template copy (including skill preservation), help text, and install summary.
-- `cli/src/fetch.ts`: clones this repository into a temp directory and validates `templates/` exists.
-- `cli/src/configure.ts`: ensures `.ruler/ruler.toml` has `default_agents = [...]`.
-- `cli/src/apply.ts`: executes `npx --yes @intellectronica/ruler apply --agents ...` with timeout and warning fallback.
-- `cli/src/manifest.ts`: manages `.ruler/skills/.library-manifest.json` and computes library vs custom/deprecated skills.
+- `cli/src/index.ts`: main flow (`parse args → run skills CLI → detect agents → fetch templates → inject rules → copy .claude/ → summary`).
+- `cli/src/skills.ts`: spawns `npx skills add`, captures output, detects agents via output parsing or filesystem scan.
+- `cli/src/rules.ts`: maps agent identifiers to rules file paths, performs marker-based injection of `AGENTS.md` content.
+- `cli/src/fetch.ts`: clones this repository into a temp directory and validates `templates/AGENTS.md` and `templates/.claude/` exist.
+- `cli/src/utils.ts`: shared utilities — arg parsing, `.claude/` template copy, help text, install summary.
+- `cli/src/constants.ts`: `REPO_URL`, `REPO_BRANCH`, `AGENT_SKILLS_DIRS`, `AGENT_RULES_MAP`, marker constants.
 
 ## Important scripts and config files
 

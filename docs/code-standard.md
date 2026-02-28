@@ -13,7 +13,7 @@
 - Source code lives in `cli/src`
 - Distributed CLI artifact is emitted to `cli/dist`
 - Templates to be installed into user projects are stored under `templates/`
-- Hidden template directories (`templates/.ruler`, `templates/.claude`) are first-class project assets
+- `templates/AGENTS.md` and `templates/.claude/` are first-class project assets
 
 ## TypeScript conventions
 
@@ -34,7 +34,7 @@
 
 - Parse and handle CLI flags before interactive prompts
 - Non-interactive mode must avoid prompt dependencies
-- On recoverable external tool failures (for example `ruler apply`), warn and provide manual command fallback
+- On recoverable external tool failures (for example skills CLI failure), warn and provide manual command fallback
 - Always clean temporary clone directories in `finally` blocks
 
 ## Testing and quality expectations

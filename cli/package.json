@@ -1,7 +1,7 @@
 {
 	"name": "@buiducnhat/agent-skills",
-	"version": "0.2.1",
-	"description": "Install AI agent skills and ruler configuration for coding assistants",
+	"version": "0.3.0",
+	"description": "Install AI agent workflow skills for coding assistants",
 	"type": "module",
 	"bin": {
 		"agent-skills": "./dist/index.js"
@@ -41,7 +41,7 @@
 		"ai",
 		"agent",
 		"skills",
-		"ruler",
+		"workflow",
 		"claude",
 		"copilot",
 		"cursor"
