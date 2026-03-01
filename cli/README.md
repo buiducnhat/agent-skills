@@ -1,9 +1,5 @@
 # @buiducnhat/agent-skills
 
-Install AI agent skills and Ruler configuration for coding assistants.
-
-`@buiducnhat/agent-skills` bootstraps `.ruler/` and `.claude/` into your repository, configures selected agents, and runs `ruler apply` to generate agent-specific outputs.
-
 ## Quick start
 
 ### Run with npx
@@ -29,7 +25,6 @@ npx @buiducnhat/agent-skills --agents claude,cursor,copilot
 
 - Node.js `>=18`
 - `git` available in your environment
-- Network access to download templates and run `npx @intellectronica/ruler`
 
 ## Repository
 

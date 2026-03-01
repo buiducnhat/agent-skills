@@ -127,14 +127,14 @@ export const AGENT_RULES_MAP: Record<string, string> = {
 	crush: "CRUSH.md",
 
 	// Nested paths
-	antigravity: ".agent/rules/ruler.md",
-	"amazon-q": ".amazonq/rules/ruler_q_rules.md",
+	antigravity: ".agent/rules/AGENTS.md",
+	"amazon-q": ".amazonq/rules/AGENTS.md",
 	"firebase-studio": ".idx/airules.md",
 	openhands: ".openhands/microagents/repo.md",
 	junie: ".junie/guidelines.md",
-	augment: ".augment/rules/ruler_augment_instructions.md",
+	augment: ".augment/rules/AGENTS.md",
 	trae: ".trae/rules/project_rules.md",
-	"kiro-cli": ".kiro/steering/ruler_kiro_instructions.md",
+	"kiro-cli": ".kiro/steering/AGENTS.md",
 	"jetbrains-ai": ".aiassistant/rules/AGENTS.md",
 	goose: ".goosehints",
 };

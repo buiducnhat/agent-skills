@@ -1,9 +1,5 @@
 # agent-skills
 
-Install AI agent skills and Ruler configuration for coding assistants.
-
-`@buiducnhat/agent-skills` is a CLI that bootstraps `.ruler/` and `.claude/` into your repository, configures selected agents, and runs `ruler apply` to generate agent-specific outputs.
-
 ## Quick start
 
 ### Run with npx
