@@ -12,9 +12,12 @@ cli/dist/
 
 
 # Local agent skills
-.gemini/skills
 AGENTS.md
 .claude/
-!templates/.claude/
+.gemini/
 .gemini/
 .cursor/
+
+# Templates
+!templates/.claude/
+!templates/AGENTS.md
