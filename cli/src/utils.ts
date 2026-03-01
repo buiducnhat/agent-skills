@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { log } from "@clack/prompts";
+import { AGENT_SKILLS_DIRS } from "./constants.js";
 import type { RulesInjectionResult } from "./rules.js";
 
 export interface CliArgs {
@@ -35,6 +36,19 @@ export function parseArgs(argv: string[]): CliArgs {
 	return args;
 }
 
+export function detectAgentsFromFilesystem(projectDir: string): string[] {
+	const detected: string[] = [];
+
+	for (const [dirPrefix, agentId] of Object.entries(AGENT_SKILLS_DIRS)) {
+		const skillsDir = path.join(projectDir, dirPrefix, "skills");
+		if (fs.existsSync(skillsDir)) {
+			detected.push(agentId);
+		}
+	}
+
+	return detected;
+}
+
 export function copyDirectory(src: string, dest: string): void {
 	fs.mkdirSync(dest, { recursive: true });
 
@@ -55,8 +69,21 @@ export function copyClaudeTemplate(tempDir: string, projectDir: string): void {
 	const srcClaude = path.join(tempDir, "templates", ".claude");
 	const destClaude = path.join(projectDir, ".claude");
 
-	if (fs.existsSync(srcClaude)) {
-		copyDirectory(srcClaude, destClaude);
+	if (!fs.existsSync(srcClaude)) return;
+
+	fs.mkdirSync(destClaude, { recursive: true });
+
+	// Copy each entry individually, skipping the skills/ dir to preserve
+	// symlinks installed by the skills CLI.
+	for (const entry of fs.readdirSync(srcClaude, { withFileTypes: true })) {
+		if (entry.name === "skills") continue;
+		const src = path.join(srcClaude, entry.name);
+		const dest = path.join(destClaude, entry.name);
+		if (entry.isDirectory()) {
+			copyDirectory(src, dest);
+		} else {
+			fs.copyFileSync(src, dest);
+		}
 	}
 }
 

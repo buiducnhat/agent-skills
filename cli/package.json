@@ -16,12 +16,12 @@
 		"check": "biome check --write"
 	},
 	"dependencies": {
-		"@clack/prompts": "^0.10.0",
+		"@clack/prompts": "^1.0.1",
 		"picocolors": "^1.1.1"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.4.4",
-		"@types/node": "^22.0.0",
+		"@types/node": "^25.3.2",
 		"tsdown": "^0.21.0-beta.2",
 		"tsx": "^4.19.0",
 		"typescript": "^5.7.0"

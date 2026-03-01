@@ -106,10 +106,10 @@ After scaffolding, regenerate `docs/codebase.md` to reflect the actual directory
 
 Install and configure selected tools:
 
-1. Run package manager install: `npm install`, `pnpm install`, `pip install`, etc.
+1. Run package manager install: `npm install`, `bun install`, `pnpm install`, `pip install`, etc.
 2. Install linter/formatter dev dependencies.
-3. Write or update linter config (`.eslintrc.json`, `ruff.toml`, etc.).
-4. Write or update formatter config (`.prettierrc`, etc.).
+3. Write or update linter config (`biome.json`, `.eslintrc.json`, `ruff.toml`, etc.).
+4. Write or update formatter config (`biome.json`, `.prettierrc`, etc.).
 5. Add lint/format scripts to `package.json` (or equivalent).
 6. If a test framework was selected, install it and create one example test file under `tests/`.
 
@@ -146,10 +146,10 @@ Then recommend the next skill based on project readiness:
 
 | Stack           | Package Manager | Linter | Formatter | Test Framework | Styling      |
 | --------------- | --------------- | ------ | --------- | -------------- | ------------ |
-| Next.js         | pnpm            | ESLint | Prettier  | Vitest         | Tailwind CSS |
-| React (Vite)    | pnpm            | ESLint | Prettier  | Vitest         | Tailwind CSS |
-| Express/Node    | npm             | ESLint | Prettier  | Vitest         | N/A          |
-| CLI tool (Node) | npm             | ESLint | Prettier  | Vitest         | N/A          |
+| Next.js         | bun             | Biome  | Biome     | Vitest         | Tailwind CSS |
+| React (Vite)    | bun             | Biome  | Biome     | Vitest         | Tailwind CSS |
+| Express/Node    | bun             | Biome  | Biome     | Vitest         | N/A          |
+| CLI tool (Node) | bun             | Biome  | Biome     | Vitest         | N/A          |
 | Python          | uv              | Ruff   | Ruff      | pytest         | N/A          |
 | Rust            | cargo           | clippy | rustfmt   | cargo test     | N/A          |
 

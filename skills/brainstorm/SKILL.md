@@ -52,7 +52,7 @@ Do not jump to implementation details too early.
 
 ### Step 3: Explore Approaches
 
-Propose 2-3 viable approaches.
+Propose 2-5 viable approaches.
 
 For each approach, include:
 
@@ -113,7 +113,7 @@ After writing artifacts:
 
 ## Rules
 
-- Do not write production code or make implementation changes in this skill
+- Do not write production code or make implementation changes in this skill in the brainstorm session
 - Keep interaction lightweight and iterative
 - Prefer clarity over completeness when uncertain; ask a follow-up question
 - Apply YAGNI: remove unnecessary features from proposals
@@ -135,4 +135,3 @@ Before finalizing `SUMMARY.md`, confirm:
 - Use `scripts/get-time.sh` to generate:
   - `YYMMDD-HHmm` for folder naming
   - `YYYY-MM-DD HH:mm:ss` for document timestamps
-- Next workflow step: `write-plan`

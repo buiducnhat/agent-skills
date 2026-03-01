@@ -1,17 +1,22 @@
 import fs from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";
-import { cancel, intro, log, outro } from "@clack/prompts";
+import {
+	cancel,
+	intro,
+	isCancel,
+	log,
+	multiselect,
+	outro,
+} from "@clack/prompts";
 import pc from "picocolors";
+import { SUPPORTED_AGENTS } from "./constants.js";
 import { cleanupTemp, fetchTemplates } from "./fetch.js";
 import { injectRules } from "./rules.js";
-import {
-	detectAgentsFromFilesystem,
-	detectAgentsFromOutput,
-	runSkillsAdd,
-} from "./skills.js";
+import { runSkillsAdd } from "./skills.js";
 import {
 	copyClaudeTemplate,
+	detectAgentsFromFilesystem,
 	parseArgs,
 	printHelp,
 	printSummary,
@@ -44,58 +49,89 @@ async function main(): Promise<void> {
 	intro(pc.bold(pc.cyan(" Agent Skills Installer ")));
 
 	const cwd = process.cwd();
+	let selectedAgents: string[];
 
-	// Step 1: Run skills CLI to install skills and detect agents
-	log.step("Installing skills via skills CLI...");
-	const skillsResult = await runSkillsAdd(cwd, args.nonInteractive);
+	if (args.nonInteractive) {
+		// Non-interactive: install all agents, detect from filesystem afterward
+		log.step("Installing skills to all agents (non-interactive)...");
+		const result = await runSkillsAdd(cwd, []);
 
-	if (!skillsResult.success) {
-		cancel(
-			pc.red(
-				"Skills CLI failed. See errors above.\nYou can try running manually: npx skills add buiducnhat/agent-skills --skill *",
-			),
-		);
-		process.exit(1);
+		if (!result.success) {
+			cancel(
+				pc.red(
+					"Skills CLI failed. See errors above.\nYou can try running manually: npx skills add buiducnhat/agent-skills --skill '*' --all -y",
+				),
+			);
+			process.exit(1);
+		}
+
+		selectedAgents = detectAgentsFromFilesystem(cwd);
+
+		if (selectedAgents.length === 0) {
+			log.warn(
+				"No agents detected from filesystem. Skills may have been installed but rules injection was skipped.",
+			);
+			outro(pc.yellow("Done. No agent rules files were updated."));
+			process.exit(0);
+		}
+	} else {
+		// Interactive: show multiselect prompt, then run skills CLI non-interactively
+		const preSelected = detectAgentsFromFilesystem(cwd);
+
+		const agentChoices = SUPPORTED_AGENTS.map((a) => ({
+			value: a.id,
+			label: a.name,
+		}));
+
+		const selection = await multiselect({
+			message: "Select agents to install skills for:",
+			options: agentChoices,
+			initialValues: preSelected,
+			required: false,
+		});
+
+		if (isCancel(selection)) {
+			cancel("Installation cancelled.");
+			process.exit(0);
+		}
+
+		selectedAgents = selection as string[];
+
+		if (selectedAgents.length === 0) {
+			outro(pc.yellow("No agents selected. Nothing to install."));
+			process.exit(0);
+		}
+
+		log.step("Installing skills via skills CLI...");
+		const result = await runSkillsAdd(cwd, selectedAgents);
+
+		if (!result.success) {
+			cancel(
+				pc.red(
+					"Skills CLI failed. See errors above.\nYou can try running manually: npx skills add buiducnhat/agent-skills --skill '*' -a <agent> -y",
+				),
+			);
+			process.exit(1);
+		}
 	}
 
-	// Step 2: Detect which agents were selected
-	let agents = detectAgentsFromOutput(skillsResult.rawOutput);
-	if (agents.length === 0) {
-		log.warn(
-			"Could not detect agents from skills CLI output. Scanning filesystem...",
-		);
-		agents = detectAgentsFromFilesystem(cwd);
-	}
+	log.info(`Configuring agents: ${selectedAgents.join(", ")}`);
 
-	if (agents.length === 0) {
-		log.warn(
-			"No agents detected. Skills may have been installed but rules injection was skipped.",
-		);
-		outro(pc.yellow("Done. No agent rules files were updated."));
-		process.exit(0);
-	}
-
-	log.info(`Detected agents: ${agents.join(", ")}`);
-
-	// Step 3: Fetch templates (for AGENTS.md content and .claude/ template)
+	// Fetch templates and inject rules
 	let tempDir: string | undefined;
 	try {
 		tempDir = await fetchTemplates();
 
-		// Step 4: Read AGENTS.md content
 		const agentsContent = fs.readFileSync(
 			path.join(tempDir, "templates", "AGENTS.md"),
 			"utf-8",
 		);
 
-		// Step 5: Inject rules into agent rules files
-		const results = injectRules(cwd, agents, agentsContent);
+		const results = injectRules(cwd, selectedAgents, agentsContent);
 
-		// Step 6: Copy .claude/ template
 		copyClaudeTemplate(tempDir, cwd);
 
-		// Step 7: Summary
-		printSummary(agents, results);
+		printSummary(selectedAgents, results);
 
 		outro(pc.green("Done! Your AI agent skills are ready."));
 	} catch (err) {

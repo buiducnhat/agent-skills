@@ -31,12 +31,12 @@
 
 ## Key entry points and modules
 
-- `cli/src/index.ts`: main flow (`parse args → run skills CLI → detect agents → fetch templates → inject rules → copy .claude/ → summary`).
-- `cli/src/skills.ts`: spawns `npx skills add`, captures output, detects agents via output parsing or filesystem scan.
+- `cli/src/index.ts`: main flow (`parse args → detect agents → multiselect prompt → run skills CLI → fetch templates → inject rules → copy .claude/ → summary`).
+- `cli/src/skills.ts`: spawns `npx skills add` with explicit `-a <agent>` flags non-interactively.
 - `cli/src/rules.ts`: maps agent identifiers to rules file paths, performs marker-based injection of `AGENTS.md` content.
 - `cli/src/fetch.ts`: clones this repository into a temp directory and validates `templates/AGENTS.md` and `templates/.claude/` exist.
-- `cli/src/utils.ts`: shared utilities — arg parsing, `.claude/` template copy, help text, install summary.
-- `cli/src/constants.ts`: `REPO_URL`, `REPO_BRANCH`, `AGENT_SKILLS_DIRS`, `AGENT_RULES_MAP`, marker constants.
+- `cli/src/utils.ts`: shared utilities — arg parsing, filesystem agent detection, `.claude/` template copy, help text, install summary.
+- `cli/src/constants.ts`: `REPO_URL`, `REPO_BRANCH`, `SUPPORTED_AGENTS` (40+ agents with IDs and display names), `AGENT_SKILLS_DIRS`, `AGENT_RULES_MAP`, marker constants.
 
 ## Important scripts and config files
 
