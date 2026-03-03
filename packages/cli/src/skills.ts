@@ -7,8 +7,9 @@ export interface SkillsInstallResult {
 export async function runSkillsAdd(
 	projectDir: string,
 	agents: string[],
+	copy: boolean = false,
 ): Promise<SkillsInstallResult> {
-	const args =
+	const args: string[] =
 		agents.length === 0
 			? [
 					"skills",
@@ -28,6 +29,10 @@ export async function runSkillsAdd(
 					...agents.flatMap((a) => ["-a", a]),
 					"-y",
 				];
+
+	if (copy) {
+		args.push("--copy");
+	}
 
 	return new Promise((resolve) => {
 		const child = spawn("npx", args, {

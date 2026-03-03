@@ -1,6 +1,6 @@
 {
 	"name": "@buiducnhat/agent-skills",
-	"version": "0.3.2",
+	"version": "0.3.3",
 	"description": "Install AI agent workflow skills for coding assistants",
 	"type": "module",
 	"bin": {
@@ -20,11 +20,10 @@
 		"picocolors": "^1.1.1"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.4.4",
 		"@types/node": "^25.3.2",
 		"tsdown": "^0.21.0-beta.2",
 		"tsx": "^4.19.0",
-		"typescript": "^5.7.0"
+		"typescript": "^5"
 	},
 	"engines": {
 		"node": ">=18"
@@ -35,7 +34,7 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/buiducnhat/agent-skills.git",
-		"directory": "cli"
+		"directory": "packages/cli"
 	},
 	"keywords": [
 		"ai",

@@ -1,0 +1,27 @@
+{
+	"name": "agent-skills",
+	"private": true,
+	"workspaces": {
+		"packages": [
+			"apps/*",
+			"packages/*"
+		],
+		"catalog": {
+			"@types/bun": "^1.3.10"
+		}
+	},
+	"type": "module",
+	"scripts": {
+		"dev": "turbo dev",
+		"build": "turbo build",
+		"check-types": "turbo check-types",
+		"check": "biome check --write --unsafe ."
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@biomejs/biome": "2.4.5",
+		"@types/bun": "catalog:",
+		"turbo": "^2.8.12"
+	},
+	"packageManager": "bun@1.3.9"
+}

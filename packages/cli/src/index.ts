@@ -54,7 +54,7 @@ async function main(): Promise<void> {
 	if (args.nonInteractive) {
 		// Non-interactive: install all agents, detect from filesystem afterward
 		log.step("Installing skills to all agents (non-interactive)...");
-		const result = await runSkillsAdd(cwd, []);
+		const result = await runSkillsAdd(cwd, [], args.copy);
 
 		if (!result.success) {
 			cancel(
@@ -103,7 +103,7 @@ async function main(): Promise<void> {
 		}
 
 		log.step("Installing skills via skills CLI...");
-		const result = await runSkillsAdd(cwd, selectedAgents);
+		const result = await runSkillsAdd(cwd, selectedAgents, args.copy);
 
 		if (!result.success) {
 			cancel(

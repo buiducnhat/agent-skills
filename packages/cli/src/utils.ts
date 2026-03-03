@@ -8,6 +8,7 @@ export interface CliArgs {
 	nonInteractive: boolean;
 	help: boolean;
 	version: boolean;
+	copy: boolean;
 }
 
 export function parseArgs(argv: string[]): CliArgs {
@@ -15,6 +16,7 @@ export function parseArgs(argv: string[]): CliArgs {
 		nonInteractive: false,
 		help: false,
 		version: false,
+		copy: false,
 	};
 
 	for (let i = 0; i < argv.length; i++) {
@@ -29,6 +31,9 @@ export function parseArgs(argv: string[]): CliArgs {
 			case "--version":
 			case "-v":
 				args.version = true;
+				break;
+			case "--copy":
+				args.copy = true;
 				break;
 		}
 	}
@@ -95,12 +100,14 @@ export function printHelp(): void {
 
   Options:
     --non-interactive    Skip interactive prompts (installs all skills to all agents)
+    --copy               Copy skill files instead of symlinking
     -h, --help           Show this help message
     -v, --version        Show version
 
   Examples:
     npx @buiducnhat/agent-skills
     npx @buiducnhat/agent-skills --non-interactive
+    npx @buiducnhat/agent-skills --copy
 `);
 }
 
