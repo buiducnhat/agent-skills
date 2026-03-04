@@ -181,6 +181,6 @@ After all phases are complete:
 
 ## Integration
 
-- Use `scripts/get-time.sh` for:
+- Use `bash scripts/get-time.sh` for:
   - `YYMMDD-HHmm` folder naming
   - `YYYY-MM-DD HH:mm:ss` report timestamps

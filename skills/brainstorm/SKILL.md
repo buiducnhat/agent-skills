@@ -132,6 +132,6 @@ Before finalizing `SUMMARY.md`, confirm:
 
 ## Integration
 
-- Use `scripts/get-time.sh` to generate:
+- Use `bash scripts/get-time.sh` to generate:
   - `YYMMDD-HHmm` for folder naming
   - `YYYY-MM-DD HH:mm:ss` for document timestamps
