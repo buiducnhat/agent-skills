@@ -25,14 +25,7 @@ If the task is clear enough to act on, use `brainstorm`, `write-plan`, or `quick
 
 ### Step 1: Gather Project Context
 
-Before asking questions, read available project documentation to avoid asking things already answered:
-
-- `docs/project-pdr.md`
-- `docs/architecture.md`
-- `docs/codebase.md`
-- `docs/code-standard.md`
-
-Only gather what is relevant to the current task. Skip if no docs exist.
+Load project context per the shared Context Loading Protocol. Only gather what is relevant to the current task. Skip if no docs exist.
 
 ### Step 2: Identify Information Gaps
 
@@ -75,10 +68,4 @@ Once all gaps are closed:
 - Do not make assumptions; ask instead
 - Keep questions short and focused
 - Apply YAGNI: only ask what is strictly necessary to proceed
-
-## Integration
-
 - Feeds into: `brainstorm`, `write-plan`, `quick-implement`
-- Use `brainstorm` when exploration and design framing are needed after gathering requirements
-- Use `write-plan` when requirements are clear and a structured plan is needed
-- Use `quick-implement` when the task is small and well-defined after gathering requirements

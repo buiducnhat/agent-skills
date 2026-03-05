@@ -25,11 +25,7 @@ Do not redesign the plan during execution. If ambiguity or blockers appear, stop
    - If a directory is provided, locate `SUMMARY.md` inside it.
 
 2. **Load Execution Context**
-   - Read:
-     - `docs/project-pdr.md`
-     - `docs/architecture.md`
-     - `docs/codebase.md`
-     - `docs/code-standard.md`
+   - Load project context per the shared Context Loading Protocol.
    - Review the plan’s phase files and dependencies.
 
 3. **Select Execution Mode (Explicit Rule)**
@@ -178,9 +174,3 @@ After all phases are complete:
 - **Idempotency**: prefer safe/re-runnable operations.
 - **Respect project standards**: follow `docs/code-standard.md` and related project docs.
 - **Do not skip workflow steps**: initialization, per-phase verification, final verification, and reporting are all mandatory.
-
-## Integration
-
-- Generate timestamps with inline bash commands (no external script required):
-  - Folder name: `` `date +%y%m%d-%H%M` ``
-  - Report timestamp: `` `date "+%Y-%m-%d %H:%M:%S"` ``

@@ -1,6 +1,27 @@
-## Documentation Rules
+## Context Loading Protocol
 
-Documentation structure:
+Before planning or implementing any feature, read these project documentation files in order:
+
+1. `docs/project-pdr.md` — product goals, requirements, and scope
+2. `docs/architecture.md` — system components and data flow
+3. `docs/codebase.md` — key files, entry points, and modules
+4. `docs/code-standard.md` — stack, conventions, and tooling
+
+Only read what is relevant to the current task. Skip files that don't exist. Let documentation guide implementation — if docs conflict with implementation needs, clarify with the user instead of guessing.
+
+## AskUserQuestion Mandate
+
+**Always use `AskUserQuestion`** (or equivalent interactive tool) when asking the user a question during task execution. Do not ask questions in plain text unless the interface does not support interactive tools.
+
+Guidelines:
+
+- Prefer selectable options (2–5 choices) over open-ended text when practical.
+- Ask exactly one question per message; do not bundle multiple questions.
+- Use open-ended plain-text questions only when the answer genuinely requires free-form input or external context.
+- Pause for a full user response when the question requires detailed explanation.
+- Never interupt the session/flow, the users should not input a new prompt, only respond to the question asked.
+
+## Documentation Structure
 
 ```text
 docs/
@@ -11,14 +32,6 @@ docs/
 ├── codebase.md       # Codebase map and key files
 └── project-pdr.md    # Product requirements and business context
 ```
-
-**CRITICAL**: Documentation is essential for project success. Always follow these rules:
-
-1. **Always read project documentation first**  
-   Before planning or implementing any feature, read project documentation to understand context, requirements, and existing patterns.
-
-2. **Let documentation guide implementation**  
-   Use documentation as the source of truth. If documentation conflicts with implementation needs, clarify with the user instead of guessing.
 
 ## Core Workflow Skills
 
@@ -34,21 +47,11 @@ docs/
 | `review`          | Review uncommitted changes with codebase context                          |
 | `write-plan`      | Create detailed implementation plans with phases and tasks                |
 
-## Important Reminders
+## General Principles
 
-### Interaction Preferences
-
-When asking questions during task execution, always use `AskUserQuestion` or other appropriate tools for gathering information when possible. Follow these guidelines:
-
-- Prefer interactive prompts with selectable options **when the current interface supports them**.
-- For 2-5 choices, prefer concise option menus.
-- If interactive options are not available, ask short, focused text questions.
-- Pause for a full user response only when:
-  - The question requires detailed explanation or the user needs external context to answer
-
-### Critical Rules
-
-- Always read project documentation before planning or implementation.
-- Ask clarifying questions when documentation is unclear or incomplete.
 - Follow every step in each workflow skill; do not skip required steps.
-- Follow rules: YAGNI, KISS, DRY, SOLID, and the principle of least surprise.
+- Apply YAGNI, KISS, DRY, SOLID, and the principle of least surprise.
+- Ask clarifying questions when documentation is unclear or when critical context is missing.
+- Generate timestamps with inline bash commands (no external script required):
+  - Folder name: `` `date +%y%m%d-%H%M` ``
+  - Document timestamp: `` `date "+%Y-%m-%d %H:%M:%S"` ``

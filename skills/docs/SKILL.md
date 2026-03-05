@@ -27,16 +27,7 @@ Also keep `README.md` aligned with current docs links and project summary.
 
 ### Step 1: Context Scan (Docs First)
 
-Review documentation first, then inspect code/config only as needed.
-
-Priority order:
-
-1. `docs/project-pdr.md`
-2. `docs/code-standard.md`
-3. `docs/codebase.md`
-4. `docs/architecture.md`
-5. `README.md`
-6. Key source/config files
+Load project context per the shared Context Loading Protocol. Also read `README.md` and key source/config files as needed.
 
 Focus on facts that changed: features, architecture, stack, structure, and workflows.
 
@@ -119,17 +110,6 @@ Include:
 - Integration boundaries (internal/external)
 - Deployment/runtime assumptions (if known)
 
-## Clarification Rules
-
-Ask targeted questions only when information cannot be reliably inferred, especially for:
-
-- Business goals and domain intent
-- Ambiguous ownership/responsibility of modules
-- Conflicting conventions
-- Unclear architecture decisions
-
-Prefer 1 focused question at a time.
-
 ## Rules
 
 - Keep documentation factual; do not invent requirements.
@@ -137,3 +117,4 @@ Prefer 1 focused question at a time.
 - Keep docs aligned with current implementation.
 - Follow project conventions from `docs/code-standard.md`.
 - When uncertain, mark assumptions explicitly and request confirmation.
+- Ask targeted questions only when information cannot be reliably inferred (business goals, ambiguous module ownership, conflicting conventions, unclear architecture decisions). Follow the AskUserQuestion mandate.

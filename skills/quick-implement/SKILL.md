@@ -56,14 +56,10 @@ Escalation message template:
 ### Step 1: Analyze and Contextualize
 
 1. Understand the user request and define acceptance criteria.
-2. Review relevant project documentation first:
-   - `docs/project-pdr.md`
-   - `docs/architecture.md`
-   - `docs/codebase.md`
-   - `docs/code-standard.md`
+2. Load project context per the shared Context Loading Protocol.
 3. Inspect only the minimum necessary code paths.
 4. Confirm the task still passes the Scope Gate.
-5. If ambiguity remains, ask clarifying questions before coding.
+5. If ambiguity remains, ask clarifying questions before coding. Follow the AskUserQuestion mandate.
 
 ### Step 2: Implement
 
@@ -97,6 +93,8 @@ If verification fails unexpectedly:
 - Do not expand scope without explicit user approval.
 - Do not assume unspecified behavior; clarify instead.
 - Do not force completion when risk increases—escalate early.
+- Escalate to `write-plan` when complexity or risk exceeds quick-implement limits.
+- Use `fix` when the task is primarily debugging an issue.
 
 ## Output Checklist
 
@@ -106,8 +104,3 @@ Before final response, confirm:
 - No hidden architectural changes were introduced
 - Verification was run and reported
 - Escalation was used if safety limits were exceeded
-
-## Integration
-
-- Escalate to `write-plan` when complexity or risk exceeds quick-implement limits.
-- Use `fix` when the task is primarily debugging an issue.

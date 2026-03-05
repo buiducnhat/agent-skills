@@ -40,7 +40,7 @@ Collect information across these 8 dimensions. All categories except **Techstack
 
 ### Step 2: Gather Requirements
 
-Ask one question at a time. Use multiple-choice options (2–4 choices) when possible. Pause for full user input only when a question requires detailed explanation.
+Follow the AskUserQuestion mandate for all questions. Ask one question at a time using multiple-choice options when possible.
 
 **Sequence:**
 

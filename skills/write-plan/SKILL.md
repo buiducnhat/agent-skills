@@ -23,23 +23,13 @@ Use one consistent artifact structure for every plan:
 - Phase files: `docs/plans/YYMMDD-HHmm-<plan-slug>/phase-01-<name>.md`, `phase-02-<name>.md`, etc.
 - Optional research notes: `docs/plans/YYMMDD-HHmm-<plan-slug>/research/<topic>.md`
 
-Generate timestamps with inline bash commands (no external script required):
-
-- Folder timestamp: `` `date +%y%m%d-%H%M` ``
-- Human-readable timestamp: `` `date "+%Y-%m-%d %H:%M:%S"` ``
+Use timestamp commands from the shared General Principles for folder and document timestamps.
 
 ## Workflow
 
 ### Step 1: Contextualize
 
-Read project documentation first:
-
-- `docs/project-pdr.md`
-- `docs/architecture.md`
-- `docs/codebase.md`
-- `docs/code-standard.md`
-
-Then inspect only the code areas relevant to the requested change.
+Load project context per the shared Context Loading Protocol. Then inspect only the code areas relevant to the requested change.
 
 Capture:
 

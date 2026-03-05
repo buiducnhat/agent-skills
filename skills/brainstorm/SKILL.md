@@ -22,25 +22,14 @@ This skill is for exploration and specification only. Do not implement code chan
 
 ### Step 1: Gather Project Context
 
-Before asking design questions, inspect enough project context to avoid proposing incompatible solutions.
-
-- Review `docs/` first, especially:
-  - `docs/project-pdr.md`
-  - `docs/architecture.md`
-  - `docs/codebase.md`
-  - `docs/code-standard.md`
-- Check key implementation files relevant to the idea
-- Note constraints from existing architecture, dependencies, and conventions
+Load project context per the shared Context Loading Protocol. Also check key implementation files relevant to the idea and note constraints from existing architecture, dependencies, and conventions.
 
 Keep this pass focused. Only gather what is needed for the current idea.
 
 ### Step 2: Clarify Requirements (One Question at a Time)
 
-Ask targeted questions sequentially to remove ambiguity.
+Ask targeted questions sequentially to remove ambiguity. Follow the AskUserQuestion mandate.
 
-- Ask exactly one question per message
-- **Always use the `AskUserQuestion` tool** with selectable options (2–4 choices) so the user can respond via interactive selection (arrow keys + enter) instead of typing
-- Use open-ended questions (plain text without `AskUserQuestion`) only when the question genuinely requires free-form explanation or external context
 - Focus on:
   - Objective and user value
   - Scope boundaries
@@ -131,9 +120,3 @@ Before finalizing `SUMMARY.md`, confirm:
 - Recommended approach is justified with trade-offs
 - Risks and unknowns are documented
 - Handoff to planning is actionable
-
-## Integration
-
-- Generate timestamps with inline bash commands (no external script required):
-  - Folder name: `` `date +%y%m%d-%H%M` ``
-  - Document timestamp: `` `date "+%Y-%m-%d %H:%M:%S"` ``
