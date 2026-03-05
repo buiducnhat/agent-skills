@@ -29,7 +29,7 @@ docs/
 | `brainstorm`      | Explore ideas and break down complex problems before planning             |
 | `docs`            | Initialize (`--init`) or update (`--update`) project documentation        |
 | `execute-plan`    | Execute written plans systematically with checkpoints                     |
-| `fix`             | Diagnose and resolve bugs (suggests `write-plan` for complex issues)      |
+| `fix`             | Diagnose and resolve bugs                                                 |
 | `quick-implement` | Rapid implementation for simple tasks or bug fixes                        |
 | `review`          | Review uncommitted changes with codebase context                          |
 | `write-plan`      | Create detailed implementation plans with phases and tasks                |
@@ -38,14 +38,13 @@ docs/
 
 ### Interaction Preferences
 
-When asking questions during task execution:
+When asking questions during task execution, always use `AskUserQuestion` or other appropriate tools for gathering information when possible. Follow these guidelines:
 
 - Prefer interactive prompts with selectable options **when the current interface supports them**.
 - For 2-5 choices, prefer concise option menus.
 - If interactive options are not available, ask short, focused text questions.
 - Pause for a full user response only when:
-  - The question requires detailed explanation, or
-  - The user needs external context to answer.
+  - The question requires detailed explanation or the user needs external context to answer
 
 ### Critical Rules
 
