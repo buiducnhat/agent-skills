@@ -114,7 +114,7 @@ After writing artifacts:
 ## Rules
 
 - Do not write production code or make implementation changes in this skill in the brainstorm session
-- Keep interaction lightweight and iterative
+- Keep interaction lightweight and iterative, every steps should be run in the same session, do not break the flow by asking the user to run separate commands
 - Prefer clarity over completeness when uncertain; ask a follow-up question
 - Apply YAGNI: remove unnecessary features from proposals
 - Align all recommendations with project documentation and standards
