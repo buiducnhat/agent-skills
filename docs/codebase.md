@@ -7,6 +7,10 @@
 ├── install.sh                    # Curl|bash installer wrapper
 ├── package.json                  # Workspace scripts (Turbo + Biome)
 ├── turbo.json                    # Monorepo task pipeline
+├── biome.json                    # Biome formatter/linter config
+├── skills-lock.json              # Skills CLI lock file
+├── AGENTS.md                     # Root agent instructions (generated)
+├── CLAUDE.md                     # Claude Code project instructions
 ├── packages/
 │   └── cli/
 │       ├── package.json          # Package metadata, scripts, dependencies, bin
@@ -19,20 +23,29 @@
 │           ├── fetch.ts          # Git clone + temp directory lifecycle
 │           ├── utils.ts          # Arg parsing, detection, copy, help/summary output
 │           └── constants.ts      # Repository constants, agent maps, marker strings
-├── config/
-│   ├── package.json              # Shared config workspace package
-│   └── tsconfig.base.json        # Base TypeScript config
+├── skills/                       # Workflow skill definitions (distributed via skills CLI)
+│   ├── ask/SKILL.md
+│   ├── bootstrap/SKILL.md
+│   ├── brainstorm/SKILL.md
+│   ├── docs/SKILL.md
+│   ├── execute-plan/SKILL.md
+│   ├── fix/SKILL.md
+│   ├── quick-implement/SKILL.md
+│   ├── review/SKILL.md
+│   └── write-plan/SKILL.md
 ├── templates/
 │   ├── AGENTS.md                 # Shared agent instructions injected into rules files
 │   └── .claude/                  # Claude Code settings and scripts
+│       ├── settings.json
+│       └── scripts/context-bar.sh
 └── docs/                         # Project documentation
 ```
 
 ## Directory responsibilities
 
 - `packages/cli/`: publishable npm package (`@buiducnhat/agent-skills`) containing executable logic.
-- `config/`: shared workspace configuration package for TypeScript baselines.
-- `templates/`: canonical template payload copied into consumer repositories.
+- `skills/`: workflow skill definitions (`SKILL.md` files) distributed to consumer projects via the Vercel skills CLI.
+- `templates/`: canonical template payload (agent instructions and Claude Code settings) copied into consumer repositories.
 - `docs/`: product, standards, codebase, and architecture documentation.
 
 ## Key entry points and modules
@@ -42,7 +55,7 @@
 - `packages/cli/src/rules.ts`: maps agent identifiers to rules file paths, performs marker-based injection of `AGENTS.md` content.
 - `packages/cli/src/fetch.ts`: clones this repository into a temp directory and validates `templates/AGENTS.md` and `templates/.claude/` exist.
 - `packages/cli/src/utils.ts`: shared utilities — arg parsing, filesystem agent detection, `.claude/` template copy (excluding `skills/`), help text, install summary.
-- `packages/cli/src/constants.ts`: `REPO_URL`, `REPO_BRANCH`, `SUPPORTED_AGENTS`, `AGENT_SKILLS_DIRS`, `AGENT_RULES_MAP`, marker constants.
+- `packages/cli/src/constants.ts`: `REPO_URL`, `REPO_BRANCH`, `SUPPORTED_AGENTS` (39 agents), `AGENT_SKILLS_DIRS`, `AGENT_RULES_MAP`, marker constants.
 
 ## Important scripts and config files
 
@@ -51,10 +64,10 @@
   - `bun run dev` → `turbo dev`
   - `bun run build` → `turbo build`
   - `bun run check-types` → `turbo check-types`
-  - `bun run check` → Biome check/write at workspace level
+  - `bun run check` → Biome check/write with `--unsafe` at workspace level
 - `packages/cli/package.json` scripts:
   - `bun run dev` → run CLI from source with `tsx`
   - `bun run build` → build with `tsdown`
   - `bun run check` → Biome check/write
-  - `prepublishOnly` → Bun build before publish
+  - `prepublishOnly` → `bun run build` before publish
 - `.gitignore`: ignores local `.claude/`, generated plans/brainstorms docs subfolders, and CLI build artifacts.

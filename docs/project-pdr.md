@@ -16,11 +16,11 @@ Teams using AI coding assistants often need a repeatable way to bootstrap shared
 
 ## Core use cases
 
-1. Fresh setup in a repository — run the CLI, select agents interactively via our own `@clack/prompts` multiselect (auto-detected agents pre-checked), get skills installed and rules files populated.
+1. Fresh setup in a repository — run the CLI, select agents interactively via `@clack/prompts` multiselect (auto-detected agents pre-checked), get skills installed and rules files populated.
 2. Updating an existing setup — re-run the CLI; marker-based injection replaces existing rules without duplication.
 3. Non-interactive setup in automation using `--non-interactive` (installs all skills to all agents without prompts).
 4. Force copy mode using `--copy` when symlinks are not desired.
-5. Quick bootstrap using the shell installer script with Node.js version checks.
+5. Quick bootstrap using the shell installer script (`install.sh`) with Node.js version checks.
 
 ## Feature scope
 
@@ -29,10 +29,11 @@ Teams using AI coding assistants often need a repeatable way to bootstrap shared
 - Show a `@clack/prompts` multiselect prompt for agent selection; auto-detect installed agents and pre-select them
 - Run `npx skills add buiducnhat/agent-skills --skill '*' -a <agents...> -y` non-interactively after selection
 - Inject `templates/AGENTS.md` content into each agent's rules file using marker-based append/replace
-- Copy `templates/.claude/` into the project for Claude Code users (while preserving `.claude/skills` links)
+- Copy `templates/.claude/` into the project for Claude Code users (while preserving `.claude/skills` symlinks)
 - Installation summary showing agents configured and rules files updated
 - `--non-interactive` mode for automation (installs all agents, detects from filesystem)
 - `--copy` passthrough to skills CLI for copy-based installs
+- 39 supported agents across major AI coding assistant platforms
 
 ### Constraints
 

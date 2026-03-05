@@ -1,5 +1,7 @@
 # agent-skills
 
+Install standardized AI agent workflow skills and configuration assets into any repository with a single command.
+
 ## Quick start
 
 ### Run with npx
@@ -8,10 +10,10 @@
 npx @buiducnhat/agent-skills
 ```
 
-### Select agents non-interactively
+### Non-interactive mode (all agents)
 
 ```bash
-npx @buiducnhat/agent-skills --agents claude,cursor,copilot
+npx @buiducnhat/agent-skills --non-interactive
 ```
 
 ### Use install script
@@ -22,8 +24,8 @@ curl -fsSL https://raw.githubusercontent.com/buiducnhat/agent-skills/main/instal
 
 ## CLI options
 
-- `--agents <list>`: comma-separated agent IDs (also enables non-interactive mode)
-- `--non-interactive`: skip prompts and use defaults
+- `--non-interactive`: skip prompts and install all skills to all agents
+- `--copy`: copy skill files instead of symlinking
 - `-h, --help`: show help
 - `-v, --version`: show version
 
@@ -36,12 +38,12 @@ curl -fsSL https://raw.githubusercontent.com/buiducnhat/agent-skills/main/instal
 
 ## Release
 
-Tag pushes matching `v*` trigger GitHub Actions workflow `.github/workflows/release.yml` to automatically create a GitHub Release and publish `@buiducnhat/agent-skills` from `cli/`.
+Tag pushes matching `v*` trigger GitHub Actions workflow `.github/workflows/release.yml` to automatically create a GitHub Release and publish `@buiducnhat/agent-skills` from `packages/cli/`.
 
 ### Prerequisites
 
 - Repository secret `NPM_TOKEN` with publish permission to `@buiducnhat/agent-skills`
-- Version in `cli/package.json` is bumped to an unpublished version
+- Version in `packages/cli/package.json` is bumped to an unpublished version
 - Tag format is `vX.Y.Z` and should match the intended release version
 
 ## Core Workflow Skills
@@ -92,7 +94,7 @@ quick-implement
 
 ```bash
 # 1) Update CLI package version
-cd cli
+cd packages/cli
 npm version <major|minor|patch>
 
 # 2) Push commit and tag

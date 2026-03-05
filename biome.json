@@ -19,7 +19,9 @@
 			"!**/.alchemy",
 			"!**/.svelte-kit",
 			"!**/.source",
-			"!**/bun.lock"
+			"!**/bun.lock",
+			"!.claude/**/*",
+			"!.agents/**/*"
 		]
 	},
 	"formatter": {

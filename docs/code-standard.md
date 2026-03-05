@@ -3,17 +3,20 @@
 ## Stack and tools
 
 - Language: TypeScript (ESM), targeting Node.js 18+
-- Runtime/packaging: Node.js, npm/npx (with Bun used in `prepublishOnly` script)
-- Build: `tsdown`
-- Lint/format: Biome (`biome check --write`)
+- Runtime/packaging: Node.js, npm/npx (with Bun as package manager, `bun@1.3.9`)
+- Build: `tsdown` (v0.21+)
+- Lint/format: Biome v2.4+ (`biome check --write --unsafe`)
 - CLI UX: `@clack/prompts` + `picocolors`
+- Monorepo orchestration: Turbo
 
 ## Repository conventions
 
 - CLI source code lives in `packages/cli/src`
 - Distributed CLI artifact is emitted to `packages/cli/dist`
+- Workflow skill definitions live in `skills/<skill-name>/SKILL.md` (distributed via Vercel skills CLI)
 - Templates to be installed into user projects are stored under `templates/`
 - `templates/AGENTS.md` and `templates/.claude/` are first-class project assets
+- Monorepo workspaces: `apps/*` and `packages/*`
 
 ## TypeScript conventions
 
@@ -27,7 +30,7 @@
 - Use tabs for indentation
 - Prefer double quotes in JavaScript/TypeScript
 - Run:
-  - `bun run check` (Biome fix + checks at workspace root)
+  - `bun run check` (Biome fix + checks with `--unsafe` at workspace root)
   - `bun run build` (Turbo build across packages)
   - `cd packages/cli && bun run build` (CLI-only build with tsdown)
 
