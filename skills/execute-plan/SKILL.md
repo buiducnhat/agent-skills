@@ -181,6 +181,6 @@ After all phases are complete:
 
 ## Integration
 
-- Use `bash scripts/get-time.sh` for:
-  - `YYMMDD-HHmm` folder naming
-  - `YYYY-MM-DD HH:mm:ss` report timestamps
+- Generate timestamps with inline bash commands (no external script required):
+  - Folder name: `` `date +%y%m%d-%H%M` ``
+  - Report timestamp: `` `date "+%Y-%m-%d %H:%M:%S"` ``

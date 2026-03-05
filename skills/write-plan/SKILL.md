@@ -23,10 +23,10 @@ Use one consistent artifact structure for every plan:
 - Phase files: `docs/plans/YYMMDD-HHmm-<plan-slug>/phase-01-<name>.md`, `phase-02-<name>.md`, etc.
 - Optional research notes: `docs/plans/YYMMDD-HHmm-<plan-slug>/research/<topic>.md`
 
-Use `bash scripts/get-time.sh` for:
+Generate timestamps with inline bash commands (no external script required):
 
-- Folder timestamp: `YYMMDD-HHmm`
-- Human-readable timestamp: `YYYY-MM-DD HH:mm:ss`
+- Folder timestamp: `` `date +%y%m%d-%H%M` ``
+- Human-readable timestamp: `` `date "+%Y-%m-%d %H:%M:%S"` ``
 
 ## Workflow
 

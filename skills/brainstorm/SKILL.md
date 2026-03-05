@@ -39,8 +39,8 @@ Keep this pass focused. Only gather what is needed for the current idea.
 Ask targeted questions sequentially to remove ambiguity.
 
 - Ask exactly one question per message
-- Prefer multiple-choice options when practical
-- Use open-ended questions only when necessary
+- **Always use the `AskUserQuestion` tool** with selectable options (2–4 choices) so the user can respond via interactive selection (arrow keys + enter) instead of typing
+- Use open-ended questions (plain text without `AskUserQuestion`) only when the question genuinely requires free-form explanation or external context
 - Focus on:
   - Objective and user value
   - Scope boundaries
@@ -64,6 +64,8 @@ For each approach, include:
 
 Lead with your recommended option and explain why it best fits the project context and constraints.
 
+After presenting all approaches, use `AskUserQuestion` to let the user pick their preferred approach (e.g., "Approach A — recommended", "Approach B", "Approach C", "Need more details before deciding").
+
 ### Step 4: Present the Design Incrementally
 
 Once requirements are clear, present the design in small sections (about 200-300 words each), validating after each section.
@@ -77,7 +79,7 @@ Suggested section order:
 5. Testing and verification strategy
 6. Rollout considerations (if applicable)
 
-After each section, ask whether to proceed or adjust.
+After each section, use `AskUserQuestion` to ask whether to proceed, adjust, or revisit. Provide concrete options (e.g., "Proceed to next section", "Adjust this section", "Go back to a previous section").
 
 ### Step 5: Write Brainstorm Artifacts
 
@@ -106,9 +108,9 @@ Persist results to the standardized location:
 
 After writing artifacts:
 
-1. Ask the user to review and provide feedback
-2. If feedback exists, revise artifacts
-3. If no feedback, ask whether to proceed to planning
+1. Use `AskUserQuestion` to ask the user to review — options: "Looks good", "I have feedback", "Need major changes"
+2. If feedback exists, revise artifacts and re-ask
+3. If approved, use `AskUserQuestion` to ask whether to proceed to planning — options: "Proceed to write-plan", "Not yet, keep brainstorming", "Done for now"
 4. If approved, hand off to `write-plan` using the brainstorm output as source context
 
 ## Rules
@@ -132,6 +134,6 @@ Before finalizing `SUMMARY.md`, confirm:
 
 ## Integration
 
-- Use `bash scripts/get-time.sh` to generate:
-  - `YYMMDD-HHmm` for folder naming
-  - `YYYY-MM-DD HH:mm:ss` for document timestamps
+- Generate timestamps with inline bash commands (no external script required):
+  - Folder name: `` `date +%y%m%d-%H%M` ``
+  - Document timestamp: `` `date "+%Y-%m-%d %H:%M:%S"` ``
