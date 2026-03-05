@@ -36,7 +36,7 @@ curl -fsSL https://raw.githubusercontent.com/buiducnhat/agent-skills/main/instal
 
 ## Release
 
-Tag pushes matching `v*` trigger GitHub Actions workflow `.github/workflows/release.yml` to publish `@buiducnhat/agent-skills` from `cli/`.
+Tag pushes matching `v*` trigger GitHub Actions workflow `.github/workflows/release.yml` to automatically create a GitHub Release and publish `@buiducnhat/agent-skills` from `cli/`.
 
 ### Prerequisites
 
