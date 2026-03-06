@@ -8,6 +8,7 @@ import {
 	log,
 	multiselect,
 	outro,
+	select,
 } from "@clack/prompts";
 import pc from "picocolors";
 import { SUPPORTED_AGENTS } from "./constants.js";
@@ -102,8 +103,23 @@ async function main(): Promise<void> {
 			process.exit(0);
 		}
 
+		// ask the user which install mode to use
+		const installMode = await select({
+			message: "How should the skills be installed?",
+			options: [
+				{ label: "Symlink (recommended)", value: "symlink" },
+				{ label: "Copy", value: "copy" },
+			],
+			initialValue: args.copy ? "copy" : "symlink",
+		});
+		if (isCancel(installMode)) {
+			cancel("Installation cancelled.");
+			process.exit(0);
+		}
+		const copyFlag = installMode === "copy";
+
 		log.step("Installing skills via skills CLI...");
-		const result = await runSkillsAdd(cwd, selectedAgents, args.copy);
+		const result = await runSkillsAdd(cwd, selectedAgents, copyFlag);
 
 		if (!result.success) {
 			cancel(

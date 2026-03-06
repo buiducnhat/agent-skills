@@ -100,7 +100,10 @@ export function printHelp(): void {
 
   Options:
     --non-interactive    Skip interactive prompts (installs all skills to all agents)
-    --copy               Copy skill files instead of symlinking
+    --copy               Copy skill files instead of symlinking. Use this
+                         when your environment doesn’t support symlinks or you
+                         prefer independent copies; symlinks are recommended so
+                         updates propagate automatically.
     -h, --help           Show this help message
     -v, --version        Show version
 
