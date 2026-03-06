@@ -17,7 +17,6 @@ import { cleanupTemp, fetchTemplates } from "./fetch.js";
 import { injectRules } from "./rules.js";
 import { runSkillsAdd } from "./skills.js";
 import {
-	copyClaudeTemplate,
 	detectAgentsFromFilesystem,
 	parseArgs,
 	printHelp,
@@ -156,8 +155,6 @@ async function main(): Promise<void> {
 		);
 
 		const results = injectRules(baseDir, selectedAgents, agentsContent);
-
-		copyClaudeTemplate(tempDir, baseDir);
 
 		printSummary(selectedAgents, results);
 

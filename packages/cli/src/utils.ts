@@ -76,28 +76,6 @@ export function copyDirectory(src: string, dest: string): void {
 	}
 }
 
-export function copyClaudeTemplate(tempDir: string, projectDir: string): void {
-	const srcClaude = path.join(tempDir, "templates", ".claude");
-	const destClaude = path.join(projectDir, ".claude");
-
-	if (!fs.existsSync(srcClaude)) return;
-
-	fs.mkdirSync(destClaude, { recursive: true });
-
-	// Copy each entry individually, skipping the skills/ dir to preserve
-	// symlinks installed by the skills CLI.
-	for (const entry of fs.readdirSync(srcClaude, { withFileTypes: true })) {
-		if (entry.name === "skills") continue;
-		const src = path.join(srcClaude, entry.name);
-		const dest = path.join(destClaude, entry.name);
-		if (entry.isDirectory()) {
-			copyDirectory(src, dest);
-		} else {
-			fs.copyFileSync(src, dest);
-		}
-	}
-}
-
 export function printHelp(): void {
 	console.log(`
   @buiducnhat/agent-skills - Install AI agent workflow skills for coding assistants

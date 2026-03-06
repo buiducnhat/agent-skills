@@ -54,7 +54,7 @@ export const SUPPORTED_AGENTS: AgentInfo[] = [
 export const AGENT_SKILLS_DIRS: Record<string, string> = {
 	".adal": "adal",
 	".agent": "antigravity",
-	".agents": "amp",
+	".agents": "opencode",
 	".augment": "augment",
 	".claude": "claude-code",
 	".codebuddy": "codebuddy",

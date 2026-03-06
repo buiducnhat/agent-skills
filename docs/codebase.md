@@ -35,9 +35,6 @@
 │   └── write-plan/SKILL.md
 ├── templates/
 │   ├── AGENTS.md                 # Shared agent instructions injected into rules files
-│   └── .claude/                  # Claude Code settings and scripts
-│       ├── settings.json
-│       └── scripts/context-bar.sh
 └── docs/                         # Project documentation
 ```
 
@@ -45,16 +42,16 @@
 
 - `packages/cli/`: publishable npm package (`@buiducnhat/agent-skills`) containing executable logic.
 - `skills/`: workflow skill definitions (`SKILL.md` files) distributed to consumer projects via the Vercel skills CLI.
-- `templates/`: canonical template payload (agent instructions and Claude Code settings) copied into consumer repositories.
+- `templates/`: canonical template payload (agent instructions) copied into consumer repositories.
 - `docs/`: product, standards, codebase, and architecture documentation.
 
 ## Key entry points and modules
 
-- `packages/cli/src/index.ts`: main flow (`parse args → detect/select agents → run skills CLI → fetch templates → inject rules → copy .claude/ → summary`). Handles `--help`, `--version`, `--non-interactive`, `--copy`, and `--global`/`-g` flags.
+- `packages/cli/src/index.ts`: main flow (`parse args → detect/select agents → run skills CLI → fetch templates → inject rules → summary`). Handles `--help`, `--version`, `--non-interactive`, `--copy`, and `--global`/`-g` flags.
 - `packages/cli/src/skills.ts`: spawns `npx skills add` using `--all` or explicit `-a <agent>` arguments, with optional `--copy` passthrough.
 - `packages/cli/src/rules.ts`: maps agent identifiers to rules file paths, performs marker-based injection of `AGENTS.md` content.
-- `packages/cli/src/fetch.ts`: clones this repository into a temp directory and validates `templates/AGENTS.md` and `templates/.claude/` exist.
-- `packages/cli/src/utils.ts`: shared utilities — arg parsing, filesystem agent detection, `.claude/` template copy (excluding `skills/`), help text, install summary.
+- `packages/cli/src/fetch.ts`: clones this repository into a temp directory and validates `templates/AGENTS.md` exist.
+- `packages/cli/src/utils.ts`: shared utilities — arg parsing, filesystem agent detection, help text, install summary.
 - `packages/cli/src/constants.ts`: `REPO_URL`, `REPO_BRANCH`, `SUPPORTED_AGENTS` (39 agents), `AGENT_SKILLS_DIRS`, `AGENT_RULES_MAP`, marker constants.
 
 ## Important scripts and config files

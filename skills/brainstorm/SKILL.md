@@ -13,10 +13,7 @@ The goal is to:
 
 1. Clarify requirements and constraints
 2. Explore alternatives with trade-offs
-3. Produce a concrete, validated design brief in `docs/brainstorms/...`
-4. Hand off cleanly to `write-plan` when the user is ready
-
-This skill is for exploration and specification only. Do not implement code changes.
+3. Produce a concrete, validated design brief in artifacts or a handoff to planning
 
 ## Workflow
 
@@ -26,7 +23,7 @@ Load project context per the shared Context Loading Protocol. Also check key imp
 
 Keep this pass focused. Only gather what is needed for the current idea.
 
-### Step 2: Clarify Requirements (One Question at a Time)
+### Step 2: Clarify Requirements
 
 Ask targeted questions sequentially to remove ambiguity. Follow the AskUserQuestion mandate.
 
@@ -72,6 +69,8 @@ After each section, use `AskUserQuestion` to ask whether to proceed, adjust, or 
 
 ### Step 5: Write Brainstorm Artifacts
 
+_(Only perform this step after the user has explicitly chosen “Write artifacts” during Step 6.)_
+
 Persist results to the standardized location:
 
 - Directory: `docs/brainstorms/YYMMDD-HHmm-<topic-slug>/`
@@ -95,19 +94,29 @@ Persist results to the standardized location:
 
 ### Step 6: Close the Loop
 
-After writing artifacts:
+After you and the user have worked through requirements and any clarifying questions, it's time to decide what to do with the information.
 
-1. Use `AskUserQuestion` to ask the user to review — options: "Looks good", "I have feedback", "Need major changes"
-2. If feedback exists, revise artifacts and re-ask
-3. If approved, use `AskUserQuestion` to ask whether to proceed to planning — options: "Proceed to write-plan", "Not yet, keep brainstorming", "Done for now"
-4. If approved, hand off to `write-plan` using the brainstorm output as source context
+1. Use `AskUserQuestion` to present the user with three high‑level next actions:
+   - "Write artifacts" – continue by authoring the brainstorm documents described in Step 5.
+   - "Write plan immediately (with current context, information)" – skip the artifact step and move straight to a `write-plan` handoff.
+   - "End session (already provided enough information for user)" – stop; the conversation has produced enough insight for now.
+
+2. If the user picks **Write artifacts**, create the appropriate files under `docs/brainstorms/...` per Step 5. Once the draft artifacts exist, use `AskUserQuestion` again to validate them with options:
+   - "OK – proceed to write plan"
+   - "OK – end session"
+   - "Need changes" (free‑form text) – collect the feedback, revise the artifacts, and re‑ask.
+
+3. If the user picked **Write plan immediately**, initiate a handoff to `write-plan` using the current brainstorming context; no additional artifact validation is required.
+
+4. If the user picked **End session**, simply stop. The information collected so far is considered sufficient.
+
+(For all questions above, follow the AskUserQuestion mandate: ask one question at a time with selectable options.)
 
 ## Rules
 
 - Do not write production code or make implementation changes in this skill in the brainstorm session
 - Keep interaction lightweight and iterative, every steps should be run in the same session, do not break the flow by asking the user to run separate commands
 - Prefer clarity over completeness when uncertain; ask a follow-up question
-- Apply YAGNI: remove unnecessary features from proposals
 - Align all recommendations with project documentation and standards
 - Keep assumptions explicit; do not guess silently
 

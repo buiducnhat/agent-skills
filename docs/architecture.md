@@ -28,10 +28,9 @@ The project is a Node.js CLI that installs standardized agent workflow skills an
    - Skips JSON-based rules files automatically
 4. **Template acquisition (`fetch.ts`)**
    - Clones repository branch into temporary directory via shallow `git clone`
-   - Validates `templates/AGENTS.md` and `templates/.claude/` availability
+   - Validates `templates/AGENTS.md` availability
 5. **Template utilities (`utils.ts`)**
-   - Copies `.claude/` template to project (`copyClaudeTemplate`), skipping `skills/` to preserve symlinks
-   - Detects installed agents from filesystem (`detectAgentsFromFilesystem`)
+      - Detects installed agents from filesystem (`detectAgentsFromFilesystem`)
    - Arg parsing, help text, and install summary output
 6. **Constants (`constants.ts`)**
    - Defines 39 supported agents with display names
@@ -51,7 +50,6 @@ The project is a Node.js CLI that installs standardized agent workflow skills an
    - **Non-interactive mode** (`--non-interactive`): uses `--all` flag instead; then re-scans `baseDir` filesystem to determine which agents were installed.
 6. CLI clones `https://github.com/buiducnhat/agent-skills.git` (branch `main`) to temp dir.
 7. `templates/AGENTS.md` content is injected into each selected agent's rules file under `baseDir` with markers.
-8. `templates/.claude/` is copied to `baseDir` (preserving existing `skills/` symlinks).
 9. CLI prints summary and cleans up temporary clone directory.
 
 ## Integration boundaries

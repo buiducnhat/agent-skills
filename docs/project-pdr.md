@@ -30,7 +30,6 @@ Teams using AI coding assistants often need a repeatable way to bootstrap shared
 - Show a `@clack/prompts` multiselect prompt for agent selection; auto-detect installed agents and pre-select them
 - Run `npx skills add buiducnhat/agent-skills --skill '*' -a <agents...> -y` non-interactively after selection
 - Inject `templates/AGENTS.md` content into each agent's rules file using marker-based append/replace
-- Copy `templates/.claude/` into the project for Claude Code users (while preserving `.claude/skills` symlinks)
 - Installation summary showing agents configured and rules files updated
 - `--non-interactive` mode for automation (installs all agents, detects from filesystem)
 - `--copy` passthrough to skills CLI for copy-based installs
@@ -49,5 +48,4 @@ Teams using AI coding assistants often need a repeatable way to bootstrap shared
 
 - Running `npx @buiducnhat/agent-skills` completes without manual file edits
 - Selected agent rules files contain `templates/AGENTS.md` content wrapped in markers
-- `.claude/` settings are present and populated from templates
 - User receives a clear post-install summary of updated rules files and agents configured
