@@ -8,6 +8,7 @@ export async function runSkillsAdd(
 	projectDir: string,
 	agents: string[],
 	copy: boolean = false,
+	global: boolean = false,
 ): Promise<SkillsInstallResult> {
 	const args: string[] =
 		agents.length === 0
@@ -32,6 +33,10 @@ export async function runSkillsAdd(
 
 	if (copy) {
 		args.push("--copy");
+	}
+
+	if (global) {
+		args.push("-g");
 	}
 
 	return new Promise((resolve) => {

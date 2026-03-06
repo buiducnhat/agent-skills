@@ -20,7 +20,8 @@ Teams using AI coding assistants often need a repeatable way to bootstrap shared
 2. Updating an existing setup — re-run the CLI; marker-based injection replaces existing rules without duplication.
 3. Non-interactive setup in automation using `--non-interactive` (installs all skills to all agents without prompts).
 4. Force copy mode using `--copy` when symlinks are not desired.
-5. Quick bootstrap using the shell installer script (`install.sh`) with Node.js version checks.
+5. Global install using `--global` / `-g` (installs skills to `~/<agent>/skills/` for cross-project availability).
+6. Quick bootstrap using the shell installer script (`install.sh`) with Node.js version checks.
 
 ## Feature scope
 
@@ -33,6 +34,7 @@ Teams using AI coding assistants often need a repeatable way to bootstrap shared
 - Installation summary showing agents configured and rules files updated
 - `--non-interactive` mode for automation (installs all agents, detects from filesystem)
 - `--copy` passthrough to skills CLI for copy-based installs
+- `--global` / `-g` mode for user-level (home directory) skill installation
 - 39 supported agents across major AI coding assistant platforms
 
 ### Constraints
@@ -41,6 +43,7 @@ Teams using AI coding assistants often need a repeatable way to bootstrap shared
 - Requires network access and `git` for template clone
 - Requires `npx` for running skills CLI
 - External runtime dependency: `npx skills` (Vercel Labs skills CLI)
+- Global mode (`--global`) is only meaningful for agents that follow the home-dir conventions of the Vercel skills CLI; it writes into `~/` and may modify user-level rules files (e.g., `~/.claude/CLAUDE.md`).
 
 ## Success criteria
 

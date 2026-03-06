@@ -9,6 +9,7 @@ export interface CliArgs {
 	help: boolean;
 	version: boolean;
 	copy: boolean;
+	global: boolean;
 }
 
 export function parseArgs(argv: string[]): CliArgs {
@@ -17,6 +18,7 @@ export function parseArgs(argv: string[]): CliArgs {
 		help: false,
 		version: false,
 		copy: false,
+		global: false,
 	};
 
 	for (let i = 0; i < argv.length; i++) {
@@ -34,6 +36,10 @@ export function parseArgs(argv: string[]): CliArgs {
 				break;
 			case "--copy":
 				args.copy = true;
+				break;
+			case "--global":
+			case "-g":
+				args.global = true;
 				break;
 		}
 	}
@@ -104,6 +110,8 @@ export function printHelp(): void {
                          when your environment doesn’t support symlinks or you
                          prefer independent copies; symlinks are recommended so
                          updates propagate automatically.
+    -g, --global         Install skills to user home directory (~/<agent>/skills/)
+                         instead of the current project directory.
     -h, --help           Show this help message
     -v, --version        Show version
 
@@ -111,6 +119,8 @@ export function printHelp(): void {
     npx @buiducnhat/agent-skills
     npx @buiducnhat/agent-skills --non-interactive
     npx @buiducnhat/agent-skills --copy
+    npx @buiducnhat/agent-skills --global
+    npx @buiducnhat/agent-skills --global --non-interactive
 `);
 }
 

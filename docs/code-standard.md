@@ -38,7 +38,7 @@
 
 - Parse and handle CLI flags before interactive prompts
 - Non-interactive mode must avoid prompt dependencies
-- Supported flags are `--non-interactive`, `--copy`, `--help`, and `--version`
+- Supported flags are `--non-interactive`, `--copy`, `--global`/`-g`, `--help`, and `--version`
 - On recoverable external tool failures (for example skills CLI failure), warn and provide manual command fallback
 - Always clean temporary clone directories in `finally` blocks
 

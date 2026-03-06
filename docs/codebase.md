@@ -50,7 +50,7 @@
 
 ## Key entry points and modules
 
-- `packages/cli/src/index.ts`: main flow (`parse args → detect/select agents → run skills CLI → fetch templates → inject rules → copy .claude/ → summary`).
+- `packages/cli/src/index.ts`: main flow (`parse args → detect/select agents → run skills CLI → fetch templates → inject rules → copy .claude/ → summary`). Handles `--help`, `--version`, `--non-interactive`, `--copy`, and `--global`/`-g` flags.
 - `packages/cli/src/skills.ts`: spawns `npx skills add` using `--all` or explicit `-a <agent>` arguments, with optional `--copy` passthrough.
 - `packages/cli/src/rules.ts`: maps agent identifiers to rules file paths, performs marker-based injection of `AGENTS.md` content.
 - `packages/cli/src/fetch.ts`: clones this repository into a temp directory and validates `templates/AGENTS.md` and `templates/.claude/` exist.

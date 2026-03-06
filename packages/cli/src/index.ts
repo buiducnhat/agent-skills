@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import { createRequire } from "node:module";
+import os from "node:os";
 import path from "node:path";
 import {
 	cancel,
@@ -50,12 +51,18 @@ async function main(): Promise<void> {
 	intro(pc.bold(pc.cyan(" Agent Skills Installer ")));
 
 	const cwd = process.cwd();
+	const baseDir = args.global ? os.homedir() : cwd;
+
+	if (args.global) {
+		log.info(`Global mode: installing to ${pc.cyan(os.homedir())}`);
+	}
+
 	let selectedAgents: string[];
 
 	if (args.nonInteractive) {
 		// Non-interactive: install all agents, detect from filesystem afterward
 		log.step("Installing skills to all agents (non-interactive)...");
-		const result = await runSkillsAdd(cwd, [], args.copy);
+		const result = await runSkillsAdd(cwd, [], args.copy, args.global);
 
 		if (!result.success) {
 			cancel(
@@ -66,7 +73,7 @@ async function main(): Promise<void> {
 			process.exit(1);
 		}
 
-		selectedAgents = detectAgentsFromFilesystem(cwd);
+		selectedAgents = detectAgentsFromFilesystem(baseDir);
 
 		if (selectedAgents.length === 0) {
 			log.warn(
@@ -77,7 +84,7 @@ async function main(): Promise<void> {
 		}
 	} else {
 		// Interactive: show multiselect prompt, then run skills CLI non-interactively
-		const preSelected = detectAgentsFromFilesystem(cwd);
+		const preSelected = detectAgentsFromFilesystem(baseDir);
 
 		const agentChoices = SUPPORTED_AGENTS.map((a) => ({
 			value: a.id,
@@ -119,7 +126,12 @@ async function main(): Promise<void> {
 		const copyFlag = installMode === "copy";
 
 		log.step("Installing skills via skills CLI...");
-		const result = await runSkillsAdd(cwd, selectedAgents, copyFlag);
+		const result = await runSkillsAdd(
+			cwd,
+			selectedAgents,
+			copyFlag,
+			args.global,
+		);
 
 		if (!result.success) {
 			cancel(
@@ -143,9 +155,9 @@ async function main(): Promise<void> {
 			"utf-8",
 		);
 
-		const results = injectRules(cwd, selectedAgents, agentsContent);
+		const results = injectRules(baseDir, selectedAgents, agentsContent);
 
-		copyClaudeTemplate(tempDir, cwd);
+		copyClaudeTemplate(tempDir, baseDir);
 
 		printSummary(selectedAgents, results);
 
