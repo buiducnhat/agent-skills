@@ -13,22 +13,7 @@ Only read what is relevant to the current task. Skip files that don't exist. Let
 
 **Always use `AskUserQuestion`** (or equivalent interactive tool) when asking the user a question during task execution. Do not ask questions in plain text unless the interface does not support interactive tools.
 
-### 1. The Fallback Mechanism (Manual Emulation)
-
-If a native tool is unavailable, output the question as the **LAST** part of your message using this exact Markdown structure:
-
-> **[ASK_USER_QUESTION]**
->
-> - **Context:** [Briefly explain why you are pausing]
-> - **Options:**
->
-> 1. [Option A] (Recommended: [Reason])
-> 2. [Option B]
-> 3. [Other/Custom Input]
-
-The `ASK_USER_QUESTION` can be also multiple choices.
-
-### 2. Execution Guidelines
+Guidelines:
 
 - Prefer selectable options (2–5 choices) over open-ended text when practical.
 - Ask exactly one question per message; do not bundle multiple questions.
