@@ -81,33 +81,39 @@ Installs skills to your home directory (`~/<agent>/skills/`) so they are availab
 
 ## CLI options
 
-| Flag | Description |
-|------|-------------|
-| `--non-interactive` | Skip prompts; install all skills to all agents |
-| `--copy` | Copy skill files instead of symlinking |
-| `-g, --global` | Install to `~/` instead of the current directory |
-| `-h, --help` | Show help |
-| `-v, --version` | Show version |
+| Flag                | Description                                      |
+| ------------------- | ------------------------------------------------ |
+| `--non-interactive` | Skip prompts; install all skills to all agents   |
+| `--copy`            | Copy skill files instead of symlinking           |
+| `-g, --global`      | Install to `~/` instead of the current directory |
+| `-h, --help`        | Show help                                        |
+| `-v, --version`     | Show version                                     |
 
 ## Workflow skills
 
 Nine reusable workflow skills are installed into each agent:
 
-| Skill | Description |
-|-------|-------------|
-| `ask` | Ask clarifying questions to gather requirements and context |
-| `bootstrap` | Set up project structure, documentation, and conventions for new projects |
-| `brainstorm` | Explore ideas and break down complex problems before planning |
-| `docs` | Initialize (`--init`) or update (`--update`) project documentation |
-| `execute-plan` | Execute written plans systematically with checkpoints |
-| `fix` | Diagnose and resolve bugs |
-| `quick-implement` | Rapid implementation for simple tasks or bug fixes |
-| `review` | Review uncommitted changes with codebase context |
-| `write-plan` | Create detailed implementation plans with phases and tasks |
+| Skill             | Description                                                               |
+| ----------------- | ------------------------------------------------------------------------- |
+| `ask`             | Ask clarifying questions to gather requirements and context               |
+| `bootstrap`       | Set up project structure, documentation, and conventions for new projects |
+| `brainstorm`      | Explore ideas and break down complex problems before planning             |
+| `docs`            | Initialize (`--init`) or update (`--update`) project documentation        |
+| `execute-plan`    | Execute written plans systematically with checkpoints                     |
+| `fix`             | Diagnose and resolve bugs                                                 |
+| `quick-implement` | Rapid implementation for simple tasks or bug fixes                        |
+| `review`          | Review uncommitted changes with codebase context                          |
+| `write-plan`      | Create detailed implementation plans with phases and tasks                |
 
 ### Recommended workflow sequences
 
 ---
+
+#### Init documentations
+
+```
+/docs --init # or /docs --update for updating existing docs
+```
 
 #### Complex or ambiguous tasks
 
@@ -234,6 +240,7 @@ git push origin main --follow-tags
 ```
 
 **Prerequisites:**
+
 - Repository secret `NPM_TOKEN` with publish permission to `@buiducnhat/agent-skills`
 - Version in `packages/cli/package.json` is bumped to an unpublished version
 - Tag format is `vX.Y.Z`
