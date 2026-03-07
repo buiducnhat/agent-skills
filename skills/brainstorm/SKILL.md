@@ -98,12 +98,12 @@ After you and the user have worked through requirements and any clarifying quest
 
 1. Use `AskUserQuestion` to present the user with three high‑level next actions:
    - "Write artifacts" – continue by authoring the brainstorm documents described in Step 5.
-   - "Write plan immediately (with current context, information)" – skip the artifact step and move straight to a `write-plan` handoff.
+   - "Write plan immediately (in current context)" – skip the artifact step and move straight to a `write-plan` handoff.
    - "End session (already provided enough information for user)" – stop; the conversation has produced enough insight for now.
 
 2. If the user picks **Write artifacts**, create the appropriate files under `docs/brainstorms/...` per Step 5. Once the draft artifacts exist, use `AskUserQuestion` again to validate them with options:
-   - "OK – proceed to write plan"
-   - "OK – end session"
+   - "Write plan with current artifacts, context"
+   - "End session - artifacts are sufficient for now"
    - "Need changes" (free‑form text) – collect the feedback, revise the artifacts, and re‑ask.
 
 3. If the user picked **Write plan immediately**, initiate a handoff to `write-plan` using the current brainstorming context; no additional artifact validation is required.
