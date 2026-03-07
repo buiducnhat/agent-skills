@@ -50,10 +50,10 @@ export function parseArgs(argv: string[]): CliArgs {
 export function detectAgentsFromFilesystem(projectDir: string): string[] {
 	const detected: string[] = [];
 
-	for (const [dirPrefix, agentId] of Object.entries(AGENT_SKILLS_DIRS)) {
+	for (const [dirPrefix, agentIds] of Object.entries(AGENT_SKILLS_DIRS)) {
 		const skillsDir = path.join(projectDir, dirPrefix, "skills");
 		if (fs.existsSync(skillsDir)) {
-			detected.push(agentId);
+			detected.push(...agentIds);
 		}
 	}
 
