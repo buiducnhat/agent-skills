@@ -225,26 +225,6 @@ Re-running is safe. Rules injection is idempotent — the existing content betwe
 
 Tag pushes matching `v*` trigger the GitHub Actions workflow `.github/workflows/release.yml` to publish `@buiducnhat/agent-skills` to npm automatically.
 
-### Maintainer runbook
-
-```bash
-# 1) Bump the CLI package version
-cd packages/cli
-npm version <major|minor|patch>
-
-# 2) Push commit and tag
-git push origin main --follow-tags
-
-# 3) Monitor the workflow
-# GitHub Actions → "Release CLI to npm"
-```
-
-**Prerequisites:**
-
-- Repository secret `NPM_TOKEN` with publish permission to `@buiducnhat/agent-skills`
-- Version in `packages/cli/package.json` is bumped to an unpublished version
-- Tag format is `vX.Y.Z`
-
 ## Documentation
 
 - [Product PDR](docs/project-pdr.md)

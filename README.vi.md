@@ -219,26 +219,6 @@ Chạy lại hoàn toàn an toàn. Việc chèn rules là idempotent — nội d
 
 Các tag push khớp với `v*` sẽ kích hoạt GitHub Actions workflow `.github/workflows/release.yml` để tự động publish `@buiducnhat/agent-skills` lên npm.
 
-### Hướng dẫn cho maintainer
-
-```bash
-# 1) Tăng phiên bản CLI package
-cd packages/cli
-npm version <major|minor|patch>
-
-# 2) Push commit và tag
-git push origin main --follow-tags
-
-# 3) Theo dõi workflow
-# GitHub Actions → "Release CLI to npm"
-```
-
-**Điều kiện tiên quyết:**
-
-- Repository secret `NPM_TOKEN` có quyền publish lên `@buiducnhat/agent-skills`
-- Phiên bản trong `packages/cli/package.json` đã được tăng lên phiên bản chưa publish
-- Format tag là `vX.Y.Z`
-
 ## Tài liệu
 
 - [Product PDR](docs/project-pdr.md)
