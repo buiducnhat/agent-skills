@@ -1,6 +1,6 @@
 {
 	"name": "@buiducnhat/agent-skills",
-	"version": "0.5.1",
+	"version": "0.5.2",
 	"description": "Install AI agent workflow skills for coding assistants",
 	"type": "module",
 	"bin": {
@@ -31,19 +31,62 @@
 	"publishConfig": {
 		"access": "public"
 	},
+	"keywords": [
+		"cli",
+		"workflow",
+		"agent-skills",
+		"skills",
+		"ai-agents",
+		"amp",
+		"antigravity",
+		"augment",
+		"claude-code",
+		"openclaw",
+		"cline",
+		"codebuddy",
+		"codex",
+		"command-code",
+		"continue",
+		"cortex",
+		"crush",
+		"cursor",
+		"droid",
+		"gemini-cli",
+		"github-copilot",
+		"goose",
+		"junie",
+		"iflow-cli",
+		"kilo",
+		"kimi-cli",
+		"kiro-cli",
+		"kode",
+		"mcpjam",
+		"mistral-vibe",
+		"mux",
+		"opencode",
+		"openhands",
+		"pi",
+		"qoder",
+		"qwen-code",
+		"replit",
+		"roo",
+		"trae",
+		"trae-cn",
+		"windsurf",
+		"zencoder",
+		"neovate",
+		"pochi",
+		"adal",
+		"universal"
+	],
+	"homepage": "https://github.com/buiducnhat/agent-skills#readme",
+	"bugs": {
+		"url": "https://github.com/buiducnhat/agent-skills/issues"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/buiducnhat/agent-skills.git",
 		"directory": "packages/cli"
 	},
-	"keywords": [
-		"ai",
-		"agent",
-		"skills",
-		"workflow",
-		"claude",
-		"copilot",
-		"cursor"
-	],
 	"license": "MIT"
 }
