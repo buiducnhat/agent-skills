@@ -59,7 +59,6 @@ export const AGENT_SKILLS_DIRS: Record<string, string[]> = {
 		"codex",
 		"github-copilot",
 		"gemini-cli",
-		"cline",
 		"kimi-cli",
 		"replit",
 		"amp",

@@ -21,6 +21,7 @@ import {
 	parseArgs,
 	printHelp,
 	printSummary,
+	setupCursorSkillsDir,
 } from "./utils.js";
 
 const require = createRequire(import.meta.url);
@@ -73,6 +74,10 @@ async function main(): Promise<void> {
 		}
 
 		selectedAgents = detectAgentsFromFilesystem(baseDir);
+
+		if (selectedAgents.includes("cursor")) {
+			setupCursorSkillsDir(baseDir, args.copy);
+		}
 
 		if (selectedAgents.length === 0) {
 			log.warn(
@@ -139,6 +144,10 @@ async function main(): Promise<void> {
 				),
 			);
 			process.exit(1);
+		}
+
+		if (selectedAgents.includes("cursor")) {
+			setupCursorSkillsDir(baseDir, copyFlag);
 		}
 	}
 

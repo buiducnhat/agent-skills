@@ -30,6 +30,7 @@ Teams using AI coding assistants often need a repeatable way to bootstrap shared
 - Show a `@clack/prompts` multiselect prompt for agent selection; auto-detect installed agents and pre-select them
 - Run `npx skills add buiducnhat/agent-skills --skill '*' -a <agents...> -y` non-interactively after selection
 - Inject `templates/AGENTS.md` content into each agent's rules file using marker-based append/replace
+- Mirror installed skills to Cursor IDE's expected path (`.cursor/skills/`) via per-file symlinks or copies when Cursor is selected
 - Installation summary showing agents configured and rules files updated
 - `--non-interactive` mode for automation (installs all agents, detects from filesystem)
 - `--copy` passthrough to skills CLI for copy-based installs
