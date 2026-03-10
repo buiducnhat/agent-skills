@@ -80,7 +80,15 @@ export function setupCursorSkillsDir(baseDir: string, copy: boolean): void {
 			fs.cpSync(srcPath, destPath, { recursive: true, force: true });
 		} else {
 			if (!fs.existsSync(destPath)) {
-				fs.symlinkSync(srcPath, destPath);
+				try {
+					fs.symlinkSync(srcPath, destPath);
+				} catch {
+					// Symlinks require Developer Mode or admin on Windows; fall back to copy
+					log.warn(
+						`Symlink not supported — copying ${name} instead. Use --copy to suppress this warning.`,
+					);
+					fs.cpSync(srcPath, destPath, { recursive: true, force: true });
+				}
 			}
 		}
 	}

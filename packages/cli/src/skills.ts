@@ -43,6 +43,7 @@ export async function runSkillsAdd(
 		const child = spawn("npx", args, {
 			cwd: projectDir,
 			stdio: "inherit",
+			shell: true,
 		});
 
 		child.on("close", (code) => {

@@ -1,5 +1,5 @@
 import { execSync } from "node:child_process";
-import { existsSync, mkdtempSync } from "node:fs";
+import { existsSync, mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { spinner } from "@clack/prompts";
@@ -42,7 +42,7 @@ export async function fetchTemplates(): Promise<string> {
 
 export function cleanupTemp(tempDir: string): void {
 	try {
-		execSync(`rm -rf "${tempDir}"`, { stdio: "pipe" });
+		rmSync(tempDir, { recursive: true, force: true });
 	} catch {
 		// ignore cleanup errors
 	}

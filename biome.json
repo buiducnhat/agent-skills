@@ -21,7 +21,9 @@
 			"!**/.source",
 			"!**/bun.lock",
 			"!.claude/**/*",
-			"!.agents/**/*"
+			"!.agents/**/*",
+			"!.cursor/**/*",
+			"!.qwen/**/*"
 		]
 	},
 	"formatter": {
