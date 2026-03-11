@@ -24,7 +24,7 @@ Running the installer:
 ### Interactive (recommended)
 
 ```bash
-npx @buiducnhat/agent-skills
+npx @buiducnhat/agent-skills@latest
 ```
 
 Walks you through agent selection and install mode (symlink or copy).
@@ -32,7 +32,7 @@ Walks you through agent selection and install mode (symlink or copy).
 ### Non-interactive (CI / automation)
 
 ```bash
-npx @buiducnhat/agent-skills --non-interactive
+npx @buiducnhat/agent-skills@latest --non-interactive
 ```
 
 Skips all prompts and installs skills for all agents.
@@ -48,7 +48,7 @@ Checks for Node.js 18+ and runs the installer automatically.
 ### Global install
 
 ```bash
-npx @buiducnhat/agent-skills --global
+npx @buiducnhat/agent-skills@latest --global
 ```
 
 Installs skills to your home directory (`~/<agent>/skills/`) so they are available across all projects.
