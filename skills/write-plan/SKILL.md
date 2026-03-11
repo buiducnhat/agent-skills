@@ -14,17 +14,6 @@ This skill is for planning only:
 - Do not implement code
 - Do not modify production files (except plan artifacts)
 
-## Artifact Conventions
-
-Use one consistent artifact structure for every plan:
-
-- Plan directory: `docs/plans/YYMMDD-HHmm-<plan-slug>/`
-- Main summary: `docs/plans/YYMMDD-HHmm-<plan-slug>/SUMMARY.md`
-- Phase files: `docs/plans/YYMMDD-HHmm-<plan-slug>/phase-01-<name>.md`, `phase-02-<name>.md`, etc.
-- Optional research notes: `docs/plans/YYMMDD-HHmm-<plan-slug>/research/<topic>.md`
-
-Use timestamp commands from the shared General Principles for folder and document timestamps.
-
 ## Workflow
 
 ### Step 1: Contextualize
@@ -42,10 +31,28 @@ Capture:
 1. Create: `docs/plans/YYMMDD-HHmm-<plan-slug>/`
 2. Create:
    - `SUMMARY.md`
-   - one phase file per implementation phase
+   - one phase file per implementation phase with naming convention `phase-XX-<name>.md`
 3. Add `research/` only if needed.
 
-### Step 3: Define Strategy and Phases
+#### Rules:
+
+- Use timestamp commands from the shared General Principles for folder and document timestamps.
+
+### Step 3: Clarify Requirements
+
+Ask clarifying questions to resolve any ambiguity in the request. Focus on:
+
+- Scope and boundaries
+- Success criteria
+- Constraints and non-goals
+- Priorities and trade-offs
+
+#### Rules:
+
+- If requirements are already clear or come from the brainstorm context, no need the confirmation step.
+- Use `AskUserQuestion` tool is possible.
+
+### Step 4: Define Strategy and Phases
 
 Design a phased strategy that is safe and verifiable.
 
@@ -60,7 +67,7 @@ Granularity rule:
 
 - Tasks should be small, concrete, and typically 2-10 minutes each.
 
-### Step 4: Research (Only if Needed)
+### Step 5: Research (Only if Needed)
 
 Research is optional and should be proportional to uncertainty.
 
@@ -76,92 +83,17 @@ Document findings in:
 
 - `docs/plans/YYMMDD-HHmm-<plan-slug>/research/<topic>.md`
 
-### Step 5: Write Plan Content
+### Step 6: Write Plan Content
 
 ## `SUMMARY.md` format
 
-```markdown
-# Implementation Plan: <Title>
-
-> Created: YYYY-MM-DD HH:mm:ss
-> Status: Draft
-
-## Objective
-
-- What is being built/changed and why.
-
-## Scope
-
-- In scope
-- Out of scope
-
-## Architecture & Approach
-
-- Design decisions and rationale.
-- Constraints and compatibility notes.
-
-## Phases
-
-- [ ] **Phase 1: <name>** — Goal: <goal>
-- [ ] **Phase 2: <name>** — Goal: <goal>
-
-## Key Changes
-
-- Files/modules likely to change
-- Data/API/schema impacts
-
-## Verification Strategy
-
-- Lint/typecheck/tests/build commands
-- Manual checks if needed
-
-## Dependencies
-
-- New packages/tools (if any) with reason
-
-## Risks & Mitigations
-
-- Risk → mitigation
-
-## Open Questions
-
-- Items requiring user confirmation
-```
+Follow the template inside `references/summary-template.md`
 
 ## `phase-XX-<name>.md` format
 
-```markdown
-# Phase XX: <Name>
+Follow the template inside `references/phase-template.md`
 
-## Objective
-
-- Specific result for this phase.
-
-## Preconditions
-
-- What must already be true.
-
-## Tasks
-
-1. Context: files/components to inspect or modify
-2. Implement: exact change steps
-3. Verify: commands/checks to run
-4. Confirm: expected outcome
-
-## Verification
-
-- Commands:
-  - <command 1>
-  - <command 2>
-- Expected results:
-  - <result>
-
-## Exit Criteria
-
-- Clear checklist that determines completion.
-```
-
-### Step 6: Review and Refine
+### Step 7: Review and Refine
 
 Before presenting the plan, verify:
 
@@ -181,7 +113,7 @@ If multiple viable approaches exist, present options and ask for one of:
 
 Iterate until confirmed.
 
-### Step 7: Handoff
+### Step 8: Handoff
 
 When approved, end with:
 
@@ -190,8 +122,8 @@ Use `/clear` and then `/execute-plan <relative_path_to_plan>/SUMMARY.md` to exec
 
 ## Rules
 
-- Never automatically implement or execute the code change in the same session, or ask user for execution right now, always finished when completed planning and ready for user review.
+- Never automatically implement or execute the code change in the same session, always finished when completed planning and ready for user review.
 - Prefer explicit file paths and concrete commands
 - Align with project standards and existing architecture
-- Ask clarifying questions when uncertainty affects execution safety
 - Keep plans self-contained and deterministic
+- If the write-plan request comes from a brainstorm session, we can skip many steps like gathering documents, clarifying requirements, and researching, because those should have been covered in the brainstorm session. In that case, we can directly start from Step 4: Define Strategy and Phases, using the information from the brainstorm session as context.

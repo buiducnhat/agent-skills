@@ -101,17 +101,13 @@ After all phases are complete:
 ### Step 4: Completion Artifacts
 
 1. **Documentation Sync**
-   - If behavior/architecture/codebase expectations changed, update:
-     - `docs/project-pdr.md`
-     - `docs/codebase.md`
-     - `docs/architecture.md`
-
+   - If behavior/architecture/codebase expectations changed, update the `docs` artifacts.
 2. **Create Execution Report**
    - File: `docs/plans/YYMMDD-HHmm-<plan-slug>/EXECUTION-REPORT.md`
    - Include all required sections below.
 
 3. **Announce Completion**
-   - Output: `Execution complete. Report created at <path>.`
+   - Output: `Execution complete. Report created at <relative-path>.`
 
 ## Execution Report Standard
 
@@ -120,8 +116,7 @@ After all phases are complete:
 # Execution Report: <Plan Title>
 
 > Date: YYYY-MM-DD HH:mm:ss  
-> Mode: Batch | Interactive  
-> Plan Path: <relative-path>
+> Mode: Batch | Interactive
 
 ## Summary
 
