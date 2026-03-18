@@ -50,7 +50,7 @@ Ask clarifying questions to resolve any ambiguity in the request. Focus on:
 #### Rules:
 
 - If requirements are already clear or come from the brainstorm context, no need the confirmation step.
-- Use `AskUserQuestion` tool is possible.
+- Use `Question Tool` for gathering answers, context.
 
 ### Step 4: Define Strategy and Phases
 

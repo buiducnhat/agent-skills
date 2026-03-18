@@ -119,7 +119,7 @@ If architecture, codebase structure, or product behavior changed materially, upd
 
 ## Rules
 
-- **No guessing:** ask when critical context is missing. Follow the AskUserQuestion mandate.
+- **No guessing:** `Question Tool` when critical context is missing.
 - **Root cause first:** never ship symptom-only patches knowingly.
 - **Smallest safe change:** minimize blast radius.
 - **Verify before done:** no fix is complete without checks.

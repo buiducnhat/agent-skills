@@ -117,4 +117,4 @@ Include:
 - Keep docs aligned with current implementation.
 - Follow project conventions from `docs/code-standard.md`.
 - When uncertain, mark assumptions explicitly and request confirmation.
-- Ask targeted questions only when information cannot be reliably inferred (business goals, ambiguous module ownership, conflicting conventions, unclear architecture decisions). Follow the AskUserQuestion mandate.
+- Ask targeted questions only when information cannot be reliably inferred (business goals, ambiguous module ownership, conflicting conventions, unclear architecture decisions).

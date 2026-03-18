@@ -40,7 +40,7 @@ Collect information across these 8 dimensions. All categories except **Techstack
 
 ### Step 2: Gather Requirements
 
-Follow the AskUserQuestion mandate for all questions. Ask one question at a time using multiple-choice options when possible.
+Follow the `Question Tool` mandate for all questions. Ask one question at a time using multiple-choice options when possible.
 
 **Sequence:**
 

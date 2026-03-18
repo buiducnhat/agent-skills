@@ -59,7 +59,7 @@ Escalation message template:
 2. Load project context per the shared Context Loading Protocol.
 3. Inspect only the minimum necessary code paths.
 4. Confirm the task still passes the Scope Gate.
-5. If ambiguity remains, ask clarifying questions before coding. Follow the AskUserQuestion mandate.
+5. If ambiguity remains, ask clarifying questions before coding. Follow the `Question Tool` mandate.
 
 ### Step 2: Implement
 
