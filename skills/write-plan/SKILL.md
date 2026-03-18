@@ -106,12 +106,10 @@ Before presenting the plan, verify:
 
 Then present for user review.
 
-If multiple viable approaches exist, present options and ask for one of:
+If multiple viable approaches exist, present options and ask for one of: (use `Question Tool` for selection)
 
-- **Validate**: refine via additional clarifying questions
 - **Confirm**: approve current plan for execution
-
-Iterate until confirmed.
+- **Validate**: refine via additional clarifying questions
 
 ### Step 8: Handoff
 

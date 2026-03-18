@@ -59,7 +59,7 @@ After presenting all approaches, use `Question Tool` to let the user pick their 
 
 ### Step 4: Present the Design Incrementally
 
-Once requirements are clear, present the design in very small sections (about 100-200 words each), validating after each section.
+Once requirements are clear, present the design in small sections (about 100-200 words each), validating after each section using `Question Tool` (good or need changes).
 
 Suggested section order:
 
