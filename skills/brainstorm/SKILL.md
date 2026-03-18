@@ -50,11 +50,16 @@ For each approach, include:
 
 Lead with your recommended option and explain why it best fits the project context and constraints.
 
-After presenting all approaches, Question Tool to let the user pick their preferred approach (e.g., "Approach A — recommended", "Approach B", "Approach C", "Need more details before deciding").
+After presenting all approaches, use `Question Tool` to let the user pick their preferred approach. Example:
+
+1. Approach A, short summary (Recommended)
+2. Approach B, short summary
+3. Approach C, short summary
+4. Other (please specify)
 
 ### Step 4: Present the Design Incrementally
 
-Once requirements are clear, present the design in small sections (about 200-300 words each), validating after each section.
+Once requirements are clear, present the design in very small sections (about 100-200 words each), validating after each section.
 
 Suggested section order:
 
@@ -65,7 +70,11 @@ Suggested section order:
 5. Testing and verification strategy
 6. Rollout considerations (if applicable)
 
-After each section, use Question Tool to ask whether to proceed, adjust, or revisit. Provide concrete options (e.g., "Proceed to next section", "Adjust this section", "Go back to a previous section").
+After each section, use `Question Tool` to ask whether to:
+
+1. Proceed to the next section
+2. Adjust the current section
+3. Revisit a previous section
 
 ### Step 5: Write Brainstorm Artifacts
 
@@ -96,12 +105,12 @@ Persist results to the standardized location:
 
 After you and the user have worked through requirements and any clarifying questions, it's time to decide what to do with the information.
 
-1. Use Question Tool to present the user with three high‑level next actions:
-   - "Write artifacts" – continue by authoring the brainstorm documents described in Step 5.
+1. Use `Question Tool` to present the user with three high‑level next actions:
    - "Write plan immediately (in current context)" – skip the artifact step and move straight to a `write-plan` handoff.
+   - "Write artifacts" – continue by authoring the brainstorm documents described in Step 5.
    - "End session (already provided enough information for user)" – stop; the conversation has produced enough insight for now.
 
-2. If the user picks **Write artifacts**, create the appropriate files under `docs/brainstorms/...` per Step 5. Once the draft artifacts exist, use Question Tool again to validate them with options:
+2. If the user picks **Write artifacts**, create the appropriate files under `docs/brainstorms/...` per Step 5. Once the draft artifacts exist, use `Question Tool` again to validate them with options:
    - "Write plan with current artifacts, context"
    - "End session - artifacts are sufficient for now"
    - "Need changes" (free‑form text) – collect the feedback, revise the artifacts, and re‑ask.
@@ -112,18 +121,8 @@ After you and the user have worked through requirements and any clarifying quest
 
 ## Rules
 
-- Do not write production code or make implementation changes in this skill in the brainstorm session
-- Keep interaction lightweight and iterative, every steps should be run in the same session, do not break the flow by asking the user to run separate commands
-- Prefer clarity over completeness when uncertain; ask a follow-up question
-- Align all recommendations with project documentation and standards
-- Keep assumptions explicit; do not guess silently
-
-## Output Quality Checklist
-
-Before finalizing `SUMMARY.md`, confirm:
-
-- Requirements are explicit and testable
-- Scope and non-goals are clear
-- Recommended approach is justified with trade-offs
-- Risks and unknowns are documented
-- Handoff to planning is actionable
+- Do not write production code or make implementation changes in this skill in the brainstorm session.
+- Keep interaction lightweight and iterative, every steps should be run in the same session.
+- Prefer clarity over completeness when uncertain; ask a follow-up question.
+- Align all recommendations with project documentation and standards.
+- Keep assumptions explicit; do not guess silently.

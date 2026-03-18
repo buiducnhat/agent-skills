@@ -1,6 +1,6 @@
 {
 	"name": "@buiducnhat/agent-skills",
-	"version": "0.5.10",
+	"version": "0.5.11",
 	"description": "Install AI agent workflow skills for coding assistants",
 	"type": "module",
 	"bin": {
