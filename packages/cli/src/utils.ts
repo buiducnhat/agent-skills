@@ -60,40 +60,6 @@ export function detectAgentsFromFilesystem(projectDir: string): string[] {
 	return detected;
 }
 
-export function setupCursorSkillsDir(baseDir: string, copy: boolean): void {
-	const src = path.join(baseDir, ".agents", "skills");
-	const dest = path.join(baseDir, ".cursor", "skills");
-
-	if (!fs.existsSync(src)) {
-		log.warn("`.agents/skills/` not found — skipping Cursor skills mirror.");
-		return;
-	}
-
-	fs.mkdirSync(dest, { recursive: true });
-
-	const entries = fs.readdirSync(src);
-	for (const name of entries) {
-		const srcPath = path.join(src, name);
-		const destPath = path.join(dest, name);
-
-		if (copy) {
-			fs.cpSync(srcPath, destPath, { recursive: true, force: true });
-		} else {
-			if (!fs.existsSync(destPath)) {
-				try {
-					fs.symlinkSync(srcPath, destPath);
-				} catch {
-					// Symlinks require Developer Mode or admin on Windows; fall back to copy
-					log.warn(
-						`Symlink not supported — copying ${name} instead. Use --copy to suppress this warning.`,
-					);
-					fs.cpSync(srcPath, destPath, { recursive: true, force: true });
-				}
-			}
-		}
-	}
-}
-
 export function copyDirectory(src: string, dest: string): void {
 	fs.mkdirSync(dest, { recursive: true });
 

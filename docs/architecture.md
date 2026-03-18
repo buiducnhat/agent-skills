@@ -48,10 +48,9 @@ The project is a Node.js CLI that installs standardized agent workflow skills an
 4. **Interactive mode**: CLI shows `@clack/prompts` multiselect with all 39 supported agents; auto-detected agents are pre-selected. User confirms selection.
 5. CLI spawns `npx skills add buiducnhat/agent-skills --skill '*' -a <agent1> -a <agent2> ... -y` (fully non-interactive), with `-g` appended when in global mode.
    - **Non-interactive mode** (`--non-interactive`): uses `--all` flag instead; then re-scans `baseDir` filesystem to determine which agents were installed.
-6. If "cursor" is in the selected agents, CLI calls `setupCursorSkillsDir(baseDir, copyFlag)` to mirror `.agents/skills/` into `.cursor/skills/` (via symlinks in symlink mode, or copies in copy mode).
-7. CLI clones `https://github.com/buiducnhat/agent-skills.git` (branch `main`) to temp dir.
-8. `templates/AGENTS.md` content is injected into each selected agent's rules file under `baseDir` with markers.
-9. CLI prints summary and cleans up temporary clone directory.
+6. CLI clones `https://github.com/buiducnhat/agent-skills.git` (branch `main`) to temp dir.
+7. `templates/AGENTS.md` content is injected into each selected agent's rules file under `baseDir` with markers.
+8. CLI prints summary and cleans up temporary clone directory.
 
 ## Integration boundaries
 

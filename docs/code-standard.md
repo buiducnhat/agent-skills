@@ -39,7 +39,6 @@
 - Parse and handle CLI flags before interactive prompts
 - Non-interactive mode must avoid prompt dependencies
 - Supported flags are `--non-interactive`, `--copy`, `--global`/`-g`, `--help`, and `--version`
-- After successful skills installation, if "cursor" is in selected agents, automatically mirror `.agents/skills/` into `.cursor/skills/` using the same mode (symlink or copy) as the install
 - On recoverable external tool failures (for example skills CLI failure), warn and provide manual command fallback
 - Always clean temporary clone directories in `finally` blocks
 
