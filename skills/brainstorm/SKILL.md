@@ -50,7 +50,7 @@ For each approach, include:
 
 Lead with your recommended option and explain why it best fits the project context and constraints.
 
-After presenting all approaches, use `Question Tool` to let the user pick their preferred approach. Example:
+After presenting all approaches, use `Question Tool` immediately in the same response to let the user pick their preferred approach. Do not ask the user to reply by normal chat text first. Example:
 
 1. Approach A, short summary (Recommended)
 2. Approach B, short summary
@@ -70,7 +70,7 @@ Suggested section order:
 5. Testing and verification strategy
 6. Rollout considerations (if applicable)
 
-After each section, use `Question Tool` to ask whether to:
+After each section, use `Question Tool` immediately to ask whether to:
 
 1. Proceed to the next section
 2. Adjust the current section
@@ -126,3 +126,5 @@ After you and the user have worked through requirements and any clarifying quest
 - Prefer clarity over completeness when uncertain; ask a follow-up question.
 - Align all recommendations with project documentation and standards.
 - Keep assumptions explicit; do not guess silently.
+- At decision points (approach selection, post-section validation, close-the-loop actions), always use Question Tool with selectable options in the same turn.
+- Do not replace Question Tool decisions with plain-text prompts that require manual chat replies.
