@@ -50,7 +50,7 @@ For each approach, include:
 
 Lead with your recommended option and explain why it best fits the project context and constraints.
 
-After presenting all approaches, use `Question Tool` immediately in the same response to let the user pick their preferred approach. Do not ask the user to reply by normal chat text first. Example:
+After presenting all approaches, use `Question Tool` to let the user pick their preferred approach. List the summary options example:
 
 1. Approach A, short summary (Recommended)
 2. Approach B, short summary
@@ -59,7 +59,7 @@ After presenting all approaches, use `Question Tool` immediately in the same res
 
 ### Step 4: Present the Design Incrementally
 
-Once requirements are clear, present the design in small sections (about 100-200 words each), validating after each section using `Question Tool` (good or need changes).
+Once requirements are clear, present the design in small sections (about 100-300 words each).
 
 Suggested section order:
 
@@ -70,15 +70,33 @@ Suggested section order:
 5. Testing and verification strategy
 6. Rollout considerations (if applicable)
 
-After each section, use `Question Tool` immediately to ask whether to:
+After presenting each section, use `Question Tool` immediately to ask whether to:
 
 1. Proceed to the next section
 2. Adjust the current section
 3. Revisit a previous section
 
-### Step 5: Write Brainstorm Artifacts
+### Step 5: Close the Loop
 
-_(Only perform this step after the user has explicitly chosen “Write artifacts” during Step 6.)_
+After you and the user have worked through requirements and any clarifying questions, it's time to decide what to do with the information.
+
+1. Use `Question Tool` to present the user with three high-level next actions:
+   - "Write plan immediately (in current context)" - skip the artifact step and move straight to a `write-plan` handoff.
+   - "Write artifacts" - continue by authoring the brainstorm documents described in Step 6.
+   - "End session (already provided enough information for user)" - stop; the conversation has produced enough insight for now.
+
+2. If the user picks **Write artifacts**, create the appropriate files under `docs/brainstorms/...` per Step 6. Once the draft artifacts exist, use `Question Tool` again to validate them with options:
+   - "Write plan with current artifacts, context"
+   - "End session - artifacts are sufficient for now"
+   - "Need changes" (free-form text) - collect the feedback, revise the artifacts, and re-ask.
+
+3. If the user picked **Write plan immediately**, initiate a handoff to `write-plan` using the current brainstorming context; no additional artifact validation is required.
+
+4. If the user picked **End session**, simply stop. The information collected so far is considered sufficient.
+
+### Step 6 (optional): Write Brainstorm Artifacts
+
+Only perform this step after the user has explicitly chosen "Write artifacts" during Step 5.
 
 Persist results to the standardized location:
 
@@ -89,35 +107,7 @@ Persist results to the standardized location:
   - `docs/brainstorms/YYMMDD-HHmm-<topic-slug>/section-02-<slug>.md`
   - etc.
 
-`SUMMARY.md` should contain:
-
-- Title
-- Created timestamp
-- Context
-- Goals / non-goals
-- Chosen approach and rationale
-- Alternatives considered
-- Risks and mitigations
-- Open questions
-- Next step recommendation
-
-### Step 6: Close the Loop
-
-After you and the user have worked through requirements and any clarifying questions, it's time to decide what to do with the information.
-
-1. Use `Question Tool` to present the user with three high‑level next actions:
-   - "Write plan immediately (in current context)" – skip the artifact step and move straight to a `write-plan` handoff.
-   - "Write artifacts" – continue by authoring the brainstorm documents described in Step 5.
-   - "End session (already provided enough information for user)" – stop; the conversation has produced enough insight for now.
-
-2. If the user picks **Write artifacts**, create the appropriate files under `docs/brainstorms/...` per Step 5. Once the draft artifacts exist, use `Question Tool` again to validate them with options:
-   - "Write plan with current artifacts, context"
-   - "End session - artifacts are sufficient for now"
-   - "Need changes" (free‑form text) – collect the feedback, revise the artifacts, and re‑ask.
-
-3. If the user picked **Write plan immediately**, initiate a handoff to `write-plan` using the current brainstorming context; no additional artifact validation is required.
-
-4. If the user picked **End session**, simply stop. The information collected so far is considered sufficient.
+`SUMMARY.md` format: follow the template inside `references/summary-template.md`.
 
 ## Rules
 
