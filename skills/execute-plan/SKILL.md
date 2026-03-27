@@ -106,8 +106,12 @@ After all phases are complete:
    - File: `docs/plans/YYMMDD-HHmm-<plan-slug>/EXECUTION-REPORT.md`
    - Include all required sections below.
 
-3. **Announce Completion**
-   - Output: `Execution complete. Report created at <relative-path>.`
+3. **Archive Plan Folder**
+   - Move the plan folder to `docs/plans/archived/` after the execution report is created.
+   - Example: `mv docs/plans/YYMMDD-HHmm-<plan-slug> docs/plans/archived/`
+
+4. **Announce Completion**
+   - Output: `Execution complete. Report created at <relative-path>. Plan archived to docs/plans/archived/.`
 
 ## Execution Report Standard
 
