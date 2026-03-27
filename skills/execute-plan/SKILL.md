@@ -108,10 +108,10 @@ After all phases are complete:
 
 3. **Archive Plan Folder**
    - Move the plan folder to `docs/plans/archived/` after the execution report is created.
-   - Example: `mv docs/plans/YYMMDD-HHmm-<plan-slug> docs/plans/archived/`
+   - Command: `mkdir -p docs/plans/archived && mv docs/plans/YYMMDD-HHmm-<plan-slug> docs/plans/archived/`
 
 4. **Announce Completion**
-   - Output: `Execution complete. Report created at <relative-path>. Plan archived to docs/plans/archived/.`
+   - Output: `Execution complete. Report archived at docs/plans/archived/YYMMDD-HHmm-<plan-slug>/EXECUTION-REPORT.md.`
 
 ## Execution Report Standard
 
