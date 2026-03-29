@@ -1,13 +1,24 @@
 ## Context Loading Protocol
 
-Before planning or implementing any features that need gathering details context, read these project documentation files:
+Before planning or implementing any features, load project documentation in two tiers:
 
-1. `docs/architecture.md` — system design, system components and data flow
-2. `docs/codebase.md` — key files, entry points, and modules
-3. `docs/code-standard.md` — code convention, guidelines, style
-4. `docs/project-pdr.md` — product requirements, business context, and scope
+### Tier 1 — Always Load
+Read these summary files to get project overview:
+1. `docs/_index.md` — documentation manifest
+2. `docs/architecture/summary.md` — system design overview
+3. `docs/codebase/summary.md` — file structure and entry points
+4. `docs/code-standard/summary.md` — key conventions and rules
+5. `docs/project-pdr/summary.md` — product goals and scope
 
-The `code-standard` is very important to keep the code consistent, maintainable. Only read what is relevant to the current task. Skip files that don't exist. Let documentation guide implementation — if docs conflict with implementation needs, clarify with the user instead of guessing.
+The `code-standard` summary is very important to keep the code consistent, maintainable. Skip files that don't exist. Let documentation guide implementation — if docs conflict with implementation needs, clarify with the user instead of guessing.
+
+### Tier 2 — Load on Demand
+Based on the current task, consult `docs/_index.md` to identify relevant detail files, then load only what is needed.
+
+Do NOT load all detail files upfront. Only load detail files that are directly relevant to the task at hand.
+
+### Fallback (legacy structure)
+If `docs/_index.md` does not exist but flat files like `docs/architecture.md` exist, fall back to reading those flat files directly. Consider running `docs --update` to migrate to the new hierarchical structure.
 
 ## Question Tool Mandate
 
