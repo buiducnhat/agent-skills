@@ -1,6 +1,6 @@
 ---
 name: ask
-description: "Structured clarification and requirements gathering through focused dialogue. Use when a task is ambiguous, underspecified, or requires user input before any action can be taken. Do not plan or implement anything—only ask questions to collect the information needed. Triggers on: 'ask me', 'ask questions about', 'clarify requirements', 'gather requirements', 'I need you to ask', or when the user explicitly wants a question-and-answer session before work begins."
+description: Structured clarification and requirements gathering through focused dialogue. Use when a task is ambiguous, underspecified, or requires user input before any action can be taken. Do not plan or implement anything—only ask questions to collect the information needed.
 ---
 
 # Ask

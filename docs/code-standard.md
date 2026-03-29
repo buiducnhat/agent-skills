@@ -13,10 +13,11 @@
 
 - CLI source code lives in `packages/cli/src`
 - Distributed CLI artifact is emitted to `packages/cli/dist`
-- Workflow skill definitions live in `skills/<skill-name>/SKILL.md` (distributed via Vercel skills CLI)
+- Repository-owned workflow skill definitions live in `skills/<skill-name>/SKILL.md` (distributed via Vercel skills CLI)
 - Templates to be installed into user projects are stored under `templates/`
-- `templates/AGENTS.md` and `templates/.claude/` are first-class project assets
+- `templates/AGENTS.md` is the canonical shared rules payload injected into agent rules files
 - Monorepo workspaces: `apps/*` and `packages/*`
+- When renaming, adding, or removing skills, keep `skills/`, root `skills-lock.json`, package `skills-lock.json`, and user-facing docs in sync
 
 ## TypeScript conventions
 
@@ -39,6 +40,7 @@
 - Parse and handle CLI flags before interactive prompts
 - Non-interactive mode must avoid prompt dependencies
 - Supported flags are `--non-interactive`, `--copy`, `--global`/`-g`, `--help`, and `--version`
+- Interactive installs should keep the two-step prompt flow: agent multiselect first, install mode selection second
 - On recoverable external tool failures (for example skills CLI failure), warn and provide manual command fallback
 - Always clean temporary clone directories in `finally` blocks
 

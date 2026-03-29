@@ -6,7 +6,7 @@ The project is a Node.js CLI that installs standardized agent workflow skills an
 
 - A runtime installer (`packages/cli`) for orchestration and user interaction
 - A set of workflow skill definitions (`skills/`) distributed via the Vercel skills CLI
-- A versioned template payload (`templates/`) providing shared agent instructions and Claude Code settings
+- A versioned template payload (`templates/`) providing shared agent instructions for rules-file injection
 - External command integration (`git`, `npx skills`)
 
 ## Main components
@@ -33,19 +33,19 @@ The project is a Node.js CLI that installs standardized agent workflow skills an
    - Detects installed agents from filesystem (`detectAgentsFromFilesystem`)
    - Arg parsing, help text, and install summary output
 6. **Constants (`constants.ts`)**
-   - Defines 39 supported agents with display names
+   - Defines 40 supported agents with display names
    - Maps filesystem directory prefixes to agent IDs for auto-detection
    - Maps agent IDs to their respective rules file paths
 7. **Workflow skills (`skills/`)**
-   - 9 SKILL.md files defining reusable workflow patterns (ask, bootstrap, brainstorm, docs, execute-plan, fix, quick-implement, review, write-plan)
-   - Distributed to consumer projects by the Vercel skills CLI
+   - 8 repository-owned SKILL.md files defining reusable workflow patterns (`ask`, `as-fix`, `as-review`, `brainstorm`, `docs`, `execute-plan`, `quick-implement`, `write-plan`)
+   - Distributed to consumer projects by the Vercel skills CLI alongside lockfile-pinned skill sources
 
 ## Data flow
 
 1. User runs CLI (`npx @buiducnhat/agent-skills [flags]`).
 2. `baseDir` is derived: `os.homedir()` when `--global` is passed, otherwise `process.cwd()`.
 3. CLI scans `.<agent>/skills/` directories under `baseDir` to auto-detect currently installed agents.
-4. **Interactive mode**: CLI shows `@clack/prompts` multiselect with all 39 supported agents; auto-detected agents are pre-selected. User confirms selection.
+4. **Interactive mode**: CLI shows `@clack/prompts` multiselect with all 40 supported agents; auto-detected agents are pre-selected. User confirms selection, then chooses symlink or copy install mode.
 5. CLI spawns `npx skills add buiducnhat/agent-skills --skill '*' -a <agent1> -a <agent2> ... -y` (fully non-interactive), with `-g` appended when in global mode.
    - **Non-interactive mode** (`--non-interactive`): uses `--all` flag instead; then re-scans `baseDir` filesystem to determine which agents were installed.
 6. CLI clones `https://github.com/buiducnhat/agent-skills.git` (branch `main`) to temp dir.
@@ -67,4 +67,4 @@ The project is a Node.js CLI that installs standardized agent workflow skills an
 - Intended runtime: developer machine or CI environment with Node.js 18+.
 - Installer operates against the current working directory as the target project.
 - Temporary clone directories are ephemeral and removed after execution.
-- Also installable via `install.sh` shell script for quick bootstrapping.
+- Also invokable via `install.sh`, which verifies Node.js 18+ before delegating to `npx --yes @buiducnhat/agent-skills`.

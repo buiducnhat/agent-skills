@@ -47,9 +47,11 @@ Immediately stop quick implementation and switch to planning when any of these a
 - Repeated failed attempts without a clear root cause
 - Need for phased delivery, feature flags, or migration strategy
 
-Escalation message template:
+Escalation action:
 
-- "This change exceeds rapid-implementation safety limits. Recommend `write-plan` first to define phased execution and risk controls."
+1. Stop all coding activities immediately.
+2. Output the exact message: "This change exceeds rapid-implementation safety limits. Recommend `write-plan` first to define phased execution and risk controls."
+3. Use `Question Tool` to ask the user if they want to initiate a handoff to the `write-plan` skill.
 
 ## Workflow
 
@@ -70,7 +72,7 @@ Escalation message template:
 
 ### Step 3: Verify
 
-Run proportional validation for the change:
+Run proportional validation for the change using the appropriate execution tools:
 
 1. Targeted tests related to modified behavior
 2. Relevant lint/type checks for touched areas
@@ -78,15 +80,15 @@ Run proportional validation for the change:
 
 If verification fails unexpectedly:
 
-- Attempt focused fixes if clearly local
-- If failures suggest broader impact, escalate to `write-plan`
+- Attempt focused fixes if clearly local.
+- If failures suggest broader impact, immediately escalate to `write-plan`.
 
 ### Step 4: Complete
 
 1. Summarize what changed and why.
 2. List modified files.
 3. Report verification commands and outcomes.
-4. Update documentation if behavior, architecture, or domain rules changed (typically `docs/project-pdr.md`, `docs/codebase.md`, `docs/architecture.md`).
+4. Update documentation if minor behavior or domain rules changed (e.g., small updates to `docs/project-pdr.md` or component specific readmes). Do not touch architecture docs; if architecture changed, this task should have been escalated.
 
 ## Execution Boundaries
 
