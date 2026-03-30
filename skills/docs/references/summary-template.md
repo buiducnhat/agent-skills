@@ -9,8 +9,7 @@ System design, component interactions, data flows, deployment, and external inte
 
 | File | Description |
 |------|-------------|
-| [components.md](architecture/components.md) | Subsystems, responsibilities, boundaries |
-| [data-flow.md](architecture/data-flow.md) | Request lifecycle and data pipeline |
+| ... | _Named by content found during codebase scan_ |
 
 ## Codebase
 
@@ -18,8 +17,7 @@ Directory structure, entry points, API patterns, and key modules.
 
 | File | Description |
 |------|-------------|
-| [directory-structure.md](codebase/directory-structure.md) | Top-level tree, folder responsibilities |
-| [database-schema.md](codebase/database-schema.md) | Table definitions and relationships |
+| ... | _Named by content found during codebase scan_ |
 
 ## Code Standard
 
@@ -27,7 +25,7 @@ Conventions, naming rules, tech stack versions, and development workflows.
 
 | File | Description |
 |------|-------------|
-| [conventions.md](code-standard/conventions.md) | Naming, patterns, TypeScript, design principles |
+| ... | _Named by content found during codebase scan_ |
 
 ## Project PDR
 
@@ -35,9 +33,4 @@ Product goals, use cases, business rules, and constraints.
 
 | File | Description |
 |------|-------------|
-| [product-goals.md](project-pdr/product-goals.md) | Problem, purpose, target users, business goals |
-
-## Other
-
-- [brainstorms/](brainstorms/) — Design exploration sessions
-- [plans/](plans/) — Implementation plans
+| ... | _Named by content found during codebase scan_ |
