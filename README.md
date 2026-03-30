@@ -90,7 +90,7 @@ Installs skills to your home directory (`~/<agent>/skills/`) so they are availab
 
 ## Repository workflow skills
 
-This repository currently defines eight first-party workflow skills:
+This repository currently defines eight first-party workflow skills, with four additional skills pinned in `skills-lock.json` (`bootstrap`, `fix`, `review`, and `skill-creator` from `anthropics/skills`):
 
 | Skill             | Description                                                          |
 | ----------------- | -------------------------------------------------------------------- |
@@ -225,7 +225,4 @@ Tag pushes matching `v*` trigger the GitHub Actions workflow `.github/workflows/
 
 ## Documentation
 
-- [Product PDR](docs/project-pdr.md)
-- [Architecture](docs/architecture.md)
-- [Codebase Map](docs/codebase.md)
-- [Code Standard](docs/code-standard.md)
+- [Documentation Summary](docs/SUMMARY.md)
