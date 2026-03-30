@@ -1,5 +1,5 @@
 ---
-name: ask
+name: as-ask
 description: Structured clarification and requirements gathering through focused dialogue. Use when a task is ambiguous, underspecified, or requires user input before any action can be taken. Do not plan or implement anything—only ask questions to collect the information needed.
 ---
 

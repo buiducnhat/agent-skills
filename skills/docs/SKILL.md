@@ -1,29 +1,23 @@
 ---
 name: docs
-description: Initialize or update project documentation. Use when setting up docs for a new project (`--init`) or syncing docs to current codebase and architecture changes (`--update`).
+description: Create or refresh project documentation in `docs/`. Use when a project needs docs initialized or existing docs synced to the current codebase.
 ---
 
 # Docs
 
 Create and maintain project documentation in `docs/` with a consistent, lightweight structure.
 
-## Parameters
-
-- `--init`: Create documentation for the first time.
-- `--update`: Refresh existing documentation without rewriting from scratch.
-
 ## Outputs
 
 Maintain these outputs:
 
-1. `docs/SUMMARY.md` — documentation entry point (always regenerated on init/update)
-2. `docs/architecture/` — system design, infrastructure, component interactions, data flows, feature flows. Focus on *how the system works*, not file/code structure.
-3. `docs/codebase/` — file organization, directory structure, entry points, key modules and their responsibilities. Focus on *where things live in the code*.
-4. `docs/code-standard/` — coding conventions, naming rules, style guides, environment setup, custom rules and patterns the team follows.
-5. `docs/project-pdr/` — product goals, use cases, business rules, constraints, and decision rationale.
+1. `docs/SUMMARY.md` — documentation entry point (always regenerated)
+2. `docs/architecture/` — system design, infrastructure, component interactions, data flows, feature flows. Focus on _how the system works_, not file/code structure.
+3. `docs/codebase/` — file organization, directory structure, entry points, key modules and their responsibilities. Focus on _where things live in the code_.
+4. `docs/code-standard/` — coding conventions, naming rules, style guides, environment setup, custom rules and patterns the team follows. Focus on _how to write code that fits in with the existing codebase_, best practices, and team conventions, very important for maintaining consistency.
+5. `docs/project-pdr/` — product goals, use cases, business rules, constraints, and decision rationale. Nice to have many use case/requirements files
 
 Also keep README.md aligned with current docs links and project summary.
-
 
 ## Workflow
 
@@ -34,33 +28,32 @@ Scan the project to understand what needs documenting:
 1. Read existing docs if any (`docs/SUMMARY.md` and topic folders)
 2. Read `README.md` and key config files (`package.json`, `tsconfig.json`, `Cargo.toml`, etc.)
 3. Scan source directories to understand project structure, entry points, and major components
-4. Check `git log --oneline -20` for recent changes (useful for `--update` mode)
+4. Check `git log --oneline -20` for recent changes when updating existing docs
 
 Focus on facts: features, architecture, stack, directory structure, and workflows. Do not invent requirements or assume business logic that is not evident from the code.
 
-### Step 2: Choose Mode
+### Step 2: Infer Behavior
 
-- If docs do not exist or are incomplete: run `--init` behavior.
-- If docs exist: run `--update` behavior.
-- If mode is unspecified, infer from repository state and state your assumption.
-
-If mode is explicitly provided (`--init` or `--update`), use that mode. Otherwise, infer from the repository state and state your assumption.
+- Infer whether the repository needs an initial documentation pass or an incremental update based on the current `docs/` state.
+- If `docs/` does not exist or is clearly incomplete, perform initialization behavior.
+- If `docs/` already exists with the standard structure, perform update behavior.
+- State the inferred behavior briefly when relevant.
 
 ### Step 3: Produce Documentation
 
-#### `--init` (new project)
+#### Initialize docs when missing or incomplete
 
 1. Create `docs/` and 4 topic folders: `architecture/`, `codebase/`, `code-standard/`, `project-pdr/`
 2. For each topic folder:
    a. Scan codebase for relevant information
    b. Generate content based on codebase scan
-   c. Create topic-specific files based on content found in the codebase. Name each file by its content (e.g., `components.md`, `conventions.md`). Do NOT use generic names (`overview.md`, `index.md`, `main.md`). Split into multiple files when content covers 2+ clearly distinct sub-topics or exceeds ~100 lines total. Minimum 1 file per folder.
+   c. Create topic-specific files based on content found in the codebase. Name each file by its content (e.g., `components.md`, `conventions.md`). Do NOT use generic names (`overview.md`, `index.md`, `main.md`). Split into multiple files when content covers 2+ clearly distinct sub-topics. Minimum 1 file per folder.
 3. Create `docs/SUMMARY.md` using the format specified in Content Requirements
 4. Update `README.md` with link to `docs/SUMMARY.md`
 
 Populate each file with concrete, project-specific content. Avoid placeholders and generic templates.
 
-#### `--update`
+#### Update docs when they already exist
 
 1. Detect what changed: compare current code against existing docs. Use `git log --oneline` and source file scanning to identify new/modified/removed components.
 2. Preserve useful existing content and section structure.
@@ -89,7 +82,7 @@ Before finishing, verify:
 - Each topic folder has at least 1 topic-specific file
 - No generic file names (`overview.md`, `index.md`, `main.md`) in topic folders
 - `README.md` links point to `docs/SUMMARY.md`
-- `SUMMARY.md` is ~30-50 lines, concise, and contains file tables for all sections
+- `SUMMARY.md` is concise and contains file tables for all sections
 - Terminology is consistent across files
 - No contradictions between docs and code
 - Paths and component names are accurate
@@ -99,7 +92,7 @@ Before finishing, verify:
 
 ### `SUMMARY.md` format
 
-~30-50 lines. Contains project overview and file tables for each documentation section.
+Contains project overview and file tables for each documentation section.
 
 Strictly follow the template in `references/summary-template.md`.
 
@@ -108,12 +101,11 @@ Strictly follow the template in `references/summary-template.md`.
 - Each file focuses on 1 specific sub-topic within its folder
 - Named by content slug: `components.md`, `conventions.md`, `product-goals.md`
 - Do NOT use generic names: `overview.md`, `index.md`, `main.md`, `general.md`
-- Target ~40-120 lines per file, adjust based on content depth
-- No hard size limit but should stay focused and concise
+- Keep files focused and concise without enforcing line-count targets
 
 ## Edge Cases
 
-- **Minimal/empty project**: If the codebase has very little code, keep topic files short and factual. Do not pad content to reach line targets. Mark sections as "TBD — to be documented as the project grows" when there is genuinely nothing to document yet. Even with 1 file per folder, name it by its content.
+- **Minimal/empty project**: If the codebase has very little code, keep topic files short and factual. Do not pad content to reach arbitrary size targets. Mark sections as "TBD — to be documented as the project grows" when there is genuinely nothing to document yet. Even with 1 file per folder, name it by its content.
 - **Custom files in `docs/`**: Preserve any user-created files outside the 4 standard topic folders (e.g., `docs/API.md`, `docs/deployment.md`). List them under "Other" in `SUMMARY.md`. Do not move or rename them.
 - **Monorepo**: If the project contains multiple packages/apps, document the overall structure in `architecture/components.md` and note each package's purpose. Each package does not need its own full docs set — keep it proportional.
 
@@ -122,6 +114,5 @@ Strictly follow the template in `references/summary-template.md`.
 - Keep documentation factual; do not invent requirements.
 - Prefer concise updates over verbose prose.
 - Keep docs aligned with current implementation.
-- Follow project conventions from `docs/code-standard/` topic files.
 - When uncertain, mark assumptions explicitly and request confirmation.
-- Ask targeted questions only when information cannot be reliably inferred (business goals, ambiguous module ownership, conflicting conventions, unclear architecture decisions).
+- Ask targeted questions when information cannot be reliably inferred (business goals, ambiguous module ownership, conflicting conventions, unclear architecture decisions).

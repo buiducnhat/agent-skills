@@ -90,18 +90,18 @@ Cài đặt skill vào thư mục home (`~/<agent>/skills/`) để dùng đượ
 
 ## Workflow skill của repository
 
-Repository này hiện định nghĩa 8 workflow skill first-party:
+Repository này hiện định nghĩa 8 workflow skill first-party và cũng pin thêm các upstream skill trong `skills-lock.json`:
 
-| Skill             | Mô tả                                                                |
-| ----------------- | -------------------------------------------------------------------- |
-| `ask`             | Đặt câu hỏi làm rõ để thu thập yêu cầu và ngữ cảnh                   |
-| `as-fix`          | Chẩn đoán và sửa lỗi với phân tích nguyên nhân gốc và bước xác minh  |
-| `as-review`       | Review thay đổi chưa commit với ngữ cảnh codebase và mức độ ưu tiên  |
-| `brainstorm`      | Khám phá ý tưởng và phân tích vấn đề phức tạp trước khi lên kế hoạch |
-| `docs`            | Khởi tạo (`--init`) hoặc cập nhật (`--update`) tài liệu project      |
-| `execute-plan`    | Thực thi kế hoạch đã viết theo từng giai đoạn với các điểm kiểm tra  |
-| `quick-implement` | Triển khai nhanh cho các thay đổi nhỏ, phạm vi rõ ràng               |
-| `write-plan`      | Tạo kế hoạch triển khai chi tiết theo từng giai đoạn                 |
+| Skill             | Mô tả                                                                   |
+| ----------------- | ----------------------------------------------------------------------- |
+| `as-ask`          | Đặt câu hỏi làm rõ để thu thập yêu cầu và ngữ cảnh                      |
+| `as-fix`          | Chẩn đoán và sửa lỗi với phân tích nguyên nhân gốc và bước xác minh     |
+| `as-review`       | Review thay đổi chưa commit với ngữ cảnh codebase và mức độ ưu tiên     |
+| `brainstorm`      | Khám phá ý tưởng và phân tích vấn đề phức tạp trước khi lên kế hoạch    |
+| `docs`            | Tạo mới hoặc làm mới tài liệu project dựa trên trạng thái repo hiện tại |
+| `execute-plan`    | Thực thi kế hoạch đã viết theo từng giai đoạn với các điểm kiểm tra     |
+| `quick-implement` | Triển khai nhanh cho các thay đổi nhỏ, phạm vi rõ ràng                  |
+| `write-plan`      | Tạo kế hoạch triển khai chi tiết theo từng giai đoạn                    |
 
 ### Chuỗi workflow khuyến nghị
 
@@ -110,7 +110,7 @@ Repository này hiện định nghĩa 8 workflow skill first-party:
 #### Khởi tạo tài liệu
 
 ```
-/docs --init # hoặc /docs --update để cập nhật tài liệu hiện có
+/docs
 ```
 
 #### Tác vụ phức tạp hoặc chưa rõ ràng

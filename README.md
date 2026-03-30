@@ -90,15 +90,15 @@ Installs skills to your home directory (`~/<agent>/skills/`) so they are availab
 
 ## Repository workflow skills
 
-This repository currently defines eight first-party workflow skills, with four additional skills pinned in `skills-lock.json` (`bootstrap`, `fix`, `review`, and `skill-creator` from `anthropics/skills`):
+This repository currently defines eight first-party workflow skills and also pins additional upstream skills in `skills-lock.json`:
 
 | Skill             | Description                                                          |
 | ----------------- | -------------------------------------------------------------------- |
-| `ask`             | Ask clarifying questions to gather requirements and context          |
+| `as-ask`          | Ask clarifying questions to gather requirements and context          |
 | `as-fix`          | Diagnose and resolve bugs with root-cause analysis and verification  |
 | `as-review`       | Review uncommitted changes with codebase context and severity levels |
 | `brainstorm`      | Explore ideas and break down complex problems before planning        |
-| `docs`            | Initialize (`--init`) or update (`--update`) project documentation   |
+| `docs`            | Create or refresh project documentation based on the current repo    |
 | `execute-plan`    | Execute written plans systematically with checkpoints                |
 | `quick-implement` | Rapid implementation for small, well-scoped changes                  |
 | `write-plan`      | Create detailed implementation plans with phases and tasks           |
@@ -110,7 +110,7 @@ This repository currently defines eight first-party workflow skills, with four a
 #### Init documentations
 
 ```
-/docs --init # or /docs --update for updating existing docs
+/docs
 ```
 
 #### Complex or ambiguous tasks
