@@ -6,7 +6,7 @@ Teams using AI coding assistants often need a repeatable way to bootstrap shared
 
 ## Product purpose
 
-`@buiducnhat/agent-skills` provides a CLI installer that runs the Vercel Labs skills CLI to install curated workflow skills into a target project, detects which agents were selected, injects shared agent instructions into each agent's rules file, and copies Claude Code configuration templates.
+`@buiducnhat/agent-skills` provides a CLI installer that runs the Vercel Labs skills CLI to install curated workflow skills into a target project, detects which agents were selected, and injects shared agent instructions into each agent's rules file.
 
 ## Target users
 
@@ -16,7 +16,7 @@ Teams using AI coding assistants often need a repeatable way to bootstrap shared
 
 ## Core use cases
 
-1. Fresh setup in a repository — run the CLI, select agents interactively via `@clack/prompts` multiselect (auto-detected agents pre-checked), get skills installed and rules files populated.
+1. Fresh setup in a repository — run the CLI, select agents interactively via `@clack/prompts` multiselect (auto-detected agents pre-checked), choose symlink or copy install mode, and get skills installed with rules files populated.
 2. Updating an existing setup — re-run the CLI; marker-based injection replaces existing rules without duplication.
 3. Non-interactive setup in automation using `--non-interactive` (installs all skills to all agents without prompts).
 4. Force copy mode using `--copy` when symlinks are not desired.
@@ -28,13 +28,14 @@ Teams using AI coding assistants often need a repeatable way to bootstrap shared
 ### In scope
 
 - Show a `@clack/prompts` multiselect prompt for agent selection; auto-detect installed agents and pre-select them
+- Prompt for install mode (`Symlink` or `Copy`) during interactive installs
 - Run `npx skills add buiducnhat/agent-skills --skill '*' -a <agents...> -y` non-interactively after selection
 - Inject `templates/AGENTS.md` content into each agent's rules file using marker-based append/replace
 - Installation summary showing agents configured and rules files updated
 - `--non-interactive` mode for automation (installs all agents, detects from filesystem)
 - `--copy` passthrough to skills CLI for copy-based installs
 - `--global` / `-g` mode for user-level (home directory) skill installation
-- 39 supported agents across major AI coding assistant platforms
+- 40 supported agents across major AI coding assistant platforms
 
 ### Constraints
 

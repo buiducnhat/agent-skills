@@ -1,5 +1,5 @@
 ---
-name: fix
+name: as-fix
 description: Diagnose and fix bugs with root-cause analysis and verification. Use when you have a concrete issue report, failing behavior, runtime error, or test regression that should be resolved safely. For ambiguous, high-risk, or broad-scope issues, stop and route to write-plan first.
 ---
 

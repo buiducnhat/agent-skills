@@ -1,8 +1,8 @@
 # agent-skills
 
-Install standardized AI agent workflow skills and configuration assets into any repository with a single command.
+Install standardized AI agent workflow skills and shared rules-file content into any repository with a single command.
 
-Supports **39 AI coding agents** including Claude Code, Cursor, Windsurf, Copilot, Cline, Roo Code, and more.
+Supports **40 AI coding agents** including Claude Code, Cursor, Windsurf, Copilot, Cline, Roo Code, and more.
 
 ---
 
@@ -15,9 +15,9 @@ Supports **39 AI coding agents** including Claude Code, Cursor, Windsurf, Copilo
 Running the installer:
 
 1. Lets you **select which agents** to configure (auto-detects already-installed agents)
-2. Installs **9 workflow skills** into each agent's skills directory via the [Vercel skills CLI](https://github.com/vercel-labs/skills)
-3. Injects **shared agent instructions** (`AGENTS.md`) into each agent's rules file using idempotent markers
-4. Copies **Claude Code settings** (`.claude/`) into your project
+2. Lets you choose whether the skills are installed as **symlinks** or **copied files**
+3. Installs workflow skills into each agent's skills directory via the [Vercel skills CLI](https://github.com/vercel-labs/skills)
+4. Injects **shared agent instructions** (`AGENTS.md`) into each agent's rules file using idempotent markers
 
 ## Installation
 
@@ -69,7 +69,6 @@ Installs skills to your home directory (`~/<agent>/skills/`) so they are availab
 ◇  Installation complete!
 │
 │  What was set up:
-│    .claude/              - Claude Code settings
 │    CLAUDE.md             - updated
 │
 │  Agent configurations updated for:
@@ -89,21 +88,20 @@ Installs skills to your home directory (`~/<agent>/skills/`) so they are availab
 | `-h, --help`        | Show help                                        |
 | `-v, --version`     | Show version                                     |
 
-## Workflow skills
+## Repository workflow skills
 
-Nine reusable workflow skills are installed into each agent:
+This repository currently defines eight first-party workflow skills:
 
-| Skill             | Description                                                               |
-| ----------------- | ------------------------------------------------------------------------- |
-| `ask`             | Ask clarifying questions to gather requirements and context               |
-| `bootstrap`       | Set up project structure, documentation, and conventions for new projects |
-| `brainstorm`      | Explore ideas and break down complex problems before planning             |
-| `docs`            | Initialize (`--init`) or update (`--update`) project documentation        |
-| `execute-plan`    | Execute written plans systematically with checkpoints                     |
-| `fix`             | Diagnose and resolve bugs                                                 |
-| `quick-implement` | Rapid implementation for simple tasks or bug fixes                        |
-| `review`          | Review uncommitted changes with codebase context                          |
-| `write-plan`      | Create detailed implementation plans with phases and tasks                |
+| Skill             | Description                                                          |
+| ----------------- | -------------------------------------------------------------------- |
+| `ask`             | Ask clarifying questions to gather requirements and context          |
+| `as-fix`          | Diagnose and resolve bugs with root-cause analysis and verification  |
+| `as-review`       | Review uncommitted changes with codebase context and severity levels |
+| `brainstorm`      | Explore ideas and break down complex problems before planning        |
+| `docs`            | Initialize (`--init`) or update (`--update`) project documentation   |
+| `execute-plan`    | Execute written plans systematically with checkpoints                |
+| `quick-implement` | Rapid implementation for small, well-scoped changes                  |
+| `write-plan`      | Create detailed implementation plans with phases and tasks           |
 
 ### Recommended workflow sequences
 
@@ -190,13 +188,13 @@ Use for small, well-scoped changes where a formal plan would be overhead.
 #### Bug fixes
 
 ```
-fix
+as-fix
 ```
 
 Use when you have a concrete error, failing test, or unexpected behavior to diagnose.
 
 ```
-/fix TypeError: Cannot read properties of undefined at checkout.ts:42
+/as-fix TypeError: Cannot read properties of undefined at checkout.ts:42
 
 # For simple bugs: agent diagnoses, applies fix, verifies
 # For complex bugs: agent stops and routes to write-plan
@@ -205,7 +203,7 @@ Use when you have a concrete error, failing test, or unexpected behavior to diag
 ## Supported agents
 
 <details>
-<summary>View all 39 supported agents</summary>
+<summary>View all 40 supported agents</summary>
 
 AdaL, Amp, Antigravity, Augment, Claude Code, Cline, CodeBuddy, Codex, Command Code, Continue, Cortex Code, Crush, Cursor, Droid, Gemini CLI, GitHub Copilot, Goose, iFlow CLI, Junie, Kilo Code, Kimi Code CLI, Kiro CLI, Kode, MCPJam, Mistral Vibe, Mux, Neovate, OpenClaw, OpenCode, OpenHands, Pi, Pochi, Qoder, Qwen Code, Replit, Roo Code, Trae, Trae CN, Windsurf, Zencoder
 

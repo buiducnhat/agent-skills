@@ -14,6 +14,8 @@
 ├── packages/
 │   └── cli/
 │       ├── package.json          # Package metadata, scripts, dependencies, bin
+│       ├── skills-lock.json      # Package-level Skills CLI lock file
+│       ├── README.md             # Package README used for npm publishing
 │       ├── tsconfig.json         # TypeScript compiler options
 │       ├── tsdown.config.ts      # Build/bundling config
 │       └── src/
@@ -24,35 +26,34 @@
 │           ├── utils.ts          # Arg parsing, detection, copy, help/summary output
 │           └── constants.ts      # Repository constants, agent maps, marker strings
 ├── skills/                       # Workflow skill definitions (distributed via skills CLI)
+│   ├── as-fix/SKILL.md
+│   ├── as-review/SKILL.md
 │   ├── ask/SKILL.md
-│   ├── bootstrap/SKILL.md
 │   ├── brainstorm/SKILL.md
 │   ├── docs/SKILL.md
 │   ├── execute-plan/SKILL.md
-│   ├── fix/SKILL.md
 │   ├── quick-implement/SKILL.md
-│   ├── review/SKILL.md
 │   └── write-plan/SKILL.md
 ├── templates/
-│   ├── AGENTS.md                 # Shared agent instructions injected into rules files
+│   └── AGENTS.md                 # Shared agent instructions injected into rules files
 └── docs/                         # Project documentation
 ```
 
 ## Directory responsibilities
 
 - `packages/cli/`: publishable npm package (`@buiducnhat/agent-skills`) containing executable logic.
-- `skills/`: workflow skill definitions (`SKILL.md` files) distributed to consumer projects via the Vercel skills CLI.
-- `templates/`: canonical template payload (agent instructions) copied into consumer repositories.
+- `skills/`: repository-owned workflow skill definitions (`SKILL.md` files) distributed to consumer projects via the Vercel skills CLI.
+- `templates/`: canonical template payload for shared rules content injected into consumer repositories.
 - `docs/`: product, standards, codebase, and architecture documentation.
 
 ## Key entry points and modules
 
-- `packages/cli/src/index.ts`: main flow (`parse args → detect/select agents → run skills CLI → fetch templates → inject rules → summary`). Handles `--help`, `--version`, `--non-interactive`, `--copy`, and `--global`/`-g` flags.
+- `packages/cli/src/index.ts`: main flow (`parse args → detect/select agents → choose symlink/copy mode → run skills CLI → fetch templates → inject rules → summary`). Handles `--help`, `--version`, `--non-interactive`, `--copy`, and `--global`/`-g` flags.
 - `packages/cli/src/skills.ts`: spawns `npx skills add` using `--all` or explicit `-a <agent>` arguments, with optional `--copy` passthrough.
 - `packages/cli/src/rules.ts`: maps agent identifiers to rules file paths, performs marker-based injection of `AGENTS.md` content.
 - `packages/cli/src/fetch.ts`: clones this repository into a temp directory and validates `templates/AGENTS.md` exist.
 - `packages/cli/src/utils.ts`: shared utilities — arg parsing, filesystem agent detection, help text, and install summary.
-- `packages/cli/src/constants.ts`: `REPO_URL`, `REPO_BRANCH`, `SUPPORTED_AGENTS` (39 agents), `AGENT_SKILLS_DIRS`, `AGENT_RULES_MAP`, marker constants.
+- `packages/cli/src/constants.ts`: `REPO_URL`, `REPO_BRANCH`, `SUPPORTED_AGENTS` (40 agents), `AGENT_SKILLS_DIRS`, `AGENT_RULES_MAP`, marker constants.
 
 ## Important scripts and config files
 
@@ -67,4 +68,5 @@
   - `bun run build` → build with `tsdown`
   - `bun run check` → Biome check/write
   - `prepublishOnly` → `bun run build` before publish
+- Root and package `skills-lock.json`: pin the skill sources resolved by the Vercel skills CLI; these manifests should stay aligned with the repository skill inventory and names.
 - `.gitignore`: ignores local `.claude/`, generated plans/brainstorms docs subfolders, and CLI build artifacts.
