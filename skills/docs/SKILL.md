@@ -17,10 +17,10 @@ Create and maintain project documentation in `docs/` with a consistent, lightwei
 Maintain these outputs:
 
 1. `docs/SUMMARY.md` — documentation entry point (always regenerated on init/update)
-2. `docs/architecture/` — topic-specific detail files
-3. `docs/codebase/` — topic-specific detail files
-4. `docs/code-standard/` — topic-specific detail files
-5. `docs/project-pdr/` — topic-specific detail files
+2. `docs/architecture/` — system design, infrastructure, component interactions, data flows, feature flows. Focus on *how the system works*, not file/code structure.
+3. `docs/codebase/` — file organization, directory structure, entry points, key modules and their responsibilities. Focus on *where things live in the code*.
+4. `docs/code-standard/` — coding conventions, naming rules, style guides, environment setup, custom rules and patterns the team follows.
+5. `docs/project-pdr/` — product goals, use cases, business rules, constraints, and decision rationale.
 
 Also keep README.md aligned with current docs links and project summary.
 
