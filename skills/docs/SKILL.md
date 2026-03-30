@@ -58,8 +58,7 @@ If mode is explicitly provided (`--init` or `--update`), use that mode. Otherwis
 2. For each topic folder:
    a. Scan codebase for relevant information
    b. Generate content based on codebase scan
-   c. Create topic-specific files following `references/file-breakdown.md` for naming and splitting guidance
-   d. Minimum 1 file per folder
+   c. Create topic-specific files based on content found in the codebase. Name each file by its content (e.g., `components.md`, `conventions.md`). Do NOT use generic names (`overview.md`, `index.md`, `main.md`). Split into multiple files when content covers 2+ clearly distinct sub-topics or exceeds ~100 lines total. Minimum 1 file per folder.
 3. Create `docs/SUMMARY.md` using the format specified in Content Requirements
 4. Update `README.md` with link to `docs/SUMMARY.md`
 
@@ -78,7 +77,7 @@ If mode is explicitly provided (`--init` or `--update`), use that mode. Otherwis
 1. For each legacy flat file (`docs/architecture.md`, `docs/codebase.md`, `docs/code-standard.md`, `docs/project-pdr.md`):
    a. Read the full content of the flat file
    b. Create the corresponding topic folder (`docs/architecture/`, etc.)
-   c. Split content into topic-specific files per `references/file-breakdown.md`. If content is small enough for 1 file, name it by its dominant topic.
+   c. Split content into topic-specific files based on content. Name each file by its content (e.g., `components.md`). If content is small enough for 1 file, name it by its dominant topic.
 2. Verify all content from flat files is preserved in the new structure
 3. Delete flat files only after verification passes
 4. Create `docs/SUMMARY.md`
@@ -164,7 +163,6 @@ Product goals, use cases, business rules, and constraints.
 - Do NOT use generic names: `overview.md`, `index.md`, `main.md`, `general.md`
 - Target ~40-120 lines per file, adjust based on content depth
 - No hard size limit but should stay focused and concise
-- For file naming and splitting guidance, follow `references/file-breakdown.md`
 
 ## Edge Cases
 
