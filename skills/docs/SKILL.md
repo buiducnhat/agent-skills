@@ -1,6 +1,6 @@
 ---
 name: docs
-description: Initialize or update project documentation with a hierarchical `docs/` structure. Use when setting up docs for a new project (`--init`), syncing docs to current codebase and architecture changes (`--update`), or migrating flat docs to hierarchical format. Triggers on: "generate documentation", "setup project docs", "update docs", "sync docs", "create documentation", "document this project", "docs are outdated", "project has no docs", or any request to create, refresh, reorganize, or migrate project documentation.
+description: Initialize or update project documentation with a hierarchical `docs/` structure. Use when setting up docs for a new project (`--init`), syncing docs to current codebase and architecture changes (`--update`), or migrating flat docs to hierarchical format.
 ---
 
 # Docs
