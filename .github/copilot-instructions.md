@@ -10,9 +10,6 @@ The `Code Standard` section is very important to keep the code consistent, maint
 ### Step 2 — Load on Demand
 Based on the current task, use the file tables in `docs/SUMMARY.md` to identify and load only the detail files that are directly relevant. Do NOT load all detail files upfront.
 
-### Fallback (legacy structure)
-If `docs/SUMMARY.md` does not exist but flat files like `docs/architecture.md`, `docs/codebase.md` etc. exist, load them directly. Consider running `docs --update` to migrate to the new SUMMARY structure.
-
 ## Question Tool Mandate
 
 `Question Tool` is the common method for asking users questions with interactive options. Always use it when asking a question during task execution. Do not ask questions in plain text unless the interface does not support interactive tools. The table below shows which tool to use for each agent:

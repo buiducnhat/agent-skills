@@ -31,9 +31,7 @@ Also keep README.md aligned with current docs links and project summary.
 
 Scan the project to understand what needs documenting:
 
-1. Read existing docs if any:
-   - `docs/SUMMARY.md` (current structure)
-   - `docs/*.md` flat files (legacy)
+1. Read existing docs if any (`docs/SUMMARY.md` and topic folders)
 2. Read `README.md` and key config files (`package.json`, `tsconfig.json`, `Cargo.toml`, etc.)
 3. Scan source directories to understand project structure, entry points, and major components
 4. Check `git log --oneline -20` for recent changes (useful for `--update` mode)
@@ -42,11 +40,9 @@ Focus on facts: features, architecture, stack, directory structure, and workflow
 
 ### Step 2: Choose Mode
 
-Detect the current documentation structure and select the appropriate mode:
-
-1. **If `docs/SUMMARY.md` exists** → current structure detected → run `--update` in-place
-2. **If flat files exist (`docs/architecture.md`, etc.) but no `docs/SUMMARY.md`** → legacy flat detected → run `--update` with migration from flat
-3. **If none exists** → no docs found → run `--init`
+- If docs do not exist or are incomplete: run `--init` behavior.
+- If docs exist: run `--update` behavior.
+- If mode is unspecified, infer from repository state and state your assumption.
 
 If mode is explicitly provided (`--init` or `--update`), use that mode. Otherwise, infer from the repository state and state your assumption.
 
@@ -62,26 +58,20 @@ If mode is explicitly provided (`--init` or `--update`), use that mode. Otherwis
 3. Create `docs/SUMMARY.md` using the format specified in Content Requirements
 4. Update `README.md` with link to `docs/SUMMARY.md`
 
-#### `--update` (new structure exists)
+Populate each file with concrete, project-specific content. Avoid placeholders and generic templates.
+
+#### `--update`
 
 1. Detect what changed: compare current code against existing docs. Use `git log --oneline` and source file scanning to identify new/modified/removed components.
-2. Update detail files in each topic folder by editing relevant sections in-place — do not rewrite from scratch.
-3. Add, modify, or remove detail files as needed based on content changes.
-4. Regenerate `docs/SUMMARY.md` to match current files — only list files that actually exist on disk.
-5. Update `README.md` if documentation links changed.
+2. Preserve useful existing content and section structure.
+3. Update stale or inaccurate sections in-place — do not rewrite from scratch.
+4. Add newly discovered features, components, or conventions.
+5. Remove clearly obsolete statements.
+6. Add, modify, or remove detail files as needed based on content changes.
+7. Regenerate `docs/SUMMARY.md` to match current files — only list files that actually exist on disk.
+8. Update `README.md` if documentation links changed.
 
 **Important**: The goal is an incremental, surgical update — not a full rewrite.
-
-#### `--update` with migration from flat files (`docs/architecture.md` etc. detected)
-
-1. For each legacy flat file (`docs/architecture.md`, `docs/codebase.md`, `docs/code-standard.md`, `docs/project-pdr.md`):
-   a. Read the full content of the flat file
-   b. Create the corresponding topic folder (`docs/architecture/`, etc.)
-   c. Split content into topic-specific files based on content. Name each file by its content (e.g., `components.md`). If content is small enough for 1 file, name it by its dominant topic.
-2. Verify all content from flat files is preserved in the new structure
-3. Delete flat files only after verification passes
-4. Create `docs/SUMMARY.md`
-5. Update `README.md` links
 
 ### Step 4: Sync README
 
@@ -98,7 +88,6 @@ Before finishing, verify:
 - `docs/SUMMARY.md` exists and lists every detail file that actually exists on disk (no phantom entries)
 - Each topic folder has at least 1 topic-specific file
 - No generic file names (`overview.md`, `index.md`, `main.md`) in topic folders
-- No flat documentation files exist outside the folder structure (except `SUMMARY.md`, `brainstorms/`, `plans/`)
 - `README.md` links point to `docs/SUMMARY.md`
 - `SUMMARY.md` is ~30-50 lines, concise, and contains file tables for all sections
 - Terminology is consistent across files
@@ -112,49 +101,7 @@ Before finishing, verify:
 
 ~30-50 lines. Contains project overview and file tables for each documentation section.
 
-Example:
-
-```markdown
-# Documentation Summary
-
-<Project name> — <1-2 sentence project description>.
-<Key tech stack or architecture summary>.
-
-## Architecture
-
-System design, component interactions, data flows, deployment, and external integrations.
-
-| File | Description |
-|------|-------------|
-| [components.md](architecture/components.md) | Subsystems, responsibilities, boundaries |
-| [data-flow.md](architecture/data-flow.md) | Request lifecycle and data pipeline |
-
-## Codebase
-
-Directory structure, entry points, API patterns, and key modules.
-
-| File | Description |
-|------|-------------|
-| [directory-structure.md](codebase/directory-structure.md) | Top-level tree, folder responsibilities |
-| [database-schema.md](codebase/database-schema.md) | Table definitions and relationships |
-
-## Code Standard
-
-Conventions, naming rules, tech stack versions, and development workflows.
-
-| File | Description |
-|------|-------------|
-| [conventions.md](code-standard/conventions.md) | Naming, patterns, TypeScript, design principles |
-
-## Project PDR
-
-Product goals, use cases, business rules, and constraints.
-
-| File | Description |
-|------|-------------|
-| [product-goals.md](project-pdr/product-goals.md) | Problem, purpose, target users, business goals |
-
-```
+Strictly follow the template in `references/summary-template.md`.
 
 ### Topic file rules
 
@@ -169,7 +116,6 @@ Product goals, use cases, business rules, and constraints.
 - **Minimal/empty project**: If the codebase has very little code, keep topic files short and factual. Do not pad content to reach line targets. Mark sections as "TBD — to be documented as the project grows" when there is genuinely nothing to document yet. Even with 1 file per folder, name it by its content.
 - **Custom files in `docs/`**: Preserve any user-created files outside the 4 standard topic folders (e.g., `docs/API.md`, `docs/deployment.md`). List them under "Other" in `SUMMARY.md`. Do not move or rename them.
 - **Monorepo**: If the project contains multiple packages/apps, document the overall structure in `architecture/components.md` and note each package's purpose. Each package does not need its own full docs set — keep it proportional.
-- **Conflicting info during migration**: If flat file content contradicts current code, trust the code. Update the content during migration rather than preserving stale information.
 
 ## Rules
 
