@@ -1,13 +1,17 @@
 ## Context Loading Protocol
 
-Before planning or implementing any features that need gathering details context, read these project documentation files:
+Before planning or implementing any features, load project documentation:
 
-1. `docs/architecture.md` — system design, system components and data flow
-2. `docs/codebase.md` — key files, entry points, and modules
-3. `docs/code-standard.md` — code convention, guidelines, style
-4. `docs/project-pdr.md` — product requirements, business context, and scope
+### Step 1 — Load Entry Point
+Read `docs/SUMMARY.md` to get the full documentation landscape. This single file contains the project overview and tables listing all detail files with descriptions.
 
-The `code-standard` is very important to keep the code consistent, maintainable. Only read what is relevant to the current task. Skip files that don't exist. Let documentation guide implementation — if docs conflict with implementation needs, clarify with the user instead of guessing.
+The `Code Standard` section is very important to keep the code consistent, maintainable. Skip if the file doesn't exist. Let documentation guide implementation — if docs conflict with implementation needs, clarify with the user instead of guessing.
+
+### Step 2 — Load on Demand
+Based on the current task, use the file tables in `docs/SUMMARY.md` to identify and load only the detail files that are directly relevant. Do NOT load all detail files upfront.
+
+### Fallback (legacy structure)
+If `docs/SUMMARY.md` does not exist but flat files like `docs/architecture.md`, `docs/codebase.md` etc. exist, load them directly. Consider running `docs --update` to migrate to the new SUMMARY structure.
 
 ## Question Tool Mandate
 

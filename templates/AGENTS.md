@@ -1,24 +1,17 @@
 ## Context Loading Protocol
 
-Before planning or implementing any features, load project documentation in two tiers:
+Before planning or implementing any features, load project documentation:
 
-### Tier 1 — Always Load
-Read these summary files to get project overview:
-1. `docs/_index.md` — documentation manifest
-2. `docs/architecture/summary.md` — system design overview
-3. `docs/codebase/summary.md` — file structure and entry points
-4. `docs/code-standard/summary.md` — key conventions and rules
-5. `docs/project-pdr/summary.md` — product goals and scope
+### Step 1 — Load Entry Point
+Read `docs/SUMMARY.md` to get the full documentation landscape. This single file contains the project overview and tables listing all detail files with descriptions.
 
-The `code-standard` summary is very important to keep the code consistent, maintainable. Skip files that don't exist. Let documentation guide implementation — if docs conflict with implementation needs, clarify with the user instead of guessing.
+The `Code Standard` section is very important to keep the code consistent, maintainable. Skip if the file doesn't exist. Let documentation guide implementation — if docs conflict with implementation needs, clarify with the user instead of guessing.
 
-### Tier 2 — Load on Demand
-Based on the current task, consult `docs/_index.md` to identify relevant detail files, then load only what is needed.
-
-Do NOT load all detail files upfront. Only load detail files that are directly relevant to the task at hand.
+### Step 2 — Load on Demand
+Based on the current task, use the file tables in `docs/SUMMARY.md` to identify and load only the detail files that are directly relevant. Do NOT load all detail files upfront.
 
 ### Fallback (legacy structure)
-If `docs/_index.md` does not exist but flat files like `docs/architecture.md` exist, fall back to reading those flat files directly. Consider running `docs --update` to migrate to the new hierarchical structure.
+If `docs/SUMMARY.md` does not exist but flat files like `docs/architecture.md`, `docs/codebase.md` etc. exist, load them directly. Consider running `docs --update` to migrate to the new SUMMARY structure.
 
 ## Question Tool Mandate
 
