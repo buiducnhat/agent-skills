@@ -23,18 +23,19 @@ The published npm package (`@buiducnhat/agent-skills`). Handles argument parsing
 
 ### Skill Library (`skills/`)
 
-Eight first-party workflow skill definitions live in `skills/`. Each skill has a `SKILL.md` with YAML frontmatter and may include `references/` assets:
+Nine first-party workflow skill definitions live in `skills/`. Each skill has a `SKILL.md` with YAML frontmatter and may include `references/` assets:
 
-| Skill             | Purpose                                                       |
-| ----------------- | ------------------------------------------------------------- |
-| `as-ask`          | Structured clarification and requirements gathering           |
-| `as-fix`          | Bug diagnosis and fix                                         |
-| `as-review`       | Uncommitted-changes code review                               |
-| `brainstorm`      | Ambiguous problem exploration                                 |
-| `docs`            | Documentation creation or refresh based on current repo state |
-| `execute-plan`    | Phase-by-phase plan execution                                 |
-| `quick-implement` | Small, low-risk changes                                       |
-| `write-plan`      | Phased implementation planning                                |
+| Skill             | Purpose                                                        |
+| ----------------- | -------------------------------------------------------------- |
+| `as-ask`          | Structured clarification and requirements gathering            |
+| `as-fix`          | Bug diagnosis and fix                                          |
+| `as-review`       | Uncommitted-changes code review                                |
+| `brainstorm`      | Ambiguous problem exploration                                  |
+| `docs`            | Documentation creation or refresh based on current repo state  |
+| `execute-plan`    | Phase-by-phase plan execution                                  |
+| `git-commit`      | Conventional commit message generation and intelligent staging |
+| `quick-implement` | Small, low-risk changes                                        |
+| `write-plan`      | Phased implementation planning                                 |
 
 `skills-lock.json` complements these first-party skills by pinning upstream skills from external repositories so installs remain reproducible.
 

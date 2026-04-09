@@ -31,13 +31,14 @@ AI coding agents each use different skills directories, rules-file names, and co
 
 ## Workflow Skills Provided
 
-Eight workflow skills cover the full development lifecycle:
+Nine workflow skills cover the full development lifecycle:
 
 - **Clarification**: `as-ask`
 - **Planning**: `brainstorm`, `write-plan`
 - **Execution**: `execute-plan`, `quick-implement`
 - **Quality**: `as-fix`, `as-review`
 - **Documentation**: `docs`
+- **Version Control**: `git-commit`
 
 The repository also tracks additional upstream skills in `skills-lock.json` so downstream installs can include externally maintained capabilities alongside the first-party set.
 

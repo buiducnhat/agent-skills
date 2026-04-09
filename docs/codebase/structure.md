@@ -35,6 +35,7 @@ agent-skills/
 │   │   └── references/
 │   │       └── summary-template.md
 │   ├── execute-plan/SKILL.md
+│   ├── git-commit/SKILL.md
 │   ├── quick-implement/SKILL.md
 │   └── write-plan/SKILL.md
 ├── templates/

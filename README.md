@@ -90,7 +90,7 @@ Installs skills to your home directory (`~/<agent>/skills/`) so they are availab
 
 ## Repository workflow skills
 
-This repository currently defines eight first-party workflow skills and also pins additional upstream skills in `skills-lock.json`:
+This repository currently defines nine first-party workflow skills and also pins additional upstream skills in `skills-lock.json`:
 
 | Skill             | Description                                                          |
 | ----------------- | -------------------------------------------------------------------- |
@@ -100,6 +100,7 @@ This repository currently defines eight first-party workflow skills and also pin
 | `brainstorm`      | Explore ideas and break down complex problems before planning        |
 | `docs`            | Create or refresh project documentation based on the current repo    |
 | `execute-plan`    | Execute written plans systematically with checkpoints                |
+| `git-commit`      | Create conventional commit messages from staged or unstaged changes  |
 | `quick-implement` | Rapid implementation for small, well-scoped changes                  |
 | `write-plan`      | Create detailed implementation plans with phases and tasks           |
 

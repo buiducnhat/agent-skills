@@ -21,6 +21,7 @@
 | A bug or failing behavior needs root-cause diagnosis           | `as-fix`                          |
 | Current uncommitted changes need review                        | `as-review`                       |
 | Repository documentation needs to be created or refreshed      | `docs`                            |
+| Staged or unstaged changes need a conventional commit message  | `git-commit`                      |
 
 ## Maintainer Use Cases
 

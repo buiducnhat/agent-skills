@@ -90,18 +90,19 @@ Cài đặt skill vào thư mục home (`~/<agent>/skills/`) để dùng đượ
 
 ## Workflow skill của repository
 
-Repository này hiện định nghĩa 8 workflow skill first-party và cũng pin thêm các upstream skill trong `skills-lock.json`:
+Repository này hiện định nghĩa 9 workflow skill first-party và cũng pin thêm các upstream skill trong `skills-lock.json`:
 
-| Skill             | Mô tả                                                                   |
-| ----------------- | ----------------------------------------------------------------------- |
-| `as-ask`          | Đặt câu hỏi làm rõ để thu thập yêu cầu và ngữ cảnh                      |
-| `as-fix`          | Chẩn đoán và sửa lỗi với phân tích nguyên nhân gốc và bước xác minh     |
-| `as-review`       | Review thay đổi chưa commit với ngữ cảnh codebase và mức độ ưu tiên     |
-| `brainstorm`      | Khám phá ý tưởng và phân tích vấn đề phức tạp trước khi lên kế hoạch    |
-| `docs`            | Tạo mới hoặc làm mới tài liệu project dựa trên trạng thái repo hiện tại |
-| `execute-plan`    | Thực thi kế hoạch đã viết theo từng giai đoạn với các điểm kiểm tra     |
-| `quick-implement` | Triển khai nhanh cho các thay đổi nhỏ, phạm vi rõ ràng                  |
-| `write-plan`      | Tạo kế hoạch triển khai chi tiết theo từng giai đoạn                    |
+| Skill             | Mô tả                                                                           |
+| ----------------- | ------------------------------------------------------------------------------- |
+| `as-ask`          | Đặt câu hỏi làm rõ để thu thập yêu cầu và ngữ cảnh                              |
+| `as-fix`          | Chẩn đoán và sửa lỗi với phân tích nguyên nhân gốc và bước xác minh             |
+| `as-review`       | Review thay đổi chưa commit với ngữ cảnh codebase và mức độ ưu tiên             |
+| `brainstorm`      | Khám phá ý tưởng và phân tích vấn đề phức tạp trước khi lên kế hoạch            |
+| `docs`            | Tạo mới hoặc làm mới tài liệu project dựa trên trạng thái repo hiện tại         |
+| `execute-plan`    | Thực thi kế hoạch đã viết theo từng giai đoạn với các điểm kiểm tra             |
+| `git-commit`      | Tạo commit message theo chuẩn conventional từ thay đổi đã stage hoặc chưa stage |
+| `quick-implement` | Triển khai nhanh cho các thay đổi nhỏ, phạm vi rõ ràng                          |
+| `write-plan`      | Tạo kế hoạch triển khai chi tiết theo từng giai đoạn                            |
 
 ### Chuỗi workflow khuyến nghị
 
@@ -225,7 +226,4 @@ Các tag push khớp với `v*` sẽ kích hoạt GitHub Actions workflow `.gith
 
 ## Tài liệu
 
-- [Product PDR](docs/project-pdr.md)
-- [Kiến trúc](docs/architecture.md)
-- [Bản đồ Codebase](docs/codebase.md)
-- [Tiêu chuẩn Code](docs/code-standard.md)
+- [Tổng quan tài liệu](docs/SUMMARY.md)
