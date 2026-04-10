@@ -19,7 +19,7 @@ Use this skill only when:
 2. **User input is required** — the task cannot proceed without answers from the user
 3. **No assumptions are safe** — guessing would risk wasted effort or wrong direction
 
-If the task is clear enough to act on, use `brainstorm`, `write-plan`, or `quick-implement` instead.
+If the task is very clear enough to act on, use `brainstorm`, `write-plan`, or `quick-implement` instead.
 
 ## Workflow
 

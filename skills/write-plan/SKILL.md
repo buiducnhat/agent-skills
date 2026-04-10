@@ -59,6 +59,7 @@ Design a phased strategy that is safe and verifiable.
 Each phase should have:
 
 - A clear objective
+- The complexity and risk level appropriate to the phase with values: `S`, `M`, `L`, `XL`
 - Ordered tasks
 - Verification commands
 - Exit criteria

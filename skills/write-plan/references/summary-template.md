@@ -20,8 +20,8 @@
 
 ## Phases
 
-- [ ] **Phase 1: <name>** — <goal>
-- [ ] **Phase 2: <name>** — <goal>
+- [ ] **Phase 1 [S (complexity rate)]: <name>** — <goal>
+- [ ] **Phase 2 [M (complexity rate)]: <name>** — <goal>
 
 ## Key Changes
 

@@ -122,3 +122,7 @@ EOF
 - NEVER skip hooks (--no-verify) unless user asks
 - NEVER force push to main/master
 - If commit fails due to hooks, fix and create NEW commit (don't amend)
+
+## Other rules
+
+- NEVER automatically add the co-author trailer without user request, as it may contain sensitive information. Always ask the user if they want to include co-authors and who they are before adding the `Co-authored-by` trailer to the commit message.
