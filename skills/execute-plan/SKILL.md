@@ -113,6 +113,27 @@ After all phases are complete:
 4. **Announce Completion**
    - Output: `Execution complete. Report archived at docs/plans/archived/YYMMDD-HHmm-<plan-slug>/EXECUTION-REPORT.md.`
 
+### Step 5: Final Confirmation Gate
+
+After completion artifacts are done, ask the user for a final confirmation using the Question Tool with exactly these options:
+
+- `Confirm: End session`
+- `Confirm and Auto commit git`
+- `Need verify`
+
+Handle the selected option as follows:
+
+1. **`Confirm: End session`**
+   - End the execution session.
+
+2. **`Confirm and Auto commit git`**
+   - Trigger the `git-commit` skill and complete an automatic commit flow.
+   - After commit succeeds, end the execution session.
+
+3. **`Need verify`**
+   - Allow the user to provide verification feedback/details.
+   - Continue the execution loop to address feedback, then re-run verification and completion steps as needed.
+
 ## Execution Report Standard
 
 `EXECUTION-REPORT.md` must use this structure:
