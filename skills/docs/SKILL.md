@@ -1,6 +1,7 @@
 ---
 name: docs
 description: Create or refresh project documentation in `docs/`. Use when a project needs docs initialized or existing docs synced to the current codebase.
+license: MIT
 ---
 
 # Docs

@@ -1,6 +1,8 @@
 ---
 name: quick-implement
 description: Rapid implementation for small, low-risk, well-defined changes. Use when the task is narrow in scope, has clear acceptance criteria, and can be completed safely without a formal multi-phase plan.
+argument-hint: "[brief description of the change to implement]"
+license: MIT
 ---
 
 # Quick Implement

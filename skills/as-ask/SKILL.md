@@ -1,6 +1,8 @@
 ---
 name: as-ask
 description: Structured clarification and requirements gathering through focused dialogue. Use when a task is ambiguous, underspecified, or requires user input before any action can be taken. Do not plan or implement anything—only ask questions to collect the information needed.
+argument-hint: "[question]"
+license: MIT
 ---
 
 # Ask
@@ -57,6 +59,7 @@ Once all gaps are closed:
 1. Summarize the collected answers concisely
 2. Confirm with the user that the summary is correct
 3. Recommend the appropriate next skill based on complexity:
+   - If no need to implement any code, just write the response immediately.
    - Simple, clear task → `quick-implement`
    - Complex or risky task → `write-plan`
    - Ambiguous, high-risk, or exploratory → `brainstorm`

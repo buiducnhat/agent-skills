@@ -1,6 +1,8 @@
 ---
 name: write-plan
 description: Create detailed, execution-ready implementation plans for complex or high-risk changes without coding. Use when scope is large, requirements are mostly known, and work should be broken into validated phases before execution.
+argument-hint: "[brief description of the change to plan]"
+license: MIT
 ---
 
 # Write Plan

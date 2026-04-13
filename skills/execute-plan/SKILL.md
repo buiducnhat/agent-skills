@@ -1,6 +1,8 @@
 ---
 name: execute-plan
 description: Execute an approved implementation plan exactly and safely. Use when a plan already exists (for example in docs/plans/...) and work must be carried out phase-by-phase with verification checkpoints, status tracking, and final execution reporting.
+argument-hint: "[plan path, e.g. docs/plans/YYMMDD-HHmm-<plan-slug>/SUMMARY.md]"
+license: MIT
 ---
 
 # Execute Plan

@@ -1,6 +1,8 @@
 ---
 name: brainstorm
 description: Collaborative discovery and design framing for ambiguous or high-risk work. Use when requirements are unclear, multiple approaches are possible, or you need to turn an idea into a validated design brief before planning or coding.
+argument-hint: "[brief description of the idea or problem to solve]"
+license: MIT
 ---
 
 # Brainstorm
