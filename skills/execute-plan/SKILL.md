@@ -1,6 +1,6 @@
 ---
 name: execute-plan
-description: Execute an approved implementation plan exactly and safely. Use when a plan already exists (for example in docs/plans/...) and work must be carried out phase-by-phase with verification checkpoints, status tracking, and final execution reporting.
+description: Execute an approved implementation plan exactly and safely. Use when a plan already exists and work must be carried out phase-by-phase with verification checkpoints, status tracking, and final execution reporting.
 argument-hint: "[plan path, e.g. docs/plans/YYMMDD-HHmm-<plan-slug>/SUMMARY.md]"
 license: MIT
 ---
@@ -11,10 +11,7 @@ license: MIT
 
 Execute a pre-approved plan with strict adherence to scope, sequence, and verification.
 
-The input is typically:
-
-- `execute-plan docs/plans/YYMMDD-HHmm-<plan-slug>/SUMMARY.md`
-- or shorthand: `execute-plan docs/plans/YYMMDD-HHmm-<plan-slug>`
+The input is typically: `execute-plan docs/plans/YYMMDD-HHmm-<plan-slug>/SUMMARY.md`
 
 Do not redesign the plan during execution. If ambiguity or blockers appear, stop and ask.
 
@@ -138,61 +135,14 @@ Handle the selected option as follows:
 
 ## Execution Report Standard
 
-`EXECUTION-REPORT.md` must use this structure:
-
-# Execution Report: <Plan Title>
-
-> Date: YYYY-MM-DD HH:mm:ss  
-> Mode: Batch | Interactive
-
-## Summary
-
-- Overall result (Completed | Completed with follow-ups | Blocked)
-- High-level outcome in 2-4 bullets
-
-## Phase Results
-
-- Phase 1: <name> — ✅/⚠️
-  - Implemented:
-  - Verification:
-  - Notes:
-- Phase 2: ...
-
-## Verification Matrix
-
-- Lint: pass/fail (command)
-- Type-check: pass/fail (command)
-- Tests: pass/fail (command)
-- Build: pass/fail (command)
-- Manual QA: pass/fail/pending
-
-## Deviations
-
-- List any approved deviations from the original plan.
-- If none: `None.`
-
-## Blockers and Resolutions
-
-- Blocker:
-- Impact:
-- Resolution:
-- Status:
-
-## Follow-ups
-
-- Remaining tasks, if any
-- Recommended owner/next action
-
-## Changed Files
-
-- Relative path list (grouped by area if large)
+`EXECUTION-REPORT.md` must use the following template: `references/execution-report-template.md`
 
 ## Rules
 
+- **Respect project standards**: follow `docs/` and related project docs.
 - **Follow the plan strictly**: no silent scope changes.
 - **Stop on blocker**: missing dependency, contradictory instructions, or unexplained failures.
 - **No guessing**: ask for clarification when uncertain.
 - **Verify before complete**: never mark phase done without passing checks.
 - **Idempotency**: prefer safe/re-runnable operations.
-- **Respect project standards**: follow `docs/code-standard.md` and related project docs.
 - **Do not skip workflow steps**: initialization, per-phase verification, final verification, and reporting are all mandatory.
