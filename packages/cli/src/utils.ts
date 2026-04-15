@@ -10,6 +10,8 @@ export interface CliArgs {
 	version: boolean;
 	copy: boolean;
 	global: boolean;
+	agents: string[];
+	agentErrors: string[];
 }
 
 export function parseArgs(argv: string[]): CliArgs {
@@ -19,13 +21,43 @@ export function parseArgs(argv: string[]): CliArgs {
 		version: false,
 		copy: false,
 		global: false,
+		agents: [],
+		agentErrors: [],
 	};
 
 	for (let i = 0; i < argv.length; i++) {
-		switch (argv[i]) {
+		const token = argv[i];
+
+		switch (token) {
 			case "--non-interactive":
 				args.nonInteractive = true;
 				break;
+			case "--agent":
+			case "-a": {
+				let consumedValue = false;
+
+				while (i + 1 < argv.length && !argv[i + 1].startsWith("-")) {
+					const value = argv[++i];
+
+					if (value.length === 0) {
+						args.agentErrors.push(
+							`Empty agent value provided for ${token}. Use ${token} <agent> with a non-empty value.`,
+						);
+						continue;
+					}
+
+					args.agents.push(value);
+					consumedValue = true;
+				}
+
+				if (!consumedValue) {
+					args.agentErrors.push(
+						`Missing value after ${token}. Use ${token} <agent> and repeat the flag for multiple agents.`,
+					);
+				}
+
+				break;
+			}
 			case "--help":
 			case "-h":
 				args.help = true;
@@ -83,6 +115,7 @@ export function printHelp(): void {
   Usage: npx @buiducnhat/agent-skills [options]
 
   Options:
+		-a, --agent <agents...> Target specific agents. Repeat for each agent.
     --non-interactive    Skip interactive prompts (installs all skills to all agents)
     --copy               Copy skill files instead of symlinking. Use this
                          when your environment doesn’t support symlinks or you
@@ -95,10 +128,13 @@ export function printHelp(): void {
 
   Examples:
     npx @buiducnhat/agent-skills
+		npx @buiducnhat/agent-skills -a claude-code -a cursor
+		npx @buiducnhat/agent-skills --agent claude-code cursor
     npx @buiducnhat/agent-skills --non-interactive
     npx @buiducnhat/agent-skills --copy
     npx @buiducnhat/agent-skills --global
     npx @buiducnhat/agent-skills --global --non-interactive
+		npx @buiducnhat/agent-skills --non-interactive --agent claude-code
 `);
 }
 

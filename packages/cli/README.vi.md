@@ -53,6 +53,14 @@ npx @buiducnhat/agent-skills --global
 
 Cài đặt skill vào thư mục home (`~/<agent>/skills/`) để dùng được trên tất cả các project.
 
+### Chọn agent cụ thể
+
+```bash
+npx @buiducnhat/agent-skills -a claude-code -a cursor
+```
+
+Chỉ cài skill cho các agent đã liệt kê. Có thể lặp lại `-a` hoặc truyền nhiều agent sau một lần dùng cờ.
+
 ## Hướng dẫn tương tác
 
 ```
@@ -82,6 +90,7 @@ Cài đặt skill vào thư mục home (`~/<agent>/skills/`) để dùng đượ
 
 | Flag                | Mô tả                                                      |
 | ------------------- | ---------------------------------------------------------- |
+| `-a, --agent`       | Chỉ định một hoặc nhiều agent cụ thể                       |
 | `--non-interactive` | Bỏ qua các bước hỏi; cài đặt tất cả skill cho tất cả agent |
 | `--copy`            | Sao chép file skill thay vì tạo symlink                    |
 | `-g, --global`      | Cài vào `~/` thay vì thư mục hiện tại                      |

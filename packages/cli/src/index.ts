@@ -24,6 +24,7 @@ import {
 } from "./utils.js";
 
 const require = createRequire(import.meta.url);
+const SUPPORTED_AGENT_IDS = new Set(SUPPORTED_AGENTS.map((agent) => agent.id));
 
 function getCliVersion(): string {
 	try {
@@ -32,6 +33,25 @@ function getCliVersion(): string {
 	} catch {
 		return "unknown";
 	}
+}
+
+function getInvalidAgents(agents: string[]): string[] {
+	const invalidAgents: string[] = [];
+	const seenAgents = new Set<string>();
+
+	for (const agent of agents) {
+		if (seenAgents.has(agent)) {
+			continue;
+		}
+
+		seenAgents.add(agent);
+
+		if (!SUPPORTED_AGENT_IDS.has(agent)) {
+			invalidAgents.push(agent);
+		}
+	}
+
+	return invalidAgents;
 }
 
 async function main(): Promise<void> {
@@ -47,6 +67,23 @@ async function main(): Promise<void> {
 		process.exit(0);
 	}
 
+	if (args.agentErrors.length > 0) {
+		cancel(pc.red(args.agentErrors.join("\n")));
+		process.exit(1);
+	}
+
+	const requestedAgents = args.agents;
+	const invalidAgents = getInvalidAgents(requestedAgents);
+
+	if (invalidAgents.length > 0) {
+		cancel(
+			pc.red(
+				`Unsupported agent id(s): ${invalidAgents.join(", ")}. Supported agents: ${SUPPORTED_AGENTS.map((agent) => agent.id).join(", ")}`,
+			),
+		);
+		process.exit(1);
+	}
+
 	intro(pc.bold(pc.cyan(" Agent Skills Installer ")));
 
 	const cwd = process.cwd();
@@ -59,27 +96,80 @@ async function main(): Promise<void> {
 	let selectedAgents: string[];
 
 	if (args.nonInteractive) {
-		// Non-interactive: install all agents, detect from filesystem afterward
-		log.step("Installing skills to all agents (non-interactive)...");
-		const result = await runSkillsAdd(cwd, [], args.copy, args.global);
+		const agentsToInstall = requestedAgents.length > 0 ? requestedAgents : [];
+		const installMessage =
+			agentsToInstall.length > 0
+				? "Installing skills for selected agents (non-interactive)..."
+				: "Installing skills to all agents (non-interactive)...";
+
+		log.step(installMessage);
+		const result = await runSkillsAdd(
+			cwd,
+			agentsToInstall,
+			args.copy,
+			args.global,
+		);
 
 		if (!result.success) {
 			cancel(
 				pc.red(
-					"Skills CLI failed. See errors above.\nYou can try running manually: npx skills add buiducnhat/agent-skills --skill '*' --all -y",
+					agentsToInstall.length > 0
+						? "Skills CLI failed. See errors above.\nYou can try running manually: npx skills add buiducnhat/agent-skills --skill '*' -a <agent> -y"
+						: "Skills CLI failed. See errors above.\nYou can try running manually: npx skills add buiducnhat/agent-skills --skill '*' --all -y",
 				),
 			);
 			process.exit(1);
 		}
 
-		selectedAgents = detectAgentsFromFilesystem(baseDir);
+		selectedAgents =
+			agentsToInstall.length > 0
+				? agentsToInstall
+				: detectAgentsFromFilesystem(baseDir);
 
-		if (selectedAgents.length === 0) {
+		if (selectedAgents.length === 0 && agentsToInstall.length === 0) {
 			log.warn(
 				"No agents detected from filesystem. Skills may have been installed but rules injection was skipped.",
 			);
 			outro(pc.yellow("Done. No agent rules files were updated."));
 			process.exit(0);
+		}
+	} else if (requestedAgents.length > 0) {
+		selectedAgents = requestedAgents;
+
+		let copyFlag = args.copy;
+
+		if (!args.copy) {
+			// Explicit agents: keep install-mode choice, but skip multiselect.
+			const installMode = await select({
+				message: "How should the skills be installed?",
+				options: [
+					{ label: "Symlink (recommended)", value: "symlink" },
+					{ label: "Copy", value: "copy" },
+				],
+				initialValue: "symlink",
+			});
+			if (isCancel(installMode)) {
+				cancel("Installation cancelled.");
+				process.exit(0);
+			}
+			copyFlag = installMode === "copy";
+		}
+
+		log.step("Installing skills via skills CLI...");
+		const result = await runSkillsAdd(
+			cwd,
+			selectedAgents,
+			copyFlag,
+			args.global,
+		);
+
+		if (!result.success) {
+			cancel(
+				pc.red(
+					"Skills CLI failed. See errors above.\nYou can try running manually: npx skills add buiducnhat/agent-skills --skill '*' -a <agent> -y",
+				),
+			);
+			process.exit(1);
 		}
 	} else {
 		// Interactive: show multiselect prompt, then run skills CLI non-interactively
@@ -109,20 +199,24 @@ async function main(): Promise<void> {
 			process.exit(0);
 		}
 
-		// ask the user which install mode to use
-		const installMode = await select({
-			message: "How should the skills be installed?",
-			options: [
-				{ label: "Symlink (recommended)", value: "symlink" },
-				{ label: "Copy", value: "copy" },
-			],
-			initialValue: args.copy ? "copy" : "symlink",
-		});
-		if (isCancel(installMode)) {
-			cancel("Installation cancelled.");
-			process.exit(0);
+		let copyFlag = args.copy;
+
+		if (!args.copy) {
+			// Ask the user which install mode to use.
+			const installMode = await select({
+				message: "How should the skills be installed?",
+				options: [
+					{ label: "Symlink (recommended)", value: "symlink" },
+					{ label: "Copy", value: "copy" },
+				],
+				initialValue: "symlink",
+			});
+			if (isCancel(installMode)) {
+				cancel("Installation cancelled.");
+				process.exit(0);
+			}
+			copyFlag = installMode === "copy";
 		}
-		const copyFlag = installMode === "copy";
 
 		log.step("Installing skills via skills CLI...");
 		const result = await runSkillsAdd(

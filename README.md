@@ -53,6 +53,14 @@ npx @buiducnhat/agent-skills@latest --global
 
 Installs skills to your home directory (`~/<agent>/skills/`) so they are available across all projects.
 
+### Target specific agents
+
+```bash
+npx @buiducnhat/agent-skills@latest -a claude-code -a cursor
+```
+
+Installs skills only for the listed agents. Repeat `-a` or pass multiple agent IDs after one flag.
+
 ## Interactive walkthrough
 
 ```
@@ -82,6 +90,7 @@ Installs skills to your home directory (`~/<agent>/skills/`) so they are availab
 
 | Flag                | Description                                      |
 | ------------------- | ------------------------------------------------ |
+| `-a, --agent`       | Target one or more specific agents               |
 | `--non-interactive` | Skip prompts; install all skills to all agents   |
 | `--copy`            | Copy skill files instead of symlinking           |
 | `-g, --global`      | Install to `~/` instead of the current directory |
