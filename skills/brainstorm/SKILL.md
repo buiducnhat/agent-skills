@@ -54,10 +54,12 @@ Lead with your recommended option and explain why it best fits the project conte
 
 After presenting all approaches, use `Question Tool` to let the user pick their preferred approach. List the summary options. Example:
 
-1. Approach A, short summary (Recommended)
+1. Approach A, short summary
 2. Approach B, short summary
 3. Approach C, short summary
 4. Other (please specify)
+
+with the tag added for the recommended approach to guide the user.
 
 ### Step 4: Present the Design Incrementally
 
