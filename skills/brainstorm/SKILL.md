@@ -115,6 +115,4 @@ Persist results to the standardized location:
 - Prefer clarity over completeness when uncertain; ask a follow-up question.
 - Align all recommendations with project documentation and standards.
 - Keep assumptions explicit; do not guess silently.
-- **Timestamps:** Always use the actual, current system date and time for folder creation and the `SUMMARY.md` file. Do not hallucinate dates.
-- At decision points (approach selection, post-phase validation, close-the-loop actions), always use `Question Tool` with selectable options in the same turn.
-- Do not replace `Question Tool` decisions with plain-text prompts that require manual chat replies.
+- **Think before coding:** Surface assumptions explicitly. If multiple interpretations exist, present them — don't pick silently. If a simpler approach exists, say so and push back when warranted.

@@ -53,6 +53,7 @@ Ask clarifying questions to resolve any ambiguity in the request. Focus on:
 
 - If requirements are already clear or come from the brainstorm context, no need the confirmation step.
 - Use `Question Tool` for gathering answers, context.
+- State assumptions explicitly in `SUMMARY.md`. If multiple interpretations of the request exist, list them and ask — never pick silently.
 
 ### Step 4: Define Strategy and Phases
 
@@ -127,4 +128,5 @@ Use `/clear` and then `/execute-plan <relative_path_to_plan>/SUMMARY.md` to exec
 - Prefer explicit file paths and concrete commands
 - Align with project standards and existing architecture
 - Keep plans self-contained and deterministic
+- **Plan the minimum viable change:** No speculative phases, no "just in case" abstractions, no flexibility that wasn't requested. If a plan can be 3 phases instead of 6, make it 3. Every task should trace directly to a stated requirement.
 - If the write-plan request comes from a brainstorm session, we can skip many steps like gathering documents, clarifying requirements, and researching, because those should have been covered in the brainstorm session. In that case, we can directly start from Step 4: Define Strategy and Phases, using the information from the brainstorm session as context.

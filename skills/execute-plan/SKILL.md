@@ -61,6 +61,7 @@ For each phase in order:
 3. **Execute Exactly**
    - Implement only the tasks defined in that phase.
    - Do not expand scope without approval.
+   - Write the minimum code that satisfies the phase. No speculative features, no abstractions for single-use code, no error handling for impossible scenarios. See **Simplicity first** and **Surgical changes** rules below.
 
 4. **Verify Phase**
    - Run the phase-specific verification commands from the plan.
@@ -154,4 +155,6 @@ Handle the selected option as follows:
 - **No guessing**: ask for clarification when uncertain.
 - **Verify before complete**: never mark phase done without passing checks.
 - **Idempotency**: prefer safe/re-runnable operations.
+- **Simplicity first**: Implement the minimum code that satisfies the phase's exit criteria. No features beyond what the plan asks for. No abstractions for single-use code. No configurability that wasn't requested. If you write 200 lines and it could be 50, rewrite it.
+- **Surgical changes**: Touch only what the phase requires. Don't "improve" adjacent code, comments, or formatting. Don't refactor things that aren't broken. Match existing style even if you'd do it differently. Only remove imports/variables/functions that *your* changes orphaned — don't delete pre-existing dead code unless the plan asks for it. Every changed line should trace to a phase task.
 - **Do not skip workflow steps**: initialization, per-phase verification, final verification, and reporting are all mandatory.
