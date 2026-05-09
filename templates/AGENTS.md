@@ -3,11 +3,13 @@
 Before planning or implementing any features, load project documentation:
 
 ### Step 1 — Load Entry Point
+
 Read `docs/SUMMARY.md` to get the full documentation landscape. This single file contains the project overview and tables listing all detail files with descriptions.
 
 The `Code Standard` section is very important to keep the code consistent, maintainable. Skip if the file doesn't exist. Let documentation guide implementation — if docs conflict with implementation needs, clarify with the user instead of guessing.
 
 ### Step 2 — Load on Demand
+
 Based on the current task, use the file tables in `docs/SUMMARY.md` to identify and load only the detail files that are directly relevant. Do NOT load all detail files upfront.
 
 ## Question Tool Mandate
@@ -17,6 +19,7 @@ Based on the current task, use the file tables in `docs/SUMMARY.md` to identify 
 | Agent       | Tool                     |
 | ----------- | ------------------------ |
 | Claude Code | `AskUserQuestion`        |
+| Codex       | `request_user_input`     |
 | OpenCode    | `question`               |
 | Gemini CLI  | `ask_user`               |
 | Cursor      | `ask questions`          |
