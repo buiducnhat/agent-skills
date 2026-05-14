@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><!-- VISUALIZE:TITLE --></title>
+    <link rel="stylesheet" href="./visualize-assets/visualize-theme.css" />
+  </head>
+  <body>
+    <main class="viz-shell">
+      <header class="viz-hero">
+        <p class="viz-kicker">Plan Visualization</p>
+        <h1 class="viz-title"><!-- VISUALIZE:TITLE --></h1>
+        <p class="viz-summary"><!-- VISUALIZE:SUMMARY --></p>
+        <ul class="viz-meta">
+          <!-- VISUALIZE:SOURCE_META -->
+        </ul>
+      </header>
+
+      <section class="viz-grid">
+        <article class="viz-panel">
+          <h2>Plan Flow</h2>
+          <div class="mermaid">
+            <!-- VISUALIZE:MERMAID_FLOW -->
+          </div>
+        </article>
+
+        <article class="viz-panel half">
+          <h2>Phase Timeline</h2>
+          <div class="viz-timeline">
+            <!-- VISUALIZE:PHASE_TIMELINE -->
+          </div>
+        </article>
+
+        <article class="viz-panel half">
+          <h2>Risks And Questions</h2>
+          <!-- VISUALIZE:RISKS -->
+        </article>
+
+        <article class="viz-panel">
+          <h2>Verification</h2>
+          <!-- VISUALIZE:VERIFICATION -->
+        </article>
+      </section>
+    </main>
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+  </body>
+</html>

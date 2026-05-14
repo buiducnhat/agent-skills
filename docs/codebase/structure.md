@@ -37,6 +37,19 @@ agent-skills/
 │   ├── execute-plan/SKILL.md
 │   ├── git-commit/SKILL.md
 │   ├── quick-implement/SKILL.md
+│   ├── visualize/
+│   │   ├── SKILL.md
+│   │   └── references/
+│   │       ├── content-patterns.md
+│   │       ├── mermaid-recipes.md
+│   │       ├── router.md
+│   │       ├── verification.md
+│   │       ├── workflow.md
+│   │       └── templates/
+│   │           ├── context.html
+│   │           ├── document.html
+│   │           ├── plan.html
+│   │           └── visualize-theme.css
 │   └── write-plan/SKILL.md
 ├── templates/
 │   └── AGENTS.md           # Shared rules injected into agent config files

@@ -99,7 +99,7 @@ Chỉ cài skill cho các agent đã liệt kê. Có thể lặp lại `-a` ho�
 
 ## Workflow skill của repository
 
-Repository này hiện định nghĩa 9 workflow skill first-party và cũng pin thêm các upstream skill trong `skills-lock.json`:
+Repository này hiện định nghĩa 10 workflow skill first-party và cũng pin thêm các upstream skill trong `skills-lock.json`:
 
 | Skill             | Mô tả                                                                           |
 | ----------------- | ------------------------------------------------------------------------------- |
@@ -111,6 +111,7 @@ Repository này hiện định nghĩa 9 workflow skill first-party và cũng pin
 | `execute-plan`    | Thực thi kế hoạch đã viết theo từng giai đoạn với các điểm kiểm tra             |
 | `git-commit`      | Tạo commit message theo chuẩn conventional từ thay đổi đã stage hoặc chưa stage |
 | `quick-implement` | Triển khai nhanh cho các thay đổi nhỏ, phạm vi rõ ràng                          |
+| `visualize`       | Tạo HTML visualization nằm cạnh source cho docs, markdown, plan và context bằng template cố định và Mermaid |
 | `write-plan`      | Tạo kế hoạch triển khai chi tiết theo từng giai đoạn                            |
 
 ### Chuỗi workflow khuyến nghị

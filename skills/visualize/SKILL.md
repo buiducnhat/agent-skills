@@ -1,0 +1,73 @@
+---
+name: visualize
+description: Create source-adjacent HTML visualizations for /visualize requests, docs, markdown, standardized plans, process flows, charts, Mermaid diagrams, context maps, and recommendation diagrams.
+argument-hint: "[doc path, plan path, or visualization request]"
+license: MIT
+---
+
+# Visualize
+
+## Overview
+
+Create source-adjacent HTML visualizations from repository documentation, markdown files, standardized plan folders, and arbitrary user context. This skill is Huashu-derived in workflow discipline, but it is intentionally documentation-focused: it turns real source material into readable maps, timelines, flows, risk blocks, and recommendation diagrams.
+
+## Scope
+
+Use this skill for:
+
+- Documentation and markdown visualization
+- Standardized plan folder visualization
+- Flow, chart, Mermaid, context map, and recommendation diagram requests
+- Source-adjacent HTML summaries that help users inspect structure, risks, decisions, and next steps
+
+Do not use this skill for:
+
+- Brand sites or marketing pages
+- Product prototypes or production web apps
+- Slide decks, long motion demos, or broad visual design systems
+
+## Output Conventions
+
+- Plan folder: create `visualize.html` and `visualize-assets/` inside the plan folder.
+- Markdown or document file: create `<source-base>.visualize.html` and `<source-base>.visualize-assets/` beside the source file.
+- Source-less context: create `visualize-YYMMDD-HHmm-<slug>.html` and a matching assets folder in the current working directory unless the user specifies a target. Generate the timestamp with `date +%y%m%d-%H%M`.
+
+Always copy `references/templates/visualize-theme.css` into the adjacent assets folder and link the copied local CSS from the generated HTML. Mermaid CDN usage is allowed for diagrams.
+
+## Workflow
+
+1. Load project context when visualizing repository files (if the current session does not already have it).
+   - Follow the shared Context Loading Protocol: read `docs/SUMMARY.md` first, then load only directly relevant detail files.
+2. Load the source material.
+   - For plan folders, read `SUMMARY.md` and relevant `phase-XX-*.md` files.
+   - For markdown or document files, read the requested source directly.
+   - For source-less user context, use only the provided conversation/request content.
+3. Identify the visualization intent.
+   - Determine whether the user needs a plan map, document map, process flow, decision view, recommendation view, or mixed visualization.
+   - Ask with the question tool only when the source, target, or output ambiguity cannot be resolved safely.
+4. Choose the template with `references/router.md`.
+   - Plan folders use `references/templates/plan.html`.
+   - Single documents use `references/templates/document.html`.
+   - Source-less context uses `references/templates/context.html`.
+5. Extract facts and assumptions.
+   - Use `references/workflow.md` and `references/content-patterns.md`.
+   - Preserve source facts, file paths, statuses, risks, decisions, verification steps, and recommendations.
+   - Label assumptions clearly when the source leaves gaps.
+6. Compose the HTML.
+   - Start from the selected template.
+   - Replace `VISUALIZE:` marker regions with source-backed content.
+   - Copy `visualize-theme.css` beside the output before linking it.
+7. Add Mermaid diagrams where they clarify structure.
+   - Use `references/mermaid-recipes.md`.
+   - Prefer several small diagrams over one dense diagram.
+   - Use readable HTML/CSS fallback blocks when Mermaid syntax is uncertain.
+8. Verify the output with `references/verification.md`.
+
+## Rules
+
+- Do not invent facts, fake metrics, fake decisions, fake users, fake constraints, or unsupported recommendations.
+- Do not hide missing source content. Add an assumption or warning block instead.
+- Keep visualizations factual, source-adjacent, and easy to inspect.
+- Keep templates and generated HTML focused on documentation visualization, not broad design/prototype work.
+- Avoid large inline style blocks; use the copied fixed theme CSS.
+- Preserve source links and paths when they help the user trace content back to origin.

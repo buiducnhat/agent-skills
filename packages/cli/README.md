@@ -99,19 +99,20 @@ Installs skills only for the listed agents. Repeat `-a` or pass multiple agent I
 
 ## Repository workflow skills
 
-This repository currently defines nine first-party workflow skills and also pins additional upstream skills in `skills-lock.json`:
+This repository currently defines ten first-party workflow skills and also pins additional upstream skills in `skills-lock.json`:
 
-| Skill             | Description                                                          |
-| ----------------- | -------------------------------------------------------------------- |
-| `as-ask`          | Ask clarifying questions to gather requirements and context          |
-| `as-fix`          | Diagnose and resolve bugs with root-cause analysis and verification  |
-| `as-review`       | Review uncommitted changes with codebase context and severity levels |
-| `brainstorm`      | Explore ideas and break down complex problems before planning        |
-| `docs`            | Create or refresh project documentation based on the current repo    |
-| `execute-plan`    | Execute written plans systematically with checkpoints                |
-| `git-commit`      | Create conventional commit messages from staged or unstaged changes  |
-| `quick-implement` | Rapid implementation for small, well-scoped changes                  |
-| `write-plan`      | Create detailed implementation plans with phases and tasks           |
+| Skill             | Description                                                                                                         |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `as-ask`          | Ask clarifying questions to gather requirements and context                                                         |
+| `as-fix`          | Diagnose and resolve bugs with root-cause analysis and verification                                                 |
+| `as-review`       | Review uncommitted changes with codebase context and severity levels                                                |
+| `brainstorm`      | Explore ideas and break down complex problems before planning                                                       |
+| `docs`            | Create or refresh project documentation based on the current repo                                                   |
+| `execute-plan`    | Execute written plans systematically with checkpoints                                                               |
+| `git-commit`      | Create conventional commit messages from staged or unstaged changes                                                 |
+| `quick-implement` | Rapid implementation for small, well-scoped changes                                                                 |
+| `visualize`       | Create source-adjacent HTML visualizations for docs, markdown, plans, and context using fixed templates and Mermaid |
+| `write-plan`      | Create detailed implementation plans with phases and tasks                                                          |
 
 ### Recommended workflow sequences
 

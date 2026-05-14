@@ -113,18 +113,34 @@ Then present for user review.
 If multiple viable approaches exist, present options and ask for one of: (use `Question Tool` for selection)
 
 - **Confirm**: approve current plan for execution
+- **Confirm and Visualize**: approve current plan and create a source-adjacent visualization in the same session
 - **Validate**: refine via additional clarifying questions
+
+If the user chooses **Confirm and Visualize**:
+
+1. Use the current `write-plan` session context and the plan artifacts just created.
+2. Do not restart project context loading or rediscover background that is already available in the session.
+3. Follow the `visualize` skill output convention for plan folders:
+   - `docs/plans/YYMMDD-HHmm-<plan-slug>/visualize.html`
+   - `docs/plans/YYMMDD-HHmm-<plan-slug>/visualize-assets/`
+4. Copy the fixed visualization theme into the adjacent assets folder.
+5. Verify the visualization enough to confirm the HTML, local CSS link, Mermaid import, source metadata, and primary content blocks are present.
+6. Then continue to the normal handoff.
 
 ### Step 8: Handoff
 
-When approved, end with:
+End with:
 
 Plan `<relative_path_to_plan>/SUMMARY.md` is ready.  
 Use `/clear` and then `/execute-plan <relative_path_to_plan>/SUMMARY.md` to execute it.
 
+If visualization was created, also include:
+
+Visualization `<relative_path_to_plan>/visualize.html` is ready.
+
 ## Rules
 
-- Never automatically implement or execute the code change in the same session, always finished when completed planning and ready for user review.
+- Never automatically implement or execute the code change in the same session. Optional plan visualization is allowed only after user selection and only for the plan artifacts.
 - Prefer explicit file paths and concrete commands
 - Align with project standards and existing architecture
 - Keep plans self-contained and deterministic
