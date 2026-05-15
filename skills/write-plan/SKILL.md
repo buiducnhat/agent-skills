@@ -1,6 +1,6 @@
 ---
 name: write-plan
-description: Create detailed, execution-ready implementation plans for complex or high-risk changes without coding. Use when scope is large, requirements are mostly known, and work should be broken into validated phases before execution.
+description: Create detailed, execution-ready implementation plans for complex or high-risk changes without coding. Use for ExecPlan-style work, multi-hour changes, significant refactors, migrations, resumable phase checklists, and work that should be handed off to execute-plan with clear validation.
 argument-hint: "[brief description of the change to plan]"
 license: MIT
 ---
@@ -9,7 +9,7 @@ license: MIT
 
 ## Overview
 
-Produce a complete, self-contained implementation plan that can be executed by `execute-plan` with minimal ambiguity.
+Produce a complete, self-contained implementation plan that can be executed by `execute-plan` with minimal ambiguity, even after `/clear` or by another agent.
 
 This skill is for planning only:
 
@@ -24,8 +24,10 @@ Load project context per the shared Context Loading Protocol. Then inspect only 
 
 Capture:
 
+- User-visible purpose and expected outcome
 - Existing patterns to follow
 - Constraints and dependencies
+- Files, modules, commands, and docs that orient the executor
 - Risks, assumptions, and unknowns
 
 ### Step 2: Initialize Plan Artifacts
@@ -65,11 +67,12 @@ Each phase should have:
 - The complexity and risk level appropriate to the phase with values: `S`, `M`, `L`, `XL`
 - Ordered tasks
 - Verification commands
-- Exit criteria
+- Observable acceptance criteria and exit criteria
 
 Granularity rule:
 
 - Tasks should be small, concrete, and typically 2-10 minutes each.
+- Prefer phases that can be resumed safely. Document idempotency, recovery notes, or rollback constraints for risky work.
 
 ### Step 5: Research (Only if Needed)
 
@@ -93,6 +96,8 @@ Document findings in:
 
 Follow the template inside `references/summary-template.md`
 
+The summary must be a living plan, not a static proposal. Include empty sections for execution-time updates: progress, surprises/discoveries, decision log, and outcomes/retrospective. These sections give `execute-plan` a stable place to record what changed and why.
+
 ## `phase-XX-<name>.md` format
 
 Follow the template inside `references/phase-template.md`
@@ -105,8 +110,9 @@ Before presenting the plan, verify:
 - Phase order is logical
 - Tasks are actionable (no vague steps)
 - Verification is defined for each phase
+- Acceptance criteria are observable
 - Risks/assumptions are explicit
-- Plan is executable without hidden context
+- Plan is executable without hidden context from the current chat
 
 Then present for user review.
 
@@ -143,6 +149,6 @@ Visualization `<relative_path_to_plan>/visualize.html` is ready.
 - Never automatically implement or execute the code change in the same session. Optional plan visualization is allowed only after user selection and only for the plan artifacts.
 - Prefer explicit file paths and concrete commands
 - Align with project standards and existing architecture
-- Keep plans self-contained and deterministic
+- Keep plans self-contained, deterministic, and resumable. A fresh agent should be able to continue from the plan folder alone.
 - **Plan the minimum viable change:** No speculative phases, no "just in case" abstractions, no flexibility that wasn't requested. If a plan can be 3 phases instead of 6, make it 3. Every task should trace directly to a stated requirement.
 - If the write-plan request comes from a brainstorm session, we can skip many steps like gathering documents, clarifying requirements, and researching, because those should have been covered in the brainstorm session. In that case, we can directly start from Step 4: Define Strategy and Phases, using the information from the brainstorm session as context.
