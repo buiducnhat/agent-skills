@@ -1,5 +1,5 @@
 {
-	"name": "co-drew",
+	"name": "cobrew",
 	"version": "1.1.0",
 	"description": "Workflow skills and shared instructions for coding agents.",
 	"author": {
@@ -7,21 +7,21 @@
 		"email": "nhaths4701@gmail.com",
 		"url": "https://github.com/buiducnhat"
 	},
-	"homepage": "https://github.com/buiducnhat/co-drew#readme",
-	"repository": "https://github.com/buiducnhat/co-drew",
+	"homepage": "https://github.com/buiducnhat/cobrew#readme",
+	"repository": "https://github.com/buiducnhat/cobrew",
 	"license": "MIT",
-	"keywords": ["co-drew", "codex", "workflow", "skills", "coding-agents"],
+	"keywords": ["cobrew", "codex", "workflow", "skills", "coding-agents"],
 	"skills": "./skills/",
 	"interface": {
-		"displayName": "CoDrew",
+		"displayName": "CoBrew",
 		"shortDescription": "Workflow skills for coding-agent projects.",
-		"longDescription": "CoDrew provides structured workflows for asking clarifying questions, fixing bugs, reviewing changes, brainstorming, writing plans, executing plans, maintaining docs, creating commits, quick implementation, and source-adjacent visualizations.",
+		"longDescription": "CoBrew provides structured workflows for asking clarifying questions, fixing bugs, reviewing changes, brainstorming, writing plans, executing plans, maintaining docs, creating commits, quick implementation, and source-adjacent visualizations.",
 		"developerName": "Nhat Bui",
 		"category": "Productivity",
 		"capabilities": ["Interactive", "Read", "Write"],
-		"websiteURL": "https://github.com/buiducnhat/co-drew",
-		"privacyPolicyURL": "https://github.com/buiducnhat/co-drew",
-		"termsOfServiceURL": "https://github.com/buiducnhat/co-drew/blob/main/LICENSE",
+		"websiteURL": "https://github.com/buiducnhat/cobrew",
+		"privacyPolicyURL": "https://github.com/buiducnhat/cobrew",
+		"termsOfServiceURL": "https://github.com/buiducnhat/cobrew/blob/main/LICENSE",
 		"defaultPrompt": [
 			"Use quick-implement for a small code change.",
 			"Review my current uncommitted changes.",

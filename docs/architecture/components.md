@@ -2,7 +2,7 @@
 
 ## System Overview
 
-CoDrew combines a published installer CLI with a repository of workflow skills, shared agent instructions, and supporting documentation assets.
+CoBrew combines a published installer CLI with a repository of workflow skills, shared agent instructions, and supporting documentation assets.
 
 The installer runtime lives in `packages/cli`. The content it distributes lives primarily in `skills/` and `templates/AGENTS.md`. The repository also keeps dated brainstorms and execution plans under `docs/` so larger changes can be planned and reviewed in the same repo as the installer.
 
@@ -10,13 +10,13 @@ The installer runtime lives in `packages/cli`. The content it distributes lives 
 
 ### CLI Installer (`packages/cli`)
 
-The published npm package (`co-drew`). Handles argument parsing, interactive selection, skills installation, template fetching, and rules-file injection.
+The published npm package (`cobrew`). Handles argument parsing, interactive selection, skills installation, template fetching, and rules-file injection.
 
 | Module             | Responsibility                                                                                                       |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
 | `src/index.ts`     | Main orchestration: parses flags, drives prompts, chooses install mode, and coordinates install plus rules injection |
 | `src/constants.ts` | Supported agent registry, skills-directory detection map, rules-file mapping, and injection markers                  |
-| `src/skills.ts`    | Runs `npx skills add buiducnhat/co-drew --skill '*'` with selected agent IDs and install flags                       |
+| `src/skills.ts`    | Runs `npx skills add buiducnhat/cobrew --skill '*'` with selected agent IDs and install flags                        |
 | `src/fetch.ts`     | Clones the repository to a temporary directory so the installer can read `templates/AGENTS.md`                       |
 | `src/rules.ts`     | Creates or updates per-agent rules files with an idempotent marker block and skips JSON-based targets                |
 | `src/utils.ts`     | Parses CLI flags, detects installed agents from filesystem layout, prints help text, and prints the install summary  |
@@ -88,9 +88,9 @@ If non-interactive installation succeeds but no agent filesystem layout is detec
 `injectRules()` groups agents by target rules path so shared files are updated once, not once per agent. It uses idempotent HTML comment markers in each text rules file:
 
 ```
-<!-- BEGIN co-drew rules -->
+<!-- BEGIN cobrew rules -->
 ...AGENTS.md content...
-<!-- END co-drew rules -->
+<!-- END cobrew rules -->
 ```
 
 On re-run, the marked block is replaced without duplication. If the file exists but has no markers, the block is appended. If the target rules file is JSON-based, the installer records it as skipped instead of trying to merge text into it.

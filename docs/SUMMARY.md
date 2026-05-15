@@ -1,7 +1,7 @@
 # Documentation Summary
 
-CoDrew — A CLI installer and skill repository for standardizing coding-agent workflows across many local agent environments with one command.
-Monorepo built with TypeScript, Bun, and Turbo; publishes `co-drew` and ships repo-owned workflow skills plus shared agent instructions.
+CoBrew — A CLI installer and skill repository for standardizing coding-agent workflows across many local agent environments with one command.
+Monorepo built with TypeScript, Bun, and Turbo; publishes `cobrew` and ships repo-owned workflow skills plus shared agent instructions.
 
 ## Architecture
 

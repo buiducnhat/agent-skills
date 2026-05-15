@@ -6,7 +6,7 @@ AI coding agents each use different skills directories, rules-file names, and co
 
 ## Product Purpose
 
-CoDrew provides a single installer that:
+CoBrew provides a single installer that:
 
 1. Installs consistent workflow skill definitions into any of 40 supported AI coding agents
 2. Injects shared agent behavioral rules (`AGENTS.md`) into each agent's rules file when that target is text-based
@@ -21,13 +21,13 @@ CoDrew provides a single installer that:
 
 ## Supported Workflows
 
-| Workflow                                             | Entry Point                            |
-| ---------------------------------------------------- | -------------------------------------- |
-| Interactive project install                          | `npx co-drew@latest`                   |
-| Non-interactive CI install                           | `npx co-drew@latest --non-interactive` |
-| Global install across projects                       | `npx co-drew@latest --global`          |
-| Copy-based install for environments without symlinks | `npx co-drew@latest --copy`            |
-| Shell bootstrap install                              | `curl -fsSL .../install.sh \| bash`    |
+| Workflow                                             | Entry Point                           |
+| ---------------------------------------------------- | ------------------------------------- |
+| Interactive project install                          | `npx cobrew@latest`                   |
+| Non-interactive CI install                           | `npx cobrew@latest --non-interactive` |
+| Global install across projects                       | `npx cobrew@latest --global`          |
+| Copy-based install for environments without symlinks | `npx cobrew@latest --copy`            |
+| Shell bootstrap install                              | `curl -fsSL .../install.sh \| bash`   |
 
 ## Workflow Skills Provided
 
@@ -74,5 +74,5 @@ The repository also tracks additional upstream skills in `skills-lock.json` so d
 - A single command installs skills for all desired agents in a project
 - Re-running is safe (idempotent) — no duplicate rules injection
 - Skills work across all 40 supported agent environments without modification
-- Published to npm as `co-drew` and auto-released on `v*` tag push
+- Published to npm as `cobrew` and auto-released on `v*` tag push
 - Repository docs stay aligned with the shipped skill set, installer flags, and workflow conventions

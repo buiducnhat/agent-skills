@@ -1,10 +1,10 @@
 {
-	"name": "co-drew",
+	"name": "cobrew",
 	"version": "1.1.1",
 	"description": "Install AI workflow skills for coding assistants",
 	"type": "module",
 	"bin": {
-		"co-drew": "./dist/index.js"
+		"cobrew": "./dist/index.js"
 	},
 	"files": [
 		"dist"
@@ -34,7 +34,7 @@
 	"keywords": [
 		"cli",
 		"workflow",
-		"co-drew",
+		"cobrew",
 		"skills",
 		"ai-agents",
 		"amp",
@@ -79,13 +79,13 @@
 		"adal",
 		"universal"
 	],
-	"homepage": "https://github.com/buiducnhat/co-drew#readme",
+	"homepage": "https://github.com/buiducnhat/cobrew#readme",
 	"bugs": {
-		"url": "https://github.com/buiducnhat/co-drew/issues"
+		"url": "https://github.com/buiducnhat/cobrew/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/buiducnhat/co-drew.git",
+		"url": "https://github.com/buiducnhat/cobrew.git",
 		"directory": "packages/cli"
 	},
 	"license": "MIT"

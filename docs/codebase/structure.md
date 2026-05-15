@@ -3,7 +3,7 @@
 ## Directory Tree
 
 ```
-co-drew/
+cobrew/
 ├── docs/
 │   ├── architecture/       # System/component docs
 │   ├── code-standard/      # Conventions and authoring rules
@@ -13,7 +13,7 @@ co-drew/
 │   ├── plans/              # Dated implementation plans and reports
 │   └── SUMMARY.md          # Docs entry point for context loading
 ├── packages/
-│   ├── cli/                # Published npm package (co-drew)
+│   ├── cli/                # Published npm package (cobrew)
 │   │   ├── src/
 │   │   │   ├── index.ts        # Entry point — CLI flow
 │   │   │   ├── constants.ts    # Agent registry, rules-file map, dir map
