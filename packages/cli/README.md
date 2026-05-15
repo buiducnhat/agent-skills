@@ -103,9 +103,9 @@ This repository currently defines ten first-party workflow skills and also pins 
 
 | Skill             | Description                                                                                                         |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `cd-ask`          | Ask clarifying questions to gather requirements and context                                                         |
-| `cd-fix`          | Diagnose and resolve bugs with root-cause analysis and verification                                                 |
-| `cd-review`       | Review uncommitted changes with codebase context and severity levels                                                |
+| `cb-ask`          | Ask clarifying questions to gather requirements and context                                                         |
+| `cb-fix`          | Diagnose and resolve bugs with root-cause analysis and verification                                                 |
+| `cb-review`       | Review uncommitted changes with codebase context and severity levels                                                |
 | `brainstorm`      | Explore ideas and break down complex problems before planning                                                       |
 | `docs`            | Create or refresh project documentation based on the current repo                                                   |
 | `execute-plan`    | Execute written plans systematically with checkpoints                                                               |
@@ -199,13 +199,13 @@ Use for small, well-scoped changes where a formal plan would be overhead.
 #### Bug fixes
 
 ```
-cd-fix
+cb-fix
 ```
 
 Use when you have a concrete error, failing test, or unexpected behavior to diagnose.
 
 ```
-/cd-fix TypeError: Cannot read properties of undefined at checkout.ts:42
+/cb-fix TypeError: Cannot read properties of undefined at checkout.ts:42
 
 # For simple bugs: agent diagnoses, applies fix, verifies
 # For complex bugs: agent stops and routes to write-plan

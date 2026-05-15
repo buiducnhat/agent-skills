@@ -14,12 +14,12 @@
 
 | Situation                                                      | Expected Skill                    |
 | -------------------------------------------------------------- | --------------------------------- |
-| Requirements are incomplete and the user must answer questions | `cd-ask`                          |
+| Requirements are incomplete and the user must answer questions | `cb-ask`                          |
 | The problem is exploratory or has multiple valid approaches    | `brainstorm`                      |
 | The change is large enough to require phased execution         | `write-plan`, then `execute-plan` |
 | The change is small, low-risk, and easy to verify              | `quick-implement`                 |
-| A bug or failing behavior needs root-cause diagnosis           | `cd-fix`                          |
-| Current uncommitted changes need review                        | `cd-review`                       |
+| A bug or failing behavior needs root-cause diagnosis           | `cb-fix`                          |
+| Current uncommitted changes need review                        | `cb-review`                       |
 | Repository documentation needs to be created or refreshed      | `docs`                            |
 | Docs, plans, markdown, or context need visual mapping          | `visualize`                       |
 | Staged or unstaged changes need a conventional commit message  | `git-commit`                      |

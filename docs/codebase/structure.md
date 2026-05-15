@@ -26,9 +26,9 @@ cobrew/
 │   │   └── tsdown.config.ts
 │   └── config/             # Shared TS config (tsconfig.base.json)
 ├── skills/                 # First-party workflow skill definitions
-│   ├── cd-ask/SKILL.md
-│   ├── cd-fix/SKILL.md
-│   ├── cd-review/SKILL.md
+│   ├── cb-ask/SKILL.md
+│   ├── cb-fix/SKILL.md
+│   ├── cb-review/SKILL.md
 │   ├── brainstorm/SKILL.md
 │   ├── docs/
 │   │   ├── SKILL.md

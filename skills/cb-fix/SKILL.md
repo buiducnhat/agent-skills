@@ -1,5 +1,5 @@
 ---
-name: cd-fix
+name: cb-fix
 description: Diagnose and fix bugs with root-cause analysis and verification. Use when you have a concrete issue report, failing behavior, runtime error, or test regression that should be resolved safely. Stop and escalate to brainstorm when scope or risk grows.
 argument-hint: "[bug report or issue description]"
 license: MIT
