@@ -26,9 +26,9 @@ dbwe/
 │   │   └── tsdown.config.ts
 │   └── config/             # Shared TS config (tsconfig.base.json)
 ├── skills/                 # First-party workflow skill definitions
-│   ├── as-ask/SKILL.md
-│   ├── as-fix/SKILL.md
-│   ├── as-review/SKILL.md
+│   ├── dbwe-ask/SKILL.md
+│   ├── dbwe-fix/SKILL.md
+│   ├── dbwe-review/SKILL.md
 │   ├── brainstorm/SKILL.md
 │   ├── docs/
 │   │   ├── SKILL.md

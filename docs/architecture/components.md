@@ -16,7 +16,7 @@ The published npm package (`dbwe`). Handles argument parsing, interactive select
 | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
 | `src/index.ts`     | Main orchestration: parses flags, drives prompts, chooses install mode, and coordinates install plus rules injection |
 | `src/constants.ts` | Supported agent registry, skills-directory detection map, rules-file mapping, and injection markers                  |
-| `src/skills.ts`    | Runs `npx skills add buiducnhat/dbwe --skill '*'` with selected agent IDs and install flags                         |
+| `src/skills.ts`    | Runs `npx skills add buiducnhat/dbwe --skill '*'` with selected agent IDs and install flags                          |
 | `src/fetch.ts`     | Clones the repository to a temporary directory so the installer can read `templates/AGENTS.md`                       |
 | `src/rules.ts`     | Creates or updates per-agent rules files with an idempotent marker block and skips JSON-based targets                |
 | `src/utils.ts`     | Parses CLI flags, detects installed agents from filesystem layout, prints help text, and prints the install summary  |
@@ -27,9 +27,9 @@ Ten first-party workflow skill definitions live in `skills/`. Each skill has a `
 
 | Skill             | Purpose                                                         |
 | ----------------- | --------------------------------------------------------------- |
-| `as-ask`          | Structured clarification and requirements gathering             |
-| `as-fix`          | Bug diagnosis and fix                                           |
-| `as-review`       | Uncommitted-changes code review                                 |
+| `dbwe-ask`        | Structured clarification and requirements gathering             |
+| `dbwe-fix`        | Bug diagnosis and fix                                           |
+| `dbwe-review`     | Uncommitted-changes code review                                 |
 | `brainstorm`      | Ambiguous problem exploration                                   |
 | `docs`            | Documentation creation or refresh based on current repo state   |
 | `execute-plan`    | Phase-by-phase plan execution                                   |

@@ -103,9 +103,9 @@ This repository currently defines ten first-party workflow skills and also pins 
 
 | Skill             | Description                                                                                                         |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `as-ask`          | Ask clarifying questions to gather requirements and context                                                         |
-| `as-fix`          | Diagnose and resolve bugs with root-cause analysis and verification                                                 |
-| `as-review`       | Review uncommitted changes with codebase context and severity levels                                                |
+| `dbwe-ask`        | Ask clarifying questions to gather requirements and context                                                         |
+| `dbwe-fix`        | Diagnose and resolve bugs with root-cause analysis and verification                                                 |
+| `dbwe-review`     | Review uncommitted changes with codebase context and severity levels                                                |
 | `brainstorm`      | Explore ideas and break down complex problems before planning                                                       |
 | `docs`            | Create or refresh project documentation based on the current repo                                                   |
 | `execute-plan`    | Execute written plans systematically with checkpoints                                                               |
@@ -199,16 +199,34 @@ Use for small, well-scoped changes where a formal plan would be overhead.
 #### Bug fixes
 
 ```
-as-fix
+dbwe-fix
 ```
 
 Use when you have a concrete error, failing test, or unexpected behavior to diagnose.
 
 ```
-/as-fix TypeError: Cannot read properties of undefined at checkout.ts:42
+/dbwe-fix TypeError: Cannot read properties of undefined at checkout.ts:42
 
 # For simple bugs: agent diagnoses, applies fix, verifies
 # For complex bugs: agent stops and routes to write-plan
+```
+
+---
+
+#### Visualizations
+
+```
+visualize
+```
+
+Use when docs, plans, markdown, or context would be easier to understand as a source-adjacent HTML diagram.
+
+```
+/visualize docs/plans/260306-1020-jwt-auth/SUMMARY.md
+
+# Agent creates:
+#   docs/plans/260306-1020-jwt-auth/visualize.html
+#   docs/plans/260306-1020-jwt-auth/visualize-assets/
 ```
 
 ## Supported agents

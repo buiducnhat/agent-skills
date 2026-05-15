@@ -21,22 +21,22 @@ DBWE provides a single installer that:
 
 ## Supported Workflows
 
-| Workflow                                             | Entry Point                                     |
-| ---------------------------------------------------- | ----------------------------------------------- |
-| Interactive project install                          | `npx dbwe@latest`                               |
-| Non-interactive CI install                           | `npx dbwe@latest --non-interactive`             |
-| Global install across projects                       | `npx dbwe@latest --global`                      |
-| Copy-based install for environments without symlinks | `npx dbwe@latest --copy`                        |
-| Shell bootstrap install                              | `curl -fsSL .../install.sh \| bash`             |
+| Workflow                                             | Entry Point                         |
+| ---------------------------------------------------- | ----------------------------------- |
+| Interactive project install                          | `npx dbwe@latest`                   |
+| Non-interactive CI install                           | `npx dbwe@latest --non-interactive` |
+| Global install across projects                       | `npx dbwe@latest --global`          |
+| Copy-based install for environments without symlinks | `npx dbwe@latest --copy`            |
+| Shell bootstrap install                              | `curl -fsSL .../install.sh \| bash` |
 
 ## Workflow Skills Provided
 
 Ten workflow skills cover the full development lifecycle:
 
-- **Clarification**: `as-ask`
+- **Clarification**: `dbwe-ask`
 - **Planning**: `brainstorm`, `write-plan`
 - **Execution**: `execute-plan`, `quick-implement`
-- **Quality**: `as-fix`, `as-review`
+- **Quality**: `dbwe-fix`, `dbwe-review`
 - **Documentation**: `docs`
 - **Visualization**: `visualize`
 - **Version Control**: `git-commit`
