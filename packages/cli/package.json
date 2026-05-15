@@ -1,6 +1,6 @@
 {
 	"name": "co-drew",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Install AI workflow skills for coding assistants",
 	"type": "module",
 	"bin": {

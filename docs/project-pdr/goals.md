@@ -33,10 +33,10 @@ CoDrew provides a single installer that:
 
 Ten workflow skills cover the full development lifecycle:
 
-- **Clarification**: `co-drew-ask`
+- **Clarification**: `cd-ask`
 - **Planning**: `brainstorm`, `write-plan`
 - **Execution**: `execute-plan`, `quick-implement`
-- **Quality**: `co-drew-fix`, `co-drew-review`
+- **Quality**: `cd-fix`, `cd-review`
 - **Documentation**: `docs`
 - **Visualization**: `visualize`
 - **Version Control**: `git-commit`

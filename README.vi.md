@@ -103,9 +103,9 @@ Repository này hiện định nghĩa 10 workflow skill first-party và cũng pi
 
 | Skill             | Mô tả                                                                                                       |
 | ----------------- | ----------------------------------------------------------------------------------------------------------- |
-| `co-drew-ask`     | Đặt câu hỏi làm rõ để thu thập yêu cầu và ngữ cảnh                                                          |
-| `co-drew-fix`     | Chẩn đoán và sửa lỗi với phân tích nguyên nhân gốc và bước xác minh                                         |
-| `co-drew-review`  | Review thay đổi chưa commit với ngữ cảnh codebase và mức độ ưu tiên                                         |
+| `cd-ask`          | Đặt câu hỏi làm rõ để thu thập yêu cầu và ngữ cảnh                                                          |
+| `cd-fix`          | Chẩn đoán và sửa lỗi với phân tích nguyên nhân gốc và bước xác minh                                         |
+| `cd-review`       | Review thay đổi chưa commit với ngữ cảnh codebase và mức độ ưu tiên                                         |
 | `brainstorm`      | Khám phá ý tưởng và phân tích vấn đề phức tạp trước khi lên kế hoạch                                        |
 | `docs`            | Tạo mới hoặc làm mới tài liệu project dựa trên trạng thái repo hiện tại                                     |
 | `execute-plan`    | Thực thi kế hoạch đã viết theo từng giai đoạn với các điểm kiểm tra                                         |
@@ -199,13 +199,13 @@ Dùng cho các thay đổi nhỏ, phạm vi rõ ràng mà không cần kế ho�
 #### Sửa lỗi
 
 ```
-co-drew-fix
+cd-fix
 ```
 
 Dùng khi có lỗi cụ thể, test thất bại hoặc hành vi không mong muốn cần chẩn đoán.
 
 ```
-/co-drew-fix TypeError: Cannot read properties of undefined at checkout.ts:42
+/cd-fix TypeError: Cannot read properties of undefined at checkout.ts:42
 
 # Lỗi đơn giản: agent chẩn đoán, áp dụng fix, kiểm tra
 # Lỗi phức tạp: agent dừng lại và chuyển sang write-plan

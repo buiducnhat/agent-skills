@@ -26,9 +26,9 @@ co-drew/
 │   │   └── tsdown.config.ts
 │   └── config/             # Shared TS config (tsconfig.base.json)
 ├── skills/                 # First-party workflow skill definitions
-│   ├── co-drew-ask/SKILL.md
-│   ├── co-drew-fix/SKILL.md
-│   ├── co-drew-review/SKILL.md
+│   ├── cd-ask/SKILL.md
+│   ├── cd-fix/SKILL.md
+│   ├── cd-review/SKILL.md
 │   ├── brainstorm/SKILL.md
 │   ├── docs/
 │   │   ├── SKILL.md

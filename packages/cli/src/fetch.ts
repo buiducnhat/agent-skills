@@ -9,7 +9,7 @@ export async function fetchTemplates(): Promise<string> {
 	const s = spinner();
 	s.start("Downloading workflow skills from GitHub...");
 
-	const tempDir = mkdtempSync(path.join(tmpdir(), "co-drew-"));
+	const tempDir = mkdtempSync(path.join(tmpdir(), "cd-"));
 
 	try {
 		execSync(
