@@ -3,7 +3,7 @@
 ## Directory Tree
 
 ```
-dbwe/
+co-drew/
 ├── docs/
 │   ├── architecture/       # System/component docs
 │   ├── code-standard/      # Conventions and authoring rules
@@ -13,7 +13,7 @@ dbwe/
 │   ├── plans/              # Dated implementation plans and reports
 │   └── SUMMARY.md          # Docs entry point for context loading
 ├── packages/
-│   ├── cli/                # Published npm package (dbwe)
+│   ├── cli/                # Published npm package (co-drew)
 │   │   ├── src/
 │   │   │   ├── index.ts        # Entry point — CLI flow
 │   │   │   ├── constants.ts    # Agent registry, rules-file map, dir map
@@ -26,9 +26,9 @@ dbwe/
 │   │   └── tsdown.config.ts
 │   └── config/             # Shared TS config (tsconfig.base.json)
 ├── skills/                 # First-party workflow skill definitions
-│   ├── dbwe-ask/SKILL.md
-│   ├── dbwe-fix/SKILL.md
-│   ├── dbwe-review/SKILL.md
+│   ├── co-drew-ask/SKILL.md
+│   ├── co-drew-fix/SKILL.md
+│   ├── co-drew-review/SKILL.md
 │   ├── brainstorm/SKILL.md
 │   ├── docs/
 │   │   ├── SKILL.md

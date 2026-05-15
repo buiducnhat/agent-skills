@@ -1,4 +1,4 @@
-# DBWE
+# CoDrew
 
 Install standardized AI workflow skills and shared rules-file content into any repository with a single command.
 
@@ -24,7 +24,7 @@ Running the installer:
 ### Interactive (recommended)
 
 ```bash
-npx dbwe
+npx co-drew
 ```
 
 Walks you through agent selection and install mode (symlink or copy).
@@ -32,7 +32,7 @@ Walks you through agent selection and install mode (symlink or copy).
 ### Non-interactive (CI / automation)
 
 ```bash
-npx dbwe --non-interactive
+npx co-drew --non-interactive
 ```
 
 Skips all prompts and installs skills for all agents.
@@ -40,7 +40,7 @@ Skips all prompts and installs skills for all agents.
 ### Via shell script
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/buiducnhat/dbwe/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/buiducnhat/co-drew/main/install.sh | bash
 ```
 
 Checks for Node.js 18+ and runs the installer automatically.
@@ -48,7 +48,7 @@ Checks for Node.js 18+ and runs the installer automatically.
 ### Global install
 
 ```bash
-npx dbwe --global
+npx co-drew --global
 ```
 
 Installs skills to your home directory (`~/<agent>/skills/`) so they are available across all projects.
@@ -56,7 +56,7 @@ Installs skills to your home directory (`~/<agent>/skills/`) so they are availab
 ### Target specific agents
 
 ```bash
-npx dbwe -a claude-code -a cursor
+npx co-drew -a claude-code -a cursor
 ```
 
 Installs skills only for the listed agents. Repeat `-a` or pass multiple agent IDs after one flag.
@@ -64,7 +64,7 @@ Installs skills only for the listed agents. Repeat `-a` or pass multiple agent I
 ## Interactive walkthrough
 
 ```
-┌  DBWE Installer
+┌  CoDrew Installer
 │
 ◇  Select agents to install skills for:
 │  ◼ Claude Code  ◼ Cursor  ◻ Windsurf  ...
@@ -103,9 +103,9 @@ This repository currently defines ten first-party workflow skills and also pins 
 
 | Skill             | Description                                                                                                         |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `dbwe-ask`        | Ask clarifying questions to gather requirements and context                                                         |
-| `dbwe-fix`        | Diagnose and resolve bugs with root-cause analysis and verification                                                 |
-| `dbwe-review`     | Review uncommitted changes with codebase context and severity levels                                                |
+| `co-drew-ask`     | Ask clarifying questions to gather requirements and context                                                         |
+| `co-drew-fix`     | Diagnose and resolve bugs with root-cause analysis and verification                                                 |
+| `co-drew-review`  | Review uncommitted changes with codebase context and severity levels                                                |
 | `brainstorm`      | Explore ideas and break down complex problems before planning                                                       |
 | `docs`            | Create or refresh project documentation based on the current repo                                                   |
 | `execute-plan`    | Execute written plans systematically with checkpoints                                                               |
@@ -199,13 +199,13 @@ Use for small, well-scoped changes where a formal plan would be overhead.
 #### Bug fixes
 
 ```
-dbwe-fix
+co-drew-fix
 ```
 
 Use when you have a concrete error, failing test, or unexpected behavior to diagnose.
 
 ```
-/dbwe-fix TypeError: Cannot read properties of undefined at checkout.ts:42
+/co-drew-fix TypeError: Cannot read properties of undefined at checkout.ts:42
 
 # For simple bugs: agent diagnoses, applies fix, verifies
 # For complex bugs: agent stops and routes to write-plan
@@ -250,7 +250,7 @@ Re-running is safe. Rules injection is idempotent — the existing content betwe
 
 ## Release
 
-Tag pushes matching `v*` trigger the GitHub Actions workflow `.github/workflows/release.yml` to publish `dbwe` to npm automatically.
+Tag pushes matching `v*` trigger the GitHub Actions workflow `.github/workflows/release.yml` to publish `co-drew` to npm automatically.
 
 ## Documentation
 

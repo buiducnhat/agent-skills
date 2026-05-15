@@ -12,11 +12,11 @@ export async function runSkillsAdd(
 ): Promise<SkillsInstallResult> {
 	const args: string[] =
 		agents.length === 0
-			? ["skills", "add", "buiducnhat/dbwe", "--skill", "*", "--all", "-y"]
+			? ["skills", "add", "buiducnhat/co-drew", "--skill", "*", "--all", "-y"]
 			: [
 					"skills",
 					"add",
-					"buiducnhat/dbwe",
+					"buiducnhat/co-drew",
 					"--skill",
 					"*",
 					...agents.flatMap((a) => ["-a", a]),

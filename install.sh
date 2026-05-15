@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 #
-# Quick installer for dbwe
+# Quick installer for co-drew
 #
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/buiducnhat/dbwe/main/install.sh | bash
-#   curl -fsSL https://raw.githubusercontent.com/buiducnhat/dbwe/main/install.sh | bash -s -- --agents claude,cursor
+#   curl -fsSL https://raw.githubusercontent.com/buiducnhat/co-drew/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/buiducnhat/co-drew/main/install.sh | bash -s -- --agents claude,cursor
 #
 set -euo pipefail
 
@@ -23,4 +23,4 @@ if [ "$NODE_MAJOR" -lt 18 ]; then
   exit 1
 fi
 
-exec npx --yes dbwe "$@"
+exec npx --yes co-drew "$@"

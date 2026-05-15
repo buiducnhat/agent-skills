@@ -1,10 +1,10 @@
 {
-	"name": "dbwe",
+	"name": "co-drew",
 	"version": "1.1.0",
 	"description": "Install AI workflow skills for coding assistants",
 	"type": "module",
 	"bin": {
-		"dbwe": "./dist/index.js"
+		"co-drew": "./dist/index.js"
 	},
 	"files": [
 		"dist"
@@ -34,7 +34,7 @@
 	"keywords": [
 		"cli",
 		"workflow",
-		"dbwe",
+		"co-drew",
 		"skills",
 		"ai-agents",
 		"amp",
@@ -79,13 +79,13 @@
 		"adal",
 		"universal"
 	],
-	"homepage": "https://github.com/buiducnhat/dbwe#readme",
+	"homepage": "https://github.com/buiducnhat/co-drew#readme",
 	"bugs": {
-		"url": "https://github.com/buiducnhat/dbwe/issues"
+		"url": "https://github.com/buiducnhat/co-drew/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/buiducnhat/dbwe.git",
+		"url": "https://github.com/buiducnhat/co-drew.git",
 		"directory": "packages/cli"
 	},
 	"license": "MIT"

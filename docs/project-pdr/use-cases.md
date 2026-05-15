@@ -14,12 +14,12 @@
 
 | Situation                                                      | Expected Skill                    |
 | -------------------------------------------------------------- | --------------------------------- |
-| Requirements are incomplete and the user must answer questions | `dbwe-ask`                        |
+| Requirements are incomplete and the user must answer questions | `co-drew-ask`                     |
 | The problem is exploratory or has multiple valid approaches    | `brainstorm`                      |
 | The change is large enough to require phased execution         | `write-plan`, then `execute-plan` |
 | The change is small, low-risk, and easy to verify              | `quick-implement`                 |
-| A bug or failing behavior needs root-cause diagnosis           | `dbwe-fix`                        |
-| Current uncommitted changes need review                        | `dbwe-review`                     |
+| A bug or failing behavior needs root-cause diagnosis           | `co-drew-fix`                     |
+| Current uncommitted changes need review                        | `co-drew-review`                  |
 | Repository documentation needs to be created or refreshed      | `docs`                            |
 | Docs, plans, markdown, or context need visual mapping          | `visualize`                       |
 | Staged or unstaged changes need a conventional commit message  | `git-commit`                      |

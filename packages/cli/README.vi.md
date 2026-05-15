@@ -1,4 +1,4 @@
-# DBWE
+# CoDrew
 
 Cài đặt các workflow skill chuẩn hóa cho AI agent và nội dung rules dùng chung vào bất kỳ repository nào chỉ với một lệnh duy nhất.
 
@@ -24,7 +24,7 @@ Khi chạy trình cài đặt:
 ### Tương tác (khuyến nghị)
 
 ```bash
-npx dbwe
+npx co-drew
 ```
 
 Hướng dẫn từng bước qua việc chọn agent và chế độ cài đặt (symlink hoặc copy).
@@ -32,7 +32,7 @@ Hướng dẫn từng bước qua việc chọn agent và chế độ cài đặ
 ### Không tương tác (CI / tự động hóa)
 
 ```bash
-npx dbwe --non-interactive
+npx co-drew --non-interactive
 ```
 
 Bỏ qua tất cả các bước hỏi và cài đặt skill cho tất cả agent.
@@ -40,7 +40,7 @@ Bỏ qua tất cả các bước hỏi và cài đặt skill cho tất cả agen
 ### Qua shell script
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/buiducnhat/dbwe/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/buiducnhat/co-drew/main/install.sh | bash
 ```
 
 Kiểm tra Node.js 18+ và chạy trình cài đặt tự động.
@@ -48,7 +48,7 @@ Kiểm tra Node.js 18+ và chạy trình cài đặt tự động.
 ### Cài đặt toàn cục
 
 ```bash
-npx dbwe --global
+npx co-drew --global
 ```
 
 Cài đặt skill vào thư mục home (`~/<agent>/skills/`) để dùng được trên tất cả các project.
@@ -56,7 +56,7 @@ Cài đặt skill vào thư mục home (`~/<agent>/skills/`) để dùng đượ
 ### Chọn agent cụ thể
 
 ```bash
-npx dbwe -a claude-code -a cursor
+npx co-drew -a claude-code -a cursor
 ```
 
 Chỉ cài skill cho các agent đã liệt kê. Có thể lặp lại `-a` hoặc truyền nhiều agent sau một lần dùng cờ.
@@ -64,7 +64,7 @@ Chỉ cài skill cho các agent đã liệt kê. Có thể lặp lại `-a` ho�
 ## Hướng dẫn tương tác
 
 ```
-┌  DBWE Installer
+┌  CoDrew Installer
 │
 ◇  Select agents to install skills for:
 │  ◼ Claude Code  ◼ Cursor  ◻ Windsurf  ...
@@ -103,9 +103,9 @@ Repository này hiện định nghĩa 10 workflow skill first-party và cũng pi
 
 | Skill             | Mô tả                                                                                                       |
 | ----------------- | ----------------------------------------------------------------------------------------------------------- |
-| `dbwe-ask`        | Đặt câu hỏi làm rõ để thu thập yêu cầu và ngữ cảnh                                                          |
-| `dbwe-fix`        | Chẩn đoán và sửa lỗi với phân tích nguyên nhân gốc và bước xác minh                                         |
-| `dbwe-review`     | Review thay đổi chưa commit với ngữ cảnh codebase và mức độ ưu tiên                                         |
+| `co-drew-ask`     | Đặt câu hỏi làm rõ để thu thập yêu cầu và ngữ cảnh                                                          |
+| `co-drew-fix`     | Chẩn đoán và sửa lỗi với phân tích nguyên nhân gốc và bước xác minh                                         |
+| `co-drew-review`  | Review thay đổi chưa commit với ngữ cảnh codebase và mức độ ưu tiên                                         |
 | `brainstorm`      | Khám phá ý tưởng và phân tích vấn đề phức tạp trước khi lên kế hoạch                                        |
 | `docs`            | Tạo mới hoặc làm mới tài liệu project dựa trên trạng thái repo hiện tại                                     |
 | `execute-plan`    | Thực thi kế hoạch đã viết theo từng giai đoạn với các điểm kiểm tra                                         |
@@ -199,13 +199,13 @@ Dùng cho các thay đổi nhỏ, phạm vi rõ ràng mà không cần kế ho�
 #### Sửa lỗi
 
 ```
-dbwe-fix
+co-drew-fix
 ```
 
 Dùng khi có lỗi cụ thể, test thất bại hoặc hành vi không mong muốn cần chẩn đoán.
 
 ```
-/dbwe-fix TypeError: Cannot read properties of undefined at checkout.ts:42
+/co-drew-fix TypeError: Cannot read properties of undefined at checkout.ts:42
 
 # Lỗi đơn giản: agent chẩn đoán, áp dụng fix, kiểm tra
 # Lỗi phức tạp: agent dừng lại và chuyển sang write-plan
@@ -250,7 +250,7 @@ Chạy lại hoàn toàn an toàn. Việc chèn rules là idempotent — nội d
 
 ## Phát hành
 
-Các tag push khớp với `v*` sẽ kích hoạt GitHub Actions workflow `.github/workflows/release.yml` để tự động publish `dbwe` lên npm.
+Các tag push khớp với `v*` sẽ kích hoạt GitHub Actions workflow `.github/workflows/release.yml` để tự động publish `co-drew` lên npm.
 
 ## Tài liệu
 

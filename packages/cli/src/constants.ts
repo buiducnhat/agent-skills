@@ -1,4 +1,4 @@
-export const REPO_URL = "https://github.com/buiducnhat/dbwe.git";
+export const REPO_URL = "https://github.com/buiducnhat/co-drew.git";
 export const REPO_BRANCH = "main";
 
 export interface AgentInfo {
@@ -147,5 +147,5 @@ export const AGENT_RULES_MAP: Record<string, string> = {
 	goose: ".goosehints",
 };
 
-export const RULES_MARKER_START = "<!-- BEGIN dbwe rules -->";
-export const RULES_MARKER_END = "<!-- END dbwe rules -->";
+export const RULES_MARKER_START = "<!-- BEGIN co-drew rules -->";
+export const RULES_MARKER_END = "<!-- END co-drew rules -->";

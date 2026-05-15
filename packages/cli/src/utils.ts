@@ -110,9 +110,9 @@ export function copyDirectory(src: string, dest: string): void {
 
 export function printHelp(): void {
 	console.log(`
-  dbwe - Install AI workflow skills for coding assistants
+  co-drew - Install AI workflow skills for coding assistants
 
-  Usage: npx dbwe [options]
+  Usage: npx co-drew [options]
 
   Options:
 		-a, --agent <agents...> Target specific agents. Repeat for each agent.
@@ -127,14 +127,14 @@ export function printHelp(): void {
     -v, --version        Show version
 
   Examples:
-    npx dbwe
-		npx dbwe -a claude-code -a cursor
-		npx dbwe --agent claude-code cursor
-    npx dbwe --non-interactive
-    npx dbwe --copy
-    npx dbwe --global
-    npx dbwe --global --non-interactive
-		npx dbwe --non-interactive --agent claude-code
+    npx co-drew
+		npx co-drew -a claude-code -a cursor
+		npx co-drew --agent claude-code cursor
+    npx co-drew --non-interactive
+    npx co-drew --copy
+    npx co-drew --global
+    npx co-drew --global --non-interactive
+		npx co-drew --non-interactive --agent claude-code
 `);
 }
 
