@@ -110,9 +110,9 @@ export function copyDirectory(src: string, dest: string): void {
 
 export function printHelp(): void {
 	console.log(`
-  @buiducnhat/agent-skills - Install AI agent workflow skills for coding assistants
+  dbwe - Install AI workflow skills for coding assistants
 
-  Usage: npx @buiducnhat/agent-skills [options]
+  Usage: npx dbwe [options]
 
   Options:
 		-a, --agent <agents...> Target specific agents. Repeat for each agent.
@@ -127,14 +127,14 @@ export function printHelp(): void {
     -v, --version        Show version
 
   Examples:
-    npx @buiducnhat/agent-skills
-		npx @buiducnhat/agent-skills -a claude-code -a cursor
-		npx @buiducnhat/agent-skills --agent claude-code cursor
-    npx @buiducnhat/agent-skills --non-interactive
-    npx @buiducnhat/agent-skills --copy
-    npx @buiducnhat/agent-skills --global
-    npx @buiducnhat/agent-skills --global --non-interactive
-		npx @buiducnhat/agent-skills --non-interactive --agent claude-code
+    npx dbwe
+		npx dbwe -a claude-code -a cursor
+		npx dbwe --agent claude-code cursor
+    npx dbwe --non-interactive
+    npx dbwe --copy
+    npx dbwe --global
+    npx dbwe --global --non-interactive
+		npx dbwe --non-interactive --agent claude-code
 `);
 }
 

@@ -7,9 +7,9 @@ import { REPO_BRANCH, REPO_URL } from "./constants.js";
 
 export async function fetchTemplates(): Promise<string> {
 	const s = spinner();
-	s.start("Downloading agent skills from GitHub...");
+	s.start("Downloading workflow skills from GitHub...");
 
-	const tempDir = mkdtempSync(path.join(tmpdir(), "agent-skills-"));
+	const tempDir = mkdtempSync(path.join(tmpdir(), "dbwe-"));
 
 	try {
 		execSync(
@@ -27,7 +27,7 @@ export async function fetchTemplates(): Promise<string> {
 			throw new Error("templates/AGENTS.md not found in the repository");
 		}
 
-		s.stop("Downloaded agent skills");
+		s.stop("Downloaded workflow skills");
 		return tempDir;
 	} catch (err) {
 		s.stop("Download failed");

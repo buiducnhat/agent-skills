@@ -1,5 +1,5 @@
 {
-	"name": "agent-skills",
+	"name": "dbwe",
 	"version": "1.0.1",
 	"description": "Workflow skills and shared instructions for coding agents.",
 	"author": {
@@ -7,21 +7,21 @@
 		"email": "nhaths4701@gmail.com",
 		"url": "https://github.com/buiducnhat"
 	},
-	"homepage": "https://github.com/buiducnhat/agent-skills#readme",
-	"repository": "https://github.com/buiducnhat/agent-skills",
+	"homepage": "https://github.com/buiducnhat/dbwe#readme",
+	"repository": "https://github.com/buiducnhat/dbwe",
 	"license": "MIT",
-	"keywords": ["agent-skills", "codex", "workflow", "skills", "coding-agents"],
+	"keywords": ["dbwe", "codex", "workflow", "skills", "coding-agents"],
 	"skills": "./skills/",
 	"interface": {
-		"displayName": "Agent Skills",
+		"displayName": "DBWE",
 		"shortDescription": "Workflow skills for coding-agent projects.",
-		"longDescription": "Agent Skills provides structured workflows for asking clarifying questions, fixing bugs, reviewing changes, brainstorming, writing plans, executing plans, maintaining docs, creating commits, quick implementation, and source-adjacent visualizations.",
+		"longDescription": "DBWE provides structured workflows for asking clarifying questions, fixing bugs, reviewing changes, brainstorming, writing plans, executing plans, maintaining docs, creating commits, quick implementation, and source-adjacent visualizations.",
 		"developerName": "Nhat Bui",
 		"category": "Productivity",
 		"capabilities": ["Interactive", "Read", "Write"],
-		"websiteURL": "https://github.com/buiducnhat/agent-skills",
-		"privacyPolicyURL": "https://github.com/buiducnhat/agent-skills",
-		"termsOfServiceURL": "https://github.com/buiducnhat/agent-skills/blob/main/LICENSE",
+		"websiteURL": "https://github.com/buiducnhat/dbwe",
+		"privacyPolicyURL": "https://github.com/buiducnhat/dbwe",
+		"termsOfServiceURL": "https://github.com/buiducnhat/dbwe/blob/main/LICENSE",
 		"defaultPrompt": [
 			"Use quick-implement for a small code change.",
 			"Review my current uncommitted changes.",

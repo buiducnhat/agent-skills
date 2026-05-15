@@ -1,7 +1,7 @@
 # Documentation Summary
 
-agent-skills — A CLI installer and skill repository for standardizing coding-agent workflows across many local agent environments with one command.
-Monorepo built with TypeScript, Bun, and Turbo; publishes `@buiducnhat/agent-skills` and ships repo-owned workflow skills plus shared agent instructions.
+DBWE — A CLI installer and skill repository for standardizing coding-agent workflows across many local agent environments with one command.
+Monorepo built with TypeScript, Bun, and Turbo; publishes `dbwe` and ships repo-owned workflow skills plus shared agent instructions.
 
 ## Architecture
 

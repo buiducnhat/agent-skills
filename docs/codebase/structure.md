@@ -3,7 +3,7 @@
 ## Directory Tree
 
 ```
-agent-skills/
+dbwe/
 ├── docs/
 │   ├── architecture/       # System/component docs
 │   ├── code-standard/      # Conventions and authoring rules
@@ -13,7 +13,7 @@ agent-skills/
 │   ├── plans/              # Dated implementation plans and reports
 │   └── SUMMARY.md          # Docs entry point for context loading
 ├── packages/
-│   ├── cli/                # Published npm package (@buiducnhat/agent-skills)
+│   ├── cli/                # Published npm package (dbwe)
 │   │   ├── src/
 │   │   │   ├── index.ts        # Entry point — CLI flow
 │   │   │   ├── constants.ts    # Agent registry, rules-file map, dir map

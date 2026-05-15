@@ -1,6 +1,6 @@
-# agent-skills
+# DBWE
 
-Install standardized AI agent workflow skills and shared rules-file content into any repository with a single command.
+Install standardized AI workflow skills and shared rules-file content into any repository with a single command.
 
 Supports **40 AI coding agents** including Claude Code, Cursor, Windsurf, Copilot, Cline, Roo Code, and more.
 
@@ -24,7 +24,7 @@ Running the installer:
 ### Interactive (recommended)
 
 ```bash
-npx @buiducnhat/agent-skills
+npx dbwe
 ```
 
 Walks you through agent selection and install mode (symlink or copy).
@@ -32,7 +32,7 @@ Walks you through agent selection and install mode (symlink or copy).
 ### Non-interactive (CI / automation)
 
 ```bash
-npx @buiducnhat/agent-skills --non-interactive
+npx dbwe --non-interactive
 ```
 
 Skips all prompts and installs skills for all agents.
@@ -40,7 +40,7 @@ Skips all prompts and installs skills for all agents.
 ### Via shell script
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/buiducnhat/agent-skills/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/buiducnhat/dbwe/main/install.sh | bash
 ```
 
 Checks for Node.js 18+ and runs the installer automatically.
@@ -48,7 +48,7 @@ Checks for Node.js 18+ and runs the installer automatically.
 ### Global install
 
 ```bash
-npx @buiducnhat/agent-skills --global
+npx dbwe --global
 ```
 
 Installs skills to your home directory (`~/<agent>/skills/`) so they are available across all projects.
@@ -56,7 +56,7 @@ Installs skills to your home directory (`~/<agent>/skills/`) so they are availab
 ### Target specific agents
 
 ```bash
-npx @buiducnhat/agent-skills -a claude-code -a cursor
+npx dbwe -a claude-code -a cursor
 ```
 
 Installs skills only for the listed agents. Repeat `-a` or pass multiple agent IDs after one flag.
@@ -64,7 +64,7 @@ Installs skills only for the listed agents. Repeat `-a` or pass multiple agent I
 ## Interactive walkthrough
 
 ```
-┌  Agent Skills Installer
+┌  DBWE Installer
 │
 ◇  Select agents to install skills for:
 │  ◼ Claude Code  ◼ Cursor  ◻ Windsurf  ...
@@ -83,7 +83,7 @@ Installs skills only for the listed agents. Repeat `-a` or pass multiple agent I
 │    - claude-code
 │    - cursor
 │
-└  Done! Your AI agent skills are ready.
+└  Done! Your AI workflow skills are ready.
 ```
 
 ## CLI options
@@ -232,7 +232,7 @@ Re-running is safe. Rules injection is idempotent — the existing content betwe
 
 ## Release
 
-Tag pushes matching `v*` trigger the GitHub Actions workflow `.github/workflows/release.yml` to publish `@buiducnhat/agent-skills` to npm automatically.
+Tag pushes matching `v*` trigger the GitHub Actions workflow `.github/workflows/release.yml` to publish `dbwe` to npm automatically.
 
 ## Documentation
 

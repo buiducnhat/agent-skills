@@ -1,4 +1,4 @@
-# agent-skills
+# DBWE
 
 Cài đặt các workflow skill chuẩn hóa cho AI agent và nội dung rules dùng chung vào bất kỳ repository nào chỉ với một lệnh duy nhất.
 
@@ -24,7 +24,7 @@ Khi chạy trình cài đặt:
 ### Tương tác (khuyến nghị)
 
 ```bash
-npx @buiducnhat/agent-skills
+npx dbwe
 ```
 
 Hướng dẫn từng bước qua việc chọn agent và chế độ cài đặt (symlink hoặc copy).
@@ -32,7 +32,7 @@ Hướng dẫn từng bước qua việc chọn agent và chế độ cài đặ
 ### Không tương tác (CI / tự động hóa)
 
 ```bash
-npx @buiducnhat/agent-skills --non-interactive
+npx dbwe --non-interactive
 ```
 
 Bỏ qua tất cả các bước hỏi và cài đặt skill cho tất cả agent.
@@ -40,7 +40,7 @@ Bỏ qua tất cả các bước hỏi và cài đặt skill cho tất cả agen
 ### Qua shell script
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/buiducnhat/agent-skills/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/buiducnhat/dbwe/main/install.sh | bash
 ```
 
 Kiểm tra Node.js 18+ và chạy trình cài đặt tự động.
@@ -48,7 +48,7 @@ Kiểm tra Node.js 18+ và chạy trình cài đặt tự động.
 ### Cài đặt toàn cục
 
 ```bash
-npx @buiducnhat/agent-skills --global
+npx dbwe --global
 ```
 
 Cài đặt skill vào thư mục home (`~/<agent>/skills/`) để dùng được trên tất cả các project.
@@ -56,7 +56,7 @@ Cài đặt skill vào thư mục home (`~/<agent>/skills/`) để dùng đượ
 ### Chọn agent cụ thể
 
 ```bash
-npx @buiducnhat/agent-skills -a claude-code -a cursor
+npx dbwe -a claude-code -a cursor
 ```
 
 Chỉ cài skill cho các agent đã liệt kê. Có thể lặp lại `-a` hoặc truyền nhiều agent sau một lần dùng cờ.
@@ -64,7 +64,7 @@ Chỉ cài skill cho các agent đã liệt kê. Có thể lặp lại `-a` ho�
 ## Hướng dẫn tương tác
 
 ```
-┌  Agent Skills Installer
+┌  DBWE Installer
 │
 ◇  Select agents to install skills for:
 │  ◼ Claude Code  ◼ Cursor  ◻ Windsurf  ...
@@ -83,7 +83,7 @@ Chỉ cài skill cho các agent đã liệt kê. Có thể lặp lại `-a` ho�
 │    - claude-code
 │    - cursor
 │
-└  Done! Your AI agent skills are ready.
+└  Done! Your AI workflow skills are ready.
 ```
 
 ## Tùy chọn CLI
@@ -232,7 +232,7 @@ Chạy lại hoàn toàn an toàn. Việc chèn rules là idempotent — nội d
 
 ## Phát hành
 
-Các tag push khớp với `v*` sẽ kích hoạt GitHub Actions workflow `.github/workflows/release.yml` để tự động publish `@buiducnhat/agent-skills` lên npm.
+Các tag push khớp với `v*` sẽ kích hoạt GitHub Actions workflow `.github/workflows/release.yml` để tự động publish `dbwe` lên npm.
 
 ## Tài liệu
 

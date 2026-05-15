@@ -84,7 +84,7 @@ async function main(): Promise<void> {
 		process.exit(1);
 	}
 
-	intro(pc.bold(pc.cyan(" Agent Skills Installer ")));
+	intro(pc.bold(pc.cyan(" DBWE Installer ")));
 
 	const cwd = process.cwd();
 	const baseDir = args.global ? os.homedir() : cwd;
@@ -114,8 +114,8 @@ async function main(): Promise<void> {
 			cancel(
 				pc.red(
 					agentsToInstall.length > 0
-						? "Skills CLI failed. See errors above.\nYou can try running manually: npx skills add buiducnhat/agent-skills --skill '*' -a <agent> -y"
-						: "Skills CLI failed. See errors above.\nYou can try running manually: npx skills add buiducnhat/agent-skills --skill '*' --all -y",
+						? "Skills CLI failed. See errors above.\nYou can try running manually: npx skills add buiducnhat/dbwe --skill '*' -a <agent> -y"
+						: "Skills CLI failed. See errors above.\nYou can try running manually: npx skills add buiducnhat/dbwe --skill '*' --all -y",
 				),
 			);
 			process.exit(1);
@@ -166,7 +166,7 @@ async function main(): Promise<void> {
 		if (!result.success) {
 			cancel(
 				pc.red(
-					"Skills CLI failed. See errors above.\nYou can try running manually: npx skills add buiducnhat/agent-skills --skill '*' -a <agent> -y",
+					"Skills CLI failed. See errors above.\nYou can try running manually: npx skills add buiducnhat/dbwe --skill '*' -a <agent> -y",
 				),
 			);
 			process.exit(1);
@@ -229,7 +229,7 @@ async function main(): Promise<void> {
 		if (!result.success) {
 			cancel(
 				pc.red(
-					"Skills CLI failed. See errors above.\nYou can try running manually: npx skills add buiducnhat/agent-skills --skill '*' -a <agent> -y",
+					"Skills CLI failed. See errors above.\nYou can try running manually: npx skills add buiducnhat/dbwe --skill '*' -a <agent> -y",
 				),
 			);
 			process.exit(1);
@@ -252,7 +252,7 @@ async function main(): Promise<void> {
 
 		printSummary(selectedAgents, results);
 
-		outro(pc.green("Done! Your AI agent skills are ready."));
+		outro(pc.green("Done! Your AI workflow skills are ready."));
 	} catch (err) {
 		const message = err instanceof Error ? err.message : String(err);
 		cancel(pc.red(`Error: ${message}`));

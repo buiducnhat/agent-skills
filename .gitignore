@@ -56,7 +56,7 @@ cli/dist/
 docs/plans/
 docs/brainstorms/
 
-# Local agent skills
+# Local workflow skills
 AGENTS.md
 CLAUDE.md
 skills-lock.json
