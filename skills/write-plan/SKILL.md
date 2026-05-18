@@ -145,7 +145,7 @@ If the user chooses **Confirm and Visualize**:
 End with:
 
 Plan `<relative_path_to_plan>/SUMMARY.md` is ready.  
-Use `/clear` and then `/execute-plan <relative_path_to_plan>/SUMMARY.md` to execute it.
+Make new session and use `execute-plan` `<relative_path_to_plan>/SUMMARY.md` to execute it.
 
 If visualization was created, also include:
 
