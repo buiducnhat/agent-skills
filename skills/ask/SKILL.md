@@ -1,27 +1,11 @@
 ---
 name: ask
-description: Structured clarification and requirements gathering through focused dialogue. Use when a task is ambiguous, underspecified, or requires user input before any action can be taken. Do not plan or implement anything—only ask questions to collect the information needed.
+description: Structured clarification and requirements gathering through focused dialogue or with dry code. Use when a task is ambiguous, underspecified, or requires user input before any action can be taken. Do not plan or implement anything—only ask questions to collect the information needed.
 argument-hint: "[question]"
 license: MIT
 ---
 
 # Ask
-
-## Purpose
-
-Gather the information needed to proceed with a task through structured, focused dialogue.
-
-This skill is for **asking only**. Do not plan, implement, or produce any artifacts.
-
-## Scope Gate (Required Before Starting)
-
-Use this skill only when:
-
-1. **The task is underspecified** — key requirements, constraints, or decisions are missing
-2. **User input is required** — the task cannot proceed without answers from the user
-3. **No assumptions are safe** — guessing would risk wasted effort or wrong direction
-
-If the task is very clear enough to act on, use `brainstorm`, `write-plan`, or `quick-implement` instead.
 
 ## Workflow
 
@@ -52,23 +36,10 @@ Rules:
 - Do not ask about implementation details prematurely
 - Do not bundle multiple questions into one message
 
-### Step 4: Confirm and Hand Off
-
-Once all gaps are closed:
-
-1. Summarize the collected answers concisely
-2. Confirm with the user that the summary is correct
-3. Recommend the appropriate next skill based on complexity:
-   - If no need to implement any code, just write the response immediately.
-   - Simple, clear task → `quick-implement`
-   - Complex or risky task → `write-plan`
-   - Ambiguous, high-risk, or exploratory → `brainstorm`
-
 ## Rules
 
-- Do not write code or modify any files
+- Do not write code or modify any files, only support dry coding into output, not into artifacts
 - Do not produce plans, designs, or implementation artifacts
 - Do not make assumptions; ask instead
 - Keep questions short and focused
 - Apply YAGNI: only ask what is strictly necessary to proceed
-- Feeds into: `brainstorm`, `write-plan`, `quick-implement`

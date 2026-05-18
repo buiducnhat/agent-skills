@@ -7,12 +7,6 @@ license: MIT
 
 # Quick Implement
 
-## Purpose
-
-Implement small features or bug fixes directly, with strict scope control and verification.
-
-Use this skill for speed **only when risk is low** and requirements are clear.
-
 ## Scope Gate (Required Before Coding)
 
 Treat a task as **quick-implement eligible** only if all conditions below are true:
@@ -83,14 +77,14 @@ Run proportional validation for the change using the appropriate execution tools
 If verification fails unexpectedly:
 
 - Attempt focused fixes if clearly local.
-- If failures suggest broader impact, immediately escalate to `write-plan`.
+- If failures suggest broader impact, recommend escalate to `write-plan`.
 
 ### Step 4: Complete
 
 1. Summarize what changed and why.
 2. List modified files.
 3. Report verification commands and outcomes.
-4. Update documentation if minor behavior or domain rules changed (e.g., small updates to `docs/project-pdr.md` or component specific readmes). Do not touch architecture docs; if architecture changed, this task should have been escalated.
+4. Update documentation if minor behavior or domain rules changed
 
 ## Execution Boundaries
 

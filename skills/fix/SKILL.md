@@ -7,12 +7,6 @@ license: MIT
 
 # Fix
 
-## Purpose
-
-Resolve concrete bugs safely through structured diagnosis, minimal fixes, and verification.
-
-This skill is for bug-fix execution when scope is clear and risk is manageable.
-
 ## Scope Gate (Required Before Starting)
 
 Use this skill only when all conditions below are true:

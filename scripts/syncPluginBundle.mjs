@@ -1,4 +1,11 @@
-import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import {
+	cpSync,
+	existsSync,
+	mkdirSync,
+	readFileSync,
+	rmSync,
+	writeFileSync,
+} from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -6,8 +13,17 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, "..");
 
-const rootManifestPath = path.join(repoRoot, ".codex-plugin", "plugin.json");
-const marketplacePath = path.join(repoRoot, ".agents", "plugins", "marketplace.json");
+const rootManifestPath = path.join(
+	repoRoot,
+	"./plugins/cobrew/.codex-plugin",
+	"plugin.json",
+);
+const marketplacePath = path.join(
+	repoRoot,
+	".agents",
+	"plugins",
+	"marketplace.json",
+);
 
 const rootManifest = JSON.parse(readFileSync(rootManifestPath, "utf8"));
 
@@ -25,7 +41,10 @@ const bundleAssetsPath = path.join(bundleRoot, "assets");
 rmSync(bundleRoot, { force: true, recursive: true });
 mkdirSync(bundleManifestDir, { recursive: true });
 
-writeFileSync(bundleManifestPath, `${JSON.stringify(rootManifest, null, "\t")}\n`);
+writeFileSync(
+	bundleManifestPath,
+	`${JSON.stringify(rootManifest, null, "\t")}\n`,
+);
 cpSync(path.join(repoRoot, "skills"), bundleSkillsPath, { recursive: true });
 
 if (existsSync(path.join(repoRoot, "assets"))) {
