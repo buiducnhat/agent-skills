@@ -21,19 +21,25 @@ CoBrew phân phối cùng một bộ workflow skill first-party qua hai hướng
 
 ### Plugin Codex (khuyến nghị cho Codex)
 
-Dùng marketplace entry của Codex tại `.agents/plugins/marketplace.json`. File này trỏ tới plugin bundle local tại `./plugins/cobrew`.
+Cài marketplace plugin CoBrew trực tiếp từ GitHub:
 
-Plugin bundle gồm:
-
-- `.codex-plugin/plugin.json`
-- toàn bộ workflow skill CoBrew trong `skills/`
-- plugin assets trong `assets/`
+```bash
+codex plugin marketplace add buiducnhat/cobrew
+```
 
 ### Plugin Claude Code (khuyến nghị cho Claude Code)
 
-Dùng marketplace entry của Claude Code tại `.claude-plugin/marketplace.json`. File này trỏ tới cùng plugin bundle local tại `./plugins/cobrew`.
+Cài marketplace plugin CoBrew trực tiếp từ GitHub:
 
-Manifest plugin cho Claude Code nằm tại `plugins/cobrew/.claude-plugin/plugin.json`.
+```bash
+claude plugin marketplace add buiducnhat/cobrew
+```
+
+Trong phiên Claude Code tương tác, dùng slash command:
+
+```text
+/plugin marketplace add buiducnhat/cobrew
+```
 
 ### CLI installer (fallback và cài nhiều agent)
 

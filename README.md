@@ -21,19 +21,25 @@ CoBrew ships the same first-party workflow skills through two distribution paths
 
 ### Codex plugin (recommended for Codex)
 
-Use the bundled Codex marketplace entry at `.agents/plugins/marketplace.json`. It points to the local plugin bundle at `./plugins/cobrew`.
+Install the CoBrew plugin marketplace directly from GitHub:
 
-The plugin bundle includes:
-
-- `.codex-plugin/plugin.json`
-- all CoBrew workflow skills under `skills/`
-- plugin assets under `assets/`
+```bash
+codex plugin marketplace add buiducnhat/cobrew
+```
 
 ### Claude Code plugin (recommended for Claude Code)
 
-Use the bundled Claude Code marketplace entry at `.claude-plugin/marketplace.json`. It points to the same local plugin bundle at `./plugins/cobrew`.
+Install the CoBrew plugin marketplace directly from GitHub:
 
-The Claude Code plugin manifest lives at `plugins/cobrew/.claude-plugin/plugin.json`.
+```bash
+claude plugin marketplace add buiducnhat/cobrew
+```
+
+Inside an interactive Claude Code session, use the slash command form:
+
+```text
+/plugin marketplace add buiducnhat/cobrew
+```
 
 ### CLI installer (fallback and multi-agent setup)
 

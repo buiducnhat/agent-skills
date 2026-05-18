@@ -117,4 +117,4 @@ cobrew/
 - The workspace pattern allows `apps/*` and `packages/*`, but the current repository only uses `packages/cli` and `packages/config`.
 - `skills/` contains first-party authored skills, while `skills-lock.json` references additional upstream skills resolved by the CLI install path.
 - `plugins/cobrew/` is generated output, except for the current plugin metadata source at `plugins/cobrew/.codex-plugin/plugin.json`; run `bun run sync:plugin` after changing the plugin manifest, assets, or skill content.
-- User-facing docs should recommend the plugin path for Codex and Claude Code first, then document `npx cobrew` as the fallback for other agents and automation.
+- User-facing docs should recommend `codex plugin marketplace add buiducnhat/cobrew` and `claude plugin marketplace add buiducnhat/cobrew` first, then document `npx cobrew` as the fallback for other agents and automation.

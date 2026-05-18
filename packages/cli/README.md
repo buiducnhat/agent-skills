@@ -21,7 +21,16 @@ CoBrew ships the same first-party workflow skills through two distribution paths
 
 ### Codex and Claude Code plugins (recommended)
 
-For Codex and Claude Code, prefer the CoBrew plugin bundle maintained in the [GitHub repository](https://github.com/buiducnhat/cobrew#readme). The npm package documented below is the CLI fallback for other agents and automation.
+For Codex and Claude Code, install the CoBrew plugin marketplace directly from GitHub:
+
+```bash
+codex plugin marketplace add buiducnhat/cobrew
+claude plugin marketplace add buiducnhat/cobrew
+```
+
+Inside an interactive Claude Code session, use `/plugin marketplace add buiducnhat/cobrew`.
+
+The npm package documented below is the CLI fallback for other agents and automation.
 
 ### CLI installer (fallback and multi-agent setup)
 

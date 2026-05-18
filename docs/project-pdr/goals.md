@@ -23,15 +23,15 @@ CoBrew provides a plugin-first distribution model with a CLI fallback:
 
 ## Supported Workflows
 
-| Workflow                           | Entry Point                           |
-| ---------------------------------- | ------------------------------------- |
-| Codex plugin install               | `.agents/plugins/marketplace.json`    |
-| Claude Code plugin install         | `.claude-plugin/marketplace.json`     |
-| Interactive CLI fallback           | `npx cobrew@latest`                   |
-| Non-interactive CI install         | `npx cobrew@latest --non-interactive` |
-| Global CLI install across projects | `npx cobrew@latest --global`          |
-| Copy-based CLI install             | `npx cobrew@latest --copy`            |
-| Shell bootstrap install            | `curl -fsSL .../install.sh \| bash`   |
+| Workflow                           | Entry Point                                         |
+| ---------------------------------- | --------------------------------------------------- |
+| Codex plugin install               | `codex plugin marketplace add buiducnhat/cobrew`    |
+| Claude Code plugin install         | `claude plugin marketplace add buiducnhat/cobrew`   |
+| Interactive CLI fallback           | `npx cobrew@latest`                                 |
+| Non-interactive CI install         | `npx cobrew@latest --non-interactive`               |
+| Global CLI install across projects | `npx cobrew@latest --global`                        |
+| Copy-based CLI install             | `npx cobrew@latest --copy`                          |
+| Shell bootstrap install            | `curl -fsSL .../install.sh \| bash`                 |
 
 ## Workflow Skills Provided
 
@@ -71,7 +71,7 @@ The repository also tracks additional upstream skills in `skills-lock.json` so d
 
 - Node.js 18+ is required for CLI execution.
 - `git` and network access are required because templates are fetched by cloning the repository.
-- Codex and Claude Code plugin installs use the local `plugins/cobrew` bundle and marketplace metadata instead of running `npx cobrew`.
+- Codex and Claude Code plugin installs use marketplace commands pointed at `buiducnhat/cobrew` instead of running `npx cobrew`.
 - Non-interactive installs may complete skill installation even when no local agent rules files are detected; in that case, rules injection is skipped.
 - Re-running the installer must remain idempotent for text-based rules files.
 

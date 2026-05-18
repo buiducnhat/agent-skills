@@ -21,7 +21,16 @@ CoBrew phân phối cùng một bộ workflow skill first-party qua hai hướng
 
 ### Plugin Codex và Claude Code (khuyến nghị)
 
-Với Codex và Claude Code, nên dùng plugin bundle CoBrew được duy trì trong [GitHub repository](https://github.com/buiducnhat/cobrew#readme). Gói npm bên dưới là CLI fallback cho agent khác và tự động hóa.
+Với Codex và Claude Code, cài marketplace plugin CoBrew trực tiếp từ GitHub:
+
+```bash
+codex plugin marketplace add buiducnhat/cobrew
+claude plugin marketplace add buiducnhat/cobrew
+```
+
+Trong phiên Claude Code tương tác, dùng `/plugin marketplace add buiducnhat/cobrew`.
+
+Gói npm bên dưới là CLI fallback cho agent khác và tự động hóa.
 
 ### CLI installer (fallback và cài nhiều agent)
 

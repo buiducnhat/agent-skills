@@ -12,7 +12,7 @@ The recommended user path for Codex and Claude Code is the generated plugin bund
 
 `plugins/cobrew/.codex-plugin/plugin.json` is the current authoring metadata source for generated plugin artifacts. The generated distribution bundle lives at `plugins/cobrew/` and contains Codex and Claude Code manifests, bundled `skills/`, and plugin assets.
 
-The Codex marketplace entry at `.agents/plugins/marketplace.json` and the Claude Code marketplace entry at `.claude-plugin/marketplace.json` both point at `./plugins/cobrew`, making the plugin path the preferred setup for those two agents.
+Users install the marketplace directly from GitHub with `codex plugin marketplace add buiducnhat/cobrew` for Codex or `claude plugin marketplace add buiducnhat/cobrew` for Claude Code. The repository-owned marketplace files are distribution metadata consumed by those tools; users should not need to clone the repository just to install the plugin.
 
 ### CLI Installer (`packages/cli`)
 
@@ -70,9 +70,10 @@ Shared TypeScript and tooling config (`tsconfig.base.json`) used by workspace pa
 
 ```
 Codex or Claude Code loads marketplace
-  -> marketplace entry points to ./plugins/cobrew
-  -> agent reads its plugin manifest
-  -> agent discovers bundled skills under plugins/cobrew/skills
+  -> user adds buiducnhat/cobrew as a plugin marketplace
+  -> agent reads repository marketplace metadata
+  -> agent installs the cobrew plugin bundle
+  -> agent discovers bundled skills
   -> user invokes CoBrew workflow skills from the agent's plugin/skill surface
 ```
 

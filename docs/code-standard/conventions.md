@@ -84,7 +84,7 @@ Commits follow: `feat:`, `fix:`, `chore:` prefixes (conventional commits style, 
 - Brainstorm and plan folders use timestamped slugs such as `260306-1317-global-flag`.
 - Plan folders use `SUMMARY.md`, `phase-01-*.md`, and `EXECUTION-REPORT.md` naming patterns.
 - Documentation should stay factual and implementation-backed; avoid invented requirements.
-- User-facing docs should position the Codex and Claude Code plugin bundles as the recommended setup path, with `npx cobrew` reserved for other agents, CI, global installs, and plugin-unavailable environments.
+- User-facing docs should position `codex plugin marketplace add buiducnhat/cobrew` and `claude plugin marketplace add buiducnhat/cobrew` as the recommended setup path, with `npx cobrew` reserved for other agents, CI, global installs, and plugin-unavailable environments.
 
 ## Ignored by Biome
 
