@@ -1,8 +1,8 @@
 # CoBrew
 
-Install standardized AI workflow skills and shared rules-file content into any repository with a single command.
+Install standardized AI workflow skills and shared rules-file content for coding agents.
 
-Supports **40 AI coding agents** including Claude Code, Cursor, Windsurf, Copilot, Cline, Roo Code, and more.
+Use the **CoBrew plugin** for the best Codex and Claude Code experience. Use the CLI installer for the other **40 supported AI coding agents**, CI, global installs, or environments that do not support plugins yet.
 
 ---
 
@@ -12,16 +12,22 @@ Supports **40 AI coding agents** including Claude Code, Cursor, Windsurf, Copilo
 
 ## What it does
 
-Running the installer:
+CoBrew ships the same first-party workflow skills through two distribution paths:
 
-1. Lets you **select which agents** to configure (auto-detects already-installed agents)
-2. Lets you choose whether the skills are installed as **symlinks** or **copied files**
-3. Installs workflow skills into each agent's skills directory via the [Vercel skills CLI](https://github.com/vercel-labs/skills)
-4. Injects **shared agent instructions** (`AGENTS.md`) into each agent's rules file using idempotent markers
+1. **Plugin bundles for Codex and Claude Code** expose the workflow skills directly through each agent's plugin system.
+2. **CLI installer for other agents and automation** lets you select agents, choose symlink or copy mode, install skills through the [Vercel skills CLI](https://github.com/vercel-labs/skills), and inject shared `AGENTS.md` rules using idempotent markers.
 
 ## Installation
 
-### Interactive (recommended)
+### Codex and Claude Code plugins (recommended)
+
+For Codex and Claude Code, prefer the CoBrew plugin bundle maintained in the [GitHub repository](https://github.com/buiducnhat/cobrew#readme). The npm package documented below is the CLI fallback for other agents and automation.
+
+### CLI installer (fallback and multi-agent setup)
+
+Use the CLI when you need to configure agents beyond Codex and Claude Code, run CI setup, install globally, or work in an environment where plugins are unavailable.
+
+#### Interactive
 
 ```bash
 npx cobrew
@@ -29,7 +35,7 @@ npx cobrew
 
 Walks you through agent selection and install mode (symlink or copy).
 
-### Non-interactive (CI / automation)
+#### Non-interactive (CI / automation)
 
 ```bash
 npx cobrew --non-interactive
@@ -37,7 +43,7 @@ npx cobrew --non-interactive
 
 Skips all prompts and installs skills for all agents.
 
-### Via shell script
+#### Via shell script
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/buiducnhat/cobrew/main/install.sh | bash
@@ -45,7 +51,7 @@ curl -fsSL https://raw.githubusercontent.com/buiducnhat/cobrew/main/install.sh |
 
 Checks for Node.js 18+ and runs the installer automatically.
 
-### Global install
+#### Global install
 
 ```bash
 npx cobrew --global
@@ -53,7 +59,7 @@ npx cobrew --global
 
 Installs skills to your home directory (`~/<agent>/skills/`) so they are available across all projects.
 
-### Target specific agents
+#### Target specific agents
 
 ```bash
 npx cobrew -a claude-code -a cursor
@@ -61,7 +67,7 @@ npx cobrew -a claude-code -a cursor
 
 Installs skills only for the listed agents. Repeat `-a` or pass multiple agent IDs after one flag.
 
-## Interactive walkthrough
+## CLI walkthrough
 
 ```
 ┌  CoBrew Installer
@@ -254,7 +260,4 @@ Tag pushes matching `v*` trigger the GitHub Actions workflow `.github/workflows/
 
 ## Documentation
 
-- [Product PDR](docs/project-pdr.md)
-- [Architecture](docs/architecture.md)
-- [Codebase Map](docs/codebase.md)
-- [Code Standard](docs/code-standard.md)
+- [Documentation Summary](../../docs/SUMMARY.md)

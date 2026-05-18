@@ -26,7 +26,7 @@ const marketplacePath = path.join(
 );
 const claudeMarketplacePath = path.join(
 	repoRoot,
-	"./plugins/cobrew/.claude-plugin",
+	".claude-plugin",
 	"marketplace.json",
 );
 

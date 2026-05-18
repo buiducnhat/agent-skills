@@ -10,5 +10,11 @@
 	"homepage": "https://github.com/buiducnhat/cobrew#readme",
 	"repository": "https://github.com/buiducnhat/cobrew",
 	"license": "MIT",
-	"keywords": ["cobrew", "codex", "workflow", "skills", "coding-agents"]
+	"keywords": [
+		"cobrew",
+		"codex",
+		"workflow",
+		"skills",
+		"coding-agents"
+	]
 }

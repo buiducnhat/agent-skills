@@ -56,9 +56,9 @@ cobrew/
 │   │           └── visualize-theme.css
 │   └── write-plan/SKILL.md
 ├── scripts/
-│   └── syncPluginBundle.mjs # Generates the Codex plugin bundle and marketplace entry
+│   └── syncPluginBundle.mjs # Generates plugin bundle and marketplace entries
 ├── templates/
-│   └── AGENTS.md           # Shared rules injected into agent config files
+│   └── AGENTS.md           # Shared rules injected by CLI into agent config files
 ├── tmp/                    # Local scratch files used during repository work
 ├── AGENTS.md               # Repository instruction file
 ├── CLAUDE.md               # Mirrored repository instruction file
@@ -78,16 +78,17 @@ cobrew/
 | `packages/cli/src/index.ts`                | Main CLI entry — `main()` function                                                                     |
 | `packages/cli/src/constants.ts`            | Agent configuration registry and filesystem maps                                                       |
 | `packages/cli/src/rules.ts`                | Rules-file creation and idempotent marker replacement                                                  |
-| `packages/cli/src/skills.ts`               | Wrapper around `npx skills add`                                                                        |
+| `packages/cli/src/skills.ts`               | Wrapper around `npx skills add` for fallback and multi-agent CLI installs                              |
 | `skills/*/SKILL.md`                        | Skill definitions loaded by agent skill CLIs                                                           |
 | `plugins/cobrew/.codex-plugin/plugin.json` | Source plugin metadata edited by maintainers                                                           |
-| `scripts/syncPluginBundle.mjs`             | Generates `plugins/cobrew/`, `.agents/plugins/marketplace.json`, and `.claude-plugin/marketplace.json` |
-| `plugins/cobrew/`                          | Self-contained bundle intended for Codex and Claude Code plugin installation                           |
-| `.claude-plugin/marketplace.json`          | Generated Claude Code marketplace catalog pointing at `./plugins/cobrew`                               |
+| `scripts/syncPluginBundle.mjs`             | Generates the self-contained plugin bundle and marketplace JSON files                                  |
+| `plugins/cobrew/`                          | Self-contained bundle used by the Codex and Claude Code plugin paths                                   |
+| `.agents/plugins/marketplace.json`         | Codex marketplace catalog pointing at `./plugins/cobrew`                                               |
+| `.claude-plugin/marketplace.json`          | Claude Code marketplace catalog pointing at `./plugins/cobrew`                                         |
 | `docs/SUMMARY.md`                          | Documentation entry point used by repo instructions and workflow skills                                |
 | `templates/AGENTS.md`                      | Shared agent rules template                                                                            |
 | `AGENTS.md` / `CLAUDE.md`                  | Repository-level instructions that mirror distributed agent rules                                      |
-| `install.sh`                               | Curl-pipe installer for environments without npx                                                       |
+| `install.sh`                               | Curl-pipe CLI installer for environments without direct `npx` usage                                    |
 
 ## Key Config Files
 
@@ -114,5 +115,6 @@ cobrew/
 ## Workspace Notes
 
 - The workspace pattern allows `apps/*` and `packages/*`, but the current repository only uses `packages/cli` and `packages/config`.
-- `skills/` contains first-party authored skills, while `skills-lock.json` references additional upstream skills resolved by the skills CLI.
+- `skills/` contains first-party authored skills, while `skills-lock.json` references additional upstream skills resolved by the CLI install path.
 - `plugins/cobrew/` is generated output, except for the current plugin metadata source at `plugins/cobrew/.codex-plugin/plugin.json`; run `bun run sync:plugin` after changing the plugin manifest, assets, or skill content.
+- User-facing docs should recommend the plugin path for Codex and Claude Code first, then document `npx cobrew` as the fallback for other agents and automation.

@@ -2,21 +2,27 @@
 
 ## System Overview
 
-CoBrew combines a published installer CLI with a repository of workflow skills, shared agent instructions, and supporting documentation assets.
+CoBrew combines plugin bundles, a published installer CLI, workflow skills, shared agent instructions, and supporting documentation assets.
 
-The installer runtime lives in `packages/cli`. The content it distributes lives primarily in `skills/` and `templates/AGENTS.md`. The repository also keeps a generated Codex plugin bundle under `plugins/cobrew/`, plus dated brainstorms and execution plans under `docs/`, so installer, plugin packaging, and implementation history stay together.
+The recommended user path for Codex and Claude Code is the generated plugin bundle under `plugins/cobrew/`. The CLI runtime in `packages/cli` remains the fallback path for other agents, CI, global installs, and environments without plugin support. The content both paths distribute lives primarily in `skills/` and `templates/AGENTS.md`. Dated brainstorms and execution plans live under `docs/`, so installer behavior, plugin packaging, and implementation history stay together.
 
 ## Components
 
+### Plugin Source and Bundles (`plugins/cobrew/`, `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`)
+
+`plugins/cobrew/.codex-plugin/plugin.json` is the current authoring metadata source for generated plugin artifacts. The generated distribution bundle lives at `plugins/cobrew/` and contains Codex and Claude Code manifests, bundled `skills/`, and plugin assets.
+
+The Codex marketplace entry at `.agents/plugins/marketplace.json` and the Claude Code marketplace entry at `.claude-plugin/marketplace.json` both point at `./plugins/cobrew`, making the plugin path the preferred setup for those two agents.
+
 ### CLI Installer (`packages/cli`)
 
-The published npm package (`cobrew`). Handles argument parsing, interactive selection, skills installation, template fetching, and rules-file injection.
+The published npm package (`cobrew`). Handles argument parsing, interactive selection, skills installation, template fetching, and rules-file injection for agents that are not using the plugin bundle.
 
 | Module             | Responsibility                                                                                                       |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
 | `src/index.ts`     | Main orchestration: parses flags, drives prompts, chooses install mode, and coordinates install plus rules injection |
 | `src/constants.ts` | Supported agent registry, skills-directory detection map, rules-file mapping, and injection markers                  |
-| `src/skills.ts`    | Runs `npx skills add buiducnhat/cobrew --skill '*'` with selected agent IDs and install flags                        |
+| `src/skills.ts`    | Runs `npx skills add buiducnhat/cobrew --skill '*'` with selected agent IDs and install flags for the CLI fallback   |
 | `src/fetch.ts`     | Clones the repository to a temporary directory so the installer can read `templates/AGENTS.md`                       |
 | `src/rules.ts`     | Creates or updates per-agent rules files with an idempotent marker block and skips JSON-based targets                |
 | `src/utils.ts`     | Parses CLI flags, detects installed agents from filesystem layout, prints help text, and prints the install summary  |
@@ -40,12 +46,6 @@ Ten first-party workflow skill definitions live in `skills/`. Each skill has a `
 
 `skills-lock.json` complements these first-party skills by pinning upstream skills from external repositories so installs remain reproducible.
 
-### Plugin Source and Bundles (`plugins/cobrew/`, `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`)
-
-`plugins/cobrew/.codex-plugin/plugin.json` is the current authoring metadata source for generated plugin artifacts. The generated distribution bundle lives at `plugins/cobrew/` and contains Codex and Claude Code manifests, bundled `skills/`, and plugin assets.
-
-The root script `bun run sync:plugin` rebuilds that bundle and rewrites both `.agents/plugins/marketplace.json` for Codex and `.claude-plugin/marketplace.json` for Claude Code so marketplace entries point at `./plugins/cobrew` rather than the repository root.
-
 ### Shared Agent Rules (`templates/AGENTS.md`)
 
 A single shared instructions file injected into agent-specific rules files. The content focuses on documentation-first context loading, question-tool usage, and general engineering principles, and is fetched at install time via `fetch.ts`.
@@ -66,7 +66,19 @@ The repository stores more than reference docs. It also contains:
 
 Shared TypeScript and tooling config (`tsconfig.base.json`) used by workspace packages.
 
-## Install Flow
+## Plugin Flow
+
+```
+Codex or Claude Code loads marketplace
+  -> marketplace entry points to ./plugins/cobrew
+  -> agent reads its plugin manifest
+  -> agent discovers bundled skills under plugins/cobrew/skills
+  -> user invokes CoBrew workflow skills from the agent's plugin/skill surface
+```
+
+This path is preferred for Codex and Claude Code because it avoids a separate `npx` installer step and keeps the workflow skills packaged with plugin metadata.
+
+## CLI Install Flow
 
 ```
 CLI invoked

@@ -30,8 +30,8 @@
 
 Primary repository commands:
 
-- `bun run build` — regenerates the Codex plugin bundle, then runs Turbo build tasks
-- `bun run sync:plugin` — regenerates `plugins/cobrew/` and `.agents/plugins/marketplace.json` from the root plugin source
+- `bun run build` — regenerates the plugin bundle, then runs Turbo build tasks
+- `bun run sync:plugin` — regenerates `plugins/cobrew/` plus Codex and Claude Code marketplace metadata from the root plugin source
 - `bun run check-types` — runs Turbo type checks
 - `bun run check` — runs `biome check --write --unsafe .` at the repo root
 
@@ -84,6 +84,7 @@ Commits follow: `feat:`, `fix:`, `chore:` prefixes (conventional commits style, 
 - Brainstorm and plan folders use timestamped slugs such as `260306-1317-global-flag`.
 - Plan folders use `SUMMARY.md`, `phase-01-*.md`, and `EXECUTION-REPORT.md` naming patterns.
 - Documentation should stay factual and implementation-backed; avoid invented requirements.
+- User-facing docs should position the Codex and Claude Code plugin bundles as the recommended setup path, with `npx cobrew` reserved for other agents, CI, global installs, and plugin-unavailable environments.
 
 ## Ignored by Biome
 

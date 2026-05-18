@@ -1,8 +1,8 @@
 # CoBrew
 
-Cài đặt các workflow skill chuẩn hóa cho AI agent và nội dung rules dùng chung vào bất kỳ repository nào chỉ với một lệnh duy nhất.
+Cài đặt các workflow skill chuẩn hóa cho AI agent và nội dung rules dùng chung.
 
-Hỗ trợ **40 AI coding agent** bao gồm Claude Code, Cursor, Windsurf, Copilot, Cline, Roo Code và nhiều hơn nữa.
+Với Codex và Claude Code, nên dùng **plugin CoBrew** để có trải nghiệm tốt nhất. Với các agent khác, CI, cài đặt global, hoặc môi trường chưa hỗ trợ plugin, dùng CLI installer. CLI hiện hỗ trợ **40 AI coding agent**.
 
 ---
 
@@ -12,16 +12,34 @@ Hỗ trợ **40 AI coding agent** bao gồm Claude Code, Cursor, Windsurf, Copil
 
 ## Tính năng
 
-Khi chạy trình cài đặt:
+CoBrew phân phối cùng một bộ workflow skill first-party qua hai hướng:
 
-1. Cho phép **chọn agent** cần cấu hình (tự động phát hiện các agent đã cài)
-2. Cho phép chọn cài skill bằng **symlink** hoặc **copy**
-3. Cài đặt workflow skill vào thư mục skills của từng agent thông qua [Vercel skills CLI](https://github.com/vercel-labs/skills)
-4. Chèn **hướng dẫn dùng chung cho agent** (`AGENTS.md`) vào file rules của từng agent bằng marker idempotent
+1. **Plugin bundle cho Codex và Claude Code** giúp agent đọc workflow skill trực tiếp qua hệ thống plugin.
+2. **CLI installer cho agent khác và tự động hóa** cho phép chọn agent, chọn cài bằng symlink hoặc copy, cài skill qua [Vercel skills CLI](https://github.com/vercel-labs/skills), và chèn rules dùng chung `AGENTS.md` bằng marker idempotent.
 
 ## Cài đặt
 
-### Tương tác (khuyến nghị)
+### Plugin Codex (khuyến nghị cho Codex)
+
+Dùng marketplace entry của Codex tại `.agents/plugins/marketplace.json`. File này trỏ tới plugin bundle local tại `./plugins/cobrew`.
+
+Plugin bundle gồm:
+
+- `.codex-plugin/plugin.json`
+- toàn bộ workflow skill CoBrew trong `skills/`
+- plugin assets trong `assets/`
+
+### Plugin Claude Code (khuyến nghị cho Claude Code)
+
+Dùng marketplace entry của Claude Code tại `.claude-plugin/marketplace.json`. File này trỏ tới cùng plugin bundle local tại `./plugins/cobrew`.
+
+Manifest plugin cho Claude Code nằm tại `plugins/cobrew/.claude-plugin/plugin.json`.
+
+### CLI installer (fallback và cài nhiều agent)
+
+Dùng CLI khi cần cấu hình agent ngoài Codex và Claude Code, chạy setup trong CI, cài global, hoặc làm việc trong môi trường chưa hỗ trợ plugin.
+
+#### Tương tác
 
 ```bash
 npx cobrew@latest
@@ -29,7 +47,7 @@ npx cobrew@latest
 
 Hướng dẫn từng bước qua việc chọn agent và chế độ cài đặt (symlink hoặc copy).
 
-### Không tương tác (CI / tự động hóa)
+#### Không tương tác (CI / tự động hóa)
 
 ```bash
 npx cobrew@latest --non-interactive
@@ -37,7 +55,7 @@ npx cobrew@latest --non-interactive
 
 Bỏ qua tất cả các bước hỏi và cài đặt skill cho tất cả agent.
 
-### Qua shell script
+#### Qua shell script
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/buiducnhat/cobrew/main/install.sh | bash
@@ -45,7 +63,7 @@ curl -fsSL https://raw.githubusercontent.com/buiducnhat/cobrew/main/install.sh |
 
 Kiểm tra Node.js 18+ và chạy trình cài đặt tự động.
 
-### Cài đặt toàn cục
+#### Cài đặt toàn cục
 
 ```bash
 npx cobrew@latest --global
@@ -53,7 +71,7 @@ npx cobrew@latest --global
 
 Cài đặt skill vào thư mục home (`~/<agent>/skills/`) để dùng được trên tất cả các project.
 
-### Chọn agent cụ thể
+#### Chọn agent cụ thể
 
 ```bash
 npx cobrew@latest -a claude-code -a cursor
@@ -61,7 +79,7 @@ npx cobrew@latest -a claude-code -a cursor
 
 Chỉ cài skill cho các agent đã liệt kê. Có thể lặp lại `-a` hoặc truyền nhiều agent sau một lần dùng cờ.
 
-## Hướng dẫn tương tác
+## Hướng dẫn CLI tương tác
 
 ```
 ┌  CoBrew Installer
@@ -97,7 +115,7 @@ Chỉ cài skill cho các agent đã liệt kê. Có thể lặp lại `-a` ho�
 | `-h, --help`        | Hiển thị trợ giúp                                          |
 | `-v, --version`     | Hiển thị phiên bản                                         |
 
-## Bundle plugin
+## Bảo trì plugin bundle
 
 Repository này xem thư mục `skills/` ở root và `plugins/cobrew/.codex-plugin/plugin.json` là nguồn metadata authoring cho các plugin bundle.
 

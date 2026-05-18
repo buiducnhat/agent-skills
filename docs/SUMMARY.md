@@ -1,7 +1,7 @@
 # Documentation Summary
 
-CoBrew — A CLI installer and skill repository for standardizing coding-agent workflows across many local agent environments with one command.
-Monorepo built with TypeScript, Bun, and Turbo; publishes `cobrew` and ships repo-owned workflow skills plus shared agent instructions.
+CoBrew — A plugin-first workflow skill bundle for Codex and Claude Code, plus a CLI installer for standardizing coding-agent workflows across many local agent environments.
+Monorepo built with TypeScript, Bun, and Turbo; ships Codex and Claude Code plugin bundles, publishes the `cobrew` CLI fallback, and maintains repo-owned workflow skills plus shared agent instructions.
 
 ## Architecture
 
@@ -9,7 +9,7 @@ System design, component interactions, data flows, deployment, and external inte
 
 | File                                                     | Description                                                                                                    |
 | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| [architecture/components.md](architecture/components.md) | Installer components, skill inventory, rules injection flow, docs archive roles, and monorepo responsibilities |
+| [architecture/components.md](architecture/components.md) | Plugin bundles, installer components, skill inventory, rules injection flow, docs archive roles, and monorepo responsibilities |
 
 ## Codebase
 
@@ -33,8 +33,8 @@ Product goals, use cases, business rules, and constraints.
 
 | File                                                 | Description                                                                                                  |
 | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| [project-pdr/goals.md](project-pdr/goals.md)         | Problem statement, product purpose, supported workflows, scope boundaries, and success criteria              |
-| [project-pdr/use-cases.md](project-pdr/use-cases.md) | Installation scenarios, workflow-skill usage patterns, and operational constraints for users and maintainers |
+| [project-pdr/goals.md](project-pdr/goals.md)         | Problem statement, plugin-first product purpose, supported workflows, scope boundaries, and success criteria |
+| [project-pdr/use-cases.md](project-pdr/use-cases.md) | Plugin and CLI installation scenarios, workflow-skill usage patterns, and operational constraints            |
 
 ## Other
 
