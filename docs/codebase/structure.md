@@ -4,6 +4,8 @@
 
 ```
 cobrew/
+├── .codex-plugin/         # Source manifest for the Codex plugin
+├── assets/                # Source plugin assets copied into the generated bundle
 ├── docs/
 │   ├── architecture/       # System/component docs
 │   ├── code-standard/      # Conventions and authoring rules
@@ -12,6 +14,8 @@ cobrew/
 │   ├── brainstorms/        # Dated design exploration records
 │   ├── plans/              # Dated implementation plans and reports
 │   └── SUMMARY.md          # Docs entry point for context loading
+├── plugins/
+│   └── cobrew/            # Generated self-contained Codex plugin bundle
 ├── packages/
 │   ├── cli/                # Published npm package (cobrew)
 │   │   ├── src/
@@ -51,6 +55,8 @@ cobrew/
 │   │           ├── plan.html
 │   │           └── visualize-theme.css
 │   └── write-plan/SKILL.md
+├── scripts/
+│   └── syncPluginBundle.mjs # Generates the Codex plugin bundle and marketplace entry
 ├── templates/
 │   └── AGENTS.md           # Shared rules injected into agent config files
 ├── tmp/                    # Local scratch files used during repository work
@@ -74,6 +80,9 @@ cobrew/
 | `packages/cli/src/rules.ts`     | Rules-file creation and idempotent marker replacement                   |
 | `packages/cli/src/skills.ts`    | Wrapper around `npx skills add`                                         |
 | `skills/*/SKILL.md`             | Skill definitions loaded by agent skill CLIs                            |
+| `.codex-plugin/plugin.json`     | Source plugin manifest edited by maintainers                            |
+| `scripts/syncPluginBundle.mjs`  | Generates `plugins/cobrew/` and `.agents/plugins/marketplace.json`      |
+| `plugins/cobrew/`               | Self-contained bundle intended for Codex plugin-directory installation   |
 | `docs/SUMMARY.md`               | Documentation entry point used by repo instructions and workflow skills |
 | `templates/AGENTS.md`           | Shared agent rules template                                             |
 | `AGENTS.md` / `CLAUDE.md`       | Repository-level instructions that mirror distributed agent rules       |
@@ -105,3 +114,4 @@ cobrew/
 
 - The workspace pattern allows `apps/*` and `packages/*`, but the current repository only uses `packages/cli` and `packages/config`.
 - `skills/` contains first-party authored skills, while `skills-lock.json` references additional upstream skills resolved by the skills CLI.
+- `plugins/cobrew/` is generated output, not the primary authoring surface; run `bun run sync:plugin` after changing the root plugin manifest, assets, or skill content.

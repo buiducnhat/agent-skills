@@ -10,7 +10,13 @@
 	"homepage": "https://github.com/buiducnhat/cobrew#readme",
 	"repository": "https://github.com/buiducnhat/cobrew",
 	"license": "MIT",
-	"keywords": ["cobrew", "codex", "workflow", "skills", "coding-agents"],
+	"keywords": [
+		"cobrew",
+		"codex",
+		"workflow",
+		"skills",
+		"coding-agents"
+	],
 	"skills": "./skills/",
 	"interface": {
 		"displayName": "CoBrew",
@@ -18,7 +24,11 @@
 		"longDescription": "CoBrew provides structured workflows for asking clarifying questions, fixing bugs, reviewing changes, brainstorming, writing plans, executing plans, maintaining docs, creating commits, quick implementation, and source-adjacent visualizations.",
 		"developerName": "Nhat Bui",
 		"category": "Productivity",
-		"capabilities": ["Interactive", "Read", "Write"],
+		"capabilities": [
+			"Interactive",
+			"Read",
+			"Write"
+		],
 		"websiteURL": "https://github.com/buiducnhat/cobrew",
 		"privacyPolicyURL": "https://github.com/buiducnhat/cobrew",
 		"termsOfServiceURL": "https://github.com/buiducnhat/cobrew/blob/main/LICENSE",

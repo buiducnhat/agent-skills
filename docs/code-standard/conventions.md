@@ -30,7 +30,8 @@
 
 Primary repository commands:
 
-- `bun run build` — runs Turbo build tasks
+- `bun run build` — regenerates the Codex plugin bundle, then runs Turbo build tasks
+- `bun run sync:plugin` — regenerates `plugins/cobrew/` and `.agents/plugins/marketplace.json` from the root plugin source
 - `bun run check-types` — runs Turbo type checks
 - `bun run check` — runs `biome check --write --unsafe .` at the repo root
 

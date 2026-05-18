@@ -97,6 +97,14 @@ Installs skills only for the listed agents. Repeat `-a` or pass multiple agent I
 | `-h, --help`        | Show help                                        |
 | `-v, --version`     | Show version                                     |
 
+## Codex plugin bundle
+
+This repository treats the root `skills/` directory and `.codex-plugin/plugin.json` as the authoring source for the Codex plugin.
+
+`bun run sync:plugin` generates a self-contained plugin bundle at `plugins/cobrew/` and rewrites `.agents/plugins/marketplace.json` to point at `./plugins/cobrew`.
+
+This keeps the marketplace entry aligned with the packaged plugin bundle instead of pointing at the repository root.
+
 ## Repository workflow skills
 
 This repository currently defines ten first-party workflow skills and also pins additional upstream skills in `skills-lock.json`:

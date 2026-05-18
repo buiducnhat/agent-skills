@@ -4,7 +4,7 @@
 
 CoBrew combines a published installer CLI with a repository of workflow skills, shared agent instructions, and supporting documentation assets.
 
-The installer runtime lives in `packages/cli`. The content it distributes lives primarily in `skills/` and `templates/AGENTS.md`. The repository also keeps dated brainstorms and execution plans under `docs/` so larger changes can be planned and reviewed in the same repo as the installer.
+The installer runtime lives in `packages/cli`. The content it distributes lives primarily in `skills/` and `templates/AGENTS.md`. The repository also keeps a generated Codex plugin bundle under `plugins/cobrew/`, plus dated brainstorms and execution plans under `docs/`, so installer, plugin packaging, and implementation history stay together.
 
 ## Components
 
@@ -39,6 +39,12 @@ Ten first-party workflow skill definitions live in `skills/`. Each skill has a `
 | `write-plan`      | Phased implementation planning                                  |
 
 `skills-lock.json` complements these first-party skills by pinning upstream skills from external repositories so installs remain reproducible.
+
+### Codex Plugin Source and Bundle (`.codex-plugin/`, `plugins/cobrew/`, `.agents/plugins/marketplace.json`)
+
+The root `.codex-plugin/plugin.json` is the authoring manifest for the Codex plugin. The generated distribution bundle lives at `plugins/cobrew/` and contains a copied manifest, bundled `skills/`, and plugin assets.
+
+The root script `bun run sync:plugin` rebuilds that bundle and rewrites `.agents/plugins/marketplace.json` so the marketplace entry points at `./plugins/cobrew` rather than the repository root.
 
 ### Shared Agent Rules (`templates/AGENTS.md`)
 
@@ -97,4 +103,4 @@ On re-run, the marked block is replaced without duplication. If the file exists 
 
 ## Monorepo Layout
 
-Built with **Turbo** (task orchestration) and **Bun** (runtime/package manager). The workspace currently has two packages: `packages/cli` (published) and `packages/config` (internal shared config). The root workspace keeps shared docs, skill definitions, templates, and installation scripts.
+Built with **Turbo** (task orchestration) and **Bun** (runtime/package manager). The workspace currently has two packages: `packages/cli` (published) and `packages/config` (internal shared config). The root workspace keeps shared docs, skill definitions, plugin-bundle generation scripts, templates, and installation scripts.

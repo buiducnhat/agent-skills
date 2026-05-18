@@ -13,7 +13,8 @@
 	"type": "module",
 	"scripts": {
 		"dev": "turbo dev",
-		"build": "turbo build",
+		"build": "bun run sync:plugin && turbo build",
+		"sync:plugin": "node ./scripts/syncPluginBundle.mjs",
 		"check-types": "turbo check-types",
 		"check": "biome check --write --unsafe ."
 	},
