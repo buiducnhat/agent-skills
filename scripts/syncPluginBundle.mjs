@@ -24,6 +24,11 @@ const marketplacePath = path.join(
 	"plugins",
 	"marketplace.json",
 );
+const claudeMarketplacePath = path.join(
+	repoRoot,
+	"./plugins/cobrew/.claude-plugin",
+	"marketplace.json",
+);
 
 const rootManifest = JSON.parse(readFileSync(rootManifestPath, "utf8"));
 
@@ -33,18 +38,44 @@ if (!rootManifest.name) {
 
 const pluginName = rootManifest.name;
 const bundleRoot = path.join(repoRoot, "plugins", pluginName);
-const bundleManifestDir = path.join(bundleRoot, ".codex-plugin");
-const bundleManifestPath = path.join(bundleManifestDir, "plugin.json");
+const bundleCodexManifestDir = path.join(bundleRoot, ".codex-plugin");
+const bundleCodexManifestPath = path.join(
+	bundleCodexManifestDir,
+	"plugin.json",
+);
+const bundleClaudeManifestDir = path.join(bundleRoot, ".claude-plugin");
+const bundleClaudeManifestPath = path.join(
+	bundleClaudeManifestDir,
+	"plugin.json",
+);
 const bundleSkillsPath = path.join(bundleRoot, "skills");
 const bundleAssetsPath = path.join(bundleRoot, "assets");
 
 rmSync(bundleRoot, { force: true, recursive: true });
-mkdirSync(bundleManifestDir, { recursive: true });
+mkdirSync(bundleCodexManifestDir, { recursive: true });
+mkdirSync(bundleClaudeManifestDir, { recursive: true });
 
 writeFileSync(
-	bundleManifestPath,
+	bundleCodexManifestPath,
 	`${JSON.stringify(rootManifest, null, "\t")}\n`,
 );
+
+const claudeManifest = {
+	name: rootManifest.name,
+	version: rootManifest.version,
+	description: rootManifest.description,
+	author: rootManifest.author,
+	homepage: rootManifest.homepage,
+	repository: rootManifest.repository,
+	license: rootManifest.license,
+	keywords: rootManifest.keywords,
+};
+
+writeFileSync(
+	bundleClaudeManifestPath,
+	`${JSON.stringify(claudeManifest, null, "\t")}\n`,
+);
+
 cpSync(path.join(repoRoot, "skills"), bundleSkillsPath, { recursive: true });
 
 if (existsSync(path.join(repoRoot, "assets"))) {
@@ -74,3 +105,32 @@ const marketplace = {
 
 mkdirSync(path.dirname(marketplacePath), { recursive: true });
 writeFileSync(marketplacePath, `${JSON.stringify(marketplace, null, "\t")}\n`);
+
+const claudeMarketplace = {
+	name: pluginName,
+	owner: {
+		name: rootManifest.author?.name ?? pluginName,
+		...(rootManifest.author?.email ? { email: rootManifest.author.email } : {}),
+	},
+	description: rootManifest.description,
+	version: rootManifest.version,
+	plugins: [
+		{
+			name: pluginName,
+			source: `./plugins/${pluginName}`,
+			description: rootManifest.description,
+			author: rootManifest.author,
+			homepage: rootManifest.homepage,
+			repository: rootManifest.repository,
+			license: rootManifest.license,
+			keywords: rootManifest.keywords,
+			category: rootManifest.interface?.category ?? "Productivity",
+		},
+	],
+};
+
+mkdirSync(path.dirname(claudeMarketplacePath), { recursive: true });
+writeFileSync(
+	claudeMarketplacePath,
+	`${JSON.stringify(claudeMarketplace, null, "\t")}\n`,
+);

@@ -97,13 +97,13 @@ Installs skills only for the listed agents. Repeat `-a` or pass multiple agent I
 | `-h, --help`        | Show help                                        |
 | `-v, --version`     | Show version                                     |
 
-## Codex plugin bundle
+## Plugin bundles
 
-This repository treats the root `skills/` directory and `.codex-plugin/plugin.json` as the authoring source for the Codex plugin.
+This repository treats the root `skills/` directory and `plugins/cobrew/.codex-plugin/plugin.json` as the authoring metadata source for plugin bundles.
 
-`bun run sync:plugin` generates a self-contained plugin bundle at `plugins/cobrew/` and rewrites `.agents/plugins/marketplace.json` to point at `./plugins/cobrew`.
+`bun run sync:plugin` generates a self-contained plugin bundle at `plugins/cobrew/`, including both Codex (`.codex-plugin/plugin.json`) and Claude Code (`.claude-plugin/plugin.json`) manifests.
 
-This keeps the marketplace entry aligned with the packaged plugin bundle instead of pointing at the repository root.
+It also rewrites the Codex marketplace at `.agents/plugins/marketplace.json` and the Claude Code marketplace at `.claude-plugin/marketplace.json` so both point at `./plugins/cobrew`.
 
 ## Repository workflow skills
 

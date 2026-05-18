@@ -1,0 +1,26 @@
+{
+	"name": "cobrew",
+	"owner": {
+		"name": "Nhat Bui",
+		"email": "nhaths4701@gmail.com"
+	},
+	"description": "Workflow skills and shared instructions for coding agents.",
+	"version": "1.1.6",
+	"plugins": [
+		{
+			"name": "cobrew",
+			"source": "./plugins/cobrew",
+			"description": "Workflow skills and shared instructions for coding agents.",
+			"author": {
+				"name": "Nhat Bui",
+				"email": "nhaths4701@gmail.com",
+				"url": "https://github.com/buiducnhat"
+			},
+			"homepage": "https://github.com/buiducnhat/cobrew#readme",
+			"repository": "https://github.com/buiducnhat/cobrew",
+			"license": "MIT",
+			"keywords": ["cobrew", "codex", "workflow", "skills", "coding-agents"],
+			"category": "Productivity"
+		}
+	]
+}

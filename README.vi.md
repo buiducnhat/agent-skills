@@ -97,13 +97,13 @@ Chỉ cài skill cho các agent đã liệt kê. Có thể lặp lại `-a` ho�
 | `-h, --help`        | Hiển thị trợ giúp                                          |
 | `-v, --version`     | Hiển thị phiên bản                                         |
 
-## Bundle plugin cho Codex
+## Bundle plugin
 
-Repository này xem thư mục `skills/` ở root và `.codex-plugin/plugin.json` là nguồn authoring cho plugin Codex.
+Repository này xem thư mục `skills/` ở root và `plugins/cobrew/.codex-plugin/plugin.json` là nguồn metadata authoring cho các plugin bundle.
 
-`bun run sync:plugin` sẽ sinh ra plugin bundle tự chứa tại `plugins/cobrew/` và ghi lại `.agents/plugins/marketplace.json` để trỏ tới `./plugins/cobrew`.
+`bun run sync:plugin` sẽ sinh ra plugin bundle tự chứa tại `plugins/cobrew/`, gồm cả manifest cho Codex (`.codex-plugin/plugin.json`) và Claude Code (`.claude-plugin/plugin.json`).
 
-Cách này giữ marketplace entry bám đúng bundle đã đóng gói, thay vì trỏ thẳng vào root repo.
+Lệnh này cũng ghi lại marketplace của Codex tại `.agents/plugins/marketplace.json` và marketplace của Claude Code tại `.claude-plugin/marketplace.json` để cả hai cùng trỏ tới `./plugins/cobrew`.
 
 ## Workflow skill của repository
 

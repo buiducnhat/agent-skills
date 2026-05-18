@@ -40,11 +40,11 @@ Ten first-party workflow skill definitions live in `skills/`. Each skill has a `
 
 `skills-lock.json` complements these first-party skills by pinning upstream skills from external repositories so installs remain reproducible.
 
-### Codex Plugin Source and Bundle (`.codex-plugin/`, `plugins/cobrew/`, `.agents/plugins/marketplace.json`)
+### Plugin Source and Bundles (`plugins/cobrew/`, `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`)
 
-The root `.codex-plugin/plugin.json` is the authoring manifest for the Codex plugin. The generated distribution bundle lives at `plugins/cobrew/` and contains a copied manifest, bundled `skills/`, and plugin assets.
+`plugins/cobrew/.codex-plugin/plugin.json` is the current authoring metadata source for generated plugin artifacts. The generated distribution bundle lives at `plugins/cobrew/` and contains Codex and Claude Code manifests, bundled `skills/`, and plugin assets.
 
-The root script `bun run sync:plugin` rebuilds that bundle and rewrites `.agents/plugins/marketplace.json` so the marketplace entry points at `./plugins/cobrew` rather than the repository root.
+The root script `bun run sync:plugin` rebuilds that bundle and rewrites both `.agents/plugins/marketplace.json` for Codex and `.claude-plugin/marketplace.json` for Claude Code so marketplace entries point at `./plugins/cobrew` rather than the repository root.
 
 ### Shared Agent Rules (`templates/AGENTS.md`)
 

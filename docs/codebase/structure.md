@@ -4,7 +4,7 @@
 
 ```
 cobrew/
-├── .codex-plugin/         # Source manifest for the Codex plugin
+├── .claude-plugin/        # Generated Claude Code marketplace catalog
 ├── assets/                # Source plugin assets copied into the generated bundle
 ├── docs/
 │   ├── architecture/       # System/component docs
@@ -15,7 +15,7 @@ cobrew/
 │   ├── plans/              # Dated implementation plans and reports
 │   └── SUMMARY.md          # Docs entry point for context loading
 ├── plugins/
-│   └── cobrew/            # Generated self-contained Codex plugin bundle
+│   └── cobrew/            # Generated self-contained Codex and Claude Code plugin bundle
 ├── packages/
 │   ├── cli/                # Published npm package (cobrew)
 │   │   ├── src/
@@ -73,20 +73,21 @@ cobrew/
 
 ## Key Entry Points
 
-| Path                            | Role                                                                    |
-| ------------------------------- | ----------------------------------------------------------------------- |
-| `packages/cli/src/index.ts`     | Main CLI entry — `main()` function                                      |
-| `packages/cli/src/constants.ts` | Agent configuration registry and filesystem maps                        |
-| `packages/cli/src/rules.ts`     | Rules-file creation and idempotent marker replacement                   |
-| `packages/cli/src/skills.ts`    | Wrapper around `npx skills add`                                         |
-| `skills/*/SKILL.md`             | Skill definitions loaded by agent skill CLIs                            |
-| `.codex-plugin/plugin.json`     | Source plugin manifest edited by maintainers                            |
-| `scripts/syncPluginBundle.mjs`  | Generates `plugins/cobrew/` and `.agents/plugins/marketplace.json`      |
-| `plugins/cobrew/`               | Self-contained bundle intended for Codex plugin-directory installation  |
-| `docs/SUMMARY.md`               | Documentation entry point used by repo instructions and workflow skills |
-| `templates/AGENTS.md`           | Shared agent rules template                                             |
-| `AGENTS.md` / `CLAUDE.md`       | Repository-level instructions that mirror distributed agent rules       |
-| `install.sh`                    | Curl-pipe installer for environments without npx                        |
+| Path                                       | Role                                                                                                   |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `packages/cli/src/index.ts`                | Main CLI entry — `main()` function                                                                     |
+| `packages/cli/src/constants.ts`            | Agent configuration registry and filesystem maps                                                       |
+| `packages/cli/src/rules.ts`                | Rules-file creation and idempotent marker replacement                                                  |
+| `packages/cli/src/skills.ts`               | Wrapper around `npx skills add`                                                                        |
+| `skills/*/SKILL.md`                        | Skill definitions loaded by agent skill CLIs                                                           |
+| `plugins/cobrew/.codex-plugin/plugin.json` | Source plugin metadata edited by maintainers                                                           |
+| `scripts/syncPluginBundle.mjs`             | Generates `plugins/cobrew/`, `.agents/plugins/marketplace.json`, and `.claude-plugin/marketplace.json` |
+| `plugins/cobrew/`                          | Self-contained bundle intended for Codex and Claude Code plugin installation                           |
+| `.claude-plugin/marketplace.json`          | Generated Claude Code marketplace catalog pointing at `./plugins/cobrew`                               |
+| `docs/SUMMARY.md`                          | Documentation entry point used by repo instructions and workflow skills                                |
+| `templates/AGENTS.md`                      | Shared agent rules template                                                                            |
+| `AGENTS.md` / `CLAUDE.md`                  | Repository-level instructions that mirror distributed agent rules                                      |
+| `install.sh`                               | Curl-pipe installer for environments without npx                                                       |
 
 ## Key Config Files
 
@@ -114,4 +115,4 @@ cobrew/
 
 - The workspace pattern allows `apps/*` and `packages/*`, but the current repository only uses `packages/cli` and `packages/config`.
 - `skills/` contains first-party authored skills, while `skills-lock.json` references additional upstream skills resolved by the skills CLI.
-- `plugins/cobrew/` is generated output, not the primary authoring surface; run `bun run sync:plugin` after changing the root plugin manifest, assets, or skill content.
+- `plugins/cobrew/` is generated output, except for the current plugin metadata source at `plugins/cobrew/.codex-plugin/plugin.json`; run `bun run sync:plugin` after changing the plugin manifest, assets, or skill content.

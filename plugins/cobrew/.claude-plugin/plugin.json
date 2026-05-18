@@ -1,0 +1,14 @@
+{
+	"name": "cobrew",
+	"version": "1.1.6",
+	"description": "Workflow skills and shared instructions for coding agents.",
+	"author": {
+		"name": "Nhat Bui",
+		"email": "nhaths4701@gmail.com",
+		"url": "https://github.com/buiducnhat"
+	},
+	"homepage": "https://github.com/buiducnhat/cobrew#readme",
+	"repository": "https://github.com/buiducnhat/cobrew",
+	"license": "MIT",
+	"keywords": ["cobrew", "codex", "workflow", "skills", "coding-agents"]
+}
