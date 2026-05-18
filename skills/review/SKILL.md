@@ -1,5 +1,5 @@
 ---
-name: cb-review
+name: review
 description: Review current uncommitted git changes with full file context and produce a structured report with severity levels, actionable fixes, and an approval verdict.
 license: MIT
 ---

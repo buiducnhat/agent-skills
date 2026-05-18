@@ -27,9 +27,9 @@ Ten first-party workflow skill definitions live in `skills/`. Each skill has a `
 
 | Skill             | Purpose                                                         |
 | ----------------- | --------------------------------------------------------------- |
-| `cb-ask`          | Structured clarification and requirements gathering             |
-| `cb-fix`          | Bug diagnosis and fix                                           |
-| `cb-review`       | Uncommitted-changes code review                                 |
+| `ask`             | Structured clarification and requirements gathering             |
+| `fix`             | Bug diagnosis and fix                                           |
+| `review`          | Uncommitted-changes code review                                 |
 | `brainstorm`      | Ambiguous problem exploration                                   |
 | `docs`            | Documentation creation or refresh based on current repo state   |
 | `execute-plan`    | Phase-by-phase plan execution                                   |

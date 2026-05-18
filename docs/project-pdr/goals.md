@@ -33,10 +33,10 @@ CoBrew provides a single installer that:
 
 Ten workflow skills cover the full development lifecycle:
 
-- **Clarification**: `cb-ask`
+- **Clarification**: `ask`
 - **Planning**: `brainstorm`, `write-plan`
 - **Execution**: `execute-plan`, `quick-implement`
-- **Quality**: `cb-fix`, `cb-review`
+- **Quality**: `fix`, `review`
 - **Documentation**: `docs`
 - **Visualization**: `visualize`
 - **Version Control**: `git-commit`

@@ -103,9 +103,9 @@ Repository này hiện định nghĩa 10 workflow skill first-party và cũng pi
 
 | Skill             | Mô tả                                                                                                       |
 | ----------------- | ----------------------------------------------------------------------------------------------------------- |
-| `cb-ask`          | Đặt câu hỏi làm rõ để thu thập yêu cầu và ngữ cảnh                                                          |
-| `cb-fix`          | Chẩn đoán và sửa lỗi với phân tích nguyên nhân gốc và bước xác minh                                         |
-| `cb-review`       | Review thay đổi chưa commit với ngữ cảnh codebase và mức độ ưu tiên                                         |
+| `ask`             | Đặt câu hỏi làm rõ để thu thập yêu cầu và ngữ cảnh                                                          |
+| `fix`             | Chẩn đoán và sửa lỗi với phân tích nguyên nhân gốc và bước xác minh                                         |
+| `review`          | Review thay đổi chưa commit với ngữ cảnh codebase và mức độ ưu tiên                                         |
 | `brainstorm`      | Khám phá ý tưởng và phân tích vấn đề phức tạp trước khi lên kế hoạch                                        |
 | `docs`            | Tạo mới hoặc làm mới tài liệu project dựa trên trạng thái repo hiện tại                                     |
 | `execute-plan`    | Thực thi kế hoạch đã viết theo từng giai đoạn với các điểm kiểm tra                                         |
@@ -199,13 +199,13 @@ Dùng cho các thay đổi nhỏ, phạm vi rõ ràng mà không cần kế ho�
 #### Sửa lỗi
 
 ```
-cb-fix
+fix
 ```
 
 Dùng khi có lỗi cụ thể, test thất bại hoặc hành vi không mong muốn cần chẩn đoán.
 
 ```
-/cb-fix TypeError: Cannot read properties of undefined at checkout.ts:42
+/fix TypeError: Cannot read properties of undefined at checkout.ts:42
 
 # Lỗi đơn giản: agent chẩn đoán, áp dụng fix, kiểm tra
 # Lỗi phức tạp: agent dừng lại và chuyển sang write-plan

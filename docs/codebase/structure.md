@@ -30,9 +30,9 @@ cobrew/
 │   │   └── tsdown.config.ts
 │   └── config/             # Shared TS config (tsconfig.base.json)
 ├── skills/                 # First-party workflow skill definitions
-│   ├── cb-ask/SKILL.md
-│   ├── cb-fix/SKILL.md
-│   ├── cb-review/SKILL.md
+│   ├── ask/SKILL.md
+│   ├── fix/SKILL.md
+│   ├── review/SKILL.md
 │   ├── brainstorm/SKILL.md
 │   ├── docs/
 │   │   ├── SKILL.md
@@ -82,7 +82,7 @@ cobrew/
 | `skills/*/SKILL.md`             | Skill definitions loaded by agent skill CLIs                            |
 | `.codex-plugin/plugin.json`     | Source plugin manifest edited by maintainers                            |
 | `scripts/syncPluginBundle.mjs`  | Generates `plugins/cobrew/` and `.agents/plugins/marketplace.json`      |
-| `plugins/cobrew/`               | Self-contained bundle intended for Codex plugin-directory installation   |
+| `plugins/cobrew/`               | Self-contained bundle intended for Codex plugin-directory installation  |
 | `docs/SUMMARY.md`               | Documentation entry point used by repo instructions and workflow skills |
 | `templates/AGENTS.md`           | Shared agent rules template                                             |
 | `AGENTS.md` / `CLAUDE.md`       | Repository-level instructions that mirror distributed agent rules       |

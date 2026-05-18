@@ -1,6 +1,6 @@
 {
 	"name": "cobrew",
-	"version": "1.1.4",
+	"version": "1.1.5",
 	"description": "Workflow skills and shared instructions for coding agents.",
 	"author": {
 		"name": "Nhat Bui",
@@ -10,13 +10,7 @@
 	"homepage": "https://github.com/buiducnhat/cobrew#readme",
 	"repository": "https://github.com/buiducnhat/cobrew",
 	"license": "MIT",
-	"keywords": [
-		"cobrew",
-		"codex",
-		"workflow",
-		"skills",
-		"coding-agents"
-	],
+	"keywords": ["cobrew", "codex", "workflow", "skills", "coding-agents"],
 	"skills": "./skills/",
 	"interface": {
 		"displayName": "CoBrew",
@@ -24,18 +18,14 @@
 		"longDescription": "CoBrew provides structured workflows for asking clarifying questions, fixing bugs, reviewing changes, brainstorming, writing plans, executing plans, maintaining docs, creating commits, quick implementation, and source-adjacent visualizations.",
 		"developerName": "Nhat Bui",
 		"category": "Productivity",
-		"capabilities": [
-			"Interactive",
-			"Read",
-			"Write"
-		],
+		"capabilities": ["Interactive", "Read", "Write"],
 		"websiteURL": "https://github.com/buiducnhat/cobrew",
 		"privacyPolicyURL": "https://github.com/buiducnhat/cobrew",
 		"termsOfServiceURL": "https://github.com/buiducnhat/cobrew/blob/main/LICENSE",
 		"defaultPrompt": [
-			"$brainstorm I want to implement a new feature but I'm not sure where to start.",
-			"$write-plan Make the feature A same pattern with B",
-			"$quick-implement Edit README.md to add instructions for the new feature"
+			"$cobrew:brainstorm I want to implement a new feature but I'm not sure where to start.",
+			"$cobrew:write-plan Make the feature A same pattern with B",
+			"$cobrew:quick-implement Edit README.md to add instructions for the new feature"
 		],
 		"brandColor": "#111827",
 		"composerIcon": "./assets/logo.png",
