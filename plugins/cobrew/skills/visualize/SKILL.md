@@ -40,14 +40,14 @@ Always copy `references/templates/visualize-theme.css` into the adjacent assets 
    - If `docs/SUMMARY.md` exists, read it first.
    - Load only task-relevant detail docs.
    - Prioritize `Code Standard` docs for implementation conventions.
-   - If docs conflict with code or user intent, use the available question tool before broad changes.
+   - If docs conflict with code or user intent, use the available input/question tool before broad changes.
 2. Load the source material.
    - For plan folders, read `SUMMARY.md` and relevant `phase-XX-*.md` files.
    - For markdown or document files, read the requested source directly.
    - For source-less user context, use only the provided conversation/request content.
 3. Identify the visualization intent.
    - Determine whether the user needs a plan map, document map, process flow, decision view, recommendation view, or mixed visualization.
-   - Ask with the question tool only when the source, target, or output ambiguity cannot be resolved safely.
+   - Ask with the input/question tool only when the source, target, or output ambiguity cannot be resolved safely.
 4. Choose the template with `references/router.md`.
    - Plan folders use `references/templates/plan.html`.
    - Single documents use `references/templates/document.html`.

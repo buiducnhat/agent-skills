@@ -28,7 +28,7 @@ Do not redesign the plan during execution. If ambiguity or blockers appear, stop
      - If `docs/SUMMARY.md` exists, read it first.
      - Load only task-relevant detail docs.
      - Prioritize `Code Standard` docs for implementation conventions.
-     - If docs conflict with code or user intent, use the available question tool before broad changes.
+     - If docs conflict with code or user intent, use the available input/question before broad changes.
    - Review the plan’s phase files, context/orientation notes, dependencies, acceptance criteria, idempotence/recovery notes, decision log, and open questions.
    - If an older plan is missing living-plan sections (`Progress`, `Surprises & Discoveries`, `Decision Log`, `Outcomes & Retrospective`), add those sections before execution when the plan is otherwise clear.
 
@@ -126,7 +126,7 @@ After all phases are complete:
 
 ### Step 5: Final Confirmation Gate
 
-After completion artifacts are done, ask the user for a final confirmation using the Question Tool with exactly these options:
+After completion artifacts are done, ask the user for a final confirmation using the input/question with exactly these options:
 
 - `Confirm: End session`
 - `Confirm and Auto commit git`

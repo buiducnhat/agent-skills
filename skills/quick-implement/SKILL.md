@@ -47,7 +47,7 @@ Escalation action:
 
 1. Stop all coding activities immediately.
 2. Output the exact message: "This change exceeds rapid-implementation safety limits. Recommend `write-plan` first to define phased execution and risk controls."
-3. Use `Question Tool` to ask the user if they want to initiate a handoff to the `write-plan` skill.
+3. Use input/question to ask the user if they want to initiate a handoff to the `write-plan` skill.
 
 ## Workflow
 
@@ -58,10 +58,10 @@ Escalation action:
    - If `docs/SUMMARY.md` exists, read it first.
    - Load only task-relevant detail docs.
    - Prioritize `Code Standard` docs for implementation conventions.
-   - If docs conflict with code or user intent, use the available question tool before broad changes.
+   - If docs conflict with code or user intent, use the available input/question before broad changes.
 3. Inspect only the minimum necessary code paths.
 4. Confirm the task still passes the Scope Gate.
-5. If ambiguity remains, ask clarifying questions before coding. Follow the `Question Tool` mandate.
+5. If ambiguity remains, ask clarifying questions before coding.
 
 ### Step 2: Implement
 

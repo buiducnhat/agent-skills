@@ -16,7 +16,7 @@ Load only the project context relevant to the current task:
 - If `docs/SUMMARY.md` exists, read it first.
 - Load only task-relevant detail docs.
 - Prioritize `Code Standard` docs for implementation conventions.
-- If docs conflict with code or user intent, use the available question tool before broad changes.
+- If docs conflict with code or user intent, use the available input/question before broad changes.
 
 Skip this step if no project docs or useful repository files exist.
 

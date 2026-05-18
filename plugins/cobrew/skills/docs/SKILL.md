@@ -102,7 +102,7 @@ The `Agent Context Guide` must stay limited to project context loading:
 - Read `docs/SUMMARY.md` first when it exists
 - Load only task-relevant detail docs
 - Prioritize `Code Standard` docs for implementation conventions
-- Use the available question tool before broad changes when docs conflict with code or user intent
+- Use the available input/question before broad changes when docs conflict with code or user intent
 
 Do not use the guide to duplicate general engineering principles, git rules, or detailed question-tool procedures.
 

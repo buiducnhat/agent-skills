@@ -30,7 +30,7 @@ The review must produce:
    - If `docs/SUMMARY.md` exists, read it first.
    - Load only task-relevant detail docs.
    - Prioritize `Code Standard` docs for implementation conventions.
-   - If docs conflict with code or user intent, use the available question tool before broad changes.
+   - If docs conflict with code or user intent, use the available input/question tool before broad changes.
 4. Run relevant quality checks for touched areas (lint/type/tests when practical).
 
 ### Step 2: Analyze Changes

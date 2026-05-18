@@ -62,7 +62,7 @@ Escalation action:
    - If `docs/SUMMARY.md` exists, read it first.
    - Load only task-relevant detail docs.
    - Prioritize `Code Standard` docs for implementation conventions.
-   - If docs conflict with code or user intent, use the available question tool before broad changes.
+   - If docs conflict with code or user intent, use the available input/question tool before broad changes.
 
 ### Step 2: Reproduce and Diagnose
 
@@ -137,7 +137,7 @@ If behavior or documentation-relevant rules changed, update the minimal relevant
 
 ## Rules
 
-- Do not guess when key context is missing; ask via `Question Tool`.
+- Do not guess when key context is missing.
 - Always prioritize root-cause fixes.
 - Keep blast radius minimal.
 - Do not mark done without verification.
