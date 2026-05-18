@@ -1,0 +1,20 @@
+{
+	"name": "cobrew",
+	"interface": {
+		"displayName": "CoBrew"
+	},
+	"plugins": [
+		{
+			"name": "cobrew",
+			"source": {
+				"source": "local",
+				"path": "./plugins/cobrew"
+			},
+			"policy": {
+				"installation": "AVAILABLE",
+				"authentication": "ON_INSTALL"
+			},
+			"category": "Productivity"
+		}
+	]
+}

@@ -36,13 +36,6 @@ lerna-debug.log*
 # Turbo
 .turbo
 
-# Better-T-Stack
-.alchemy
-
-# Testing
-coverage
-.nyc_output
-
 # Misc
 *.tgz
 .cache
@@ -60,12 +53,11 @@ docs/brainstorms/
 AGENTS.md
 CLAUDE.md
 skills-lock.json
-.agents/
-.qwen/
 .claude/
-.gemini/
-.gemini/
-.cursor/
+.agents/*
+!.agents/plugins/
+.agents/plugins/*
+!.agents/plugins/marketplace.json
 
 # Templates
 !templates/.claude/
