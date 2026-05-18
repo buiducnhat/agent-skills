@@ -54,7 +54,11 @@ Escalation action:
 ### Step 1: Analyze and Contextualize
 
 1. Understand the user request and define acceptance criteria.
-2. Load project context per the shared Context Loading Protocol.
+2. Load only the project context relevant to the request:
+   - If `docs/SUMMARY.md` exists, read it first.
+   - Load only task-relevant detail docs.
+   - Prioritize `Code Standard` docs for implementation conventions.
+   - If docs conflict with code or user intent, use the available question tool before broad changes.
 3. Inspect only the minimum necessary code paths.
 4. Confirm the task still passes the Scope Gate.
 5. If ambiguity remains, ask clarifying questions before coding. Follow the `Question Tool` mandate.

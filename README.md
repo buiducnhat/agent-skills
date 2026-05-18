@@ -1,8 +1,8 @@
 # CoBrew
 
-Install standardized AI workflow skills and shared rules-file content for coding agents.
+Install standardized AI workflow skills for coding agents.
 
-Use the **CoBrew plugin** for the best Codex and Claude Code experience. Use the CLI installer for the other **40 supported AI coding agents**, CI, global installs, or environments that do not support plugins yet.
+Use the **CoBrew plugin** for the best Codex and Claude Code experience. For other agents or environments without plugin support, install the skills directly with the Vercel skills CLI.
 
 ---
 
@@ -12,10 +12,10 @@ Use the **CoBrew plugin** for the best Codex and Claude Code experience. Use the
 
 ## What it does
 
-CoBrew ships the same first-party workflow skills through two distribution paths:
+CoBrew ships the same first-party workflow skills through two supported paths:
 
-1. **Plugin bundles for Codex and Claude Code** expose the workflow skills directly through each agent's plugin system.
-2. **CLI installer for other agents and automation** lets you select agents, choose symlink or copy mode, install skills through the [Vercel skills CLI](https://github.com/vercel-labs/skills), and inject shared `AGENTS.md` rules using idempotent markers.
+1. **Plugin bundles for Codex and Claude Code** expose self-contained workflow skills directly through each agent's plugin system.
+2. **Direct skills CLI install** uses the [Vercel skills CLI](https://github.com/vercel-labs/skills) to install the same skills into other supported agents.
 
 ## Installation
 
@@ -41,85 +41,13 @@ Inside an interactive Claude Code session, use the slash command form:
 /plugin marketplace add buiducnhat/cobrew
 ```
 
-### CLI installer (fallback and multi-agent setup)
+### Other agents
 
-Use the CLI when you need to configure agents beyond Codex and Claude Code, run CI setup, install globally, or work in an environment where plugins are unavailable.
-
-#### Interactive
+For agents outside the plugin path, install the CoBrew skills directly:
 
 ```bash
-npx cobrew@latest
+npx skills add buiducnhat/cobrew
 ```
-
-Walks you through agent selection and install mode (symlink or copy).
-
-#### Non-interactive (CI / automation)
-
-```bash
-npx cobrew@latest --non-interactive
-```
-
-Skips all prompts and installs skills for all agents.
-
-#### Via shell script
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/buiducnhat/cobrew/main/install.sh | bash
-```
-
-Checks for Node.js 18+ and runs the installer automatically.
-
-#### Global install
-
-```bash
-npx cobrew@latest --global
-```
-
-Installs skills to your home directory (`~/<agent>/skills/`) so they are available across all projects.
-
-#### Target specific agents
-
-```bash
-npx cobrew@latest -a claude-code -a cursor
-```
-
-Installs skills only for the listed agents. Repeat `-a` or pass multiple agent IDs after one flag.
-
-## CLI walkthrough
-
-```
-┌  CoBrew Installer
-│
-◇  Select agents to install skills for:
-│  ◼ Claude Code  ◼ Cursor  ◻ Windsurf  ...
-│
-◇  How should the skills be installed?
-│  ● Symlink (recommended)  ○ Copy
-│
-◇  Installing skills via skills CLI...
-│
-◇  Installation complete!
-│
-│  What was set up:
-│    CLAUDE.md             - updated
-│
-│  Agent configurations updated for:
-│    - claude-code
-│    - cursor
-│
-└  Done! Your AI workflow skills are ready.
-```
-
-## CLI options
-
-| Flag                | Description                                      |
-| ------------------- | ------------------------------------------------ |
-| `-a, --agent`       | Target one or more specific agents               |
-| `--non-interactive` | Skip prompts; install all skills to all agents   |
-| `--copy`            | Copy skill files instead of symlinking           |
-| `-g, --global`      | Install to `~/` instead of the current directory |
-| `-h, --help`        | Show help                                        |
-| `-v, --version`     | Show version                                     |
 
 ## Plugin bundle maintenance
 
@@ -128,6 +56,8 @@ This repository treats the root `skills/` directory and `plugins/cobrew/.codex-p
 `bun run sync:plugin` generates a self-contained plugin bundle at `plugins/cobrew/`, including both Codex (`.codex-plugin/plugin.json`) and Claude Code (`.claude-plugin/plugin.json`) manifests.
 
 It also rewrites the Codex marketplace at `.agents/plugins/marketplace.json` and the Claude Code marketplace at `.claude-plugin/marketplace.json` so both point at `./plugins/cobrew`.
+
+Each workflow skill includes its own project context-loading guidance and uses `docs/SUMMARY.md` as the entry point when present.
 
 ## Repository workflow skills
 
@@ -273,16 +203,7 @@ AdaL, Amp, Antigravity, Augment, Claude Code, Cline, CodeBuddy, Codex, Command C
 ## Requirements
 
 - Node.js 18+
-- `git` available in `PATH`
-- Network access (to clone templates from GitHub)
-
-## Re-running the installer
-
-Re-running is safe. Rules injection is idempotent — the existing content between markers is replaced without duplication. New agents can be added to an existing setup at any time.
-
-## Release
-
-Tag pushes matching `v*` trigger the GitHub Actions workflow `.github/workflows/release.yml` to publish `cobrew` to npm automatically.
+- Network access for plugin marketplace or skills CLI installation
 
 ## Documentation
 

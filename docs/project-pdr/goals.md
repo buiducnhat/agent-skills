@@ -2,36 +2,31 @@
 
 ## Problem Statement
 
-AI coding agents each use different skills directories, rules-file names, and configuration conventions. Teams that switch between agents or support several agents in one repository would otherwise need to configure each environment manually and keep behavioral guidance in sync by hand.
+AI coding agents each use different skills directories and configuration conventions. Teams that switch between agents or support several agents in one repository would otherwise need to configure each workflow skill set manually.
 
 ## Product Purpose
 
-CoBrew provides a plugin-first distribution model with a CLI fallback:
+CoBrew provides a plugin-first distribution model with direct skills CLI installation for non-plugin agents:
 
 1. Ships Codex and Claude Code plugin bundles for the preferred user experience in those agents
-2. Installs consistent workflow skill definitions into any of 40 supported AI coding agents through the CLI fallback
-3. Injects shared agent behavioral rules (`AGENTS.md`) into each agent's rules file when the CLI target is text-based
-4. Keeps repository-owned workflow guidance close to the installer source so the skills, shared rules, plugin manifests, and docs evolve together
+2. Guides other agents to install consistent workflow skill definitions directly through the Vercel skills CLI
+3. Keeps repository-owned workflow guidance close to the installer source so the skills, plugin manifests, and docs evolve together
 
 ## Target Users
 
 - Individual developers using 1+ AI coding agents who want standardized workflows
 - Codex and Claude Code users who prefer installing workflow skills as plugins
-- Teams wanting to commit shared agent skill configurations to a repository
-- CI/automation environments needing non-interactive agent setup (`--non-interactive`)
+- Teams wanting to commit shared agent skill workflows to a repository
+- Users of non-plugin agents who can install skills through the Vercel skills CLI
 - Maintainers who need a repeatable way to ship first-party skills and pinned upstream skills together
 
 ## Supported Workflows
 
-| Workflow                           | Entry Point                                         |
-| ---------------------------------- | --------------------------------------------------- |
-| Codex plugin install               | `codex plugin marketplace add buiducnhat/cobrew`    |
-| Claude Code plugin install         | `claude plugin marketplace add buiducnhat/cobrew`   |
-| Interactive CLI fallback           | `npx cobrew@latest`                                 |
-| Non-interactive CI install         | `npx cobrew@latest --non-interactive`               |
-| Global CLI install across projects | `npx cobrew@latest --global`                        |
-| Copy-based CLI install             | `npx cobrew@latest --copy`                          |
-| Shell bootstrap install            | `curl -fsSL .../install.sh \| bash`                 |
+| Workflow                   | Entry Point                                       |
+| -------------------------- | ------------------------------------------------- |
+| Codex plugin install       | `codex plugin marketplace add buiducnhat/cobrew`  |
+| Claude Code plugin install | `claude plugin marketplace add buiducnhat/cobrew` |
+| Direct skills CLI install  | `npx skills add buiducnhat/cobrew`                |
 
 ## Workflow Skills Provided
 
@@ -51,13 +46,10 @@ The repository also tracks additional upstream skills in `skills-lock.json` so d
 
 **In scope:**
 
-- Install skills to 40 supported agents via the Vercel skills CLI
 - Provide Codex and Claude Code plugin bundles as the recommended path for those agents
-- Inject shared `AGENTS.md` rules using idempotent markers
-- Symlink (default) or copy install modes
-- Auto-detect already-installed agents from filesystem
-- Global vs. project-level install
-- Keep first-party skill definitions, shared rules, and repository guidance in the same monorepo
+- Guide non-plugin users to install skills directly with `npx skills add buiducnhat/cobrew`
+- Keep plugin-installed workflow skills self-contained for project context loading
+- Keep first-party skill definitions and repository guidance together in this repository
 - Maintain historical brainstorms and execution plans for non-trivial repository changes
 
 **Out of scope:**
@@ -65,21 +57,19 @@ The repository also tracks additional upstream skills in `skills-lock.json` so d
 - Agent-specific skill customization per project
 - Skill version pinning per-agent (all agents get the same version)
 - Removing/uninstalling previously injected rules
-- Editing or merging JSON-based rules formats during rules injection
+- Editing or merging JSON-based rules formats
 
 ## Operational Constraints
 
-- Node.js 18+ is required for CLI execution.
-- `git` and network access are required because templates are fetched by cloning the repository.
-- Codex and Claude Code plugin installs use marketplace commands pointed at `buiducnhat/cobrew` instead of running `npx cobrew`.
-- Non-interactive installs may complete skill installation even when no local agent rules files are detected; in that case, rules injection is skipped.
-- Re-running the installer must remain idempotent for text-based rules files.
+- Node.js 18+ is required for direct skills CLI installation.
+- Network access is required for plugin marketplace or skills CLI installation.
+- Codex and Claude Code plugin installs use marketplace commands pointed at `buiducnhat/cobrew`.
+- Plugin installs do not need to write extra project instruction files for workflow skills to load project context.
 
 ## Success Criteria
 
 - Codex and Claude Code users can install CoBrew through plugin marketplace metadata
-- A single CLI command installs skills for non-plugin agents in a project
-- Re-running is safe (idempotent) — no duplicate rules injection
+- Plugin-installed workflow skills can load project context from `docs/SUMMARY.md`
+- A single `npx skills add buiducnhat/cobrew` command installs skills for non-plugin agents
 - Skills work across all 40 supported agent environments without modification
-- Published to npm as `cobrew` and auto-released on `v*` tag push
-- Repository docs stay aligned with the shipped skill set, installer flags, and workflow conventions
+- Repository docs stay aligned with the shipped skill set, installation guidance, and workflow conventions

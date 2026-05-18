@@ -21,7 +21,14 @@ The goal is to:
 
 ### Step 1: Gather Project Context
 
-Load project context per the shared Context Loading Protocol. Also check key implementation files relevant to the idea and note constraints from existing architecture, dependencies, and conventions.
+Load only the project context relevant to the current idea:
+
+- If `docs/SUMMARY.md` exists, read it first.
+- Load only task-relevant detail docs.
+- Prioritize `Code Standard` docs for implementation conventions.
+- If docs conflict with code or user intent, use the available question tool before broad changes.
+
+Also check key implementation files relevant to the idea and note constraints from existing architecture, dependencies, and conventions.
 
 Keep this pass focused. Only gather what is needed for the current idea.
 

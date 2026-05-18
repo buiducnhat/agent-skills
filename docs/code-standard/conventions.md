@@ -4,6 +4,7 @@
 
 - Follow a docs-first workflow: read `docs/SUMMARY.md` before planning or implementing, then load only the detail files needed for the current task.
 - Treat the `Code Standard` docs as the primary source for repository conventions. If code and docs conflict, clarify the intended behavior before making broad changes.
+- Keep workflow skills self-contained for context loading: when a skill needs project context, it should state how to read `docs/SUMMARY.md`, load only relevant detail docs, prioritize `Code Standard`, and use the available question tool when docs conflict with code or user intent.
 - Apply YAGNI, KISS, DRY, SOLID, and the principle of least surprise.
 
 ## Question Handling
@@ -13,26 +14,21 @@
 - Prefer 2-5 selectable options when practical.
 - Do not interrupt execution with unnecessary questions if the answer can be inferred safely from the repository.
 
-## Language & Runtime
+## Runtime
 
-- **TypeScript** (strict) across all packages
-- **Bun** as runtime and package manager (v1.3.9+)
-- **Node.js 18+** required for CLI consumers (ESM, no CJS)
-- `"type": "module"` — all source is ES Module
+- **Bun** as package manager and script runner (v1.3.9+)
+- `"type": "module"` — scripts use ES Module syntax
 
 ## Tooling
 
-| Tool        | Role                        | Config             |
-| ----------- | --------------------------- | ------------------ |
-| Biome 2.4.5 | Lint + format               | `biome.json`       |
-| tsdown      | Bundle CLI package          | `tsdown.config.ts` |
-| Turbo       | Monorepo task orchestration | `turbo.json`       |
+| Tool         | Role          | Config       |
+| ------------ | ------------- | ------------ |
+| Biome 2.4.12 | Lint + format | `biome.json` |
 
 Primary repository commands:
 
-- `bun run build` — regenerates the plugin bundle, then runs Turbo build tasks
+- `bun run build` — regenerates the plugin bundle
 - `bun run sync:plugin` — regenerates `plugins/cobrew/` plus Codex and Claude Code marketplace metadata from the root plugin source
-- `bun run check-types` — runs Turbo type checks
 - `bun run check` — runs `biome check --write --unsafe .` at the repo root
 
 ## Formatting (Biome)
@@ -53,18 +49,6 @@ Primary repository commands:
 - **Records/Maps**: exported registries remain SCREAMING_SNAKE_CASE when they act like constant lookup tables (`AGENT_RULES_MAP`, `AGENT_SKILLS_DIRS`)
 - **Skill folders**: kebab-case and matched to the `name` field in `SKILL.md`
 
-## Module Structure
-
-Each source module has a single clear responsibility (see `src/` split). No barrel `index.ts` re-exports within `src/` — modules are imported directly.
-
-The CLI code is intentionally split by responsibility:
-
-- `index.ts` orchestrates the flow
-- `utils.ts` handles parsing and presentation helpers
-- `skills.ts` handles the external skills CLI process
-- `fetch.ts` handles template download and cleanup
-- `rules.ts` handles file mutation
-
 ## Commit & PR Convention
 
 Commits follow: `feat:`, `fix:`, `chore:` prefixes (conventional commits style, evident from `git log`).
@@ -75,7 +59,7 @@ Commits follow: `feat:`, `fix:`, `chore:` prefixes (conventional commits style, 
 - Reference assets go in `skills/<name>/references/`
 - Skill names use kebab-case
 - The `description` field is the discovery surface for skill invocation, so trigger phrases belong there
-- Skill instructions should follow the shared context-loading and question-tool mandates from the repository rules
+- Skill instructions should include self-contained context-loading guidance.
 
 ## Documentation Authoring
 
@@ -84,8 +68,8 @@ Commits follow: `feat:`, `fix:`, `chore:` prefixes (conventional commits style, 
 - Brainstorm and plan folders use timestamped slugs such as `260306-1317-global-flag`.
 - Plan folders use `SUMMARY.md`, `phase-01-*.md`, and `EXECUTION-REPORT.md` naming patterns.
 - Documentation should stay factual and implementation-backed; avoid invented requirements.
-- User-facing docs should position `codex plugin marketplace add buiducnhat/cobrew` and `claude plugin marketplace add buiducnhat/cobrew` as the recommended setup path, with `npx cobrew` reserved for other agents, CI, global installs, and plugin-unavailable environments.
+- User-facing docs should position `codex plugin marketplace add buiducnhat/cobrew` and `claude plugin marketplace add buiducnhat/cobrew` as the recommended setup path, with `npx skills add buiducnhat/cobrew` for other agents and plugin-unavailable environments.
 
 ## Ignored by Biome
 
-`dist/`, `.turbo/`, `.claude/`, `.agents/`, `.cursor/`, `.qwen/`, `bun.lock`
+`dist/`, `.claude/`, `.agents/`, `.cursor/`, `.qwen/`, `bun.lock`

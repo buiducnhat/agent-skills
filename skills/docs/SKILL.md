@@ -12,7 +12,7 @@ Create and maintain project documentation in `docs/` with a consistent, lightwei
 
 Maintain these outputs:
 
-1. `docs/SUMMARY.md` — documentation entry point (always regenerated)
+1. `docs/SUMMARY.md` — documentation entry point with an `Agent Context Guide` (always regenerated)
 2. `docs/architecture/` — system design, infrastructure, component interactions, data flows, feature flows. Focus on _how the system works_, not file/code structure.
 3. `docs/codebase/` — file organization, directory structure, entry points, key modules and their responsibilities. Focus on _where things live in the code_.
 4. `docs/code-standard/` — coding conventions, naming rules, style guides, environment setup, custom rules and patterns the team follows. Focus on _how to write code that fits in with the existing codebase_, best practices, and team conventions, very important for maintaining consistency.
@@ -49,7 +49,7 @@ Focus on facts: features, architecture, stack, directory structure, and workflow
    a. Scan codebase for relevant information
    b. Generate content based on codebase scan
    c. Create topic-specific files based on content found in the codebase. Name each file by its content (e.g., `components.md`, `conventions.md`). Do NOT use generic names (`overview.md`, `index.md`, `main.md`). Split into multiple files when content covers 2+ clearly distinct sub-topics. Minimum 1 file per folder.
-3. Create `docs/SUMMARY.md` using the format specified in Content Requirements
+3. Create `docs/SUMMARY.md` using the format specified in Content Requirements, including the `Agent Context Guide`
 4. Update `README.md` with link to `docs/SUMMARY.md`
 
 Populate each file with concrete, project-specific content. Avoid placeholders and generic templates.
@@ -62,7 +62,7 @@ Populate each file with concrete, project-specific content. Avoid placeholders a
 4. Add newly discovered features, components, or conventions.
 5. Remove clearly obsolete statements.
 6. Add, modify, or remove detail files as needed based on content changes.
-7. Regenerate `docs/SUMMARY.md` to match current files — only list files that actually exist on disk.
+7. Regenerate `docs/SUMMARY.md` to match current files — only list files that actually exist on disk and keep the `Agent Context Guide`.
 8. Update `README.md` if documentation links changed.
 
 **Important**: The goal is an incremental, surgical update — not a full rewrite.
@@ -83,7 +83,7 @@ Before finishing, verify:
 - Each topic folder has at least 1 topic-specific file
 - No generic file names (`overview.md`, `index.md`, `main.md`) in topic folders
 - `README.md` links point to `docs/SUMMARY.md`
-- `SUMMARY.md` is concise and contains file tables for all sections
+- `SUMMARY.md` is concise, contains the `Agent Context Guide`, and contains file tables for all sections
 - Terminology is consistent across files
 - No contradictions between docs and code
 - Paths and component names are accurate
@@ -93,9 +93,18 @@ Before finishing, verify:
 
 ### `SUMMARY.md` format
 
-Contains project overview and file tables for each documentation section.
+Contains project overview, a concise `Agent Context Guide`, and file tables for each documentation section.
 
 Strictly follow the template in `references/summary-template.md`.
+
+The `Agent Context Guide` must stay limited to project context loading:
+
+- Read `docs/SUMMARY.md` first when it exists
+- Load only task-relevant detail docs
+- Prioritize `Code Standard` docs for implementation conventions
+- Use the available question tool before broad changes when docs conflict with code or user intent
+
+Do not use the guide to duplicate general engineering principles, git rules, or detailed question-tool procedures.
 
 ### Topic file rules
 

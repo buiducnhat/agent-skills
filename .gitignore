@@ -33,17 +33,11 @@ yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
 
-# Turbo
-.turbo
-
 # Misc
 *.tgz
 .cache
 tmp
 temp
-# CLI build artifacts
-cli/node_modules/
-cli/dist/
 
 # Local agent artifacts
 docs/plans/

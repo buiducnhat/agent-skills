@@ -24,7 +24,11 @@ Do not redesign the plan during execution. If ambiguity or blockers appear, stop
    - If a directory is provided, locate `SUMMARY.md` inside it.
 
 2. **Load Execution Context**
-   - Load project context per the shared Context Loading Protocol.
+   - Load only the project context relevant to the plan:
+     - If `docs/SUMMARY.md` exists, read it first.
+     - Load only task-relevant detail docs.
+     - Prioritize `Code Standard` docs for implementation conventions.
+     - If docs conflict with code or user intent, use the available question tool before broad changes.
    - Review the plan’s phase files, context/orientation notes, dependencies, acceptance criteria, idempotence/recovery notes, decision log, and open questions.
    - If an older plan is missing living-plan sections (`Progress`, `Surprises & Discoveries`, `Decision Log`, `Outcomes & Retrospective`), add those sections before execution when the plan is otherwise clear.
 

@@ -11,7 +11,14 @@ license: MIT
 
 ### Step 1: Gather Project Context
 
-Load project context per the shared Context Loading Protocol. Only gather what is relevant to the current task. Skip if no docs exist.
+Load only the project context relevant to the current task:
+
+- If `docs/SUMMARY.md` exists, read it first.
+- Load only task-relevant detail docs.
+- Prioritize `Code Standard` docs for implementation conventions.
+- If docs conflict with code or user intent, use the available question tool before broad changes.
+
+Skip this step if no project docs or useful repository files exist.
 
 ### Step 2: Identify Information Gaps
 

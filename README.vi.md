@@ -1,8 +1,8 @@
 # CoBrew
 
-Cài đặt các workflow skill chuẩn hóa cho AI agent và nội dung rules dùng chung.
+Cài đặt các workflow skill chuẩn hóa cho AI agent.
 
-Với Codex và Claude Code, nên dùng **plugin CoBrew** để có trải nghiệm tốt nhất. Với các agent khác, CI, cài đặt global, hoặc môi trường chưa hỗ trợ plugin, dùng CLI installer. CLI hiện hỗ trợ **40 AI coding agent**.
+Với Codex và Claude Code, nên dùng **plugin CoBrew** để có trải nghiệm tốt nhất. Với agent khác hoặc môi trường chưa hỗ trợ plugin, cài skill trực tiếp bằng Vercel skills CLI.
 
 ---
 
@@ -12,10 +12,10 @@ Với Codex và Claude Code, nên dùng **plugin CoBrew** để có trải nghi�
 
 ## Tính năng
 
-CoBrew phân phối cùng một bộ workflow skill first-party qua hai hướng:
+CoBrew phân phối cùng một bộ workflow skill first-party qua hai hướng được hỗ trợ:
 
 1. **Plugin bundle cho Codex và Claude Code** giúp agent đọc workflow skill trực tiếp qua hệ thống plugin.
-2. **CLI installer cho agent khác và tự động hóa** cho phép chọn agent, chọn cài bằng symlink hoặc copy, cài skill qua [Vercel skills CLI](https://github.com/vercel-labs/skills), và chèn rules dùng chung `AGENTS.md` bằng marker idempotent.
+2. **Cài trực tiếp bằng skills CLI** dùng [Vercel skills CLI](https://github.com/vercel-labs/skills) để cài cùng bộ skill cho các agent được hỗ trợ khác.
 
 ## Cài đặt
 
@@ -41,85 +41,13 @@ Trong phiên Claude Code tương tác, dùng slash command:
 /plugin marketplace add buiducnhat/cobrew
 ```
 
-### CLI installer (fallback và cài nhiều agent)
+### Agent khác
 
-Dùng CLI khi cần cấu hình agent ngoài Codex và Claude Code, chạy setup trong CI, cài global, hoặc làm việc trong môi trường chưa hỗ trợ plugin.
-
-#### Tương tác
+Với agent ngoài hướng plugin, cài skill CoBrew trực tiếp:
 
 ```bash
-npx cobrew@latest
+npx skills add buiducnhat/cobrew
 ```
-
-Hướng dẫn từng bước qua việc chọn agent và chế độ cài đặt (symlink hoặc copy).
-
-#### Không tương tác (CI / tự động hóa)
-
-```bash
-npx cobrew@latest --non-interactive
-```
-
-Bỏ qua tất cả các bước hỏi và cài đặt skill cho tất cả agent.
-
-#### Qua shell script
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/buiducnhat/cobrew/main/install.sh | bash
-```
-
-Kiểm tra Node.js 18+ và chạy trình cài đặt tự động.
-
-#### Cài đặt toàn cục
-
-```bash
-npx cobrew@latest --global
-```
-
-Cài đặt skill vào thư mục home (`~/<agent>/skills/`) để dùng được trên tất cả các project.
-
-#### Chọn agent cụ thể
-
-```bash
-npx cobrew@latest -a claude-code -a cursor
-```
-
-Chỉ cài skill cho các agent đã liệt kê. Có thể lặp lại `-a` hoặc truyền nhiều agent sau một lần dùng cờ.
-
-## Hướng dẫn CLI tương tác
-
-```
-┌  CoBrew Installer
-│
-◇  Select agents to install skills for:
-│  ◼ Claude Code  ◼ Cursor  ◻ Windsurf  ...
-│
-◇  How should the skills be installed?
-│  ● Symlink (recommended)  ○ Copy
-│
-◇  Installing skills via skills CLI...
-│
-◇  Installation complete!
-│
-│  What was set up:
-│    CLAUDE.md             - updated
-│
-│  Agent configurations updated for:
-│    - claude-code
-│    - cursor
-│
-└  Done! Your AI workflow skills are ready.
-```
-
-## Tùy chọn CLI
-
-| Flag                | Mô tả                                                      |
-| ------------------- | ---------------------------------------------------------- |
-| `-a, --agent`       | Chỉ định một hoặc nhiều agent cụ thể                       |
-| `--non-interactive` | Bỏ qua các bước hỏi; cài đặt tất cả skill cho tất cả agent |
-| `--copy`            | Sao chép file skill thay vì tạo symlink                    |
-| `-g, --global`      | Cài vào `~/` thay vì thư mục hiện tại                      |
-| `-h, --help`        | Hiển thị trợ giúp                                          |
-| `-v, --version`     | Hiển thị phiên bản                                         |
 
 ## Bảo trì plugin bundle
 
@@ -273,16 +201,7 @@ AdaL, Amp, Antigravity, Augment, Claude Code, Cline, CodeBuddy, Codex, Command C
 ## Yêu cầu
 
 - Node.js 18+
-- `git` có trong `PATH`
-- Kết nối mạng (để clone template từ GitHub)
-
-## Chạy lại trình cài đặt
-
-Chạy lại hoàn toàn an toàn. Việc chèn rules là idempotent — nội dung giữa các marker sẽ được thay thế mà không bị trùng lặp. Có thể thêm agent mới vào cài đặt hiện có bất cứ lúc nào.
-
-## Phát hành
-
-Các tag push khớp với `v*` sẽ kích hoạt GitHub Actions workflow `.github/workflows/release.yml` để tự động publish `cobrew` lên npm.
+- Kết nối mạng để cài plugin marketplace hoặc skills CLI
 
 ## Tài liệu
 

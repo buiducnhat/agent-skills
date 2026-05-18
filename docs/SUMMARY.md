@@ -1,7 +1,11 @@
 # Documentation Summary
 
-CoBrew — A plugin-first workflow skill bundle for Codex and Claude Code, plus a CLI installer for standardizing coding-agent workflows across many local agent environments.
-Monorepo built with TypeScript, Bun, and Turbo; ships Codex and Claude Code plugin bundles, publishes the `cobrew` CLI fallback, and maintains repo-owned workflow skills plus shared agent instructions.
+CoBrew — A plugin-first workflow skill bundle for Codex and Claude Code, plus direct skills CLI installation guidance for other coding-agent environments.
+Bun-managed repository that ships Codex and Claude Code plugin bundles and maintains repo-owned workflow skills.
+
+## Agent Context Guide
+
+Before planning or implementing, read this `docs/SUMMARY.md` file first. Load only the detail docs relevant to the current task, and prioritize `Code Standard` docs for implementation conventions. If docs conflict with code or user intent, use the available question tool before making broad changes.
 
 ## Architecture
 
@@ -9,7 +13,7 @@ System design, component interactions, data flows, deployment, and external inte
 
 | File                                                     | Description                                                                                                    |
 | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| [architecture/components.md](architecture/components.md) | Plugin bundles, installer components, skill inventory, rules injection flow, docs archive roles, and monorepo responsibilities |
+| [architecture/components.md](architecture/components.md) | Plugin bundles, direct skills CLI guidance, skill inventory, docs archive roles, and repository responsibilities |
 
 ## Codebase
 
@@ -34,7 +38,7 @@ Product goals, use cases, business rules, and constraints.
 | File                                                 | Description                                                                                                  |
 | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | [project-pdr/goals.md](project-pdr/goals.md)         | Problem statement, plugin-first product purpose, supported workflows, scope boundaries, and success criteria |
-| [project-pdr/use-cases.md](project-pdr/use-cases.md) | Plugin and CLI installation scenarios, workflow-skill usage patterns, and operational constraints            |
+| [project-pdr/use-cases.md](project-pdr/use-cases.md) | Plugin and direct skills CLI installation scenarios, workflow-skill usage patterns, and operational constraints |
 
 ## Other
 
@@ -47,13 +51,13 @@ Historical design notes and execution records that document why major installer 
 | [brainstorms/260301-0051-own-tui-agent-selection/SUMMARY.md](brainstorms/260301-0051-own-tui-agent-selection/SUMMARY.md)             | Brainstorm summary for moving agent selection into the local TUI flow            |
 | [brainstorms/260305-2309-simplify-skills/SUMMARY.md](brainstorms/260305-2309-simplify-skills/SUMMARY.md)                             | Brainstorm summary for simplifying the skill set and shared instructions         |
 | [brainstorms/260309-1610-cursor-skills-fix/SUMMARY.md](brainstorms/260309-1610-cursor-skills-fix/SUMMARY.md)                         | Brainstorm summary for fixing Cursor-specific skill handling                     |
-| [plans/260227-1241-ci-tag-npm-publish/SUMMARY.md](plans/260227-1241-ci-tag-npm-publish/SUMMARY.md)                                   | Plan entry point for npm publishing on `v*` tags                                 |
+| [plans/260227-1241-ci-tag-npm-publish/SUMMARY.md](plans/260227-1241-ci-tag-npm-publish/SUMMARY.md)                                   | Historical plan record for the retired tag-driven CLI release workflow           |
 | [plans/260227-1540-skill-preservation/SUMMARY.md](plans/260227-1540-skill-preservation/SUMMARY.md)                                   | Plan entry point for preserving skill content during installer refactors         |
 | [plans/260227-1655-skill-preservation-output/SUMMARY.md](plans/260227-1655-skill-preservation-output/SUMMARY.md)                     | Plan entry point for improving skill-preservation output and verification        |
 | [plans/260301-0003-replace-ruler-with-skills-cli/SUMMARY.md](plans/260301-0003-replace-ruler-with-skills-cli/SUMMARY.md)             | Plan entry point for replacing ruler integration with the skills CLI             |
 | [plans/260301-0054-own-tui-agent-selection/SUMMARY.md](plans/260301-0054-own-tui-agent-selection/SUMMARY.md)                         | Plan entry point for local TUI-based agent selection                             |
 | [plans/260302-0913-add-copy-flag/SUMMARY.md](plans/260302-0913-add-copy-flag/SUMMARY.md)                                             | Plan entry point for adding the `--copy` install mode                            |
-| [plans/260305-2312-simplify-skills/SUMMARY.md](plans/260305-2312-simplify-skills/SUMMARY.md)                                         | Plan entry point for simplifying shipped skills and AGENTS content               |
+| [plans/260305-2312-simplify-skills/SUMMARY.md](plans/260305-2312-simplify-skills/SUMMARY.md)                                         | Plan entry point for simplifying shipped skills and shared guidance              |
 | [plans/260305-2358-copy-symlink-install-mode/SUMMARY.md](plans/260305-2358-copy-symlink-install-mode/SUMMARY.md)                     | Plan entry point for interactive copy-versus-symlink selection                   |
 | [plans/260306-1317-global-flag/SUMMARY.md](plans/260306-1317-global-flag/SUMMARY.md)                                                 | Plan entry point for adding home-directory global installation                   |
 | [plans/260309-1610-cursor-skills-fix/SUMMARY.md](plans/260309-1610-cursor-skills-fix/SUMMARY.md)                                     | Plan entry point for the Cursor skills installation fix                          |

@@ -58,7 +58,11 @@ Escalation action:
    - Evidence (logs, trace, screenshot, failing test output)
    - Environment (branch/OS/runtime/version if relevant)
    - Impact/severity
-3. Load project context per the shared Context Loading Protocol.
+3. Load only the project context relevant to the bug:
+   - If `docs/SUMMARY.md` exists, read it first.
+   - Load only task-relevant detail docs.
+   - Prioritize `Code Standard` docs for implementation conventions.
+   - If docs conflict with code or user intent, use the available question tool before broad changes.
 
 ### Step 2: Reproduce and Diagnose
 

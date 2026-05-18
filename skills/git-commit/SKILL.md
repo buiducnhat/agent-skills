@@ -51,6 +51,15 @@ BREAKING CHANGE: `extends` key behavior changed
 
 ## Workflow
 
+### 0. Load Commit Context
+
+Load only the project context relevant to commit grouping and message conventions:
+
+- If `docs/SUMMARY.md` exists, read it first.
+- Load only detail docs relevant to git, release, or code-standard conventions.
+- Prioritize `Code Standard` docs for commit and implementation conventions.
+- If docs conflict with code or user intent, use the available question tool before broad changes.
+
 ### 1. Analyze Diff
 
 ```bash

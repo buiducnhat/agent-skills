@@ -26,7 +26,11 @@ The review must produce:
    - `git diff`
    - `git diff --cached` (if staged changes exist)
 2. Read the full modified files (not only the diff hunks) to understand surrounding logic and architecture.
-3. Load project context per the shared Context Loading Protocol before judging style/patterns.
+3. Load only the project context relevant to the changed files before judging style/patterns:
+   - If `docs/SUMMARY.md` exists, read it first.
+   - Load only task-relevant detail docs.
+   - Prioritize `Code Standard` docs for implementation conventions.
+   - If docs conflict with code or user intent, use the available question tool before broad changes.
 4. Run relevant quality checks for touched areas (lint/type/tests when practical).
 
 ### Step 2: Analyze Changes

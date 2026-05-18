@@ -20,7 +20,14 @@ This skill is for planning only:
 
 ### Step 1: Contextualize
 
-Load project context per the shared Context Loading Protocol. Then inspect only the code areas relevant to the requested change.
+Load only the project context relevant to the requested change:
+
+- If `docs/SUMMARY.md` exists, read it first.
+- Load only task-relevant detail docs.
+- Prioritize `Code Standard` docs for implementation conventions.
+- If docs conflict with code or user intent, use the available question tool before broad changes.
+
+Then inspect only the code areas relevant to the requested change.
 
 Capture:
 
