@@ -28,9 +28,12 @@ Do not use this skill for:
 
 ## Output Conventions
 
+Never write generated HTML to the project root. Output belongs inside the relevant plan/brainstorm folder, beside a source document that lives in a subfolder, or — for everything else — inside a dedicated `docs/visualizes/` folder.
+
 - Plan folder: create `visualize.html` and `visualize-assets/` inside the plan folder.
-- Markdown or document file: create `<source-base>.visualize.html` and `<source-base>.visualize-assets/` beside the source file.
-- Source-less context: create `visualize-YYMMDD-HHmm-<slug>.html` and a matching assets folder in the current working directory unless the user specifies a target. Generate the timestamp with `date +%y%m%d-%H%M`.
+- Brainstorm folder: create `visualize.html` and `visualize-assets/` inside the brainstorm folder.
+- Markdown or document file in a subfolder: create `<source-base>.visualize.html` and `<source-base>.visualize-assets/` beside the source file.
+- Root-level document file or source-less context: create `visualize.html` and `visualize-assets/` inside `docs/visualizes/YYMMDD-HHmm-<slug>/` unless the user specifies a target. Generate the timestamp with `date +%y%m%d-%H%M`, and create the `docs/visualizes/` tree if it does not exist.
 
 Always copy `references/templates/visualize-theme.css` into the adjacent assets folder and link the copied local CSS from the generated HTML. Mermaid CDN usage is allowed for diagrams.
 
