@@ -12,7 +12,7 @@ Use the **CoBrew plugin** for the best Codex and Claude Code experience. For oth
 
 ## What it does
 
-CoBrew ships the same first-party workflow skills through two supported paths:
+CoBrew ships first-party workflow skills through two supported paths:
 
 1. **Plugin bundles for Codex and Claude Code** expose self-contained workflow skills directly through each agent's plugin system.
 2. **Direct skills CLI install** uses the [Vercel skills CLI](https://github.com/vercel-labs/skills) to install the same skills into other supported agents.
@@ -51,17 +51,17 @@ npx skills add buiducnhat/cobrew
 
 ## Plugin bundle maintenance
 
-This repository treats the root `skills/` directory and `plugins/cobrew/.codex-plugin/plugin.json` as the authoring metadata source for plugin bundles.
+This repository maintains plugin-ready skill content directly under `plugins/cobrew/skills/`.
 
-`bun run sync:plugin` generates a self-contained plugin bundle at `plugins/cobrew/`, including both Codex (`.codex-plugin/plugin.json`) and Claude Code (`.claude-plugin/plugin.json`) manifests.
+`plugins/cobrew/` is the checked-in plugin bundle for both Codex and Claude Code. It includes the Codex manifest (`.codex-plugin/plugin.json`), the Claude Code manifest (`.claude-plugin/plugin.json`), skill files, references, and plugin assets.
 
-It also rewrites the Codex marketplace at `.agents/plugins/marketplace.json` and the Claude Code marketplace at `.claude-plugin/marketplace.json` so both point at `./plugins/cobrew`.
+The Codex marketplace at `.agents/plugins/marketplace.json` and the Claude Code marketplace at `.claude-plugin/marketplace.json` both point at `./plugins/cobrew`. There is no separate root `skills/` source tree and no sync script.
 
 Each workflow skill includes its own project context-loading guidance and uses `docs/SUMMARY.md` as the entry point when present.
 
 ## Repository workflow skills
 
-This repository currently defines ten first-party workflow skills and also pins additional upstream skills in `skills-lock.json`:
+This repository currently defines ten first-party workflow skills in `plugins/cobrew/skills/`:
 
 | Skill             | Description                                                                                                         |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------- |

@@ -3,8 +3,6 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"build": "bun run sync:plugin",
-		"sync:plugin": "node ./scripts/syncPluginBundle.mjs",
 		"check": "biome check --write --unsafe ."
 	},
 	"dependencies": {},

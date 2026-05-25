@@ -2,21 +2,21 @@
 
 ## System Overview
 
-CoBrew combines plugin bundles, direct skills CLI installation guidance, workflow skills, and supporting documentation assets.
+CoBrew combines checked-in plugin bundles, direct skills CLI installation guidance, workflow skills, and supporting documentation assets.
 
-The recommended user path for Codex and Claude Code is the generated plugin bundle under `plugins/cobrew/`. Plugin-installed workflow skills are intended to be self-contained for project context loading. Other agents install the same skills directly with `npx skills add buiducnhat/cobrew`. The content these paths distribute lives primarily in `skills/`. Dated brainstorms and execution plans live under `docs/`, so installation guidance, plugin packaging, and implementation history stay together.
+The recommended user path for Codex and Claude Code is the checked-in plugin bundle under `plugins/cobrew/`. Plugin-installed workflow skills are intended to be self-contained for project context loading. Other agents install CoBrew skills directly with `npx skills add buiducnhat/cobrew` when they use the direct skills CLI path. The maintained skill content lives in `plugins/cobrew/skills/`. Reference docs and archived execution plans live under `docs/`, so installation guidance, plugin packaging, and implementation history stay together.
 
 ## Components
 
-### Plugin Source and Bundles (`plugins/cobrew/`, `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`)
+### Plugin Bundle (`plugins/cobrew/`, `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`)
 
-`plugins/cobrew/.codex-plugin/plugin.json` is the current authoring metadata source for generated plugin artifacts. The generated distribution bundle lives at `plugins/cobrew/` and contains Codex and Claude Code manifests, bundled `skills/`, and plugin assets.
+`plugins/cobrew/` is the maintained plugin bundle. It contains the Codex manifest, Claude Code manifest, bundled `skills/`, skill references, and plugin assets. There is no separate root `skills/` authoring tree or sync script.
 
 Users install the marketplace directly from GitHub with `codex plugin marketplace add buiducnhat/cobrew` for Codex or `claude plugin marketplace add buiducnhat/cobrew` for Claude Code. The repository-owned marketplace files are distribution metadata consumed by those tools; users should not need to clone the repository just to install the plugin.
 
-### Skill Library (`skills/`)
+### Skill Library (`plugins/cobrew/skills/`)
 
-Ten first-party workflow skill definitions live in `skills/`. Each skill has a `SKILL.md` with YAML frontmatter and may include `references/` assets:
+Ten first-party workflow skill definitions live in `plugins/cobrew/skills/`. Each skill has a `SKILL.md` with YAML frontmatter and may include `references/` assets:
 
 | Skill             | Purpose                                                         |
 | ----------------- | --------------------------------------------------------------- |
@@ -31,13 +31,12 @@ Ten first-party workflow skill definitions live in `skills/`. Each skill has a `
 | `visualize`       | Source-adjacent HTML visualization for docs, plans, and context |
 | `write-plan`      | Phased implementation planning                                  |
 
-`skills-lock.json` complements these first-party skills by pinning upstream skills from external repositories so installs remain reproducible. First-party workflow skills load project context from `docs/SUMMARY.md` when present, then only task-relevant detail docs.
+First-party workflow skills load project context from `docs/SUMMARY.md` when present, then only task-relevant detail docs.
 
 ### Documentation Archive (`docs/`)
 
-The repository stores more than reference docs. It also contains:
+The repository can store more than reference docs. It also contains archived execution records when substantial workflow changes need to preserve implementation history:
 
-- `docs/brainstorms/` for dated design exploration summaries
 - `docs/plans/` for phased implementation plans and execution reports
 - the standard topic folders used by the `docs` skill (`architecture/`, `codebase/`, `code-standard/`, `project-pdr/`)
 
@@ -56,4 +55,4 @@ This path is preferred for Codex and Claude Code because it avoids a separate `n
 
 ## Repository Layout
 
-Built with **Bun** as the package manager and script runner. The root repository keeps shared docs, skill definitions, plugin-bundle generation scripts, and templates.
+Built with **Bun** as the package manager and script runner. The root repository keeps shared docs, checked-in plugin bundle files, workflow skill definitions, and plugin metadata.

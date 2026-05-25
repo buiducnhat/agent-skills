@@ -2,11 +2,11 @@
 
 ## Installation Scenarios
 
-| Scenario                  | User Goal                                                             | Expected Behavior                                                                                                                                           |
-| ------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Codex plugin install      | Use CoBrew workflows in Codex through the plugin path                 | Run `codex plugin marketplace add buiducnhat/cobrew`, then install or enable the `cobrew` plugin from that marketplace. Workflow skills load project context themselves from `docs/SUMMARY.md` when present |
-| Claude Code plugin install | Use CoBrew workflows in Claude Code through the plugin path           | Run `claude plugin marketplace add buiducnhat/cobrew` or `/plugin marketplace add buiducnhat/cobrew`, then install or enable `cobrew`. Workflow skills load project context themselves from `docs/SUMMARY.md` when present |
-| Direct skills CLI install | Use CoBrew workflows in a non-plugin agent or plugin-unavailable setup | Run `npx skills add buiducnhat/cobrew` and follow the skills CLI flow                                                                                         |
+| Scenario                   | User Goal                                                              | Expected Behavior                                                                                                                                                                                                          |
+| -------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Codex plugin install       | Use CoBrew workflows in Codex through the plugin path                  | Run `codex plugin marketplace add buiducnhat/cobrew`, then install or enable the `cobrew` plugin from that marketplace. Workflow skills load project context themselves from `docs/SUMMARY.md` when present                |
+| Claude Code plugin install | Use CoBrew workflows in Claude Code through the plugin path            | Run `claude plugin marketplace add buiducnhat/cobrew` or `/plugin marketplace add buiducnhat/cobrew`, then install or enable `cobrew`. Workflow skills load project context themselves from `docs/SUMMARY.md` when present |
+| Direct skills CLI install  | Use CoBrew workflows in a non-plugin agent or plugin-unavailable setup | Run `npx skills add buiducnhat/cobrew` and follow the skills CLI flow                                                                                                                                                      |
 
 ## Workflow Skill Scenarios
 
@@ -25,9 +25,9 @@
 ## Maintainer Use Cases
 
 - Keep Codex and Claude Code plugin metadata aligned with the first-party skills and README guidance.
-- Add or refine first-party skills under `skills/` while keeping repository docs and README content aligned.
+- Add or refine first-party skills under `plugins/cobrew/skills/` while keeping repository docs and README content aligned.
 - Preserve design context for larger changes in `docs/brainstorms/` and `docs/plans/`.
-- Update first-party skill guidance once under `skills/` and distribute it through plugin bundles and direct skills CLI installation.
+- Update first-party skill guidance once under `plugins/cobrew/skills/` and keep plugin bundle metadata aligned.
 
 ## Key Requirements
 

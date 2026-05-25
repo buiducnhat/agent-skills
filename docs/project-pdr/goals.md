@@ -10,7 +10,7 @@ CoBrew provides a plugin-first distribution model with direct skills CLI install
 
 1. Ships Codex and Claude Code plugin bundles for the preferred user experience in those agents
 2. Guides other agents to install consistent workflow skill definitions directly through the Vercel skills CLI
-3. Keeps repository-owned workflow guidance close to the installer source so the skills, plugin manifests, and docs evolve together
+3. Keeps repository-owned workflow guidance close to the plugin bundle so the skills, plugin manifests, and docs evolve together
 
 ## Target Users
 
@@ -18,7 +18,7 @@ CoBrew provides a plugin-first distribution model with direct skills CLI install
 - Codex and Claude Code users who prefer installing workflow skills as plugins
 - Teams wanting to commit shared agent skill workflows to a repository
 - Users of non-plugin agents who can install skills through the Vercel skills CLI
-- Maintainers who need a repeatable way to ship first-party skills and pinned upstream skills together
+- Maintainers who need a repeatable way to ship first-party skills with plugin metadata
 
 ## Supported Workflows
 
@@ -40,7 +40,7 @@ Ten workflow skills cover the full development lifecycle:
 - **Visualization**: `visualize`
 - **Version Control**: `git-commit`
 
-The repository also tracks additional upstream skills in `skills-lock.json` so downstream installs can include externally maintained capabilities alongside the first-party set.
+The repository maintains the first-party skill set directly inside the checked-in plugin bundle.
 
 ## Feature Scope
 
@@ -49,7 +49,7 @@ The repository also tracks additional upstream skills in `skills-lock.json` so d
 - Provide Codex and Claude Code plugin bundles as the recommended path for those agents
 - Guide non-plugin users to install skills directly with `npx skills add buiducnhat/cobrew`
 - Keep plugin-installed workflow skills self-contained for project context loading
-- Keep first-party skill definitions and repository guidance together in this repository
+- Keep first-party skill definitions, plugin metadata, and repository guidance together in this repository
 - Maintain historical brainstorms and execution plans for non-trivial repository changes
 
 **Out of scope:**

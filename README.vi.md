@@ -12,7 +12,7 @@ Với Codex và Claude Code, nên dùng **plugin CoBrew** để có trải nghi�
 
 ## Tính năng
 
-CoBrew phân phối cùng một bộ workflow skill first-party qua hai hướng được hỗ trợ:
+CoBrew phân phối các workflow skill first-party qua hai hướng được hỗ trợ:
 
 1. **Plugin bundle cho Codex và Claude Code** giúp agent đọc workflow skill trực tiếp qua hệ thống plugin.
 2. **Cài trực tiếp bằng skills CLI** dùng [Vercel skills CLI](https://github.com/vercel-labs/skills) để cài cùng bộ skill cho các agent được hỗ trợ khác.
@@ -51,15 +51,15 @@ npx skills add buiducnhat/cobrew
 
 ## Bảo trì plugin bundle
 
-Repository này xem thư mục `skills/` ở root và `plugins/cobrew/.codex-plugin/plugin.json` là nguồn metadata authoring cho các plugin bundle.
+Repository này bảo trì nội dung skill sẵn sàng cho plugin trực tiếp trong `plugins/cobrew/skills/`.
 
-`bun run sync:plugin` sẽ sinh ra plugin bundle tự chứa tại `plugins/cobrew/`, gồm cả manifest cho Codex (`.codex-plugin/plugin.json`) và Claude Code (`.claude-plugin/plugin.json`).
+`plugins/cobrew/` là plugin bundle được commit sẵn cho cả Codex và Claude Code. Thư mục này gồm manifest Codex (`.codex-plugin/plugin.json`), manifest Claude Code (`.claude-plugin/plugin.json`), skill, reference và asset của plugin.
 
-Lệnh này cũng ghi lại marketplace của Codex tại `.agents/plugins/marketplace.json` và marketplace của Claude Code tại `.claude-plugin/marketplace.json` để cả hai cùng trỏ tới `./plugins/cobrew`.
+Marketplace của Codex tại `.agents/plugins/marketplace.json` và marketplace của Claude Code tại `.claude-plugin/marketplace.json` đều trỏ tới `./plugins/cobrew`. Repository không còn thư mục `skills/` ở root và không còn script sync.
 
 ## Workflow skill của repository
 
-Repository này hiện định nghĩa 10 workflow skill first-party và cũng pin thêm các upstream skill trong `skills-lock.json`:
+Repository này hiện định nghĩa 10 workflow skill first-party trong `plugins/cobrew/skills/`:
 
 | Skill             | Mô tả                                                                                                       |
 | ----------------- | ----------------------------------------------------------------------------------------------------------- |
