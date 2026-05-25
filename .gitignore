@@ -40,8 +40,9 @@ tmp
 temp
 
 # Local agent artifacts
-docs/plans/
-docs/brainstorms/
+docs/.plans/
+docs/.brainstorms/
+docs/.visualizations/
 
 # Local workflow skills
 AGENTS.md

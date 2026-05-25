@@ -60,7 +60,7 @@ Commits follow: `feat:`, `fix:`, `chore:` prefixes (conventional commits style, 
 ## Documentation Authoring
 
 - Standard reference docs live in `docs/architecture/`, `docs/codebase/`, `docs/code-standard/`, and `docs/project-pdr/`.
-- Historical artifacts may live in dated folders under `docs/brainstorms/` and `docs/plans/`.
+- Historical artifacts may live in dated folders under `docs/.brainstorms/`, `docs/.plans/`, and `docs/.visualizations/`.
 - Brainstorm and plan folders use timestamped slugs such as `260522-2157-visualize-content-depth`.
 - Plan folders use `SUMMARY.md`, `phase-01-*.md`, and `EXECUTION-REPORT.md` naming patterns.
 - Documentation should stay factual and implementation-backed; avoid invented requirements.

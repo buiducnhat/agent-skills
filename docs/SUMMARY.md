@@ -39,15 +39,3 @@ Product goals, use cases, business rules, and constraints.
 | ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | [project-pdr/goals.md](project-pdr/goals.md)         | Problem statement, plugin-first product purpose, supported workflows, scope boundaries, and success criteria    |
 | [project-pdr/use-cases.md](project-pdr/use-cases.md) | Plugin and direct skills CLI installation scenarios, workflow-skill usage patterns, and operational constraints |
-
-## Other
-
-Historical execution records that document why major workflow and visualization changes were made.
-
-| File                                                                                                                                                                                       | Description                                                         |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
-| [plans/archived/260522-2157-visualize-content-depth/SUMMARY.md](plans/archived/260522-2157-visualize-content-depth/SUMMARY.md)                                                             | Archived plan summary for improving visualize content depth         |
-| [plans/archived/260522-2157-visualize-content-depth/phase-01-content-first-workflow.md](plans/archived/260522-2157-visualize-content-depth/phase-01-content-first-workflow.md)             | Phase 1 plan for content-first visualization workflow changes       |
-| [plans/archived/260522-2157-visualize-content-depth/phase-02-pattern-routing-verification.md](plans/archived/260522-2157-visualize-content-depth/phase-02-pattern-routing-verification.md) | Phase 2 plan for visualization routing and verification changes     |
-| [plans/archived/260522-2157-visualize-content-depth/phase-03-sync-and-validate.md](plans/archived/260522-2157-visualize-content-depth/phase-03-sync-and-validate.md)                       | Phase 3 plan for synchronizing and validating visualization updates |
-| [plans/archived/260522-2157-visualize-content-depth/EXECUTION-REPORT.md](plans/archived/260522-2157-visualize-content-depth/EXECUTION-REPORT.md)                                           | Execution report for the visualize content-depth implementation     |

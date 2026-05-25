@@ -39,7 +39,7 @@ Capture:
 
 ### Step 2: Initialize Plan Artifacts
 
-1. Create: `docs/plans/YYMMDD-HHmm-<plan-slug>/`
+1. Create: `docs/.plans/YYMMDD-HHmm-<plan-slug>/`
 2. Create:
    - `SUMMARY.md`
    - one phase file per implementation phase with naming convention `phase-XX-<name>.md`
@@ -95,7 +95,7 @@ If external research capability is unavailable, proceed with local evidence and 
 
 Document findings in:
 
-- `docs/plans/YYMMDD-HHmm-<plan-slug>/research/<topic>.md`
+- `docs/.plans/YYMMDD-HHmm-<plan-slug>/research/<topic>.md`
 
 ### Step 6: Write Plan Content
 
@@ -134,8 +134,8 @@ If the user chooses **Confirm and Visualize**:
 1. Use the current `write-plan` session context and the plan artifacts just created.
 2. Do not restart project context loading or rediscover background that is already available in the session.
 3. Follow the `visualize` skill output convention for plan folders:
-   - `docs/plans/YYMMDD-HHmm-<plan-slug>/visualize.html`
-   - `docs/plans/YYMMDD-HHmm-<plan-slug>/visualize-assets/`
+   - `docs/.plans/YYMMDD-HHmm-<plan-slug>/visualize.html`
+   - `docs/.plans/YYMMDD-HHmm-<plan-slug>/visualize-assets/`
 4. Copy the fixed visualization theme into the adjacent assets folder.
 5. Verify the visualization enough to confirm the HTML, local CSS link, Mermaid import, source metadata, and primary content blocks are present.
 6. Then continue to the normal handoff.

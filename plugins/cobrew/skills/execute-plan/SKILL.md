@@ -1,7 +1,7 @@
 ---
 name: execute-plan
 description: Execute an approved implementation plan exactly and safely. Use for ExecPlan-style plan execution, resumable phase checklists, multi-hour implementation work, migrations, significant refactors, and plans that require verification checkpoints, status tracking, and final reporting.
-argument-hint: "[plan path, e.g. docs/plans/YYMMDD-HHmm-<plan-slug>/SUMMARY.md]"
+argument-hint: "[plan path, e.g. docs/.plans/YYMMDD-HHmm-<plan-slug>/SUMMARY.md]"
 license: MIT
 ---
 
@@ -11,7 +11,7 @@ license: MIT
 
 Execute a pre-approved plan with strict adherence to scope, sequence, and verification. Treat the plan as a living document that records progress, findings, decisions, and outcomes as execution proceeds.
 
-The input is typically: `execute-plan docs/plans/YYMMDD-HHmm-<plan-slug>/SUMMARY.md`
+The input is typically: `execute-plan docs/.plans/YYMMDD-HHmm-<plan-slug>/SUMMARY.md`
 
 Do not redesign the plan during execution. If ambiguity or blockers appear, stop and ask.
 
@@ -118,7 +118,7 @@ After all phases are complete:
 1. **Documentation Sync**
    - If behavior/architecture/codebase expectations changed, update the `docs` artifacts.
 2. **Create Execution Report**
-   - File: `docs/plans/YYMMDD-HHmm-<plan-slug>/EXECUTION-REPORT.md`
+   - File: `docs/.plans/YYMMDD-HHmm-<plan-slug>/EXECUTION-REPORT.md`
    - Include all required sections below.
 
 3. **Prepare Final Gate**
@@ -135,13 +135,13 @@ After completion artifacts are done, ask the user for a final confirmation using
 Handle the selected option as follows:
 
 1. **`Confirm: End session`**
-   - Archive the plan folder to `docs/plans/archived/`.
-   - Announce: `Execution complete. Report archived at docs/plans/archived/YYMMDD-HHmm-<plan-slug>/EXECUTION-REPORT.md.`
+   - Archive the plan folder to `docs/.plans/archived/`.
+   - Announce: `Execution complete. Report archived at docs/.plans/archived/YYMMDD-HHmm-<plan-slug>/EXECUTION-REPORT.md.`
    - End the execution session.
 
 2. **`Confirm and Auto commit git`**
-   - Archive the plan folder to `docs/plans/archived/`.
-   - Announce: `Execution complete. Report archived at docs/plans/archived/YYMMDD-HHmm-<plan-slug>/EXECUTION-REPORT.md.`
+   - Archive the plan folder to `docs/.plans/archived/`.
+   - Announce: `Execution complete. Report archived at docs/.plans/archived/YYMMDD-HHmm-<plan-slug>/EXECUTION-REPORT.md.`
    - Trigger the `git-commit` skill and complete an automatic commit flow.
    - After commit succeeds, end the execution session.
 

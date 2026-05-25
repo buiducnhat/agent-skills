@@ -6,7 +6,7 @@
 
 - User-visible outcome in 1-3 sentences.
 - Why this change matters now.
-- Link to brainstorm artifact if applicable. Eg: [Brainstorm artifacts](../../docs/brainstorms/<name>/SUMMARY.md)
+- Link to brainstorm artifact if applicable. Eg: [Brainstorm artifacts](../../.brainstorms/<name>/SUMMARY.md)
 
 ## Objective
 

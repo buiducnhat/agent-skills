@@ -97,21 +97,21 @@ Dùng khi yêu cầu chưa rõ hoặc có nhiều hướng tiếp cận khả th
 /brainstorm thêm chế độ dark mode
 
 # Agent làm rõ yêu cầu, đề xuất các hướng tiếp cận, tạo file:
-#   docs/brainstorms/260306-1430-dark-mode/SUMMARY.md
+#   docs/.brainstorms/260306-1430-dark-mode/SUMMARY.md
 # Sau đó hỏi: "Tiến hành write-plan không?"
 
 # Bước 2 — tạo kế hoạch triển khai theo giai đoạn
 /write-plan
 
 # Agent đọc brainstorm, tạo:
-#   docs/plans/260306-1445-dark-mode/SUMMARY.md
-#   docs/plans/260306-1445-dark-mode/phase-01-tokens.md
-#   docs/plans/260306-1445-dark-mode/phase-02-components.md
-# Kết thúc với: "Dùng /clear rồi /execute-plan docs/plans/... để thực thi"
+#   docs/.plans/260306-1445-dark-mode/SUMMARY.md
+#   docs/.plans/260306-1445-dark-mode/phase-01-tokens.md
+#   docs/.plans/260306-1445-dark-mode/phase-02-components.md
+# Kết thúc với: "Dùng /clear rồi /execute-plan docs/.plans/... để thực thi"
 
 # Bước 3 — thực thi kế hoạch đã duyệt trong context mới
 /clear
-/execute-plan docs/plans/260306-1445-dark-mode/SUMMARY.md
+/execute-plan docs/.plans/260306-1445-dark-mode/SUMMARY.md
 ```
 
 ---
@@ -129,14 +129,14 @@ Dùng khi task rõ ràng nhưng quá lớn hoặc có rủi ro để triển kha
 /write-plan chuyển đổi auth sang JWT
 
 # Agent tạo:
-#   docs/plans/260306-1020-jwt-auth/SUMMARY.md
-#   docs/plans/260306-1020-jwt-auth/phase-01-schema.md
-#   docs/plans/260306-1020-jwt-auth/phase-02-middleware.md
-# Kết thúc với: "Dùng /clear rồi /execute-plan docs/plans/... để thực thi"
+#   docs/.plans/260306-1020-jwt-auth/SUMMARY.md
+#   docs/.plans/260306-1020-jwt-auth/phase-01-schema.md
+#   docs/.plans/260306-1020-jwt-auth/phase-02-middleware.md
+# Kết thúc với: "Dùng /clear rồi /execute-plan docs/.plans/... để thực thi"
 
 # Bước 2 — thực thi trong context mới
 /clear
-/execute-plan docs/plans/260306-1020-jwt-auth/SUMMARY.md
+/execute-plan docs/.plans/260306-1020-jwt-auth/SUMMARY.md
 ```
 
 ---
@@ -182,11 +182,11 @@ visualize
 Dùng khi docs, plan, markdown hoặc context sẽ dễ hiểu hơn dưới dạng HTML diagram nằm cạnh source.
 
 ```
-/visualize docs/plans/260306-1020-jwt-auth/SUMMARY.md
+/visualize docs/.plans/260306-1020-jwt-auth/SUMMARY.md
 
 # Agent tạo:
-#   docs/plans/260306-1020-jwt-auth/visualize.html
-#   docs/plans/260306-1020-jwt-auth/visualize-assets/
+#   docs/.plans/260306-1020-jwt-auth/visualize.html
+#   docs/.plans/260306-1020-jwt-auth/visualize-assets/
 ```
 
 ## Agent được hỗ trợ

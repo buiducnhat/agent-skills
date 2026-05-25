@@ -107,11 +107,11 @@ Only perform this step after the user has explicitly chosen "Write artifacts" du
 
 Persist results to the standardized location:
 
-- Directory: `docs/brainstorms/YYMMDD-HHmm-<topic-slug>/`
-- Main file (required): `docs/brainstorms/YYMMDD-HHmm-<topic-slug>/SUMMARY.md`
+- Directory: `docs/.brainstorms/YYMMDD-HHmm-<topic-slug>/`
+- Main file (required): `docs/.brainstorms/YYMMDD-HHmm-<topic-slug>/SUMMARY.md`
 - Optional supporting files:
-  - `docs/brainstorms/YYMMDD-HHmm-<topic-slug>/section-01-<slug>.md`
-  - `docs/brainstorms/YYMMDD-HHmm-<topic-slug>/section-02-<slug>.md`
+  - `docs/.brainstorms/YYMMDD-HHmm-<topic-slug>/section-01-<slug>.md`
+  - `docs/.brainstorms/YYMMDD-HHmm-<topic-slug>/section-02-<slug>.md`
   - etc.
 
 `SUMMARY.md` format: strictly follow the template inside `references/summary-template.md`.

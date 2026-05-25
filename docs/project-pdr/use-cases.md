@@ -26,7 +26,7 @@
 
 - Keep Codex and Claude Code plugin metadata aligned with the first-party skills and README guidance.
 - Add or refine first-party skills under `plugins/cobrew/skills/` while keeping repository docs and README content aligned.
-- Preserve design context for larger changes in `docs/brainstorms/` and `docs/plans/`.
+- Preserve design context for larger changes in `docs/.brainstorms/` and `docs/.plans/`.
 - Update first-party skill guidance once under `plugins/cobrew/skills/` and keep plugin bundle metadata aligned.
 
 ## Key Requirements

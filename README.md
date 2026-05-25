@@ -99,21 +99,21 @@ Use when requirements are unclear or multiple approaches are possible.
 /brainstorm add dark mode support
 
 # Agent clarifies requirements, proposes approaches, writes:
-#   docs/brainstorms/260306-1430-dark-mode/SUMMARY.md
+#   docs/.brainstorms/260306-1430-dark-mode/SUMMARY.md
 # Then prompts: "Proceed to write-plan?"
 
 # Step 2 — create a phased implementation plan
 /write-plan
 
 # Agent reads the brainstorm, writes:
-#   docs/plans/260306-1445-dark-mode/SUMMARY.md
-#   docs/plans/260306-1445-dark-mode/phase-01-tokens.md
-#   docs/plans/260306-1445-dark-mode/phase-02-components.md
-# Ends with: "Use /clear then /execute-plan docs/plans/... to execute"
+#   docs/.plans/260306-1445-dark-mode/SUMMARY.md
+#   docs/.plans/260306-1445-dark-mode/phase-01-tokens.md
+#   docs/.plans/260306-1445-dark-mode/phase-02-components.md
+# Ends with: "Use /clear then /execute-plan docs/.plans/... to execute"
 
 # Step 3 — execute the approved plan in a fresh context
 /clear
-/execute-plan docs/plans/260306-1445-dark-mode/SUMMARY.md
+/execute-plan docs/.plans/260306-1445-dark-mode/SUMMARY.md
 ```
 
 ---
@@ -131,14 +131,14 @@ Use when the task is clear but too large or risky to implement without a plan.
 /write-plan migrate auth to JWT
 
 # Agent writes:
-#   docs/plans/260306-1020-jwt-auth/SUMMARY.md
-#   docs/plans/260306-1020-jwt-auth/phase-01-schema.md
-#   docs/plans/260306-1020-jwt-auth/phase-02-middleware.md
-# Ends with: "Use /clear then /execute-plan docs/plans/... to execute"
+#   docs/.plans/260306-1020-jwt-auth/SUMMARY.md
+#   docs/.plans/260306-1020-jwt-auth/phase-01-schema.md
+#   docs/.plans/260306-1020-jwt-auth/phase-02-middleware.md
+# Ends with: "Use /clear then /execute-plan docs/.plans/... to execute"
 
 # Step 2 — execute in a fresh context
 /clear
-/execute-plan docs/plans/260306-1020-jwt-auth/SUMMARY.md
+/execute-plan docs/.plans/260306-1020-jwt-auth/SUMMARY.md
 ```
 
 ---
@@ -184,11 +184,11 @@ visualize
 Use when docs, plans, markdown, or context would be easier to understand as a source-adjacent HTML diagram.
 
 ```
-/visualize docs/plans/260306-1020-jwt-auth/SUMMARY.md
+/visualize docs/.plans/260306-1020-jwt-auth/SUMMARY.md
 
 # Agent creates:
-#   docs/plans/260306-1020-jwt-auth/visualize.html
-#   docs/plans/260306-1020-jwt-auth/visualize-assets/
+#   docs/.plans/260306-1020-jwt-auth/visualize.html
+#   docs/.plans/260306-1020-jwt-auth/visualize-assets/
 ```
 
 ## Supported agents

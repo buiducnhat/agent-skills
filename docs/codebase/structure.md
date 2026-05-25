@@ -13,7 +13,7 @@ cobrew/
 │   ├── code-standard/      # Conventions and authoring rules
 │   ├── codebase/           # Repository structure docs
 │   ├── project-pdr/        # Product goals and use cases
-│   ├── plans/              # Archived implementation plans and reports
+│   ├── .plans/             # Local implementation plans and execution reports
 │   └── SUMMARY.md          # Docs entry point for context loading
 ├── plugins/
 │   └── cobrew/             # Checked-in Codex and Claude Code plugin bundle
@@ -60,7 +60,7 @@ cobrew/
 ## Documentation Layout
 
 - `docs/architecture/`, `docs/codebase/`, `docs/code-standard/`, and `docs/project-pdr/` are the standard documentation sections maintained by the `docs` skill.
-- `docs/plans/<timestamp-slug>/` stores plan summaries, phase files, and `EXECUTION-REPORT.md` files.
+- `docs/.plans/<timestamp-slug>/` stores plan summaries, phase files, and `EXECUTION-REPORT.md` files.
 - The root instructions tell agents to read `docs/SUMMARY.md` first, then load only the detail files needed for the current task.
 
 ## Workspace Notes

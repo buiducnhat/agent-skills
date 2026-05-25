@@ -37,7 +37,7 @@ First-party workflow skills load project context from `docs/SUMMARY.md` when pre
 
 The repository can store more than reference docs. It also contains archived execution records when substantial workflow changes need to preserve implementation history:
 
-- `docs/plans/` for phased implementation plans and execution reports
+- `docs/.plans/` for phased implementation plans and execution reports
 - the standard topic folders used by the `docs` skill (`architecture/`, `codebase/`, `code-standard/`, `project-pdr/`)
 
 ## Plugin Flow

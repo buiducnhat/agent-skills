@@ -32,7 +32,7 @@ Do not use this skill for:
 - Brainstorm folder: create `visualize.html` and `visualize-assets/` inside the brainstorm folder.
 - Current context tied to an active plan or brainstorm artifact folder: create `visualize.html` and `visualize-assets/` inside that artifact folder.
 - Markdown or document file: create `<source-base>.visualize.html` and `<source-base>.visualize-assets/` beside the source file.
-- Source-less context with no associated artifact folder: create `docs/visualizations/<slug>-YYMMDD-HHmm/visualize.html` and `docs/visualizations/<slug>-YYMMDD-HHmm/visualize-assets/` unless the user specifies a target. Generate the timestamp with `date +%y%m%d-%H%M`.
+- Source-less context with no associated artifact folder: create `docs/.visualizations/<slug>-YYMMDD-HHmm/visualize.html` and `docs/.visualizations/<slug>-YYMMDD-HHmm/visualize-assets/` unless the user specifies a target. Generate the timestamp with `date +%y%m%d-%H%M`.
 
 Always copy `references/templates/visualize-theme.css` into the adjacent assets folder and link the copied local CSS from the generated HTML. Mermaid CDN usage is allowed for diagrams.
 
