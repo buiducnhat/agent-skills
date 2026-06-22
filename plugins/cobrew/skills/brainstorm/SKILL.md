@@ -70,17 +70,16 @@ with the tag added for the recommended approach to guide the user.
 
 ### Step 4: Present the Design Incrementally
 
-Once requirements are clear, present the design incrementally in logical phases (about 200-300 words per phase) to avoid overwhelming the user.
+Once requirements are clear, present the design incrementally in logical phases to avoid overwhelming the user.
 
 - **Phase 1: Foundation** - Problem framing, goals, and proposed architecture/flow.
 - **Phase 2: Technical Details** - Data model, interfaces, error handling, and edge cases.
 - **Phase 3: Delivery** - Testing/verification strategy and rollout considerations (if applicable).
 
-After presenting **each phase**, use input/question tool immediately to ask whether to:
+After presenting **all phases**, use input/question tool immediately to ask whether to:
 
-1. Proceed to the next phase
-2. Adjust the current phase
-3. Revisit a previous phase
+1. Proceed to the next step
+2. Adjust the phases (require typing)
 
 ### Step 5: Close the Loop
 
