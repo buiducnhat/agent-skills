@@ -26,7 +26,7 @@ Load only the project context relevant to the current idea:
 - If `docs/SUMMARY.md` exists, read it first.
 - Load only task-relevant detail docs.
 - Prioritize `Code Standard` docs for implementation conventions.
-- If docs conflict with code or user intent, use the available input/question tool before broad changes.
+- If docs conflict with code or user intent, use the available interactive input/question tool before broad changes.
 
 Also check key implementation files relevant to the idea and note constraints from existing architecture, dependencies, and conventions.
 
@@ -34,7 +34,7 @@ Keep this pass focused. Only gather what is needed for the current idea.
 
 ### Step 2: Clarify Requirements
 
-Ask targeted questions sequentially to remove ambiguity with input/question tool:
+Ask targeted questions sequentially to remove ambiguity with interactive input/question tool:
 
 - Focus on:
   - Objective and user value
@@ -59,7 +59,7 @@ For each approach, include:
 
 Lead with your recommended option and explain why it best fits the project context and constraints.
 
-After presenting all approaches, use input/question tool to let the user pick their preferred approach. List the summary options. Example:
+After presenting all approaches, use interactive input/question tool to let the user pick their preferred approach. List the summary options. Example:
 
 1. Approach A, short summary
 2. Approach B, short summary
@@ -123,3 +123,4 @@ Persist results to the standardized location:
 - Align all recommendations with project documentation and standards.
 - Keep assumptions explicit; do not guess silently.
 - **Think before coding:** Surface assumptions explicitly. If multiple interpretations exist, present them — don't pick silently. If a simpler approach exists, say so and push back when warranted.
+- Write artifacts in language same with the current session.
