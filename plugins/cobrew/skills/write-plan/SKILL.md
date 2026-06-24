@@ -1,7 +1,7 @@
 ---
 name: write-plan
 description: Create detailed, execution-ready implementation plans for complex or high-risk changes without coding. Use for ExecPlan-style work, multi-hour changes, significant refactors, migrations, resumable phase checklists, and work that should be handed off to execute-plan with clear validation.
-argument-hint: "[--visualize] [brief description of the change to plan]"
+argument-hint: "[--non-visualize] [brief description of the change to plan]"
 license: MIT
 ---
 
@@ -105,7 +105,7 @@ Document findings in:
 - `phase-XX-<name>.md` format
   Follow the template inside `references/phase-template.md`
 
-If the parameter `--visualize` is present, also create a source-adjacent visualization in the same session
+- Use skill `visualize` to visualize the plan, otherwise, skip visualization if `--non-visualize` is present.
 
 ### Step 7: Review and Refine
 
