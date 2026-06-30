@@ -126,7 +126,7 @@ After all phases are complete:
 
 ### Step 5: Final Confirmation Gate
 
-After completion artifacts are done, ask the user for a final confirmation using the input/question with exactly these options:
+After completion artifacts are done, ask the user for a final confirmation using the input/question tool with exactly these options:
 
 - `Confirm: End session`
 - `Need verify`
